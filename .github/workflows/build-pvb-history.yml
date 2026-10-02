@@ -2,6 +2,10 @@ name: KBO Historical PvB Build
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "cloud/build_pvb_history.py"
+      - ".github/workflows/build-pvb-history.yml"
   schedule:
     # Refresh the transport artifact monthly; historical seasons themselves are static.
     - cron: "37 19 1 * *"
