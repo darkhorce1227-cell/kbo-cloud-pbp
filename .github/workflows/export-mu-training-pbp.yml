@@ -1,0 +1,83 @@
+name: KBO Mu Training PBP Export
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/export-mu-training-pbp.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kbo-mu-training-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore historical raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mu-training
+          restore-keys: |
+            kbo-history-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Export fixed 2024-2025 PBP
+        shell: bash
+        run: |
+          mkdir -p out_training
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import pandas as pd
+          import kbo_pbp
+
+          out = Path('out_training')
+          manifest = {'kind':'KBO mu training PBP','seasons':{},'stable_key':['game_pk','at_bat_number','pitch_number']}
+          for year in (2024, 2025):
+              errors = kbo_pbp.download(year)
+              if errors:
+                  raise RuntimeError(f'{year}: download failures={len(errors)} sample={list(errors.items())[:3]}')
+              df = kbo_pbp.season(year)
+              dup = int(df.duplicated(['game_pk','at_bat_number','pitch_number']).sum())
+              if dup:
+                  raise RuntimeError(f'{year}: duplicate stable keys={dup}')
+              path = out / f'kbo_pbp_{year}_training.csv.gz'
+              df.to_csv(path, index=False, compression='gzip')
+              h = hashlib.sha256(path.read_bytes()).hexdigest()
+              manifest['seasons'][str(year)] = {
+                  'rows': int(len(df)), 'columns': int(len(df.columns)),
+                  'games': int(df.game_pk.nunique()),
+                  'min_date': str(pd.to_datetime(df.game_date).min().date()),
+                  'max_date': str(pd.to_datetime(df.game_date).max().date()),
+                  'duplicate_stable_keys': dup,
+                  'file': path.name, 'sha256': h,
+              }
+          (out/'manifest_mu_training.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(manifest,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload mu training PBP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-mu-training-pbp-2024-2025
+          path: out_training/*
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
