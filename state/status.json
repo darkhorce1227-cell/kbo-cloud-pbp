@@ -1,0 +1,9 @@
+{
+  "version": "0.2.0",
+  "state": "UNCONFIGURED",
+  "validation": null,
+  "target_date": null,
+  "checked_at_kst": null,
+  "last_success_date": null,
+  "message": "Run the GitHub workflow after deployment."
+}
