@@ -393,11 +393,19 @@ def run(target: date, force: bool = False) -> Result:
             pass
 
     if final_count < len(expected_ids):
-        return Result(
-            state="GAMES_NOT_FINAL", validation="WAIT", final_games=final_count,
-            reason=f"[{schedule_source}] Only {final_count}/{len(expected_ids)} expected games are final.",
-            retry_next_hour=True, **base
-        )
+        # Explicit historical backfills (--force) may receive stale/non-final
+        # schedule status even though the games are already complete. In that
+        # case, let the authoritative PBP validation prove completeness by
+        # requiring every expected game ID and nonzero rows.
+        historical_force = force and target < now.date()
+        if not historical_force:
+            return Result(
+                state="GAMES_NOT_FINAL", validation="WAIT", final_games=final_count,
+                reason=f"[{schedule_source}] Only {final_count}/{len(expected_ids)} expected games are final.",
+                retry_next_hour=True, **base
+            )
+        final_count = len(expected_ids)
+        schedule_source = schedule_source + "+FORCED_HISTORICAL_BACKFILL"
 
     if prev.get("last_success_date") == target.isoformat() and prev.get("validation") == "PASS" and not force:
         return Result(
