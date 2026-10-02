@@ -1,0 +1,86 @@
+name: KBO Historical PvB Build
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Refresh the transport artifact monthly; historical seasons themselves are static.
+    - cron: "37 19 1 * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-pvb-history
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore Naver raw cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: |
+            kbo-history-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build 2024-2025 PvB history
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python cloud/build_pvb_history.py
+
+      - name: Save Naver raw cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-${{ github.run_number }}
+
+      - name: Upload historical PvB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pvb-history-2024-2025
+          path: |
+            out_history/kbo_pvb_2024_2025.csv.gz
+            out_history/kbo_pvb_2024_2025.parquet
+            out_history/manifest_pvb_history.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+
+      - name: Ensure historical release exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if ! gh release view historical-pvb >/dev/null 2>&1; then
+            gh release create historical-pvb \
+              --title "KBO Historical PvB 2024-2025" \
+              --notes "Year-separated batter-vs-pitcher summary built from validated Naver KBO PBP."
+          fi
+
+      - name: Publish historical PvB release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release upload historical-pvb \
+            out_history/kbo_pvb_2024_2025.csv.gz \
+            out_history/kbo_pvb_2024_2025.parquet \
+            out_history/manifest_pvb_history.json \
+            --clobber
