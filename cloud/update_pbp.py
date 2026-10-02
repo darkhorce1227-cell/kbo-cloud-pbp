@@ -228,6 +228,15 @@ def get_expected_game_ids(daily: pd.DataFrame) -> list[str]:
     gid = game_id_col(daily)
     return sorted(daily[gid].astype(str).dropna().unique().tolist())
 
+def get_final_game_ids(daily: pd.DataFrame) -> list[str]:
+    if daily.empty:
+        return []
+    gid = game_id_col(daily)
+    mask = final_mask(daily)
+    if len(mask) != len(daily):
+        return []
+    return sorted(daily.loc[mask, gid].astype(str).dropna().unique().tolist())
+
 def normalize_game_date(series: pd.Series) -> pd.Series:
     return pd.to_datetime(series, errors="coerce").dt.date
 
@@ -365,6 +374,24 @@ def run(target: date, force: bool = False) -> Result:
 
     finals = final_mask(daily)
     final_count = int(finals.sum())
+
+    # Naver's date-scoped endpoint can expose stale/non-final statusNum values
+    # for already-completed historical dates. If that happens, cross-check the
+    # upstream season schedule by game ID instead of blocking forever.
+    if final_count < len(expected_ids) and schedule_source == "NAVER_DATE_STATUS":
+        try:
+            season_daily = daily_schedule(schedule.fetch(target.year), target)
+            season_final_ids = set(get_final_game_ids(season_daily))
+            expected_set = set(expected_ids)
+            confirmed = expected_set & season_final_ids
+            if expected_set and expected_set.issubset(season_final_ids):
+                final_count = len(expected_ids)
+                schedule_source = "NAVER_DATE_STATUS+UPSTREAM_FINAL_FALLBACK"
+            elif len(confirmed) > final_count:
+                final_count = len(confirmed)
+        except Exception:
+            pass
+
     if final_count < len(expected_ids):
         return Result(
             state="GAMES_NOT_FINAL", validation="WAIT", final_games=final_count,
