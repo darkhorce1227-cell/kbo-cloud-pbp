@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 import kbo_pbp
+from kbo_pbp import schedule
 
 KST = timezone(timedelta(hours=9))
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,18 +35,42 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def load_year(year: int) -> pd.DataFrame:
-    kbo_pbp.download(year)
+def load_year(year: int) -> tuple[pd.DataFrame, dict[str, int]]:
+    errors = kbo_pbp.download(year)
+    if errors:
+        raise RuntimeError(f"{year}: {len(errors)} download failures; sample={list(errors.items())[:5]}")
+
     df = kbo_pbp.season(year)
     if not isinstance(df, pd.DataFrame):
         raise RuntimeError(f"kbo_pbp.season({year}) did not return DataFrame")
+
     missing = sorted(REQUIRED - set(df.columns))
     if missing:
         raise RuntimeError(f"{year}: missing columns {missing}")
+
     dupes = int(df.duplicated(["game_pk", "at_bat_number", "pitch_number"], keep=False).sum())
     if dupes:
         raise RuntimeError(f"{year}: duplicate stable pitch keys={dupes}")
-    return df
+
+    season_schedule = schedule.fetch(year)
+    playable = schedule.playable(season_schedule)
+    expected_ids = set(playable["gameId"].astype(str))
+    found_ids = set(df["game_pk"].astype(str).unique())
+    missing_games = sorted(expected_ids - found_ids)
+    unexpected_games = sorted(found_ids - expected_ids)
+    if missing_games or unexpected_games:
+        raise RuntimeError(
+            f"{year}: schedule/PBP mismatch expected={len(expected_ids)} found={len(found_ids)} "
+            f"missing={missing_games[:5]} unexpected={unexpected_games[:5]}"
+        )
+
+    audit = {
+        "expected_games": len(expected_ids),
+        "found_games": len(found_ids),
+        "duplicate_stable_keys": dupes,
+        "download_failures": 0,
+    }
+    return df, audit
 
 
 def final_pa(df: pd.DataFrame, year: int) -> pd.DataFrame:
@@ -96,14 +121,14 @@ def main() -> int:
     diagnostics = {}
 
     for year in YEARS:
-        df = load_year(year)
+        df, audit = load_year(year)
         pa = final_pa(df, year)
         frames.append(aggregate_pvb(pa))
         dates = pd.to_datetime(df["game_date"], errors="coerce")
         diagnostics[str(year)] = {
+            **audit,
             "pitch_rows": int(len(df)),
             "columns": int(len(df.columns)),
-            "games": int(df["game_pk"].nunique()),
             "final_pa_rows": int(len(pa)),
             "min_game_date": str(dates.min().date()),
             "max_game_date": str(dates.max().date()),
@@ -125,7 +150,7 @@ def main() -> int:
     pvb.to_parquet(parquet, index=False, compression="zstd")
 
     payload = {
-        "version": "0.1.0",
+        "version": "0.1.1",
         "kind": "KBO historical PvB summary",
         "seasons": list(YEARS),
         "rows": int(len(pvb)),
