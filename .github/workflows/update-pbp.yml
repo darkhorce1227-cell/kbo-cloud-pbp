@@ -112,6 +112,20 @@ jobs:
             git push
           fi
 
+      - name: Upload validated dataset artifact
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pbp-${{ steps.result.outputs.target_date }}
+          path: |
+            out/kbo_pbp_*_latest.csv.gz
+            out/kbo_pbp_*_latest.parquet
+            out/manifest.json
+            state/status.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+
       - name: Ensure rolling release exists
         if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
         env:
