@@ -1,0 +1,54 @@
+{
+  "version": "mu-v1.2-research",
+  "status": "RESEARCH_CANDIDATE_NOT_CHAMPION",
+  "train": "2024-05-01 through 2025",
+  "validation": "2025 chosen without 2026 tuning",
+  "oos": "2026 through 2026-10-01",
+  "alphas": {"f5": 0.54, "full": 0.322},
+  "gamma": {"f5": 5.0, "full": 6.0},
+  "components": {
+    "simple_f5": {
+      "features": ["off_f5_long_ratio","off_f5_30d_ratio","park_factor","is_home"],
+      "target": "runs_f5",
+      "offset": "league_f5_30d",
+      "ridge_alpha": 1.0,
+      "scaler_mean": {"off_f5_long_ratio":0.9998960079806695,"off_f5_30d_ratio":1.0025501932453174,"park_factor":1.0013267494765383,"is_home":0.5},
+      "scaler_scale": {"off_f5_long_ratio":0.0905778683050092,"off_f5_30d_ratio":0.16301657213621398,"park_factor":0.0609195796351441,"is_home":0.5},
+      "params": {"const":-0.006240442630378525,"off_f5_long_ratio":0.008510486621209647,"off_f5_30d_ratio":0.011041103332007935,"park_factor":0.028294712649182097,"is_home":0.0312790285906983}
+    },
+    "core_f5": {
+      "features": ["off_f5_long_ratio","off_f5_30d_ratio","sp_kbb_long","sp_kbb_recent5","sp_hr_long","sp_hr_recent5","sp_h_long","sp_h_recent5","sp_ip_long","sp_ip_recent5","opp_bp_ra9_long_rel","opp_bp_ra9_30d_rel","park_factor","is_home"],
+      "target": "runs_f5",
+      "offset": "league_f5_30d",
+      "ridge_alpha": 5.0,
+      "scaler_mean": {"off_f5_long_ratio":0.9998960079806695,"off_f5_30d_ratio":1.0025501932453174,"sp_kbb_long":0.10686473223744361,"sp_kbb_recent5":0.10620001474800951,"sp_hr_long":0.023705535127369778,"sp_hr_recent5":0.023446405172330754,"sp_h_long":0.2359161303365018,"sp_h_recent5":0.23559593612386603,"sp_ip_long":5.1898038332013,"sp_ip_recent5":5.193170407022041,"opp_bp_ra9_long_rel":0.9992120209659929,"opp_bp_ra9_30d_rel":0.9860898056018214,"park_factor":1.0013267494765383,"is_home":0.5},
+      "scaler_scale": {"off_f5_long_ratio":0.0905778683050092,"off_f5_30d_ratio":0.16301657213621398,"sp_kbb_long":0.03954945188991089,"sp_kbb_recent5":0.052413087127458236,"sp_hr_long":0.00639743507187489,"sp_hr_recent5":0.00930772694852608,"sp_h_long":0.019729996611414256,"sp_h_recent5":0.027469923090854866,"sp_ip_long":0.4845921274897928,"sp_ip_recent5":0.649231164966384,"opp_bp_ra9_long_rel":0.10310527072845412,"opp_bp_ra9_30d_rel":0.21158719158114866,"park_factor":0.0609195796351441,"is_home":0.5},
+      "params": {"const":-0.0029674509531474875,"off_f5_long_ratio":0.006272303432422266,"off_f5_30d_ratio":0.006348611363650276,"sp_kbb_long":0.00487122480428635,"sp_kbb_recent5":0.0049566765682059165,"sp_hr_long":0.002168511052806235,"sp_hr_recent5":0.003922934688358844,"sp_h_long":-0.0018805501989487133,"sp_h_recent5":-0.000031408473740499745,"sp_ip_long":0.00536575750510001,"sp_ip_recent5":0.003465048946521267,"opp_bp_ra9_long_rel":0.020130729665947342,"opp_bp_ra9_30d_rel":0.006828964778174513,"park_factor":0.01322385920685468,"is_home":0.014932652069540978}
+    },
+    "simple_late": {
+      "features": ["off_late_long_ratio","off_late_30d_ratio","park_factor","is_home"],
+      "target": "runs_late",
+      "offset": "league_late_30d",
+      "ridge_alpha": 1.0,
+      "scaler_mean": {"off_late_long_ratio":1.0014670244666999,"off_late_30d_ratio":1.0014585356514605,"park_factor":1.0013267494765383,"is_home":0.5},
+      "scaler_scale": {"off_late_long_ratio":0.08634572158882317,"off_late_30d_ratio":0.16603868812813596,"park_factor":0.0609195796351441,"is_home":0.5},
+      "params": {"const":-0.008444446778938141,"off_late_long_ratio":0.02323617859170185,"off_late_30d_ratio":-0.00685845754130136,"park_factor":0.021296031140491164,"is_home":-0.053694603762816456}
+    },
+    "core_late": {
+      "features": ["off_late_long_ratio","off_late_30d_ratio","opp_bp_ra9_long_rel","opp_bp_ra9_30d_rel","sp_ip_long","sp_ip_recent5","park_factor","is_home"],
+      "target": "runs_late",
+      "offset": "league_late_30d",
+      "ridge_alpha": 300.0,
+      "scaler_mean": {"off_late_long_ratio":1.0014670244666999,"off_late_30d_ratio":1.0014585356514605,"opp_bp_ra9_long_rel":0.9992120209659929,"opp_bp_ra9_30d_rel":0.9860898056018214,"sp_ip_long":5.1898038332013,"sp_ip_recent5":5.193170407022041,"park_factor":1.0013267494765383,"is_home":0.5},
+      "scaler_scale": {"off_late_long_ratio":0.08634572158882317,"off_late_30d_ratio":0.16603868812813596,"opp_bp_ra9_long_rel":0.10310527072845412,"opp_bp_ra9_30d_rel":0.21158719158114866,"sp_ip_long":0.4845921274897928,"sp_ip_recent5":0.649231164966384,"park_factor":0.0609195796351441,"is_home":0.5},
+      "params": {"const":-0.00007572232220934737,"off_late_long_ratio":0.0002337207341187566,"off_late_30d_ratio":0.000039543379423747525,"opp_bp_ra9_long_rel":0.00011012227675079146,"opp_bp_ra9_30d_rel":0.00009344301426448374,"sp_ip_long":0.00019431857921315275,"sp_ip_recent5":0.00023091438499587798,"park_factor":0.00024342340403401373,"is_home":-0.0005667824214321434}
+    }
+  },
+  "construction": {
+    "f5_total": "simple_f5 game total",
+    "f5_share": "core_f5 team share temperature gamma=5",
+    "full_total": "simple_f5 + simple_late game total",
+    "full_share": "core_f5 + core_late team share temperature gamma=6"
+  },
+  "omissions": ["confirmed lineup historical representation","weather historical representation","detailed defense","PvB","CQ","pitch-fit","same-day market"]
+}
