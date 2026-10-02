@@ -47,3 +47,12 @@ def test_validation_happy_path():
                                ["20261001AABB02026","20261001CCDD02026"],{})
     assert ok
     assert diag["duplicate_stable_keys"] == 0
+
+
+def test_final_mask_statusinfo_fallback():
+    df = pd.DataFrame([
+        {"statusInfo":"9회말"},
+        {"statusInfo":"경기종료"},
+    ])
+    got = final_mask(df)
+    assert len(got) == 2
