@@ -1,0 +1,138 @@
+name: KBO PBP Cloud Update
+
+on:
+  schedule:
+    # 17:07–05:07 KST = 08:07–20:07 UTC
+    - cron: "7 8-20 * * *"
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: "KST target date (YYYY-MM-DD); blank = automatic"
+        required: false
+        type: string
+      force:
+        description: "Force rebuild / bypass time gate"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-pbp-cloud-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preflight — stop after today's PASS
+        id: gate
+        env:
+          INPUT_TARGET_DATE: ${{ inputs.target_date }}
+          INPUT_FORCE: ${{ inputs.force }}
+        run: python cloud/preflight.py
+
+      - name: Skip completed slate
+        if: steps.gate.outputs.skip == 'true'
+        run: echo "${{ steps.gate.outputs.reason }}"
+
+      - name: Set up Python
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore Naver raw cache
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-raw-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: |
+            kbo-raw-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.gate.outputs.skip != 'true'
+        run: pip install -r requirements.txt
+
+      - name: Run updater
+        if: steps.gate.outputs.skip != 'true'
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          ARGS=()
+          if [ -n "${{ inputs.target_date }}" ]; then
+            ARGS+=(--date "${{ inputs.target_date }}")
+          fi
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS+=(--force)
+          fi
+          python cloud/update_pbp.py "${ARGS[@]}"
+
+      - name: Save Naver raw cache
+        if: steps.gate.outputs.skip != 'true' && always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-raw-${{ runner.os }}-${{ github.run_number }}
+
+      - name: Read run result
+        if: steps.gate.outputs.skip != 'true'
+        id: result
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          d=json.load(open("state/run_result.json", encoding="utf-8"))
+          print("publish=" + ("true" if d.get("should_publish") else "false"))
+          print("validation=" + str(d.get("validation","")))
+          print("state=" + str(d.get("state","")))
+          print("target_date=" + str(d.get("target_date","")))
+          PY
+
+      - name: Commit status
+        if: steps.gate.outputs.skip != 'true'
+        shell: bash
+        run: |
+          git config user.name "kbo-pbp-bot"
+          git config user.email "kbo-pbp-bot@users.noreply.github.com"
+          git add state/status.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): PBP 상태 갱신 ${{ steps.result.outputs.target_date }}"
+            git push
+          fi
+
+      - name: Ensure rolling release exists
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if ! gh release view latest-pbp >/dev/null 2>&1; then
+            gh release create latest-pbp \
+              --title "Latest validated KBO PBP" \
+              --notes "Rolling release for the latest validated KBO play-by-play dataset."
+          fi
+
+      - name: Publish validated dataset
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release upload latest-pbp \
+            out/kbo_pbp_*_latest.csv.gz \
+            out/kbo_pbp_*_latest.parquet \
+            out/manifest.json \
+            state/status.json \
+            --clobber
