@@ -1,0 +1,44 @@
+{
+  "version": "mu-v1.2-research",
+  "split": {
+    "train_2024_rows": 1156,
+    "validation_2025_rows": 1472,
+    "final_development_rows": 2628,
+    "oos_2026_rows": 1368,
+    "oos_games": 684
+  },
+  "validation_2025": {
+    "f5": {
+      "league": {"mae":1.991779,"nb_nll":2.127324,"wdl_brier":0.205007,"wdl_logloss":1.009417,"mean_mu":2.710690},
+      "simple": {"mae":1.985408,"nb_nll":2.125683,"wdl_brier":0.204575,"wdl_logloss":1.007755,"mean_mu":2.707091},
+      "core": {"mae":1.990724,"nb_nll":2.126472,"wdl_brier":0.203746,"wdl_logloss":1.005030,"mean_mu":2.719038},
+      "hybrid": {"mae":1.972148,"nb_nll":2.119811,"wdl_brier":0.201627,"wdl_logloss":0.997047,"mean_mu":2.707091}
+    },
+    "full": {
+      "league": {"mae":2.669440,"nb_nll":2.520377,"wdl_brier":0.178176,"wdl_logloss":0.838088,"mean_mu":4.807168},
+      "simple": {"mae":2.666503,"nb_nll":2.518545,"wdl_brier":0.178176,"wdl_logloss":0.838119,"mean_mu":4.809410},
+      "core": {"mae":2.668122,"nb_nll":2.519851,"wdl_brier":0.177157,"wdl_logloss":0.834579,"mean_mu":4.816107},
+      "hybrid": {"mae":2.658469,"nb_nll":2.515330,"wdl_brier":0.174707,"wdl_logloss":0.826652,"mean_mu":4.809410}
+    }
+  },
+  "oos_2026": {
+    "f5": {
+      "league": {"mae":1.956265,"nb_nll":2.124465,"wdl_brier":0.203254,"wdl_logloss":0.999300,"mean_mu":2.688322},
+      "simple": {"mae":1.945110,"nb_nll":2.122052,"wdl_brier":0.202485,"wdl_logloss":0.996187,"mean_mu":2.668074},
+      "core": {"mae":1.949433,"nb_nll":2.122931,"wdl_brier":0.202355,"wdl_logloss":0.996071,"mean_mu":2.682269},
+      "hybrid": {"mae":1.930994,"nb_nll":2.119493,"wdl_brier":0.201870,"wdl_logloss":0.993735,"mean_mu":2.668074}
+    },
+    "full": {
+      "league": {"mae":2.725050,"nb_nll":2.557921,"wdl_brier":0.176397,"wdl_logloss":0.825186,"mean_mu":5.042683},
+      "simple": {"mae":2.713025,"nb_nll":2.553852,"wdl_brier":0.176018,"wdl_logloss":0.824246,"mean_mu":5.001728},
+      "core": {"mae":2.721402,"nb_nll":2.556875,"wdl_brier":0.175373,"wdl_logloss":0.821863,"mean_mu":5.036414},
+      "hybrid": {"mae":2.705128,"nb_nll":2.552990,"wdl_brier":0.172763,"wdl_logloss":0.813524,"mean_mu":5.001728}
+    }
+  },
+  "decided_side_accuracy_2026": {"f5":0.560272,"full":0.571856},
+  "notes": [
+    "Temperature gamma was selected on 2025 only, before 2026 OOS evaluation.",
+    "Side accuracy is descriptive and is not a betting ROI or market-price test.",
+    "Candidate remains research-only until production integration and live snapshot comparison are approved."
+  ]
+}
