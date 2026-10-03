@@ -1,6 +1,11 @@
 name: KBO PBP Cloud Update
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "cloud/update_pbp_resilient.py"
+      - ".github/workflows/update-pbp.yml"
   schedule:
     # 17:07–05:07 KST = 08:07–20:07 UTC
     - cron: "7 8-20 * * *"
@@ -77,7 +82,7 @@ jobs:
           if [ "${{ inputs.force }}" = "true" ]; then
             ARGS+=(--force)
           fi
-          python cloud/update_pbp.py "${ARGS[@]}"
+          python cloud/update_pbp_resilient.py "${ARGS[@]}"
 
       - name: Save Naver raw cache
         if: steps.gate.outputs.skip != 'true' && always()
