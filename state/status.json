@@ -1,7 +1,7 @@
 {
-  "checked_at_kst": "2026-10-03T23:28:50.396884+09:00",
+  "checked_at_kst": "2026-10-03T23:35:24.974741+09:00",
   "columns": 50,
-  "csv_gz": null,
+  "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
     "20261003HTLG02026",
@@ -11,21 +11,27 @@
     "20261003WOHH02026"
   ],
   "expected_games": 5,
-  "final_games": 0,
+  "final_games": 5,
   "first_check_kst": "17:00",
-  "found_game_ids": [],
+  "found_game_ids": [
+    "20261003HTLG02026",
+    "20261003LTKT02026",
+    "20261003OBSS02026",
+    "20261003SKNC02026",
+    "20261003WOHH02026"
+  ],
   "has_1400_game": true,
-  "last_success_date": "2026-10-01",
+  "last_success_date": "2026-10-03",
   "missing_columns": [],
-  "parquet": null,
-  "reason": "[NAVER_DATE_STATUS] Only 0/5 expected games are final.; PBP terminal fallback candidate incomplete: {\"missing_columns\": [], \"rows\": 210589, \"columns\": 50, \"duplicate_stable_keys\": 0, \"found_game_ids\": [], \"missing_game_ids\": [\"20261003HTLG02026\", \"20261003LTKT02026\", \"20261003OBSS02026\", \"20261003SKNC02026\", \"20261003WOHH02026\"]}",
-  "retry_next_hour": true,
-  "rows": 210589,
-  "sha256_csv_gz": null,
-  "sha256_parquet": null,
-  "should_publish": false,
-  "state": "GAMES_NOT_FINAL",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "reason": "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games were fetched directly by game ID, each exposed Naver GAME_END(type=99), and every game passed parsed terminal-state plus dataset validation.",
+  "retry_next_hour": false,
+  "rows": 212039,
+  "sha256_csv_gz": "7b1b725fb1619cbbbb34443c67356f1e9ccff8c500cd20fb5681d3942741e6a8",
+  "sha256_parquet": "d431d6e95a1d7156451553ade9fcd17a1a97dc261ba4a34cf266149804b879fc",
+  "should_publish": true,
+  "state": "UPDATED",
   "target_date": "2026-10-03",
-  "validation": "WAIT",
-  "version": "0.2.0"
+  "validation": "PASS",
+  "version": "0.2.2"
 }
