@@ -6,6 +6,8 @@ from dataclasses import asdict
 from datetime import date
 
 import pandas as pd
+import kbo_pbp
+from kbo_pbp import naver, relay, statcast, storage
 
 import update_pbp as core
 
@@ -24,15 +26,101 @@ OUT_EVENTS = {
     "pickoff_caught_stealing",
 }
 
+MAX_INNINGS = 15
+
+
+def _relay_has_game_end(payload: dict) -> bool:
+    """Return True only when Naver relay itself contains GAME_END(type=99)."""
+    for block in payload.get("textRelays") or []:
+        for event in block.get("textOptions") or []:
+            try:
+                if int(event.get("type", -1)) == int(relay.GAME_END):
+                    return True
+            except (TypeError, ValueError):
+                continue
+    return False
+
+
+def _direct_fetch_game(year: int, game_id: str) -> tuple[dict[int, dict], int]:
+    """Fetch a game inning-by-inning without relying on schedule.playable().
+
+    Fail closed unless an explicit Naver GAME_END(type=99) event is observed.
+    The completed relay is cached in the same format used by upstream kbo_pbp.
+    """
+    relays: dict[int, dict] = {}
+    final_inning: int | None = None
+    for inning in range(1, MAX_INNINGS + 1):
+        payload = naver.fetch_relay(game_id, inning)
+        relays[inning] = payload
+        if _relay_has_game_end(payload):
+            final_inning = inning
+            break
+
+    if final_inning is None:
+        raise RuntimeError(f"GAME_END not observed through inning {MAX_INNINGS}: {game_id}")
+
+    storage.write_json(storage.game_file(year, game_id), relays)
+    return relays, final_inning
+
+
+def _direct_daily_frames(year: int, expected_ids: list[str]) -> tuple[list[pd.DataFrame], dict[str, object]]:
+    """Direct-fetch expected games and build Statcast-style frames.
+
+    Metadata comes from the cached season schedule row, which already contains
+    the expected game IDs even when its final-status field is stale.
+    """
+    schedule_df = kbo_pbp.load_schedule(year)
+    gid_col = core.game_id_col(schedule_df)
+    by_id = schedule_df.set_index(schedule_df[gid_col].astype(str), drop=False)
+
+    frames: list[pd.DataFrame] = []
+    report: dict[str, object] = {}
+    for gid in expected_ids:
+        if gid not in by_id.index:
+            raise RuntimeError(f"game metadata missing from season schedule: {gid}")
+        row = by_id.loc[gid]
+        if isinstance(row, pd.DataFrame):
+            row = row.iloc[0]
+
+        game, final_inning = _direct_fetch_game(year, gid)
+        meta_source = row.to_dict()
+        meta_source["gameId"] = gid
+        frame = statcast.game_frame(game, statcast.meta_from_schedule(meta_source))
+        if frame.empty:
+            raise RuntimeError(f"direct relay produced empty frame: {gid}")
+        frames.append(frame)
+        report[gid] = {
+            "game_end": True,
+            "final_inning": final_inning,
+            "rows": int(len(frame)),
+        }
+    return frames, report
+
+
+def _augment_candidate_with_direct_games(
+    df: pd.DataFrame,
+    target: date,
+    expected_ids: list[str],
+) -> tuple[pd.DataFrame, dict[str, object]]:
+    dates = core.normalize_game_date(df["game_date"])
+    present = set(df.loc[dates == target, "game_pk"].astype(str).unique().tolist())
+    missing = [gid for gid in expected_ids if gid not in present]
+    if not missing:
+        return df, {"direct_fetch": [], "already_present": sorted(present & set(expected_ids))}
+
+    frames, report = _direct_daily_frames(target.year, missing)
+    # Defensive removal protects against a partially present game before concat.
+    keep = ~df["game_pk"].astype(str).isin(missing)
+    out = pd.concat([df.loc[keep], *frames], ignore_index=True, sort=False)
+    return out, {
+        "direct_fetch": missing,
+        "already_present": sorted(present & set(expected_ids)),
+        "games": report,
+    }
+
 
 def _is_terminal_game(game: pd.DataFrame) -> tuple[bool, dict[str, object]]:
-    """Conservatively prove a game is final from the PBP itself.
-
-    This fallback is used only when Naver's date-scoped schedule status is stale.
-    It deliberately fails closed: if the final state cannot be proven from the
-    last recorded PA, the updater stays in WAIT rather than publishing a partial
-    game.
-    """
+    """Conservatively prove a final state from the parsed pitch rows."""
     if game.empty:
         return False, {"reason": "no_rows"}
 
@@ -80,16 +168,12 @@ def _is_terminal_game(game: pd.DataFrame) -> tuple[bool, dict[str, object]]:
     is_bottom = half.startswith("bot") or half.startswith("bottom") or half in {"말", "b"}
 
     if is_top:
-        # A game may end after the top half only when the home team already leads
-        # and the third out of that half has been recorded.
         ok = home > away and third_out
         diag["reason"] = "home_lead_after_top_with_3rd_out" if ok else "top_half_not_terminal"
         return ok, diag
 
     if is_bottom:
         if home > away:
-            # Home lead in B9+ is terminal either by walk-off or by the third out
-            # when the home team entered the half already ahead.
             diag["reason"] = "home_lead_bottom_9plus"
             return True, diag
         ok = away > home and third_out
@@ -118,23 +202,26 @@ def run(target: date, force: bool = False) -> core.Result:
     if result.state != "GAMES_NOT_FINAL" or result.validation != "WAIT":
         return result
 
-    # The schedule endpoint can remain stale even after a completed slate. Build
-    # the candidate and require both the normal dataset validation and an
-    # independent terminal-play proof for every expected game before publishing.
     expected_ids = list(result.expected_game_ids or [])
     if not expected_ids:
         return result
 
+    # First get the normal cached season. If the upstream package's
+    # schedule.playable() is stale too, explicitly fetch the missing game IDs.
     try:
         df = core.build_candidate(target.year)
+        df, direct_report = _augment_candidate_with_direct_games(df, target, expected_ids)
     except Exception as e:
-        result.reason = f"{result.reason}; PBP terminal fallback build failed: {type(e).__name__}: {e}"
+        result.reason = f"{result.reason}; direct PBP fallback failed: {type(e).__name__}: {e}"
         return result
 
     prev = core.load_previous_status()
     ok, diag = core.validate_candidate(df, target, expected_ids, prev)
     if not ok:
-        result.reason = f"{result.reason}; PBP terminal fallback candidate incomplete: {json.dumps(diag, ensure_ascii=False)}"
+        result.reason = (
+            f"{result.reason}; direct PBP fallback candidate incomplete: "
+            f"{json.dumps(diag, ensure_ascii=False)}; direct={json.dumps(direct_report, ensure_ascii=False)}"
+        )
         result.found_game_ids = diag.get("found_game_ids")
         result.rows = diag.get("rows")
         result.columns = diag.get("columns")
@@ -144,7 +231,10 @@ def run(target: date, force: bool = False) -> core.Result:
 
     terminal_ok, terminal_report = _terminal_audit(df, target, expected_ids)
     if not terminal_ok:
-        result.reason = f"{result.reason}; PBP terminal fallback not proven: {json.dumps(terminal_report, ensure_ascii=False)}"
+        result.reason = (
+            f"{result.reason}; direct GAME_END was observed but parsed terminal audit failed: "
+            f"{json.dumps(terminal_report, ensure_ascii=False)}"
+        )
         result.found_game_ids = diag.get("found_game_ids")
         result.rows = diag.get("rows")
         result.columns = diag.get("columns")
@@ -154,7 +244,7 @@ def run(target: date, force: bool = False) -> core.Result:
 
     csv_gz, parquet, _manifest = core.export_candidate(df, target.year, target)
     return core.Result(
-        version="0.2.1",
+        version="0.2.2",
         state="UPDATED",
         validation="PASS",
         target_date=target.isoformat(),
@@ -174,7 +264,11 @@ def run(target: date, force: bool = False) -> core.Result:
         sha256_csv_gz=core.sha256(csv_gz),
         sha256_parquet=core.sha256(parquet),
         last_success_date=target.isoformat(),
-        reason="[PBP_TERMINAL_FALLBACK] Schedule status was stale; every expected game passed terminal-play proof and dataset validation.",
+        reason=(
+            "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games "
+            "were fetched directly by game ID, each exposed Naver GAME_END(type=99), and every "
+            "game passed parsed terminal-state plus dataset validation."
+        ),
         should_publish=True,
         retry_next_hour=False,
     )
