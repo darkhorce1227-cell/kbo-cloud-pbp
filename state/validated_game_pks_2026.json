@@ -3,8 +3,8 @@
   "year": 2026,
   "through_date": "2026-10-04",
   "bootstrap_minimum": false,
-  "game_count": 689,
-  "game_pk_sha256": "773ae2eb2e9b8c7eab457362199e22a272df41b12281b689ced92e0cb8dc508a",
+  "game_count": 694,
+  "game_pk_sha256": "da497652113172e4e2d104b0f01cb2c058a9d0d4eb7e30fe92b073d0c1a71f61",
   "game_pks": [
     "20260328HTSK02026",
     "20260328KTLG02026",
@@ -694,6 +694,11 @@
     "20261003LTKT02026",
     "20261003OBSS02026",
     "20261003SKNC02026",
-    "20261003WOHH02026"
+    "20261003WOHH02026",
+    "20261004HTLG02026",
+    "20261004LTKT02026",
+    "20261004OBSS02026",
+    "20261004SKNC02026",
+    "20261004WOHH02026"
   ]
 }

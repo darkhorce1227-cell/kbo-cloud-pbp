@@ -1,25 +1,37 @@
 {
-  "checked_at_kst": "2026-10-05T08:43:21.077194+09:00",
+  "checked_at_kst": "2026-10-05T08:45:59.133333+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
-  "expected_game_ids": [],
-  "expected_games": 0,
-  "final_games": 0,
+  "expected_game_ids": [
+    "20261004HTLG02026",
+    "20261004LTKT02026",
+    "20261004OBSS02026",
+    "20261004SKNC02026",
+    "20261004WOHH02026"
+  ],
+  "expected_games": 5,
+  "final_games": 5,
   "first_check_kst": null,
-  "found_game_ids": [],
+  "found_game_ids": [
+    "20261004HTLG02026",
+    "20261004LTKT02026",
+    "20261004OBSS02026",
+    "20261004SKNC02026",
+    "20261004WOHH02026"
+  ],
   "has_1400_game": null,
   "last_success_date": "2026-10-04",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "reason": "[GAME_PK_CONTINUITY_REPAIR] Recovered previously validated games missing from the rebuilt candidate: ['20261003HTLG02026', '20261003LTKT02026', '20261003OBSS02026', '20261003SKNC02026', '20261003WOHH02026']. Candidate now preserves 5 required prior game_pk values and contains 689 games total.",
+  "reason": "[GAME_PK_CONTINUITY_REPAIR] Recovered all missing prior/checkpoint games. missing_before=['20261003HTLG02026', '20261003LTKT02026', '20261003OBSS02026', '20261003SKNC02026', '20261003WOHH02026', '20261004HTLG02026', '20261004LTKT02026', '20261004OBSS02026', '20261004SKNC02026', '20261004WOHH02026']; required prior+checkpoint game_pk=694; candidate game_pk=694.",
   "retry_next_hour": false,
-  "rows": 212039,
-  "sha256_csv_gz": "209205a21cb16869861010f2472fe7abf01f9dab70918218002494633fc7441d",
-  "sha256_parquet": "d431d6e95a1d7156451553ade9fcd17a1a97dc261ba4a34cf266149804b879fc",
+  "rows": 213709,
+  "sha256_csv_gz": "61e119b2424a0c3abc562731330519e6f38ab71d96cdce41cf253328072dd0e8",
+  "sha256_parquet": "c86247024f3fca947e940fea16002f0bf3a6ae743af5b891a5e9ad66610f9f74",
   "should_publish": true,
   "state": "CONTINUITY_REPAIRED",
   "target_date": "2026-10-04",
   "validation": "PASS",
-  "version": "0.3.0"
+  "version": "0.3.1"
 }
