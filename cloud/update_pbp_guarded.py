@@ -75,6 +75,24 @@ def _replace_games(
     return out, {"direct_fetch": game_ids, "games": report}
 
 
+def _checkpoint_expected_ids(year: int, through: date) -> list[str]:
+    try:
+        daily = core.daily_schedule(core.fetch_live_daily_schedule(through), through)
+        ids = core.get_expected_game_ids(daily)
+        if ids:
+            return sorted(ids)
+    except Exception:
+        pass
+    try:
+        daily = core.daily_schedule(core.schedule.fetch(year), through)
+        ids = core.get_expected_game_ids(daily)
+        if ids:
+            return sorted(ids)
+    except Exception:
+        pass
+    return []
+
+
 _ORIGINAL_BUILD = core.build_candidate
 _ORIGINAL_VALIDATE = core.validate_candidate
 _ORIGINAL_EXPORT = core.export_candidate
@@ -130,8 +148,20 @@ def _guarded_export(
 def _repair_previous_release_if_needed(year: int) -> core.Result | None:
     index = _load_index(year)
     required = set(index.get("game_pks", []))
-    if not required:
+    through_s = str(index.get("through_date") or "")
+    if not required or not through_s:
         return None
+
+    through = date.fromisoformat(through_s)
+    checkpoint_ids = _checkpoint_expected_ids(year, through)
+    if not checkpoint_ids:
+        prefix = through.strftime("%Y%m%d")
+        checkpoint_ids = sorted(gid for gid in required if gid.startswith(prefix))
+
+    # The checkpoint date itself is part of the prior validated state even if a
+    # bad index was written during an earlier repair. Always union its scheduled
+    # game IDs into the continuity-required set.
+    required |= set(checkpoint_ids)
 
     raw = _ORIGINAL_BUILD(year)
     present = _game_ids(raw)
@@ -139,17 +169,10 @@ def _repair_previous_release_if_needed(year: int) -> core.Result | None:
     if not missing:
         return None
 
-    through_s = str(index.get("through_date") or "")
-    if not through_s:
-        return None
-    through = date.fromisoformat(through_s)
-
     repaired, recovery_report = _replace_games(raw, year, missing)
 
-    # Re-fetch the checkpoint day's games too. This preserves explicit
-    # GAME_END(type=99) proof for legal tie/called endings during repair.
-    prefix = through.strftime("%Y%m%d")
-    checkpoint_ids = sorted(gid for gid in required if gid.startswith(prefix))
+    # Re-fetch the checkpoint day's games so legal ties/called endings carry an
+    # explicit Naver GAME_END(type=99) terminal proof during repair.
     checkpoint_report: dict[str, object] = {"direct_fetch": [], "games": {}}
     if checkpoint_ids:
         repaired, checkpoint_report = _replace_games(repaired, year, checkpoint_ids)
@@ -158,9 +181,12 @@ def _repair_previous_release_if_needed(year: int) -> core.Result | None:
     ok, diag = _ORIGINAL_VALIDATE(repaired, through, expected_ids, {})
     candidate_ids = _game_ids(repaired)
     missing_after = sorted(required - candidate_ids)
+    diag["candidate_game_count"] = len(candidate_ids)
+    diag["required_continuity_game_count"] = len(required)
+    diag["missing_prior_game_pks"] = missing_after
+    diag["candidate_game_pk_sha256"] = _digest(candidate_ids)
     if missing_after:
         ok = False
-        diag["missing_prior_game_pks"] = missing_after
 
     terminal_ok = True
     terminal_report: dict[str, object] = {}
@@ -174,7 +200,7 @@ def _repair_previous_release_if_needed(year: int) -> core.Result | None:
 
     if not ok or not terminal_ok:
         return core.Result(
-            version="0.3.0",
+            version="0.3.1",
             state="CONTINUITY_REPAIR_FAILED",
             validation="FAIL",
             target_date=through.isoformat(),
@@ -201,7 +227,7 @@ def _repair_previous_release_if_needed(year: int) -> core.Result | None:
     csv_gz, parquet, _manifest = _guarded_export(repaired, year, through)
     full_ids = _game_ids(repaired)
     return core.Result(
-        version="0.3.0",
+        version="0.3.1",
         state="CONTINUITY_REPAIRED",
         validation="PASS",
         target_date=through.isoformat(),
@@ -222,9 +248,9 @@ def _repair_previous_release_if_needed(year: int) -> core.Result | None:
         sha256_parquet=core.sha256(parquet),
         last_success_date=through.isoformat(),
         reason=(
-            "[GAME_PK_CONTINUITY_REPAIR] Recovered previously validated games missing "
-            f"from the rebuilt candidate: {missing}. Candidate now preserves "
-            f"{len(required)} required prior game_pk values and contains {len(full_ids)} games total."
+            "[GAME_PK_CONTINUITY_REPAIR] Recovered all missing prior/checkpoint games. "
+            f"missing_before={missing}; required prior+checkpoint game_pk={len(required)}; "
+            f"candidate game_pk={len(full_ids)}."
         ),
         should_publish=True,
         retry_next_hour=False,
