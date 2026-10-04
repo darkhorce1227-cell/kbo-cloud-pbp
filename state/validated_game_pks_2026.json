@@ -1,0 +1,14 @@
+{
+  "version": "1.0-bootstrap",
+  "year": 2026,
+  "through_date": "2026-10-04",
+  "bootstrap_minimum": true,
+  "game_count": 5,
+  "game_pks": [
+    "20261003HTLG02026",
+    "20261003LTKT02026",
+    "20261003OBSS02026",
+    "20261003SKNC02026",
+    "20261003WOHH02026"
+  ]
+}
