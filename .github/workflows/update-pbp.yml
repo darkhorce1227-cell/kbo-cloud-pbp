@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "cloud/update_pbp_guarded.py"
       - "cloud/update_pbp_resilient.py"
       - ".github/workflows/update-pbp.yml"
   schedule:
@@ -82,7 +83,7 @@ jobs:
           if [ "${{ inputs.force }}" = "true" ]; then
             ARGS+=(--force)
           fi
-          python cloud/update_pbp_resilient.py "${ARGS[@]}"
+          python cloud/update_pbp_guarded.py "${ARGS[@]}"
 
       - name: Save Naver raw cache
         if: steps.gate.outputs.skip != 'true' && always()
@@ -105,15 +106,16 @@ jobs:
           print("target_date=" + str(d.get("target_date","")))
           PY
 
-      - name: Commit status
+      - name: Commit status and continuity index
         if: steps.gate.outputs.skip != 'true'
         shell: bash
         run: |
           git config user.name "kbo-pbp-bot"
           git config user.email "kbo-pbp-bot@users.noreply.github.com"
-          git add state/status.json
+          git add state/status.json state/validated_game_pks_*.json
           if ! git diff --cached --quiet; then
             git commit -m "chore(data): PBP 상태 갱신 ${{ steps.result.outputs.target_date }}"
+            git pull --rebase origin main
             git push
           fi
 
@@ -127,6 +129,7 @@ jobs:
             out/kbo_pbp_*_latest.parquet
             out/manifest.json
             state/status.json
+            state/validated_game_pks_*.json
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
@@ -154,4 +157,5 @@ jobs:
             out/kbo_pbp_*_latest.parquet \
             out/manifest.json \
             state/status.json \
+            state/validated_game_pks_*.json \
             --clobber
