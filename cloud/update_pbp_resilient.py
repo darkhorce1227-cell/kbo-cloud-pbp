@@ -106,7 +106,7 @@ def _augment_candidate_with_direct_games(
     present = set(df.loc[dates == target, "game_pk"].astype(str).unique().tolist())
     missing = [gid for gid in expected_ids if gid not in present]
     if not missing:
-        return df, {"direct_fetch": [], "already_present": sorted(present & set(expected_ids))}
+        return df, {"direct_fetch": [], "already_present": sorted(present & set(expected_ids)), "games": {}}
 
     frames, report = _direct_daily_frames(target.year, missing)
     # Defensive removal protects against a partially present game before concat.
@@ -120,7 +120,12 @@ def _augment_candidate_with_direct_games(
 
 
 def _is_terminal_game(game: pd.DataFrame) -> tuple[bool, dict[str, object]]:
-    """Conservatively prove a final state from the parsed pitch rows."""
+    """Conservatively infer a final state from parsed pitch rows.
+
+    This is a secondary QA signal. For direct-fetched games an explicit Naver
+    GAME_END(type=99) is authoritative because legal completed games can end in
+    a tie and the final pitch event alone may not encode the league stop rule.
+    """
     if game.empty:
         return False, {"reason": "no_rows"}
 
@@ -161,7 +166,7 @@ def _is_terminal_game(game: pd.DataFrame) -> tuple[bool, dict[str, object]]:
         diag["reason"] = "before_regulation_end"
         return False, diag
     if home == away:
-        diag["reason"] = "tied_after_last_play"
+        diag["reason"] = "tied_after_last_play_requires_explicit_game_end"
         return False, diag
 
     is_top = half.startswith("top") or half in {"초", "t"}
@@ -184,16 +189,51 @@ def _is_terminal_game(game: pd.DataFrame) -> tuple[bool, dict[str, object]]:
     return False, diag
 
 
-def _terminal_audit(df: pd.DataFrame, target: date, expected_ids: list[str]) -> tuple[bool, dict[str, object]]:
+def _terminal_audit(
+    df: pd.DataFrame,
+    target: date,
+    expected_ids: list[str],
+    direct_report: dict[str, object] | None = None,
+) -> tuple[bool, dict[str, object]]:
+    """Require terminal proof for every expected game.
+
+    For games fetched directly, an explicit Naver GAME_END(type=99) is the
+    authoritative terminal proof. Parsed pitch-row inference remains attached as
+    a QA diagnostic but must not veto a legal tie/called ending that GAME_END
+    explicitly marks complete.
+    """
     dates = core.normalize_game_date(df["game_date"])
     target_rows = df[dates == target]
     report: dict[str, object] = {}
     all_final = True
+
+    direct_games: dict[str, object] = {}
+    if isinstance(direct_report, dict):
+        maybe_games = direct_report.get("games")
+        if isinstance(maybe_games, dict):
+            direct_games = maybe_games
+
     for gid in expected_ids:
         g = target_rows[target_rows["game_pk"].astype(str) == str(gid)]
-        ok, diag = _is_terminal_game(g)
+        parsed_ok, diag = _is_terminal_game(g)
+
+        meta = direct_games.get(str(gid))
+        explicit_game_end = bool(isinstance(meta, dict) and meta.get("game_end") is True)
+        if explicit_game_end:
+            ok = True
+            diag = {
+                **diag,
+                "parsed_terminal": parsed_ok,
+                "game_end": True,
+                "direct_final_inning": meta.get("final_inning") if isinstance(meta, dict) else None,
+                "reason": "explicit_naver_game_end",
+            }
+        else:
+            ok = parsed_ok
+
         report[str(gid)] = {"final": ok, **diag}
         all_final = all_final and ok
+
     return all_final, report
 
 
@@ -229,10 +269,10 @@ def run(target: date, force: bool = False) -> core.Result:
         result.missing_columns = diag.get("missing_columns")
         return result
 
-    terminal_ok, terminal_report = _terminal_audit(df, target, expected_ids)
+    terminal_ok, terminal_report = _terminal_audit(df, target, expected_ids, direct_report)
     if not terminal_ok:
         result.reason = (
-            f"{result.reason}; direct GAME_END was observed but parsed terminal audit failed: "
+            f"{result.reason}; terminal proof failed: "
             f"{json.dumps(terminal_report, ensure_ascii=False)}"
         )
         result.found_game_ids = diag.get("found_game_ids")
@@ -244,7 +284,7 @@ def run(target: date, force: bool = False) -> core.Result:
 
     csv_gz, parquet, _manifest = core.export_candidate(df, target.year, target)
     return core.Result(
-        version="0.2.2",
+        version="0.2.3",
         state="UPDATED",
         validation="PASS",
         target_date=target.isoformat(),
@@ -266,8 +306,9 @@ def run(target: date, force: bool = False) -> core.Result:
         last_success_date=target.isoformat(),
         reason=(
             "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games "
-            "were fetched directly by game ID, each exposed Naver GAME_END(type=99), and every "
-            "game passed parsed terminal-state plus dataset validation."
+            "were fetched directly by game ID. Explicit Naver GAME_END(type=99) was accepted as "
+            "authoritative terminal proof for direct-fetched games, with parsed terminal state retained "
+            "as QA; dataset validation passed."
         ),
         should_publish=True,
         retry_next_hour=False,
