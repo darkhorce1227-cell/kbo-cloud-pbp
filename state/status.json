@@ -1,37 +1,37 @@
 {
-  "checked_at_kst": "2026-10-05T17:26:39.904647+09:00",
+  "checked_at_kst": "2026-10-05T18:06:40.995978+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "20261004HTLG02026",
-    "20261004LTKT02026",
-    "20261004OBSS02026",
-    "20261004SKNC02026",
-    "20261004WOHH02026"
+    "20261005HTLG02026",
+    "20261005LTKT02026",
+    "20261005OBSS02026",
+    "20261005SKNC02026",
+    "20261005WOHH02026"
   ],
   "expected_games": 5,
   "final_games": 5,
-  "first_check_kst": null,
+  "first_check_kst": "17:00",
   "found_game_ids": [
-    "20261004HTLG02026",
-    "20261004LTKT02026",
-    "20261004OBSS02026",
-    "20261004SKNC02026",
-    "20261004WOHH02026"
+    "20261005HTLG02026",
+    "20261005LTKT02026",
+    "20261005OBSS02026",
+    "20261005SKNC02026",
+    "20261005WOHH02026"
   ],
-  "has_1400_game": null,
-  "last_success_date": "2026-10-04",
+  "has_1400_game": true,
+  "last_success_date": "2026-10-05",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "reason": "[GAME_PK_CONTINUITY_REPAIR] Recovered all missing prior/checkpoint games. missing_before=['20261003HTLG02026', '20261003LTKT02026', '20261003OBSS02026', '20261003SKNC02026', '20261003WOHH02026', '20261004HTLG02026', '20261004LTKT02026', '20261004OBSS02026', '20261004SKNC02026', '20261004WOHH02026']; required prior+checkpoint game_pk=694; candidate game_pk=694.",
+  "reason": "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games were fetched directly by game ID. Explicit Naver GAME_END(type=99) was accepted as authoritative terminal proof for direct-fetched games, with parsed terminal state retained as QA; dataset validation passed.",
   "retry_next_hour": false,
-  "rows": 213709,
-  "sha256_csv_gz": "271c32cef7e3f8df7d07b53e22cf3024312eca5e91e03a63f26abece141f00c3",
-  "sha256_parquet": "c86247024f3fca947e940fea16002f0bf3a6ae743af5b891a5e9ad66610f9f74",
+  "rows": 215164,
+  "sha256_csv_gz": "d6414eca443e12c65bfe94a23af4661c0c7c4001afef44e3770c54c4ff737f0b",
+  "sha256_parquet": "21161c491161f53fb9bffd998ecd40eeb21797c31bd84af7642c6c9fad75316a",
   "should_publish": true,
-  "state": "CONTINUITY_REPAIRED",
-  "target_date": "2026-10-04",
+  "state": "UPDATED",
+  "target_date": "2026-10-05",
   "validation": "PASS",
-  "version": "0.3.1"
+  "version": "0.2.3"
 }
