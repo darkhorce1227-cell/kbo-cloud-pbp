@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "cloud/update_pbp_forward.py"
       - "cloud/update_pbp_guarded.py"
       - "cloud/update_pbp_resilient.py"
       - ".github/workflows/update-pbp.yml"
@@ -83,7 +84,7 @@ jobs:
           if [ "${{ inputs.force }}" = "true" ]; then
             ARGS+=(--force)
           fi
-          python cloud/update_pbp_guarded.py "${ARGS[@]}"
+          python cloud/update_pbp_forward.py "${ARGS[@]}"
 
       - name: Save Naver raw cache
         if: steps.gate.outputs.skip != 'true' && always()
