@@ -7,6 +7,7 @@ on:
       - "cloud/update_pbp_forward.py"
       - "cloud/update_pbp_guarded.py"
       - "cloud/update_pbp_resilient.py"
+      - "state/manual-trigger.txt"
       - ".github/workflows/update-pbp.yml"
   schedule:
     # 17:07–05:07 KST = 08:07–20:07 UTC
