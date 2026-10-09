@@ -46,7 +46,7 @@ if not force and STATUS.exists():
             if state == "NO_GAMES":
                 skip = True
                 reason = f"Target {target} already complete: NO_GAMES"
-            elif state in {"UPDATED", "ALREADY_CURRENT"}:
+            elif state in {"UPDATED", "ALREADY_CURRENT", "CONTINUITY_REPAIRED"}:
                 if audit_matches_status(s, target):
                     skip = True
                     reason = f"Target {target} already complete with score audit: {state}"
