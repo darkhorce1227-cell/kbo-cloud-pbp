@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "cloud/preflight.py"
+      - "cloud/build_postgame_score_audit.py"
       - "cloud/update_pbp_forward.py"
       - "cloud/update_pbp_guarded.py"
       - "cloud/update_pbp_resilient.py"
@@ -82,10 +84,14 @@ jobs:
           if [ -n "${{ inputs.target_date }}" ]; then
             ARGS+=(--date "${{ inputs.target_date }}")
           fi
-          if [ "${{ inputs.force }}" = "true" ]; then
+          if [ "${{ inputs.force }}" = "true" ] || [ "${{ steps.gate.outputs.audit_backfill }}" = "true" ]; then
             ARGS+=(--force)
           fi
           python cloud/update_pbp_forward.py "${ARGS[@]}"
+
+      - name: Build binary-derived postgame score audit
+        if: steps.gate.outputs.skip != 'true'
+        run: python cloud/build_postgame_score_audit.py
 
       - name: Save Naver raw cache
         if: steps.gate.outputs.skip != 'true' && always()
@@ -108,15 +114,15 @@ jobs:
           print("target_date=" + str(d.get("target_date","")))
           PY
 
-      - name: Commit status and continuity index
+      - name: Commit status, continuity index, and score audit
         if: steps.gate.outputs.skip != 'true'
         shell: bash
         run: |
           git config user.name "kbo-pbp-bot"
           git config user.email "kbo-pbp-bot@users.noreply.github.com"
-          git add state/status.json state/validated_game_pks_*.json
+          git add state/status.json state/validated_game_pks_*.json state/postgame_score_audit*.json
           if ! git diff --cached --quiet; then
-            git commit -m "chore(data): PBP 상태 갱신 ${{ steps.result.outputs.target_date }}"
+            git commit -m "chore(data): PBP 상태·점수감사 갱신 ${{ steps.result.outputs.target_date }}"
             git pull --rebase origin main
             git push
           fi
@@ -132,6 +138,7 @@ jobs:
             out/manifest.json
             state/status.json
             state/validated_game_pks_*.json
+            state/postgame_score_audit.json
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
@@ -160,4 +167,5 @@ jobs:
             out/manifest.json \
             state/status.json \
             state/validated_game_pks_*.json \
+            state/postgame_score_audit.json \
             --clobber
