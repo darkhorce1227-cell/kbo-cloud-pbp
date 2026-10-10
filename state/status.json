@@ -1,5 +1,5 @@
 {
-  "checked_at_kst": "2026-10-10T17:21:53.936488+09:00",
+  "checked_at_kst": "2026-10-10T18:21:11.260829+09:00",
   "columns": null,
   "csv_gz": null,
   "duplicate_stable_keys": null,
@@ -16,7 +16,7 @@
   "last_success_date": "2026-10-09",
   "missing_columns": null,
   "parquet": null,
-  "reason": "[NAVER_DATE_STATUS] Only 0/3 expected games are final.; direct PBP fallback failed: RuntimeError: GAME_END not observed through inning 15: 20261010LGLT02026",
+  "reason": "[NAVER_DATE_STATUS] Only 0/3 expected games are final.; direct PBP fallback failed: RuntimeError: GAME_END not observed through inning 15: 20261010NCHH02026",
   "retry_next_hour": true,
   "rows": null,
   "sha256_csv_gz": null,
