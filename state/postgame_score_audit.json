@@ -1,12 +1,120 @@
 {
+  "dataset_columns": 50,
+  "dataset_rows": 220132,
+  "duplicate_stable_keys": 0,
+  "expected_game_ids": [
+    "20261010LGLT02026",
+    "20261010NCHH02026",
+    "20261010SKHT02026"
+  ],
   "expected_games": 3,
-  "final_games": 1,
-  "generated_at_kst": "2026-10-10T20:21:54.582008+09:00",
-  "reason": "no completed validated target slate available for score audit",
-  "source": null,
+  "final_games": 3,
+  "found_game_ids": [
+    "20261010LGLT02026",
+    "20261010NCHH02026",
+    "20261010SKHT02026"
+  ],
+  "games": [
+    {
+      "away_team": "LG",
+      "deduplicated_pa_rows": 89,
+      "f5": {
+        "away": 3,
+        "home": 1,
+        "last_at_bat_number": 43
+      },
+      "final": {
+        "away": 4,
+        "half": "bot",
+        "home": 3,
+        "inning": 10,
+        "last_at_bat_number": 89
+      },
+      "game": "LG@LT",
+      "game_pk": "20261010LGLT02026",
+      "home_team": "LT",
+      "official_final": {
+        "away": 4,
+        "home": 3
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 362,
+      "status": "PASS"
+    },
+    {
+      "away_team": "NC",
+      "deduplicated_pa_rows": 91,
+      "f5": {
+        "away": 8,
+        "home": 3,
+        "last_at_bat_number": 52
+      },
+      "final": {
+        "away": 9,
+        "half": "bot",
+        "home": 8,
+        "inning": 9,
+        "last_at_bat_number": 91
+      },
+      "game": "NC@HH",
+      "game_pk": "20261010NCHH02026",
+      "home_team": "HH",
+      "official_final": {
+        "away": 9,
+        "home": 8
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 361,
+      "status": "PASS"
+    },
+    {
+      "away_team": "SK",
+      "deduplicated_pa_rows": 75,
+      "f5": {
+        "away": 3,
+        "home": 8,
+        "last_at_bat_number": 46
+      },
+      "final": {
+        "away": 5,
+        "half": "top",
+        "home": 8,
+        "inning": 9,
+        "last_at_bat_number": 75
+      },
+      "game": "SK@HT",
+      "game_pk": "20261010SKHT02026",
+      "home_team": "HT",
+      "official_final": {
+        "away": 5,
+        "home": 8
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 307,
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "all_expected_game_ids_present": true,
+    "dataset_sha256_matches_status": true,
+    "expected_equals_final": true,
+    "expected_ids_count_match": true,
+    "required_columns_present": true,
+    "stable_key_duplicates_zero": true,
+    "status_validation_pass": true
+  },
+  "generated_at_kst": "2026-10-10T21:27:27.998741+09:00",
+  "missing_required_columns": [],
+  "official_crosscheck_games_found": 3,
+  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "sha256_parquet": "8edba7fbfad7697b5984d3d23ea1dae059dbe0f6535c420fe4159e70dc95910e",
+  "source": "validated_parquet_binary",
+  "status_sha256_parquet": "8edba7fbfad7697b5984d3d23ea1dae059dbe0f6535c420fe4159e70dc95910e",
   "target_date": "2026-10-10",
-  "updater_state": "GAMES_NOT_FINAL",
-  "updater_validation": "WAIT",
-  "validation": "SKIP",
+  "validation": "PASS",
   "version": "1.0.0"
 }
