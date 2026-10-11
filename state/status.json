@@ -1,33 +1,31 @@
 {
-  "checked_at_kst": "2026-10-10T21:27:26.193293+09:00",
+  "checked_at_kst": "2026-10-11T17:24:45.180460+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "20261010LGLT02026",
-    "20261010NCHH02026",
-    "20261010SKHT02026"
+    "20261011KTSS02026",
+    "20261011LTHT02026"
   ],
-  "expected_games": 3,
-  "final_games": 3,
+  "expected_games": 2,
+  "final_games": 2,
   "first_check_kst": "17:00",
   "found_game_ids": [
-    "20261010LGLT02026",
-    "20261010NCHH02026",
-    "20261010SKHT02026"
+    "20261011KTSS02026",
+    "20261011LTHT02026"
   ],
   "has_1400_game": true,
-  "last_success_date": "2026-10-10",
+  "last_success_date": "2026-10-11",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
   "reason": "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games were fetched directly by game ID. Explicit Naver GAME_END(type=99) was accepted as authoritative terminal proof for direct-fetched games, with parsed terminal state retained as QA; dataset validation passed.",
   "retry_next_hour": false,
-  "rows": 220132,
-  "sha256_csv_gz": "90c7c90e99858bc77dceb6812c4d0095c64c8957d6c4df2a0af71990fd48e267",
-  "sha256_parquet": "8edba7fbfad7697b5984d3d23ea1dae059dbe0f6535c420fe4159e70dc95910e",
+  "rows": 220728,
+  "sha256_csv_gz": "38f897e5c1de36056183a82ef9b783f4b63b998a0553461df939680b8fddd4c7",
+  "sha256_parquet": "1420f56368a47c7dd4eb635d38654414d73d10b0393eaa5ac56e1c66135afcdc",
   "should_publish": true,
   "state": "UPDATED",
-  "target_date": "2026-10-10",
+  "target_date": "2026-10-11",
   "validation": "PASS",
   "version": "0.2.3"
 }
