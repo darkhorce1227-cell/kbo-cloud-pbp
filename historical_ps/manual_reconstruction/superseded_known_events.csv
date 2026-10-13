@@ -2,3 +2,4 @@ source_file,game_id,old_key,status,use_instead,reason
 known_events.csv,33331008SSLT0,"3,TOP,5,MULTI_RBI_SEQUENCE",SUPERSEDED,pa_reconstruction.csv 33331008SSLT0 3 TOP,"live-text가 조동찬 밀어내기, 박한이 2타점 안타, 박석민 1타점 안타를 개별 PA로 확인"
 known_events.csv,33331008SSLT0,"5,BOT,1,INNING_RUNS_ONLY",SUPERSEDED,pa_reconstruction.csv 33331008SSLT0 5 BOT,live-text가 박기혁 RBI 2루타와 김주찬 RBI 안타를 포함한 이닝 전체 PA 순서를 확인
 known_events.csv,33331008SSLT0,"7,TOP,1,INNING_RUNS_ONLY",SUPERSEDED,pa_reconstruction.csv 33331008SSLT0 7 TOP,live-text가 박석민 RBI 안타와 진갑용 2타점 안타를 포함한 이닝 전체 PA 순서를 확인
+known_events.csv,33331011LTSS0,"4,TOP,1,INNING_RUNS_ONLY",SUPERSEDED,pa_reconstruction_additions.csv 33331011LTSS0 4 TOP,"동시대 사진기사 2개로 이대호 안타 뒤 강민호 적시타와 이인구 득점을 확인"
