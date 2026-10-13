@@ -22,6 +22,11 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/historical_postseason.py --year "${{ inputs.year }}"
+      - name: Validate and export pitch-level PBP
+        id: export
+        if: steps.collect.outcome == 'success'
+        continue-on-error: true
+        run: python scripts/export_historical_postseason.py --year "${{ inputs.year }}"
       - name: Upload diagnostic data (even on failure)
         if: always()
         uses: actions/upload-artifact@v4
@@ -39,6 +44,7 @@ jobs:
           tar -czf "kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps "${YEAR}"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "KBO postseason ${YEAR} raw PBP" --notes "Verified complete inning-level relay archive."
           gh release upload "$TAG" "kbo_ps_${YEAR}_raw.tar.gz" --clobber
+          gh release upload "$TAG" "historical_ps/${YEAR}/postseason_pitches.csv.gz" "historical_ps/${YEAR}/postseason_pitches.parquet" "historical_ps/${YEAR}/validation.json" --clobber
       - name: Fail if incomplete
-        if: steps.collect.outcome != 'success'
+        if: steps.collect.outcome != 'success' || steps.export.outcome != 'success'
         run: exit 1
