@@ -1,3 +1,3 @@
-Corrected automated full refresh requested on 2026-10-13 after run #38361156012 failed.
-Fixes: legacy inning discovery, sparse-source detection, master builder duplicate season column, and pre-2008 unavailability handling.
+Legacy pitchNum repair refresh requested on 2026-10-13.
+Fixes old Naver relays where every pitch was incorrectly tagged pitchNum=1 despite text containing 1구, 2구, 3구...
 Default range: 2001-2025.
