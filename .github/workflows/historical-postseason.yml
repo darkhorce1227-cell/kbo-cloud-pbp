@@ -34,8 +34,8 @@ jobs:
           name: historical-ps-${{ inputs.year }}
           path: historical_ps/${{ inputs.year }}/
           if-no-files-found: warn
-      - name: Publish raw dataset only if complete
-        if: steps.collect.outcome == 'success'
+      - name: Publish verified raw and pitch-level datasets
+        if: steps.collect.outcome == 'success' && steps.export.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
           YEAR: ${{ inputs.year }}
