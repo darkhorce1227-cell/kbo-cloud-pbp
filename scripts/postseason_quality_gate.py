@@ -8,6 +8,8 @@ from pathlib import Path
 import pandas as pd
 from kbo_pbp import relay
 
+MIN_PITCHES_PER_GAME = 100
+
 
 def classify(coverage_status, gaps, sparse_games):
     if coverage_status != "COMPLETE":
@@ -45,14 +47,14 @@ def evaluate(root, year):
             "parsed_pitches": pitches,
             "exported_rows": exported,
             "pitch_gap": pitches - exported,
-            "pitches_per_inning": round(pitches / int(entry["innings"]), 1),
+            "pitches_per_game": pitches,
         })
     checks = pd.DataFrame(rows)
     if checks.empty:
         raise RuntimeError("No games available for quality audit")
     checks.to_csv(folder / "quality_by_game.csv", index=False)
     gaps = int(checks["pitch_gap"].clip(lower=0).sum())
-    sparse = int((checks["pitches_per_inning"] < 15).sum())
+    sparse = int((checks["pitches_per_game"] < MIN_PITCHES_PER_GAME).sum())
     quality, next_action = classify(validation["status"], gaps, sparse)
     return {
         "year": year,
@@ -63,8 +65,8 @@ def evaluate(root, year):
         "exported_games": validation["exported_games"],
         "pitch_rows": validation["pitch_rows"],
         "unexported_pitch_events": gaps,
-        "games_below_15_pitches_per_inning": sparse,
-        "note": "15 pitches/inning is a screening threshold, not official completeness proof.",
+        "games_under_100_raw_pitch_events": sparse,
+        "note": "100 raw pitch events/game is a conservative screening threshold, not official completeness proof.",
     }
 
 

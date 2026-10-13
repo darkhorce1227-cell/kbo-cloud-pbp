@@ -71,6 +71,7 @@ jobs:
           set -euo pipefail
           mkdir -p historical_ps /tmp/postseason-releases
           DOWNLOADED=()
+          UNAVAILABLE=()
           for YEAR in $(seq "$START" "$END"); do
             mkdir -p "/tmp/postseason-releases/$YEAR"
             if gh release download "historical-ps-$YEAR" \
@@ -80,6 +81,7 @@ jobs:
               DOWNLOADED+=("$YEAR")
             else
               echo "No usable release for $YEAR; recording as unavailable."
+              UNAVAILABLE+=("$YEAR")
             fi
           done
           if [ ${#DOWNLOADED[@]} -eq 0 ]; then
@@ -87,6 +89,7 @@ jobs:
             exit 1
           fi
           printf '%s\n' "${DOWNLOADED[*]}" > historical_ps/downloaded_years.txt
+          printf '%s\n' "${UNAVAILABLE[*]}" > historical_ps/unavailable_years.txt
           echo "years=${DOWNLOADED[*]}" >> "$GITHUB_OUTPUT"
 
       - name: Run automatic quality classification
@@ -111,6 +114,7 @@ jobs:
             historical_ps/postseason_all_available.parquet
             historical_ps/postseason_screen_pass.parquet
             historical_ps/downloaded_years.txt
+            historical_ps/unavailable_years.txt
           if-no-files-found: error
 
       - name: Publish rolling master release
@@ -130,4 +134,5 @@ jobs:
             historical_ps/postseason_master_summary.json \
             historical_ps/postseason_all_available.parquet \
             historical_ps/postseason_screen_pass.parquet \
+            historical_ps/unavailable_years.txt \
             --clobber
