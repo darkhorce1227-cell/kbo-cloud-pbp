@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Build an audited effective PA view for manually reconstructed missing postseason games.
 
-The manual source files intentionally preserve provenance.  This script applies the
-small correction overlay, excludes superseded v1 coarse events from any v2 union,
-and runs conservative sanity checks.  It does not synthesize missing plate
-appearances or pitches.
+The manual source files intentionally preserve provenance. This script unions the
+base PA reconstruction with later source-backed additions, applies the small
+correction overlay, and runs conservative sanity checks. It does not synthesize
+missing plate appearances or pitches.
 """
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     expected = {
         "33331008SSLT0": 84,
         "33331009SSLT0": 14,
-        "33331011LTSS0": 21,
+        "33331011LTSS0": 23,
         "33331011SKHT0": 10,
         "77771026SKSS0": 15,
         "33331011OBLT0": 15,
@@ -76,7 +76,7 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     if dict(run_totals) != {"삼성": 12, "롯데": 3}:
         raise ValueError(f"2008 QP Game 1 run audit failed: {dict(run_totals)}")
 
-    # These 2013 fields are intentionally unknown after the audit.  Blank is
+    # These 2013 fields are intentionally unknown after the audit. Blank is
     # materially different from zero and must stay blank until a stronger source appears.
     unknown_2013 = {
         ("77771029SSOB0", "1", "TOP", str(i)) for i in range(2, 6)
@@ -85,6 +85,11 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     for key in unknown_2013:
         if by_key[key]["runs_scored"] != "":
             raise ValueError(f"ambiguous 2013 run attribution must be blank: {key}")
+
+    # The newly recovered 2008 QP Game 3 fourth-inning scoring row must survive the union.
+    g3_rbi = by_key[("33331011LTSS0", "4", "TOP", "2")]
+    if g3_rbi["batter"] != "강민호" or g3_rbi["runs_scored"] != "1":
+        raise ValueError("2008 QP Game 3 fourth-inning recovery audit failed")
 
     return {
         "rows": len(rows),
@@ -103,17 +108,29 @@ def main() -> None:
 
     root = Path(args.root)
     source = root / "pa_reconstruction.csv"
+    additions_file = root / "pa_reconstruction_additions.csv"
     correction_file = root / "pa_reconstruction_corrections.csv"
     output = Path(args.output) if args.output else root / "pa_reconstruction_effective.csv"
 
     rows = read_rows(source)
     fields = list(rows[0].keys())
+    additions = read_rows(additions_file) if additions_file.exists() else []
+    for r in additions:
+        if list(r.keys()) != fields:
+            raise ValueError("PA addition schema differs from base reconstruction")
+    rows.extend(additions)
+
     corrections = read_rows(correction_file)
     applied = apply_corrections(rows, corrections)
     summary = validate(rows)
     write_rows(output, rows, fields)
 
-    print({"output": str(output), "corrections_applied": applied, **summary})
+    print({
+        "output": str(output),
+        "additions": len(additions),
+        "corrections_applied": applied,
+        **summary,
+    })
 
 
 if __name__ == "__main__":
