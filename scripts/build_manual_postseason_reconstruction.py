@@ -55,7 +55,7 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     counts = Counter(r["game_id"] for r in rows)
     expected = {
         "33331008SSLT0": 84,
-        "33331009SSLT0": 20,
+        "33331009SSLT0": 22,
         "33331011LTSS0": 24,
         "33331011SKHT0": 12,
         "77771026SKSS0": 20,
@@ -99,6 +99,22 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     if g3_home_out["batter"] != "이대호" or g3_home_out["pa_result"] != "GROUNDOUT_RUNNER_OUT_HOME":
         raise ValueError("2008 QP Game 3 fifth-inning home-out audit failed")
 
+    # Fourth-pass audit: OSEN's Jo Sung-hwan game recap adds two previously missing
+    # strikeouts, while the Chae Tae-in homer report supplies an exact pitch count.
+    jo_first = by_key[("33331009SSLT0", "1", "BOT", "1")]
+    jo_third = by_key[("33331009SSLT0", "3", "BOT", "2.5")]
+    if not all(
+        r["batter"] == "조성환"
+        and r["pa_result"] == "STRIKEOUT"
+        and r["coverage_scope"] == "PARTIAL_SEQUENCE_ANCHOR"
+        and r["confidence"] == "HIGH"
+        for r in (jo_first, jo_third)
+    ):
+        raise ValueError("2008 QP Game 2 Jo Sung-hwan strikeout audit failed")
+    chae_hr = by_key[("33331009SSLT0", "4", "TOP", "1")]
+    if chae_hr["batter"] != "채태인" or chae_hr["pa_result"] != "SOLO_HR" or chae_hr["pitch_count_if_known"] != "7":
+        raise ValueError("2008 QP Game 2 Chae Tae-in homer pitch-count audit failed")
+
     # 2011 KS Game 2 first inning is independently described from first batter to third out.
     ks2_first = [
         r for r in rows
@@ -116,6 +132,8 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
         "per_game_rows": dict(counts),
         "complete_game_pa_rows": len(g1),
         "complete_game_run_audit": {"삼성": 12, "롯데": 3},
+        "g2_jo_new_strikeout_rows": 2,
+        "g2_chae_hr_pitch_count": chae_hr["pitch_count_if_known"],
         "ks2_complete_first_inning_rows": len(ks2_first),
     }
 
