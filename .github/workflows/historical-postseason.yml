@@ -1,5 +1,10 @@
 name: Historical KBO Postseason PBP
 on:
+  workflow_call:
+    inputs:
+      year:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       year:
