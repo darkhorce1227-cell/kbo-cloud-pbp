@@ -1,120 +1,12 @@
 {
-  "dataset_columns": 50,
-  "dataset_rows": 221603,
-  "duplicate_stable_keys": 0,
-  "expected_game_ids": [
-    "20261012KTSS02026",
-    "20261012LGHT02026",
-    "20261012LTOB02026"
-  ],
-  "expected_games": 3,
-  "final_games": 3,
-  "found_game_ids": [
-    "20261012KTSS02026",
-    "20261012LGHT02026",
-    "20261012LTOB02026"
-  ],
-  "games": [
-    {
-      "away_team": "KT",
-      "deduplicated_pa_rows": 80,
-      "f5": {
-        "away": 3,
-        "home": 1,
-        "last_at_bat_number": 45
-      },
-      "final": {
-        "away": 4,
-        "half": "bot",
-        "home": 2,
-        "inning": 9,
-        "last_at_bat_number": 80
-      },
-      "game": "KT@SS",
-      "game_pk": "20261012KTSS02026",
-      "home_team": "SS",
-      "official_final": {
-        "away": 4,
-        "home": 2
-      },
-      "official_final_crosscheck": "PASS",
-      "problems": [],
-      "raw_rows": 304,
-      "status": "PASS"
-    },
-    {
-      "away_team": "LG",
-      "deduplicated_pa_rows": 66,
-      "f5": {
-        "away": 1,
-        "home": 2,
-        "last_at_bat_number": 40
-      },
-      "final": {
-        "away": 2,
-        "half": "top",
-        "home": 4,
-        "inning": 9,
-        "last_at_bat_number": 66
-      },
-      "game": "LG@HT",
-      "game_pk": "20261012LGHT02026",
-      "home_team": "HT",
-      "official_final": {
-        "away": 2,
-        "home": 4
-      },
-      "official_final_crosscheck": "PASS",
-      "problems": [],
-      "raw_rows": 232,
-      "status": "PASS"
-    },
-    {
-      "away_team": "LT",
-      "deduplicated_pa_rows": 86,
-      "f5": {
-        "away": 5,
-        "home": 3,
-        "last_at_bat_number": 51
-      },
-      "final": {
-        "away": 7,
-        "half": "bot",
-        "home": 4,
-        "inning": 9,
-        "last_at_bat_number": 86
-      },
-      "game": "LT@OB",
-      "game_pk": "20261012LTOB02026",
-      "home_team": "OB",
-      "official_final": {
-        "away": 7,
-        "home": 4
-      },
-      "official_final_crosscheck": "PASS",
-      "problems": [],
-      "raw_rows": 339,
-      "status": "PASS"
-    }
-  ],
-  "gates": {
-    "all_expected_game_ids_present": true,
-    "dataset_sha256_matches_status": true,
-    "expected_equals_final": true,
-    "expected_ids_count_match": true,
-    "required_columns_present": true,
-    "stable_key_duplicates_zero": true,
-    "status_validation_pass": true
-  },
-  "generated_at_kst": "2026-10-12T22:34:09.394522+09:00",
-  "missing_required_columns": [],
-  "official_crosscheck_games_found": 3,
-  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
-  "parquet": "kbo_pbp_2026_latest.parquet",
-  "sha256_parquet": "db070905b67cfaf1307b9a376e3872f7e62e3f1f0a0484f3e565e7a0326223cd",
-  "source": "validated_parquet_binary",
-  "status_sha256_parquet": "db070905b67cfaf1307b9a376e3872f7e62e3f1f0a0484f3e565e7a0326223cd",
-  "target_date": "2026-10-12",
-  "validation": "PASS",
+  "expected_games": 2,
+  "final_games": 0,
+  "generated_at_kst": "2026-10-13T17:29:05.219107+09:00",
+  "reason": "no completed validated target slate available for score audit",
+  "source": null,
+  "target_date": "2026-10-13",
+  "updater_state": "GAMES_NOT_FINAL",
+  "updater_validation": "WAIT",
+  "validation": "SKIP",
   "version": "1.0.0"
 }
