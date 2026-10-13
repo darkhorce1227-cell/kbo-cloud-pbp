@@ -11,9 +11,12 @@ This directory contains a **conservative manual reconstruction** for the seven h
   - `COMPLETE_GAME_PA_ORDER`: every recorded plate appearance in the game is represented in source order.
   - `COMPLETE_HALF_INNING_PA_ORDER`: every PA in that half-inning is represented in source order.
   - `PARTIAL_SEQUENCE_ANCHOR`: only the events actually described by the source are represented; missing PAs remain missing.
+- `pa_reconstruction_corrections.csv`: authoritative field overrides for rows where later audit found that the raw v2 row was too specific. `__BLANK__` means unknown/not attributable, not zero.
 - `coverage.csv`: per-game PA-reconstruction coverage.
 - `superseded_known_events.csv`: v1 coarse rows that should no longer be used because v2 recovered finer PA detail.
 - `sources.csv`: provenance and what each source supports.
+
+**Important:** analytical consumers must apply `pa_reconstruction_corrections.csv` on top of `pa_reconstruction.csv`. The correction overlay intentionally removes false precision in several 2013 KS Game 5 run-attribution fields. Never interpret an overridden zero as a confirmed zero.
 
 ## Major v2 upgrade
 
