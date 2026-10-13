@@ -55,10 +55,10 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     counts = Counter(r["game_id"] for r in rows)
     expected = {
         "33331008SSLT0": 84,
-        "33331009SSLT0": 14,
+        "33331009SSLT0": 18,
         "33331011LTSS0": 23,
-        "33331011SKHT0": 10,
-        "77771026SKSS0": 15,
+        "33331011SKHT0": 12,
+        "77771026SKSS0": 20,
         "33331011OBLT0": 15,
         "77771029SSOB0": 18,
     }
@@ -86,10 +86,21 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
         if by_key[key]["runs_scored"] != "":
             raise ValueError(f"ambiguous 2013 run attribution must be blank: {key}")
 
-    # The newly recovered 2008 QP Game 3 fourth-inning scoring row must survive the union.
+    # The recovered 2008 QP Game 3 fourth-inning scoring row must survive the union.
     g3_rbi = by_key[("33331011LTSS0", "4", "TOP", "2")]
     if g3_rbi["batter"] != "강민호" or g3_rbi["runs_scored"] != "1":
         raise ValueError("2008 QP Game 3 fourth-inning recovery audit failed")
+
+    # 2011 KS Game 2 first inning is independently described from first batter to third out.
+    ks2_first = [
+        r for r in rows
+        if r["game_id"] == "77771026SKSS0" and r["inning"] == "1" and r["half"] == "TOP"
+    ]
+    if len(ks2_first) != 5 or not all(
+        r["coverage_scope"] == "COMPLETE_HALF_INNING_PA_ORDER" and r["order_semantics"] == "COMPLETE_PA_ORDER"
+        for r in ks2_first
+    ):
+        raise ValueError("2011 KS Game 2 first-inning complete-order audit failed")
 
     return {
         "rows": len(rows),
@@ -97,6 +108,7 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
         "per_game_rows": dict(counts),
         "complete_game_pa_rows": len(g1),
         "complete_game_run_audit": {"삼성": 12, "롯데": 3},
+        "ks2_complete_first_inning_rows": len(ks2_first),
     }
 
 

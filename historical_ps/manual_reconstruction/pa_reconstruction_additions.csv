@@ -1,3 +1,14 @@
 game_id,inning,half,sequence_order,order_semantics,batting_team,batter,pa_result,runs_scored,score_after,pitch_count_if_known,context,coverage_scope,confidence,source_url,notes
-33331011LTSS0,4,TOP,1,KNOWN_EVENT_ORDER,롯데,이대호,SINGLE,0,롯데0-1삼성,,1사 1루에서 우전안타; 1루주자 이인구가 3루까지 진루,PARTIAL_SEQUENCE_ANCHOR,HIGH,https://sports.news.nate.com/view/20081011n04955,이 행과 다음 행 사이에 기사에 생략된 PA가 있을 수 있음
-33331011LTSS0,4,TOP,2,KNOWN_EVENT_ORDER,롯데,강민호,RBI_SINGLE,1,롯데1-1삼성,,2사 1·3루에서 우중간 1타점 적시타; 3루주자 이인구 득점,PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.chosun.com/site/data/html_dir/2008/10/11/2008101100305.html,4회초 롯데의 1득점 주체를 확정
+33331011LTSS0,4,TOP,1,KNOWN_EVENT_ORDER,롯데,이대호,SINGLE,0,롯데0-1삼성,,"1사 1루에서 우전안타; 1루주자 이인구가 3루까지 진루",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://sports.news.nate.com/view/20081011n04955,"이 행과 다음 행 사이에 기사에 생략된 PA가 있을 수 있음"
+33331011LTSS0,4,TOP,2,KNOWN_EVENT_ORDER,롯데,강민호,RBI_SINGLE,1,롯데1-1삼성,,"2사 1·3루에서 우중간 1타점 적시타; 3루주자 이인구 득점",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.chosun.com/site/data/html_dir/2008/10/11/2008101100305.html,"4회초 롯데의 1득점 주체를 확정"
+33331009SSLT0,3,BOT,4,KNOWN_EVENT_ORDER,롯데,박종윤,FLYOUT_DEEP,0,삼성1-1롯데,,"3회말 1사 1루에서 잘 맞은 타구가 펜스 앞에서 잡힘; 1루주자 강민호 유지",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/all?date=20081009&offset=60,"앞선 득점 시퀀스 뒤의 추가 확인 PA; 중간 생략 가능"
+33331009SSLT0,5,TOP,1,KNOWN_EVENT_ORDER,삼성,최형우,STRIKEOUT,0,삼성2-1롯데,,"2사 만루에서 손민한 강판 뒤 강영식 상대 삼진",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/all?date=20081009&offset=60,"이 타석 이전의 5회초 PA는 완전 복원되지 않음"
+33331009SSLT0,7,BOT,1,KNOWN_EVENT_ORDER,롯데,김민성,STRIKEOUT,0,삼성4-2롯데,,"박종윤 타석 대타로 나와 권혁 상대 삼진",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/all?date=20081009&offset=20,"7회말 전체 PA 순서는 불완전"
+33331009SSLT0,7,BOT,2,KNOWN_EVENT_ORDER,롯데,조성환,STRIKEOUT,0,삼성4-2롯데,,"2사 1·2루에서 삼진",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/all?date=20081009&offset=20,"sequence_order는 확인된 이벤트끼리의 순서"
+33331011SKHT0,6,BOT,1,KNOWN_EVENT_ORDER,KIA,나지완,STRIKEOUT,0,SK2-0KIA,,"1사 1루에서 박희수 등판 뒤 대타 나지완 삼진",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.yna.co.kr/view/AKR20111011213351007,"앞선 출루 PA는 기사 요약에서 생략"
+33331011SKHT0,6,BOT,2,KNOWN_EVENT_ORDER,KIA,이범호,STRIKEOUT,0,SK2-0KIA,,"박희수 상대 삼진으로 이닝 종료",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.yna.co.kr/view/AKR20111011213351007,"sequence_order는 확인된 이벤트끼리의 순서"
+77771026SKSS0,1,TOP,1,COMPLETE_PA_ORDER,SK,정근우,STRIKEOUT,0,SK0-0삼성,,"삼진",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,"동시대 경기기사의 1회초 서술로 전체 PA 순서 확인"
+77771026SKSS0,1,TOP,2,COMPLETE_PA_ORDER,SK,박재상,STRIKEOUT,0,SK0-0삼성,,"연속 삼진",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
+77771026SKSS0,1,TOP,3,COMPLETE_PA_ORDER,SK,최정,DOUBLE,0,SK0-0삼성,,"우중간 2루타",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
+77771026SKSS0,1,TOP,4,COMPLETE_PA_ORDER,SK,박정권,WALK,0,SK0-0삼성,,"볼넷으로 2사 1·2루",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
+77771026SKSS0,1,TOP,5,COMPLETE_PA_ORDER,SK,안치용,STRIKEOUT,0,SK0-0삼성,,"삼진으로 이닝 종료",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
