@@ -1,40 +1,69 @@
-# Missing postseason games: manual reconstruction v1
+# Missing postseason games: manual reconstruction v2
 
 This directory contains a **conservative manual reconstruction** for the seven historical KBO postseason games whose Naver relay payloads are missing.
 
-## What this is
+## Files
 
 - `games.csv`: game identity, final score, and inning line score.
 - `lineups.csv`: reconstructed starting batting orders/positions.
-- `known_events.csv`: only events explicitly supported by the cited contemporary/secondary sources.
+- `known_events.csv`: v1 event anchors supported by cited contemporary/secondary sources.
+- `pa_reconstruction.csv`: v2 base PA-level reconstruction. It mixes three explicitly flagged scopes:
+  - `COMPLETE_GAME_PA_ORDER`: every recorded plate appearance in the game is represented in source order.
+  - `COMPLETE_HALF_INNING_PA_ORDER`: every PA in that half-inning is represented in source order.
+  - `PARTIAL_SEQUENCE_ANCHOR`: only the events actually described by the source are represented; missing PAs remain missing.
+- `pa_reconstruction_additions.csv`: later source-backed PA rows discovered after the base v2 file was assembled.
+- `pa_reconstruction_corrections.csv`: authoritative field overrides for rows where later audit found that the raw v2 row was too specific. `__BLANK__` means unknown/not attributable, not zero.
+- `coverage.csv`: per-game effective PA-reconstruction coverage after additions.
+- `superseded_known_events.csv`: v1 coarse rows that should no longer be used because v2 recovered finer PA detail.
 - `sources.csv`: provenance and what each source supports.
+
+For analysis, do **not** consume the base CSV alone. Build the effective view with:
+
+```bash
+python scripts/build_manual_postseason_reconstruction.py
+```
+
+The builder unions `pa_reconstruction_additions.csv`, applies `pa_reconstruction_corrections.csv`, validates row counts and the full-game score audit, and writes `pa_reconstruction_effective.csv`.
+
+## Major v2 upgrade
+
+For `33331008SSLT0` (2008 준PO 1차전 삼성@롯데), a contemporary Sports Donga live-text article contains the game from 1회초 through 9회말 in batting order. The reconstruction therefore contains **84 ordered PA rows for the full game**.
+
+This is a complete **PA outcome/order reconstruction**, not complete pitch-by-pitch data. Exact pitch counts are entered only where the article explicitly prints them. Missing pitch counts, pitch types, locations, count states, and unprinted pitch sequences are never imputed.
+
+The article's introductory paragraph contains an obvious `10-3` typo, while its detailed live log and final line record the actual `12-3` result. `games.csv` and the PA reconstruction retain the verified 12-3 final.
+
+Additional v2 coverage:
+- `33331011LTSS0` (2008 준PO 3차전): 3회초/3회말 complete PA order; 4회초 동점 득점은 동시대 사진기사 교차검증으로 이대호 안타→강민호 적시타까지 복구; 다른 이닝은 source-backed scoring anchors.
+- `77771026SKSS0` (2011 KS 2차전): 6회초 and 8회초 complete PA order, plus 6회말 anchors.
+- The other four missing games carry richer, source-ordered PA anchors for the major documented scoring/chance sequences.
 
 ## What this is NOT
 
-This is **not pitch-by-pitch data** and must not be concatenated into the pitch-level master as if it were equivalent to Naver relay output.
+This reconstruction is **not equivalent to the Naver pitch-level master** and must not be concatenated into that master as if the rows had the same observation unit.
 
-Unknown plate appearances and pitches are intentionally left unknown. No missing PA is synthesized from batting order, box score totals, or score arithmetic alone.
+Unknown plate appearances and pitches are intentionally left unknown. No missing pitch is synthesized. For `PARTIAL_SEQUENCE_ANCHOR`, `sequence_order` means order among the events preserved from the source, not the literal PA number in the half-inning. Only rows with `order_semantics=COMPLETE_PA_ORDER` can be treated as contiguous PA order.
 
-Quality flag: `PARTIAL_MANUAL_RECONSTRUCTION`.
+`known_events.csv` is retained as audit history. When `superseded_known_events.csv` marks a v1 row as `SUPERSEDED`, use the corresponding v2 effective rows instead and do not double-count both layers.
 
-`event_order_hint` means order among the events that this reconstruction records in that half-inning; it is **not** a complete PA sequence number.
+## Confidence
 
-Confidence:
-- `HIGH`: the event is explicitly described in a contemporaneous news source.
-- `MEDIUM`: inning total or grouped sequence is secure, but the exact PA-level allocation is not fully supported by the currently collected sources.
+- `HIGH`: the PA/event is explicitly described in a contemporary source.
+- `MEDIUM`: the sequence/result is strongly constrained by the source but one detail (for example exact RBI allocation or out subtype) is not explicitly stated.
 
-## Current usefulness
+## Analytical use
 
-These rows are suitable for:
+Suitable:
 - restoring game-level inclusion in postseason samples;
 - score/inning state and known scoring-event studies;
 - lineup/start-player context;
-- manual cross-checking if full PBP is later recovered.
+- PA-level analysis **only within scopes flagged complete**;
+- manual cross-checking if original PBP is later recovered.
 
-They are not suitable for:
-- pitch selection/count analysis;
-- complete PA denominators;
+Not suitable without additional source recovery:
+- full-series or full-game PA denominators for games marked partial;
 - BvP/PvB calculated as if every matchup were observed;
-- pitch-sequence, CSW, chase, whiff, or location studies.
+- pitch selection/count analysis;
+- CSW, chase, whiff, velocity, location, or pitch-sequence studies.
 
-When an original/authorized PBP source is recovered, preserve these files as provenance/audit material and replace the analytical use of these rows with the recovered PBP.
+When an original/authorized PBP source is recovered, preserve these files as provenance/audit material and replace the analytical use of manual rows with the recovered PBP.

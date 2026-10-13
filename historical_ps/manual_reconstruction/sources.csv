@@ -14,3 +14,7 @@ S2012_QP3_NEWSIS,2012-10-11 준PO 3차전,news,뉴시스,https://mobile.newsis.c
 S2013_KS5_YNA,2013-10-29 KS 5차전,news,연합뉴스,https://www.yna.co.kr/view/AKR20131029211000007,"3회/5회/8회 득점 경로 및 8회 결승타 전 상황"
 S2013_KS5_NEWSIS,2013-10-29 KS 5차전,news,뉴시스,https://www.newsis.com/view/NISX20131029_0012471895,"선발 라인업"
 S2013_KS5_AJU,2013-10-29 KS 5차전,news,아주경제,https://www.ajunews.com/view/20131029223633200,"1회 삼성 5연속 안타 3득점 및 최준석 2회 HR"
+S2008_G1_DONGA_LIVE,2008-10-08 준PO 1차전,live_text_news,스포츠동아,https://sports.donga.com/article/all/20081008/5121967/1,"1회초~9회말 PA 순서와 결과 전체; 일부 명시적 투구수·주루 이벤트·투수교체"
+S2008_G3_COOKIE_INN3,2008-10-11 준PO 3차전 3회,live_text_news,쿠키뉴스/네이트,https://sports.news.nate.com/view/20081011n05030,"3회초 롯데 4 PA와 3회말 삼성 3 PA 순서/결과; 일부 투구 맥락"
+S2008_G3_NOCUT_INN4,2008-10-11 준PO 3차전 4회초,news_photo,노컷뉴스/네이트,https://sports.news.nate.com/view/20081011n04955,"4회초 1사 1루 이대호 우전안타; 1루주자 이인구 3루 진루"
+S2008_G3_OSEN_INN4,2008-10-11 준PO 3차전 4회초,news_photo,OSEN/조선닷컴,https://www.chosun.com/site/data/html_dir/2008/10/11/2008101100305.html,"4회초 2사 1·3루 강민호 우중간 1타점 적시타; 이인구 득점"
