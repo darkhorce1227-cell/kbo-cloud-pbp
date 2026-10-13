@@ -1,0 +1,35 @@
+name: Investigate Historical Postseason Pitch Gaps
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  investigate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Inspect raw versus parsed versus exported pitches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p historical_ps
+          for YEAR in 2009 2010 2011 2012; do
+            gh release download "historical-ps-$YEAR" --pattern "kbo_ps_${YEAR}_raw.tar.gz" --dir /tmp
+            tar -xzf "/tmp/kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps
+          done
+          python scripts/investigate_postseason_pitch_gaps.py
+      - name: Upload diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postseason-pitch-gap-evidence
+          path: |
+            historical_ps/raw_pitch_gap_by_game.csv
+            historical_ps/raw_pitch_gap_samples.json
+          if-no-files-found: warn
