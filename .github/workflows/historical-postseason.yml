@@ -39,7 +39,7 @@ jobs:
           name: historical-ps-${{ inputs.year }}
           path: historical_ps/${{ inputs.year }}/
           if-no-files-found: warn
-      - name: Publish verified raw and pitch-level datasets
+      - name: Publish validated complete or partial datasets
         if: steps.collect.outcome == 'success' && steps.export.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -47,9 +47,9 @@ jobs:
         run: |
           TAG="historical-ps-${YEAR}"
           tar -czf "kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps "${YEAR}"
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "KBO postseason ${YEAR} raw PBP" --notes "Verified complete inning-level relay archive."
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "KBO postseason ${YEAR} PBP (see validation.json for coverage)" --notes "Coverage can be PARTIAL. Always check validation.json before analysis."
           gh release upload "$TAG" "kbo_ps_${YEAR}_raw.tar.gz" --clobber
-          gh release upload "$TAG" "historical_ps/${YEAR}/postseason_pitches.csv.gz" "historical_ps/${YEAR}/postseason_pitches.parquet" "historical_ps/${YEAR}/validation.json" --clobber
+          gh release upload "$TAG" "historical_ps/${YEAR}/postseason_pitches.csv.gz" "historical_ps/${YEAR}/postseason_pitches.parquet" "historical_ps/${YEAR}/validation.json" "historical_ps/${YEAR}/missing_innings.csv" --clobber
       - name: Fail if incomplete
         if: steps.collect.outcome != 'success' || steps.export.outcome != 'success'
         run: exit 1

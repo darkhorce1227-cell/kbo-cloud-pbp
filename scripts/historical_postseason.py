@@ -24,7 +24,7 @@ def main():
     out = Path(args.output) / str(args.year)
     raw = out / "raw"
     raw.mkdir(parents=True, exist_ok=True)
-    manifest = {"year": args.year, "status": "INCOMPLETE", "games": [], "errors": []}
+    manifest = {"year": args.year, "status": "FAILED", "games": [], "errors": []}
     try:
         games = schedule.playable(schedule.fetch(args.year), rounds=schedule.POSTSEASON)
         if games.empty:
@@ -54,10 +54,17 @@ def main():
             item["status"] = "PASS" if item["fetched"] == innings else "INCOMPLETE"
     except Exception as exc:
         manifest["errors"].append(f"{type(exc).__name__}: {exc}")
-    manifest["status"] = "PASS" if manifest["games"] and not manifest["errors"] and all(g["status"] == "PASS" for g in manifest["games"]) else "INCOMPLETE"
+    passed = sum(g["status"] == "PASS" for g in manifest["games"])
+    manifest["status"] = (
+        "COMPLETE" if passed == len(manifest["games"]) and passed > 0 and not manifest["errors"]
+        else "PARTIAL" if passed > 0
+        else "FAILED"
+    )
+    manifest["complete_games"] = passed
+    manifest["missing_games"] = [g["game_id"] for g in manifest["games"] if g["status"] != "PASS"]
     (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"year": args.year, "status": manifest["status"], "games": len(manifest["games"]), "errors": manifest["errors"][:5]}, ensure_ascii=False))
-    if manifest["status"] != "PASS":
+    if manifest["status"] == "FAILED":
         raise SystemExit(1)
 
 if __name__ == "__main__":
