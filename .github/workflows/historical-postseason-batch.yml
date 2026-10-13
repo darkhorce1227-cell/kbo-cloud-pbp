@@ -10,6 +10,10 @@ on:
         description: "Last season (inclusive)"
         required: true
         default: "2025"
+  push:
+    branches: [main]
+    paths:
+      - '.github/postseason-full-refresh.trigger'
 permissions:
   contents: write
 jobs:
@@ -21,8 +25,8 @@ jobs:
       - name: Validate range and generate year matrix
         id: years
         env:
-          START: ${{ inputs.start_year }}
-          END: ${{ inputs.end_year }}
+          START: ${{ inputs.start_year || '2001' }}
+          END: ${{ inputs.end_year || '2025' }}
         run: |
           python - <<'PY'
           import json, os
@@ -61,8 +65,8 @@ jobs:
         id: download
         env:
           GH_TOKEN: ${{ github.token }}
-          START: ${{ inputs.start_year }}
-          END: ${{ inputs.end_year }}
+          START: ${{ inputs.start_year || '2001' }}
+          END: ${{ inputs.end_year || '2025' }}
         run: |
           set -euo pipefail
           mkdir -p historical_ps /tmp/postseason-releases
@@ -97,7 +101,7 @@ jobs:
       - name: Upload master artifact
         uses: actions/upload-artifact@v4
         with:
-          name: postseason-master-${{ inputs.start_year }}-${{ inputs.end_year }}
+          name: postseason-master-${{ inputs.start_year || '2001' }}-${{ inputs.end_year || '2025' }}
           path: |
             historical_ps/quality_summary.json
             historical_ps/quality_summary.csv
