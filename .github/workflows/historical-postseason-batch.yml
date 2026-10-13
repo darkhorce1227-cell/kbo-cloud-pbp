@@ -32,6 +32,7 @@ jobs:
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write("years=" + json.dumps([str(y) for y in range(start, end + 1)]) + "\n")
           PY
+
   collect:
     needs: prepare
     strategy:
@@ -44,3 +45,85 @@ jobs:
       year: ${{ matrix.year }}
     permissions:
       contents: write
+
+  aggregate:
+    needs: [prepare, collect]
+    if: always() && needs.prepare.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Download every available season release
+        id: download
+        env:
+          GH_TOKEN: ${{ github.token }}
+          START: ${{ inputs.start_year }}
+          END: ${{ inputs.end_year }}
+        run: |
+          set -euo pipefail
+          mkdir -p historical_ps /tmp/postseason-releases
+          DOWNLOADED=()
+          for YEAR in $(seq "$START" "$END"); do
+            mkdir -p "/tmp/postseason-releases/$YEAR"
+            if gh release download "historical-ps-$YEAR" \
+                --pattern "kbo_ps_${YEAR}_raw.tar.gz" \
+                --dir "/tmp/postseason-releases/$YEAR"; then
+              tar -xzf "/tmp/postseason-releases/$YEAR/kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps
+              DOWNLOADED+=("$YEAR")
+            else
+              echo "No usable release for $YEAR; recording as unavailable."
+            fi
+          done
+          if [ ${#DOWNLOADED[@]} -eq 0 ]; then
+            echo "No season releases available in requested range."
+            exit 1
+          fi
+          printf '%s\n' "${DOWNLOADED[*]}" > historical_ps/downloaded_years.txt
+          echo "years=${DOWNLOADED[*]}" >> "$GITHUB_OUTPUT"
+
+      - name: Run automatic quality classification
+        env:
+          YEARS: ${{ steps.download.outputs.years }}
+        run: |
+          python scripts/postseason_quality_gate.py --years $YEARS
+
+      - name: Build combined master datasets
+        run: python scripts/build_postseason_master.py
+
+      - name: Upload master artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: postseason-master-${{ inputs.start_year }}-${{ inputs.end_year }}
+          path: |
+            historical_ps/quality_summary.json
+            historical_ps/quality_summary.csv
+            historical_ps/*/quality_by_game.csv
+            historical_ps/postseason_dataset_index.csv
+            historical_ps/postseason_master_summary.json
+            historical_ps/postseason_all_available.parquet
+            historical_ps/postseason_screen_pass.parquet
+            historical_ps/downloaded_years.txt
+          if-no-files-found: error
+
+      - name: Publish rolling master release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="historical-ps-master"
+          gh release view "$TAG" >/dev/null 2>&1 || \
+            gh release create "$TAG" \
+              --title "KBO historical postseason PBP master" \
+              --notes "Automated aggregate. SCREEN_PASS is a screening result, not independent official-stat verification."
+          gh release upload "$TAG" \
+            historical_ps/quality_summary.json \
+            historical_ps/quality_summary.csv \
+            historical_ps/postseason_dataset_index.csv \
+            historical_ps/postseason_master_summary.json \
+            historical_ps/postseason_all_available.parquet \
+            historical_ps/postseason_screen_pass.parquet \
+            --clobber
