@@ -1,0 +1,44 @@
+name: Historical KBO Postseason PBP
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Historical season (start with 2021, then 2010)"
+        required: true
+        default: "2021"
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Collect postseason relay
+        id: collect
+        continue-on-error: true
+        run: python scripts/historical_postseason.py --year "${{ inputs.year }}"
+      - name: Upload diagnostic data (even on failure)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-ps-${{ inputs.year }}
+          path: historical_ps/${{ inputs.year }}/
+          if-no-files-found: warn
+      - name: Publish raw dataset only if complete
+        if: steps.collect.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          YEAR: ${{ inputs.year }}
+        run: |
+          TAG="historical-ps-${YEAR}"
+          tar -czf "kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps "${YEAR}"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "KBO postseason ${YEAR} raw PBP" --notes "Verified complete inning-level relay archive."
+          gh release upload "$TAG" "kbo_ps_${YEAR}_raw.tar.gz" --clobber
+      - name: Fail if incomplete
+        if: steps.collect.outcome != 'success'
+        run: exit 1
