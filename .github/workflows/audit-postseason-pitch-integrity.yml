@@ -1,0 +1,45 @@
+name: Audit Historical Postseason Pitch Integrity
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: "Space-separated years (e.g. 2009 2010 2011 2012)"
+        required: true
+        default: "2009 2010 2011 2012"
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Fetch raw archives from existing releases and audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          YEARS: ${{ inputs.years }}
+        run: |
+          set -euo pipefail
+          for YEAR in $YEARS; do
+            case "$YEAR" in
+              2008|2009|2010|2011|2012|2021) ;;
+              *) echo "Unsupported year: $YEAR"; exit 1 ;;
+            esac
+            gh release download "historical-ps-$YEAR" --pattern "kbo_ps_${YEAR}_raw.tar.gz" --dir /tmp
+            mkdir -p historical_ps
+            tar -xzf "/tmp/kbo_ps_${YEAR}_raw.tar.gz" -C historical_ps
+            python scripts/audit_postseason_pitch_integrity.py --year "$YEAR"
+          done
+      - name: Upload per-game audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postseason-pitch-integrity-audit
+          path: |
+            historical_ps/*/pitch_integrity_audit.csv
+            historical_ps/*/pitch_integrity_summary.json
+          if-no-files-found: warn
