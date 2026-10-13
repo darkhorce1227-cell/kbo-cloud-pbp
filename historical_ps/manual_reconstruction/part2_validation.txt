@@ -1,0 +1,13 @@
+Manual reconstruction v2 part-2 expected effective row counts after additions:
+33331008SSLT0=84
+33331009SSLT0=18
+33331011LTSS0=23
+33331011SKHT0=12
+77771026SKSS0=20
+33331011OBLT0=15
+77771029SSOB0=18
+TOTAL=190
+
+Duplicate-key audit by construction: all newly added (game_id, inning, half, sequence_order) keys were unused in the base reconstruction/additions before this pass.
+2011 KS2 1TOP is source-complete at 5 PA: K, K, 2B, BB, K.
+This file is an audit note, not an analytical dataset.
