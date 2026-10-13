@@ -1,6 +1,6 @@
 game_id,game,coverage_status,pa_reconstruction_v2_rows,complete_half_innings,primary_source,notes
 33331008SSLT0,2008 준PO 1차전 삼성@롯데,COMPLETE_GAME_PA_ORDER,84,1T;1B;2T;2B;3T;3B;4T;4B;5T;5B;6T;6B;7T;7B;8T;8B;9T;9B,https://sports.donga.com/article/all/20081008/5121967/1,"1~9회 타석 순서와 결과를 동시대 live-text로 복원. 일부 타구 결과는 기사 표현 그대로 coarse 분류. 투구별 PBP 아님."
-33331009SSLT0,2008 준PO 2차전 삼성@롯데,PARTIAL_SEQUENCE_ANCHORS,20,,https://www.chosun.com/site/data/html_dir/2008/10/09/2008100901362.html,"득점 이닝 핵심 순서 + OSEN 동시대 사진기사로 2·3·5·6·7·9회 추가 PA/게임상태 앵커. 미기록 PA 다수."
+33331009SSLT0,2008 준PO 2차전 삼성@롯데,PARTIAL_SEQUENCE_ANCHORS,22,,https://www.chosun.com/site/data/html_dir/2008/10/09/2008100901362.html,"득점 이닝 핵심 순서 + OSEN 동시대 기사로 1·2·3·4·5·6·7·9회 PA/게임상태 앵커 보강. 조성환 1회·3회 삼진 추가, 채태인 4회 홈런은 7구째 슬라이더까지 확인. 미기록 PA 다수."
 33331011LTSS0,2008 준PO 3차전 롯데@삼성,PARTIAL_WITH_COMPLETE_HALVES,24,3T;3B,https://sports.news.nate.com/view/20081011n05030,"3회초/말은 PA 순서 완전 복원. 4회초 동점 득점은 이대호 안타와 강민호 적시타까지 확인. 5회초 이대호 내야땅볼 때 이인구 홈아웃을 추가 확인. 그 외는 주요 득점 시퀀스 앵커."
 33331011SKHT0,2011 준PO 3차전 SK@KIA,PARTIAL_SEQUENCE_ANCHORS,12,,https://www.yna.co.kr/view/AKR20111011213351007,"2회·4회 기회와 6회 결승 득점 시퀀스 중심; 6회말 나지완·이범호 삼진 추가 확인."
 77771026SKSS0,2011 KS 2차전 SK@삼성,PARTIAL_WITH_COMPLETE_HALVES,20,1T;6T;8T,https://www.yna.co.kr/view/AKR20111026217351007,"1회초·6회초·8회초는 동시대 기사 서술로 완전 PA 순서 복원. 6회말은 알려진 이벤트 순서만."
