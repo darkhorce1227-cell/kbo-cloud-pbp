@@ -21,3 +21,8 @@ S2008_G3_OSEN_INN4,2008-10-11 준PO 3차전 4회초,news_photo,OSEN/조선닷컴
 S2008_G2_OSEN_MID,2008-10-09 준PO 2차전 3~5회,news_photo_index,OSEN,https://www.osen.co.kr/all?date=20081009&offset=60,"3회말 박종윤 깊은 외야 뜬공; 4회초 채태인 홈런; 5회초 2사만루 최형우 삼진; 5회말 조성환 병살 및 김주찬 도루"
 S2008_G2_OSEN_LATE,2008-10-09 준PO 2차전 7~9회,news_photo_index,OSEN,https://www.osen.co.kr/all?date=20081009&offset=20,"7회말 대타 김민성 삼진·2사 1,2루 조성환 삼진; 8회말 오승환 등판; 9회말 김주찬 1타점 적시타"
 S2011_KS2_SEOUL,2011-10-26 KS 2차전,news,서울신문,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,"1회초 SK 전체 PA 순서; 6회초·6회말·8회초 주요 흐름"
+S2008_G2_OSEN_2T_K,2008-10-09 준PO 2차전 2회초,news_photo,OSEN,https://www.osen.co.kr/article/G0810090174,"2회초 1사 박진만 삼진"
+S2008_G2_OSEN_6T_HBP,2008-10-09 준PO 2차전 6회초,news_photo,OSEN,https://www.osen.co.kr/article/G0810090216,"6회초 1사 주자없음 채태인 사구"
+S2008_G2_OSEN_7T_RBI,2008-10-09 준PO 2차전 7회초,news_photo,OSEN,https://www.osen.co.kr/article/G0810090232,"7회초 1사 만루 박진만 2타점 2루타"
+S2008_G2_OSEN_9B_RBI,2008-10-09 준PO 2차전 9회말,news_photo,OSEN,https://www.osen.co.kr/article/G0810090244,"9회말 1사 1루 김주찬 좌중간 1타점 적시타"
+S2008_G3_NOCUT_5T,2008-10-11 준PO 3차전 5회초,news_photo,노컷뉴스/네이트,https://sports.news.nate.com/view/20081011n05372,"원문은 5회말로 잘못 표기했으나 롯데 이대호 타석 문맥: 무사 1·3루 내야땅볼 때 이인구 홈 아웃"

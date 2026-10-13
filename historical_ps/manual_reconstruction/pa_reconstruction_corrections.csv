@@ -5,3 +5,5 @@ game_id,inning,half,sequence_order,field,override_value,reason
 77771029SSOB0,1,TOP,5,runs_scored,__BLANK__,이 행까지 누적 3-0은 확정이나 개별 득점 귀속은 미확정
 77771029SSOB0,3,BOT,3,runs_scored,__BLANK__,김현수·최준석 연속안타 과정의 1득점은 확정이나 해당 RBI가 어느 안타에 귀속되는지 기사만으로 확정 불가
 77771029SSOB0,3,BOT,3,context,"김현수·최준석 연속안타 과정에서 1점 추격; 어느 안타에 RBI가 귀속되는지는 기사 문장만으로 확정하지 않음",기존 설명의 문맥상 귀속 추정을 제거
+33331009SSLT0,7,TOP,4,context,"1사 만루에서 박진만이 2타점 2루타",OSEN 동시대 사진기사로 아웃카운트와 주자상태를 직접 확인
+33331009SSLT0,9,BOT,2,context,"1사 1루에서 김주찬이 좌중간 1타점 적시 2루타",OSEN 동시대 사진기사로 아웃카운트·주자상태·타구 방향을 직접 확인
