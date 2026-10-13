@@ -16,6 +16,7 @@ This directory contains a **conservative manual reconstruction** for the seven h
 - `coverage.csv`: per-game effective PA-reconstruction coverage after additions.
 - `superseded_known_events.csv`: v1 coarse rows that should no longer be used because v2 recovered finer PA detail.
 - `sources.csv`: provenance and what each source supports.
+- `part2_research_notes.md`: second-pass audit notes for the six games other than 2008 QP Game 1.
 
 For analysis, do **not** consume the base CSV alone. Build the effective view with:
 
@@ -33,10 +34,13 @@ This is a complete **PA outcome/order reconstruction**, not complete pitch-by-pi
 
 The article's introductory paragraph contains an obvious `10-3` typo, while its detailed live log and final line record the actual `12-3` result. `games.csv` and the PA reconstruction retain the verified 12-3 final.
 
-Additional v2 coverage:
-- `33331011LTSS0` (2008 준PO 3차전): 3회초/3회말 complete PA order; 4회초 동점 득점은 동시대 사진기사 교차검증으로 이대호 안타→강민호 적시타까지 복구; 다른 이닝은 source-backed scoring anchors.
-- `77771026SKSS0` (2011 KS 2차전): 6회초 and 8회초 complete PA order, plus 6회말 anchors.
-- The other four missing games carry richer, source-ordered PA anchors for the major documented scoring/chance sequences.
+Additional v2 coverage after the second-pass audit:
+- `33331009SSLT0` (2008 준PO 2차전): scoring anchors plus additional 3·5·7회 PA anchors from contemporaneous OSEN photo/article pages; still partial.
+- `33331011LTSS0` (2008 준PO 3차전): 3회초/3회말 complete PA order; 4회초 동점 득점은 동시대 사진기사 교차검증으로 이대호 안타→강민호 적시타까지 복구; other innings remain source-backed anchors.
+- `33331011SKHT0` (2011 준PO 3차전): 2·4·6회 핵심 시퀀스에 더해 6회말 박희수 등판 뒤 나지완·이범호 삼진을 추가 확인.
+- `77771026SKSS0` (2011 KS 2차전): **1회초, 6회초, 8회초 complete PA order**, plus 6회말 anchors.
+- `33331011OBLT0` (2012 준PO 3차전): 주요 득점/주루 시퀀스는 partial anchor로 보존. 선발 타순은 2012-10-11 Newsis 기사로 재검증했으며 기존 `lineups.csv`가 맞다.
+- `77771029SSOB0` (2013 KS 5차전): 1·2·3·5·8·9회 주요 득점/작전 앵커; 기사에서 개별 득점 귀속이 명시되지 않은 연속안타는 correction overlay로 공란 처리.
 
 ## What this is NOT
 
