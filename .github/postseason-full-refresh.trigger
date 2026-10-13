@@ -1,3 +1,3 @@
-Legacy pitchNum repair refresh requested on 2026-10-13.
-Fixes old Naver relays where every pitch was incorrectly tagged pitchNum=1 despite text containing 1구, 2구, 3구...
+Alternate legacy gameId recovery refresh requested on 2026-10-13.
+Collector now probes year-suffixed legacy IDs and same-date/team modern Naver IDs before declaring a postseason game missing.
 Default range: 2001-2025.
