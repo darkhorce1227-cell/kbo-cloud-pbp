@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       year:
-        description: "Historical season (start with 2021, then 2010)"
+        description: "Historical season"
         required: true
         default: "2021"
 permissions:
@@ -50,6 +50,16 @@ jobs:
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "KBO postseason ${YEAR} PBP (see validation.json for coverage)" --notes "Coverage can be PARTIAL. Always check validation.json before analysis."
           gh release upload "$TAG" "kbo_ps_${YEAR}_raw.tar.gz" --clobber
           gh release upload "$TAG" "historical_ps/${YEAR}/postseason_pitches.csv.gz" "historical_ps/${YEAR}/postseason_pitches.parquet" "historical_ps/${YEAR}/validation.json" "historical_ps/${YEAR}/missing_innings.csv" --clobber
-      - name: Fail if incomplete
+      - name: Handle unavailable legacy season or fail unexpected error
         if: steps.collect.outcome != 'success' || steps.export.outcome != 'success'
-        run: exit 1
+        env:
+          YEAR: ${{ inputs.year }}
+        run: |
+          set -euo pipefail
+          if [ "$YEAR" -le 2007 ] && [ -f "historical_ps/$YEAR/manifest.json" ] && \
+             grep -qi "no games returned\|No postseason games" "historical_ps/$YEAR/manifest.json"; then
+            echo "::warning::Naver schedule API has no usable season schedule for $YEAR; recorded as unavailable rather than a pipeline failure."
+            exit 0
+          fi
+          echo "Unexpected collection/export failure for $YEAR"
+          exit 1
