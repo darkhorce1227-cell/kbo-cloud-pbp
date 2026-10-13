@@ -1,0 +1,46 @@
+name: Historical KBO Postseason Batch
+on:
+  workflow_dispatch:
+    inputs:
+      start_year:
+        description: "First season (inclusive)"
+        required: true
+        default: "2001"
+      end_year:
+        description: "Last season (inclusive)"
+        required: true
+        default: "2025"
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      years: ${{ steps.years.outputs.years }}
+    steps:
+      - name: Validate range and generate year matrix
+        id: years
+        env:
+          START: ${{ inputs.start_year }}
+          END: ${{ inputs.end_year }}
+        run: |
+          python - <<'PY'
+          import json, os
+          start, end = int(os.environ["START"]), int(os.environ["END"])
+          if not (2001 <= start <= end <= 2025):
+              raise SystemExit("Expected 2001 <= start_year <= end_year <= 2025")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write("years=" + json.dumps([str(y) for y in range(start, end + 1)]) + "\n")
+          PY
+  collect:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        year: ${{ fromJSON(needs.prepare.outputs.years) }}
+    uses: ./.github/workflows/historical-postseason.yml
+    with:
+      year: ${{ matrix.year }}
+    permissions:
+      contents: write
