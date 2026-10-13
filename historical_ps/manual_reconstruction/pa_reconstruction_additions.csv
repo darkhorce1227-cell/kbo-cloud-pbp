@@ -12,3 +12,6 @@ game_id,inning,half,sequence_order,order_semantics,batting_team,batter,pa_result
 77771026SKSS0,1,TOP,3,COMPLETE_PA_ORDER,SK,최정,DOUBLE,0,SK0-0삼성,,"우중간 2루타",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
 77771026SKSS0,1,TOP,4,COMPLETE_PA_ORDER,SK,박정권,WALK,0,SK0-0삼성,,"볼넷으로 2사 1·2루",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
 77771026SKSS0,1,TOP,5,COMPLETE_PA_ORDER,SK,안치용,STRIKEOUT,0,SK0-0삼성,,"삼진으로 이닝 종료",COMPLETE_HALF_INNING_PA_ORDER,HIGH,https://m.seoul.co.kr/news/sport/2011/10/27/20111027028008,
+33331009SSLT0,2,TOP,0,KNOWN_EVENT_ORDER,삼성,박진만,STRIKEOUT,0,삼성0-0롯데,,"2회초 1사에서 손민한 상대 삼진; 아웃카운트 2개",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/article/G0810090174,"기존 2회초 sequence_order=1 조동찬 적시타보다 앞서 확인된 이벤트라 0을 사용; 중간 PA는 여전히 미확정"
+33331009SSLT0,6,TOP,1,KNOWN_EVENT_ORDER,삼성,채태인,HBP,0,삼성2-2롯데,,"6회초 1사 주자 없는 상황에서 몸에 맞는 볼",PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.osen.co.kr/article/G0810090216,"이후 PA는 기사만으로 완전 복원되지 않음"
+33331011LTSS0,5,TOP,3,KNOWN_EVENT_ORDER,롯데,이대호,GROUNDOUT_RUNNER_OUT_HOME,0,롯데3-2삼성,,"무사 1·3루에서 내야땅볼 때 3루주자 이인구 홈 아웃",PARTIAL_SEQUENCE_ANCHOR,MEDIUM,https://sports.news.nate.com/view/20081011n05372,"사진기사 본문은 '5회말'로 표기하지만 원정팀 롯데 타석·선수 문맥상 5회초 장면. 김주찬·이인구 득점 뒤 생략 PA가 있을 수 있음"
