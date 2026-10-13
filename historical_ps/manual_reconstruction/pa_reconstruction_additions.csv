@@ -1,0 +1,3 @@
+game_id,inning,half,sequence_order,order_semantics,batting_team,batter,pa_result,runs_scored,score_after,pitch_count_if_known,context,coverage_scope,confidence,source_url,notes
+33331011LTSS0,4,TOP,1,KNOWN_EVENT_ORDER,롯데,이대호,SINGLE,0,롯데0-1삼성,,1사 1루에서 우전안타; 1루주자 이인구가 3루까지 진루,PARTIAL_SEQUENCE_ANCHOR,HIGH,https://sports.news.nate.com/view/20081011n04955,이 행과 다음 행 사이에 기사에 생략된 PA가 있을 수 있음
+33331011LTSS0,4,TOP,2,KNOWN_EVENT_ORDER,롯데,강민호,RBI_SINGLE,1,롯데1-1삼성,,2사 1·3루에서 우중간 1타점 적시타; 3루주자 이인구 득점,PARTIAL_SEQUENCE_ANCHOR,HIGH,https://www.chosun.com/site/data/html_dir/2008/10/11/2008101100305.html,4회초 롯데의 1득점 주체를 확정
