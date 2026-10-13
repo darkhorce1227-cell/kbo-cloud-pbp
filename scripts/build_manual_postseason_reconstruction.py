@@ -55,8 +55,8 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     counts = Counter(r["game_id"] for r in rows)
     expected = {
         "33331008SSLT0": 84,
-        "33331009SSLT0": 18,
-        "33331011LTSS0": 23,
+        "33331009SSLT0": 20,
+        "33331011LTSS0": 24,
         "33331011SKHT0": 12,
         "77771026SKSS0": 20,
         "33331011OBLT0": 15,
@@ -90,6 +90,14 @@ def validate(rows: list[dict[str, str]]) -> dict[str, object]:
     g3_rbi = by_key[("33331011LTSS0", "4", "TOP", "2")]
     if g3_rbi["batter"] != "강민호" or g3_rbi["runs_scored"] != "1":
         raise ValueError("2008 QP Game 3 fourth-inning recovery audit failed")
+
+    # Additional 2008 photo-report anchors from the third audit pass.
+    g2_hbp = by_key[("33331009SSLT0", "6", "TOP", "1")]
+    if g2_hbp["batter"] != "채태인" or g2_hbp["pa_result"] != "HBP":
+        raise ValueError("2008 QP Game 2 sixth-inning HBP audit failed")
+    g3_home_out = by_key[("33331011LTSS0", "5", "TOP", "3")]
+    if g3_home_out["batter"] != "이대호" or g3_home_out["pa_result"] != "GROUNDOUT_RUNNER_OUT_HOME":
+        raise ValueError("2008 QP Game 3 fifth-inning home-out audit failed")
 
     # 2011 KS Game 2 first inning is independently described from first batter to third out.
     ks2_first = [
