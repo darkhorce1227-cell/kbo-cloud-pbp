@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 import mu_v1_3 as engine
@@ -42,24 +43,40 @@ def neutral(rows: pd.DataFrame, cols: list[str], model: dict) -> pd.DataFrame:
     return z
 
 
-def summarize(rows: pd.DataFrame, model: dict) -> dict:
-    e = engine.evaluate(rows, model)
-    return {
-        "f5": {
-            "mae": e["f5"]["team_score_mae"],
-            "nb_nll": e["f5"]["nb_nll"],
-            "wdl_brier": e["f5"]["wdl_brier_mean3"],
-            "wdl_logloss": e["f5"]["wdl_logloss"],
-            "side": e["f5"]["decided_side_hit"],
-        },
-        "full": {
-            "mae": e["full"]["team_score_mae"],
-            "nb_nll": e["full"]["nb_nll"],
-            "wdl_brier": e["full"]["wdl_brier_mean3"],
-            "wdl_logloss": e["full"]["wdl_logloss"],
-            "side": e["full"]["decided_side_hit"],
-        },
+def summarize_fast(rows: pd.DataFrame, model: dict) -> dict:
+    acc = {
+        "f5": {"abs": [], "hit": [], "pred_margin": [], "actual_margin": []},
+        "full": {"abs": [], "hit": [], "pred_margin": [], "actual_margin": []},
     }
+    for _, x in rows.groupby("game_pk"):
+        if len(x) != 2:
+            continue
+        away = x[x.is_home == 0].iloc[0].to_dict()
+        home = x[x.is_home == 1].iloc[0].to_dict()
+        pred = engine.score(model, away, home)
+        for kind, actual_col, ka, kh in [
+            ("f5", "runs_f5", "f5_away", "f5_home"),
+            ("full", "runs_full", "full_away", "full_home"),
+        ]:
+            ya, yh = float(away[actual_col]), float(home[actual_col])
+            ma, mh = float(pred[ka]), float(pred[kh])
+            acc[kind]["abs"].extend([abs(ya - ma), abs(yh - mh)])
+            acc[kind]["pred_margin"].append(ma - mh)
+            acc[kind]["actual_margin"].append(ya - yh)
+            if ya != yh:
+                acc[kind]["hit"].append(1.0 if ((ma > mh) == (ya > yh)) else 0.0)
+    out = {}
+    for kind, v in acc.items():
+        pm = np.asarray(v["pred_margin"], dtype=float)
+        am = np.asarray(v["actual_margin"], dtype=float)
+        corr = float(np.corrcoef(pm, am)[0, 1]) if len(pm) > 1 and pm.std() > 0 and am.std() > 0 else None
+        out[kind] = {
+            "mae": float(np.mean(v["abs"])),
+            "side": float(np.mean(v["hit"])),
+            "margin_corr": corr,
+            "decided_games": int(len(v["hit"])),
+        }
+    return out
 
 
 def main():
@@ -86,38 +103,37 @@ def main():
 
     pub = {
         "f5": {
-            **puball["oos_2026"]["f5"]["hybrid"],
-            "side": puball["decided_side_accuracy_2026"]["f5"],
+            "mae": float(puball["oos_2026"]["f5"]["hybrid"]["mae"]),
+            "side": float(puball["decided_side_accuracy_2026"]["f5"]),
         },
         "full": {
-            **puball["oos_2026"]["full"]["hybrid"],
-            "side": puball["decided_side_accuracy_2026"]["full"],
+            "mae": float(puball["oos_2026"]["full"]["hybrid"]["mae"]),
+            "side": float(puball["decided_side_accuracy_2026"]["full"]),
         },
     }
-    results = {}
+    ranked = []
     for name, vr in variants.items():
-        s = summarize(vr, model)
-        dist = (
-            abs(s["f5"]["side"] - pub["f5"]["side"])
-            + abs(s["full"]["side"] - pub["full"]["side"])
-            + abs(s["f5"]["wdl_logloss"] - pub["f5"]["wdl_logloss"])
-            + abs(s["full"]["wdl_logloss"] - pub["full"]["wdl_logloss"])
-        )
-        results[name] = {"metrics": s, "distance": float(dist)}
+        s = summarize_fast(vr, model)
+        side_distance = abs(s["f5"]["side"] - pub["f5"]["side"]) + abs(s["full"]["side"] - pub["full"]["side"])
+        mae_distance = abs(s["f5"]["mae"] - pub["f5"]["mae"]) + abs(s["full"]["mae"] - pub["full"]["mae"])
+        ranked.append({
+            "variant": name,
+            "side_distance": float(side_distance),
+            "mae_distance": float(mae_distance),
+            "f5": s["f5"],
+            "full": s["full"],
+        })
+    ranked.sort(key=lambda x: (x["side_distance"], x["mae_distance"]))
 
-    ranked = sorted(
-        [{"variant": k, "distance": v["distance"], **v["metrics"]} for k, v in results.items()],
-        key=lambda x: x["distance"],
-    )
     payload = {
-        "version": "mu-v1.2-core-side-ablation-v0.1",
+        "version": "mu-v1.2-core-side-ablation-v0.2-fast",
         "status": "DIAGNOSTIC_ONLY",
         "official_shadow_allowed": False,
         "rows": int(len(rows)),
         "games": int(rows.game_pk.nunique()),
         "published_target": pub,
         "ranked": ranked,
-        "interpretation_rule": "A swap improving side/logloss materially suggests the original fitted model used the opposite team mapping for that feature group. Neutral improvements instead suggest that group is still row-level misreconstructed. Neither alone authorizes promotion.",
+        "interpretation_rule": "A swap materially reducing side-distance suggests opposite-team mapping for that feature group may match the lost pipeline. Neutral improvement suggests row-level reconstruction error in that group. This is diagnosis only, not promotion permission.",
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
