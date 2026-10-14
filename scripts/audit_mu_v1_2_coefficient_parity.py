@@ -15,7 +15,6 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 OUT_PATH = ROOT / "state" / "mu_v1_2_coefficient_parity.json"
 TRAIN_START = pd.Timestamp("2024-05-01")
-DEV_END = pd.Timestamp("2025-12-31")
 
 COMPONENTS = {
     "simple_f5": (engine.SIMPLE_F5, "runs_f5", "league_f5_30d", 1.0),
@@ -52,8 +51,9 @@ def make_dev_rows(tg, st, bp6):
 
 def comp_distance(fit: dict, frozen: dict) -> dict:
     feats = frozen["features"]
-    p_fit = np.array([float(fit["params"][k]) for k in ["const"] + feats])
-    p_ref = np.array([float(frozen["params"][k]) for k in ["const"] + feats])
+    keys = ["const"] + feats
+    p_fit = np.array([float(fit["params"][k]) for k in keys])
+    p_ref = np.array([float(frozen["params"][k]) for k in keys])
     s_fit = np.array([float(fit["scaler_scale"][k]) for k in feats])
     s_ref = np.array([float(frozen["scaler_scale"][k]) for k in feats])
     m_fit = np.array([float(fit["scaler_mean"][k]) for k in feats])
@@ -67,22 +67,28 @@ def comp_distance(fit: dict, frozen: dict) -> dict:
         "param_corr": float(np.corrcoef(p_fit, p_ref)[0, 1]) if len(p_fit) > 1 else 1.0,
         "scaler_mean_mae": float(np.abs(m_fit - m_ref).mean()),
         "scaler_scale_mae": float(np.abs(s_fit - s_ref).mean()),
-        "params_fit": {k: float(fit["params"][k]) for k in ["const"] + feats},
-        "params_frozen": {k: float(frozen["params"][k]) for k in ["const"] + feats},
+        "params_fit": {k: float(fit["params"][k]) for k in keys},
+        "params_frozen": {k: float(frozen["params"][k]) for k in keys},
     }
 
 
-def fit_variant(rows: pd.DataFrame, frozen_model: dict, name: str) -> dict:
-    fits = {}
+def fit_variant(rows: pd.DataFrame, frozen_model: dict, starter_name: str, penalty_mode: str) -> dict:
     distances = {}
+    n = float(len(rows))
     for comp, (features, target, offset, alpha) in COMPONENTS.items():
-        fit = engine.fit_poisson_ridge(rows, list(features), target, offset, alpha)
-        fits[comp] = fit
+        # engine.fit_poisson_ridge optimizes SUM(loglik) - alpha/2*||b||^2.
+        # sklearn-style PoissonRegressor applies alpha to MEAN loss, equivalent
+        # here to alpha*n. Test both conventions explicitly.
+        effective_alpha = float(alpha) if penalty_mode == "SUM_LOSS_ALPHA" else float(alpha) * n
+        fit = engine.fit_poisson_ridge(rows, list(features), target, offset, effective_alpha)
         distances[comp] = comp_distance(fit, frozen_model["components"][comp])
+        distances[comp]["declared_alpha"] = float(alpha)
+        distances[comp]["effective_alpha"] = effective_alpha
     core_score = distances["core_f5"]["param_norm_mae"] + distances["core_late"]["param_norm_mae"]
     all_score = sum(v["param_norm_mae"] for v in distances.values())
     return {
-        "variant": name,
+        "starter_mapping": starter_name,
+        "penalty_mode": penalty_mode,
         "core_param_norm_score": float(core_score),
         "all_param_norm_score": float(all_score),
         "components": distances,
@@ -94,20 +100,17 @@ def main():
     tg, st, bp6 = recovered.load_tables()
     base = make_dev_rows(tg, st, bp6)
 
-    # Candidate A: README/design intent (opponent starter), recovered late offset split.
     opp = lateoffset.apply_offset_only(base, tg, "late_6to9_pa")
-
-    # Candidate B: OOS-forensic recovered implementation behavior (self starter).
     self_rows = lateaudit.swap_starter(opp)
 
-    results = [
-        fit_variant(opp, frozen, "OPPONENT_STARTER"),
-        fit_variant(self_rows, frozen, "SELF_STARTER"),
-    ]
+    results = []
+    for penalty in ["SUM_LOSS_ALPHA", "MEAN_LOSS_ALPHA"]:
+        results.append(fit_variant(opp, frozen, "OPPONENT_STARTER", penalty))
+        results.append(fit_variant(self_rows, frozen, "SELF_STARTER", penalty))
     results.sort(key=lambda x: x["all_param_norm_score"])
 
     payload = {
-        "version": "mu-v1.2-coefficient-parity-v0.1",
+        "version": "mu-v1.2-coefficient-parity-v0.2",
         "status": "DIAGNOSTIC_ONLY",
         "official_shadow_allowed": False,
         "development_rows": int(len(base)),
@@ -119,8 +122,8 @@ def main():
             "starter_rate_prior": "league->long 150 BF; long->recent5 150 BF",
             "starter_ip_prior": "league->long 5 starts; long->recent5 5 starts",
         },
-        "ranked_starter_mapping": results,
-        "interpretation": "If SELF_STARTER materially dominates OPPONENT_STARTER in frozen coefficient parity as well as 2026 OOS reproduction, treat self-starter mapping as recovered historical implementation behavior despite README design intent. Exact production promotion still requires a reproducible daily builder and parity gate.",
+        "ranked_variants": results,
+        "interpretation": "MEAN_LOSS_ALPHA means declared ridge alpha is applied to average Poisson loss (effective alpha*n in the sum-loss Newton solver). A decisive fit supports the original optimizer convention. Production promotion still requires daily-builder reproducibility and parity gates.",
     }
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
