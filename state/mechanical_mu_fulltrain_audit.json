@@ -1,0 +1,309 @@
+{
+  "version": "mu-v1.2-fulltrain-forensic-v0.1",
+  "documented_train_window": "2024-05-01 through 2025",
+  "candidate_rows": 2404,
+  "candidate_games": 1262,
+  "skipped_rows": 224,
+  "skip_examples": [
+    {
+      "game_pk": "20240504HHHT02024",
+      "team": "HT",
+      "reason": "no prior starts for starter=60768"
+    },
+    {
+      "game_pk": "20240504NCSK02024",
+      "team": "SK",
+      "reason": "no prior starts for starter=53919"
+    },
+    {
+      "game_pk": "20240510SKHT02024",
+      "team": "HT",
+      "reason": "no prior starts for starter=54833"
+    },
+    {
+      "game_pk": "20240512LGLT02024",
+      "team": "LT",
+      "reason": "no prior starts for starter=51143"
+    },
+    {
+      "game_pk": "20240512WOHH02024",
+      "team": "HH",
+      "reason": "no prior starts for starter=54362"
+    },
+    {
+      "game_pk": "20240519LTOB02024",
+      "team": "OB",
+      "reason": "no prior starts for starter=52530"
+    },
+    {
+      "game_pk": "20240524NCLG02024",
+      "team": "LG",
+      "reason": "no prior starts for starter=53996"
+    },
+    {
+      "game_pk": "20240531HHSS02024",
+      "team": "SS",
+      "reason": "no prior starts for starter=51713"
+    },
+    {
+      "game_pk": "20240601SKWO02024",
+      "team": "WO",
+      "reason": "no prior starts for starter=54843"
+    },
+    {
+      "game_pk": "20240605HHKT02024",
+      "team": "KT",
+      "reason": "no prior starts for starter=54720"
+    },
+    {
+      "game_pk": "20240605LTHT02024",
+      "team": "HT",
+      "reason": "no prior starts for starter=62363"
+    },
+    {
+      "game_pk": "20240608HTOB02024",
+      "team": "OB",
+      "reason": "no prior starts for starter=54664"
+    },
+    {
+      "game_pk": "20240609LGKT02024",
+      "team": "KT",
+      "reason": "no prior starts for starter=61145"
+    },
+    {
+      "game_pk": "20240611LGSS02024",
+      "team": "SS",
+      "reason": "no prior starts for starter=64596"
+    },
+    {
+      "game_pk": "20240613WOLT02024",
+      "team": "LT",
+      "reason": "no prior starts for starter=78148"
+    },
+    {
+      "game_pk": "20240623KTLG12024",
+      "team": "LG",
+      "reason": "no prior starts for starter=53006"
+    },
+    {
+      "game_pk": "20240623LTWO02024",
+      "team": "WO",
+      "reason": "no prior starts for starter=54537"
+    },
+    {
+      "game_pk": "20240623NCSK02024",
+      "team": "SK",
+      "reason": "no prior starts for starter=66920"
+    },
+    {
+      "game_pk": "20240628LGNC02024",
+      "team": "NC",
+      "reason": "no prior starts for starter=69108"
+    },
+    {
+      "game_pk": "20240630SSKT22024",
+      "team": "KT",
+      "reason": "no prior starts for starter=50441"
+    },
+    {
+      "game_pk": "20240719HTHH02024",
+      "team": "HH",
+      "reason": "no prior starts for starter=69745"
+    },
+    {
+      "game_pk": "20240730LTSK02024",
+      "team": "SK",
+      "reason": "no prior starts for starter=67588"
+    },
+    {
+      "game_pk": "20240808LGOB02024",
+      "team": "OB",
+      "reason": "no prior starts for starter=54119"
+    },
+    {
+      "game_pk": "20240809NCLG02024",
+      "team": "LG",
+      "reason": "no prior starts for starter=69343"
+    },
+    {
+      "game_pk": "20240810OBSK02024",
+      "team": "SK",
+      "reason": "no prior starts for starter=51264"
+    },
+    {
+      "game_pk": "20240901HTSS02024",
+      "team": "SS",
+      "reason": "no prior starts for starter=54615"
+    },
+    {
+      "game_pk": "20240906SSLT02024",
+      "team": "LT",
+      "reason": "no prior starts for starter=54404"
+    },
+    {
+      "game_pk": "20240907HHLG02024",
+      "team": "LG",
+      "reason": "no prior starts for starter=65117"
+    },
+    {
+      "game_pk": "20240911LTSK02024",
+      "team": "SK",
+      "reason": "no prior starts for starter=69594"
+    },
+    {
+      "game_pk": "20240919LGLT02024",
+      "team": "LT",
+      "reason": "no prior starts for starter=69113"
+    }
+  ],
+  "status": "UNVERIFIED_PREPROCESSING",
+  "max_abs_mean_diff": 0.01996233949499082,
+  "max_abs_scale_diff": 0.3912575140842755,
+  "checks": {
+    "is_home": {
+      "n": 2404,
+      "candidate_mean": 0.5,
+      "frozen_mean": 0.5,
+      "abs_mean_diff": 0.0,
+      "candidate_scale": 0.5,
+      "frozen_scale": 0.5,
+      "abs_scale_diff": 0.0
+    },
+    "off_f5_30d_ratio": {
+      "n": 2404,
+      "candidate_mean": 1.0045672769500806,
+      "frozen_mean": 1.0025501932453174,
+      "abs_mean_diff": 0.0020170837047632784,
+      "candidate_scale": 0.20874699241201614,
+      "frozen_scale": 0.16301657213621398,
+      "abs_scale_diff": 0.04573042027580215
+    },
+    "off_f5_long_ratio": {
+      "n": 2404,
+      "candidate_mean": 1.001815746118854,
+      "frozen_mean": 0.9998960079806695,
+      "abs_mean_diff": 0.001919738138184468,
+      "candidate_scale": 0.13737758654599833,
+      "frozen_scale": 0.0905778683050092,
+      "abs_scale_diff": 0.04679971824098912
+    },
+    "off_late_30d_ratio": {
+      "n": 2404,
+      "candidate_mean": 1.0032711530722225,
+      "frozen_mean": 1.0014585356514605,
+      "abs_mean_diff": 0.0018126174207619972,
+      "candidate_scale": 0.21396957087853677,
+      "frozen_scale": 0.16603868812813596,
+      "abs_scale_diff": 0.047930882750400805
+    },
+    "off_late_long_ratio": {
+      "n": 2404,
+      "candidate_mean": 1.0022050672370417,
+      "frozen_mean": 1.0014670244666999,
+      "abs_mean_diff": 0.0007380427703418402,
+      "candidate_scale": 0.15441742268825914,
+      "frozen_scale": 0.08634572158882317,
+      "abs_scale_diff": 0.06807170109943597
+    },
+    "opp_bp_ra9_30d_rel": {
+      "n": 2404,
+      "candidate_mean": 0.9995150106409402,
+      "frozen_mean": 0.9860898056018214,
+      "abs_mean_diff": 0.013425205039118815,
+      "candidate_scale": 0.23562345243818947,
+      "frozen_scale": 0.21158719158114866,
+      "abs_scale_diff": 0.024036260857040803
+    },
+    "opp_bp_ra9_long_rel": {
+      "n": 2404,
+      "candidate_mean": 0.994155322935959,
+      "frozen_mean": 0.9992120209659929,
+      "abs_mean_diff": 0.005056698030033946,
+      "candidate_scale": 0.18305232304388042,
+      "frozen_scale": 0.10310527072845412,
+      "abs_scale_diff": 0.0799470523154263
+    },
+    "park_factor": {
+      "n": 2404,
+      "candidate_mean": 1.0014428197267409,
+      "frozen_mean": 1.0013267494765383,
+      "abs_mean_diff": 0.00011607025020254902,
+      "candidate_scale": 0.06261872969163874,
+      "frozen_scale": 0.0609195796351441,
+      "abs_scale_diff": 0.0016991500564946457
+    },
+    "sp_h_long": {
+      "n": 2404,
+      "candidate_mean": 0.2299080166452762,
+      "frozen_mean": 0.2359161303365018,
+      "abs_mean_diff": 0.006008113691225614,
+      "candidate_scale": 0.04423738515024273,
+      "frozen_scale": 0.019729996611414256,
+      "abs_scale_diff": 0.024507388538828476
+    },
+    "sp_h_recent5": {
+      "n": 2404,
+      "candidate_mean": 0.2344524656551754,
+      "frozen_mean": 0.23559593612386603,
+      "abs_mean_diff": 0.0011434704686906216,
+      "candidate_scale": 0.05237942866257081,
+      "frozen_scale": 0.027469923090854866,
+      "abs_scale_diff": 0.024909505571715944
+    },
+    "sp_hr_long": {
+      "n": 2404,
+      "candidate_mean": 0.022260644654803576,
+      "frozen_mean": 0.023705535127369778,
+      "abs_mean_diff": 0.0014448904725662022,
+      "candidate_scale": 0.014775903350204038,
+      "frozen_scale": 0.00639743507187489,
+      "abs_scale_diff": 0.008378468278329148
+    },
+    "sp_hr_recent5": {
+      "n": 2404,
+      "candidate_mean": 0.02290925874249757,
+      "frozen_mean": 0.023446405172330754,
+      "abs_mean_diff": 0.0005371464298331852,
+      "candidate_scale": 0.01792585064140384,
+      "frozen_scale": 0.00930772694852608,
+      "abs_scale_diff": 0.00861812369287776
+    },
+    "sp_ip_long": {
+      "n": 2404,
+      "candidate_mean": 5.209766172696291,
+      "frozen_mean": 5.1898038332013,
+      "abs_mean_diff": 0.01996233949499082,
+      "candidate_scale": 0.8758496415740683,
+      "frozen_scale": 0.4845921274897928,
+      "abs_scale_diff": 0.3912575140842755
+    },
+    "sp_ip_recent5": {
+      "n": 2404,
+      "candidate_mean": 5.207878073581068,
+      "frozen_mean": 5.193170407022041,
+      "abs_mean_diff": 0.01470766655902711,
+      "candidate_scale": 0.951709378031694,
+      "frozen_scale": 0.649231164966384,
+      "abs_scale_diff": 0.30247821306531
+    },
+    "sp_kbb_long": {
+      "n": 2404,
+      "candidate_mean": 0.1206904099042061,
+      "frozen_mean": 0.10686473223744361,
+      "abs_mean_diff": 0.013825677666762487,
+      "candidate_scale": 0.07594962383716775,
+      "frozen_scale": 0.03954945188991089,
+      "abs_scale_diff": 0.03640017194725686
+    },
+    "sp_kbb_recent5": {
+      "n": 2404,
+      "candidate_mean": 0.11787729153981906,
+      "frozen_mean": 0.10620001474800951,
+      "abs_mean_diff": 0.011677276791809549,
+      "candidate_scale": 0.08435511412671312,
+      "frozen_scale": 0.052413087127458236,
+      "abs_scale_diff": 0.031942026999254886
+    }
+  },
+  "note": "Forensic audit only. Exact status requires frozen scaler parity; no affine remapping is allowed."
+}

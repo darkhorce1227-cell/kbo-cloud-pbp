@@ -1,0 +1,147 @@
+{
+  "version": "mu-v1.2-shrink-forensics-v0.1",
+  "rows": 2618,
+  "purpose": "Infer simple integer/half-integer shrink hypotheses from frozen scaler moments. This is not proof of the original preprocessing and cannot authorize exact v1.2 Shadow by itself.",
+  "results": {
+    "off_f5_long_ratio": {
+      "pseudo_games": 24.5,
+      "objective": 4.333905002915424e-05,
+      "mean": 1.0004922227541249,
+      "scale": 0.09056803525643299,
+      "frozen_mean": 0.9998960079806695,
+      "frozen_scale": 0.0905778683050092,
+      "abs_mean_diff": 0.0005962147734553946,
+      "abs_scale_diff": 9.833048576213255e-06
+    },
+    "off_f5_30d_ratio": {
+      "pseudo_games": 6.0,
+      "objective": 3.754759942035307e-05,
+      "mean": 1.0026201850966567,
+      "scale": 0.16401301890929282,
+      "frozen_mean": 1.0025501932453174,
+      "frozen_scale": 0.16301657213621398,
+      "abs_mean_diff": 6.999185133937935e-05,
+      "abs_scale_diff": 0.0009964467730788351
+    },
+    "off_late_long_ratio": {
+      "pseudo_games": 39.0,
+      "objective": 8.629943020363998e-06,
+      "mean": 1.0017196128777246,
+      "scale": 0.08632247601754081,
+      "frozen_mean": 1.0014670244666999,
+      "frozen_scale": 0.08634572158882317,
+      "abs_mean_diff": 0.0002525884110247123,
+      "abs_scale_diff": 2.3245571282359823e-05
+    },
+    "off_late_30d_ratio": {
+      "pseudo_games": 6.0,
+      "objective": 2.0550935412482737e-05,
+      "mean": 1.0011203159002575,
+      "scale": 0.1667111262089438,
+      "frozen_mean": 1.0014585356514605,
+      "frozen_scale": 0.16603868812813596,
+      "abs_mean_diff": 0.00033821975120296166,
+      "abs_scale_diff": 0.0006724380808078301
+    },
+    "sp_kbb_long": {
+      "pseudo_pa": 135,
+      "objective": 0.17556594669182404,
+      "mean": 0.12340118451839606,
+      "scale": 0.038472963621544766,
+      "frozen_mean": 0.10686473223744361,
+      "frozen_scale": 0.03954945188991089,
+      "abs_mean_diff": 0.01653645228095245,
+      "abs_scale_diff": 0.0010764882683661214
+    },
+    "sp_h_long": {
+      "pseudo_pa": 195,
+      "objective": 0.06413395759239571,
+      "mean": 0.23096204503920853,
+      "scale": 0.01907988742671499,
+      "frozen_mean": 0.2359161303365018,
+      "frozen_scale": 0.019729996611414256,
+      "abs_mean_diff": 0.00495408529729327,
+      "abs_scale_diff": 0.0006501091846992657
+    },
+    "sp_hr_long": {
+      "pseudo_pa": 165,
+      "objective": 0.05291373943679435,
+      "mean": 0.022235008911794234,
+      "scale": 0.006341198522056898,
+      "frozen_mean": 0.023705535127369778,
+      "frozen_scale": 0.00639743507187489,
+      "abs_mean_diff": 0.0014705262155755433,
+      "abs_scale_diff": 5.623654981799179e-05
+    },
+    "sp_ip_long": {
+      "pseudo_starts": 4.0,
+      "objective": 0.0188388436892712,
+      "mean": 5.256224210856311,
+      "scale": 0.4880921620515331,
+      "frozen_mean": 5.1898038332013,
+      "frozen_scale": 0.4845921274897928,
+      "abs_mean_diff": 0.0664203776550103,
+      "abs_scale_diff": 0.003500034561740306
+    },
+    "sp_kbb_recent5": {
+      "pseudo_pa": 45,
+      "objective": 0.06659100764977703,
+      "mean": 0.1197093128446594,
+      "scale": 0.05175495861870795,
+      "frozen_mean": 0.10620001474800951,
+      "frozen_scale": 0.052413087127458236,
+      "abs_mean_diff": 0.013509298096649885,
+      "abs_scale_diff": 0.0006581285087502858
+    },
+    "sp_h_recent5": {
+      "pseudo_pa": 70,
+      "objective": 0.005602589223467631,
+      "mean": 0.23356071100541967,
+      "scale": 0.027762419098556493,
+      "frozen_mean": 0.23559593612386603,
+      "frozen_scale": 0.027469923090854866,
+      "abs_mean_diff": 0.0020352251184463654,
+      "abs_scale_diff": 0.00029249600770162726
+    },
+    "sp_hr_recent5": {
+      "pseudo_pa": 75,
+      "objective": 0.006561415695523713,
+      "mean": 0.022697352928714876,
+      "scale": 0.009221930757405022,
+      "frozen_mean": 0.023446405172330754,
+      "frozen_scale": 0.00930772694852608,
+      "abs_mean_diff": 0.0007490522436158775,
+      "abs_scale_diff": 8.579619112105731e-05
+    },
+    "sp_ip_recent5": {
+      "pseudo_starts": 1.5,
+      "objective": 0.0015692196982725057,
+      "mean": 5.216360746255402,
+      "scale": 0.6381119921583155,
+      "frozen_mean": 5.193170407022041,
+      "frozen_scale": 0.649231164966384,
+      "abs_mean_diff": 0.023190339233361,
+      "abs_scale_diff": 0.011119172808068511
+    },
+    "opp_bp_ra9_long_rel": {
+      "pseudo_outs": 390,
+      "objective": 0.00026509142149557386,
+      "mean": 0.9976023543503277,
+      "scale": 0.10262874168800125,
+      "frozen_mean": 0.9992120209659929,
+      "frozen_scale": 0.10310527072845412,
+      "abs_mean_diff": 0.001609666615665195,
+      "abs_scale_diff": 0.0004765290404528666
+    },
+    "opp_bp_ra9_30d_rel": {
+      "pseudo_outs": 30,
+      "objective": 0.004216020302582388,
+      "mean": 0.9997782012129427,
+      "scale": 0.21041440547538617,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "abs_mean_diff": 0.01368839561112134,
+      "abs_scale_diff": 0.001172786105762491
+    }
+  }
+}
