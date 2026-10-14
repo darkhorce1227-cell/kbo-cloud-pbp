@@ -1,0 +1,64 @@
+{
+  "version": "mu-v1.2-recovered-selfstarter-oos-v0.2",
+  "status": "CHALLENGER_DIAGNOSTIC",
+  "official_shadow_allowed": false,
+  "oos_team_games": 1368,
+  "oos_games": 684,
+  "starter_mapping": "SELF_TEAM_STARTER_BY_WITHIN_GAME_SWAP",
+  "bullpen_mapping": "OPPONENT_BULLPEN_UNCHANGED",
+  "recovered_2026_oos": {
+    "f5": {
+      "mae": 1.9487315168260726,
+      "nb_nll": 2.122876745724435,
+      "wdl_brier": 0.2022728226042618,
+      "wdl_logloss": 0.9950885320926939,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6771296267457716
+    },
+    "full": {
+      "mae": 2.722044476845844,
+      "nb_nll": 2.556445291255892,
+      "wdl_brier": 0.17208713207470253,
+      "wdl_logloss": 0.8104654261083257,
+      "decided_side": 0.5583832335329342,
+      "mean_mu": 5.108499287637251
+    }
+  },
+  "published_v1_2_hybrid_2026_oos": {
+    "f5": {
+      "mae": 1.930994,
+      "nb_nll": 2.119493,
+      "wdl_brier": 0.20187,
+      "wdl_logloss": 0.993735,
+      "mean_mu": 2.668074,
+      "decided_side": 0.560272
+    },
+    "full": {
+      "mae": 2.705128,
+      "nb_nll": 2.55299,
+      "wdl_brier": 0.172763,
+      "wdl_logloss": 0.813524,
+      "mean_mu": 5.001728,
+      "decided_side": 0.571856
+    }
+  },
+  "delta_recovered_minus_published": {
+    "f5": {
+      "mae": 0.017737516826072497,
+      "nb_nll": 0.0033837457244350055,
+      "wdl_brier": 0.0004028226042618044,
+      "wdl_logloss": 0.0013535320926938432,
+      "mean_mu": 0.009055626745771761,
+      "decided_side": -0.010187110356536522
+    },
+    "full": {
+      "mae": 0.016916476845843853,
+      "nb_nll": 0.0034552912558920568,
+      "wdl_brier": -0.0006758679252974742,
+      "wdl_logloss": -0.003058573891674299,
+      "mean_mu": 0.10677128763725108,
+      "decided_side": -0.013472766467065855
+    }
+  },
+  "note": "Diagnostic only. Frozen v1.2 model coefficients/scalers/gamma/NB alpha are unchanged; only starter-team mapping is swapped relative to v0.1."
+}
