@@ -48,10 +48,10 @@
     "f5_wdl_logloss": 0.9950885320926939,
     "f5_decided_side": 0.5500848896434635,
     "f5_mean_mu": 2.6771296267457716,
-    "full_mae": 2.705980914673679,
-    "full_wdl_logloss": 0.8121394667600154,
+    "full_mae": 2.706033875478306,
+    "full_wdl_logloss": 0.8121428650213101,
     "full_decided_side": 0.5583832335329342,
-    "full_mean_mu": 4.971557907333973
+    "full_mean_mu": 4.971561653526887
   },
   "published_v1_2_reference": {
     "f5_mae": 1.930994,
