@@ -68,15 +68,15 @@ jobs:
         if: success()
         shell: bash
         run: |
-          if git diff --quiet -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_shadow.json 2>/dev/null; then
-            echo "No state changes."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add state/mechanical_mu_pipeline_audit.json
           if [ -f state/mechanical_mu_shadow.json ]; then
             git add state/mechanical_mu_shadow.json
+          fi
+          if [ -z "$(git status --porcelain -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_shadow.json)" ]; then
+            echo "No state changes."
+            exit 0
           fi
           git commit -m "state: refresh mechanical mu audit/shadow"
           git push
