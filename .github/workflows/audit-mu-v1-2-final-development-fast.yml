@@ -1,0 +1,39 @@
+name: Audit Mu v1.2 Final Development Fast
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/audit_mu_v1_2_final_development_fast.py"
+      - ".github/workflows/audit-mu-v1-2-final-development-fast.yml"
+permissions:
+  actions: read
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: kbo-mu-training-pbp-2024-2025
+          path: out_training
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: darkhorce1227-cell/kbo-cloud-pbp
+          run-id: 37073907739
+      - run: python scripts/audit_mu_v1_2_final_development_fast.py --training-dir out_training
+      - name: Commit state safely
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git pull --rebase origin main
+          git add -f state/mu_v1_2_final_development_fast.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research: record fast mu-v1.2 final development audit"
+          git push
