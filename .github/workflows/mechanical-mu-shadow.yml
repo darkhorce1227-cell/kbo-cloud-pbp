@@ -6,6 +6,7 @@ on:
     paths:
       - "scripts/build_mu_v1_2_features.py"
       - "scripts/run_mu_v1_2_pipeline.py"
+      - "scripts/audit_mu_v1_2_fulltrain.py"
       - "research/mu-v1.2/model_spec.json"
       - "state/mechanical_mu_input.json"
       - ".github/workflows/mechanical-mu-shadow.yml"
@@ -42,18 +43,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Audit feature-pipeline parity
+      - name: Audit 2024 reconstruction
         run: |
           python scripts/run_mu_v1_2_pipeline.py audit \
             --out state/mechanical_mu_pipeline_audit.json
 
-      - name: Build current shadow when input exists
+      - name: Audit documented final training window
+        run: python scripts/audit_mu_v1_2_fulltrain.py
+
+      - name: Build current shadow when exact parity exists and input exists
         shell: bash
         run: |
           if [ -f state/mechanical_mu_input.json ]; then
             python scripts/run_mu_v1_2_pipeline.py shadow \
               --input state/mechanical_mu_input.json \
-              --audit state/mechanical_mu_pipeline_audit.json \
+              --audit state/mechanical_mu_fulltrain_audit.json \
               --out state/mechanical_mu_shadow.json
           fi
 
@@ -70,13 +74,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state/mechanical_mu_pipeline_audit.json
+          git add state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json
           if [ -f state/mechanical_mu_shadow.json ]; then
             git add state/mechanical_mu_shadow.json
           fi
-          if [ -z "$(git status --porcelain -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_shadow.json)" ]; then
+          if [ -z "$(git status --porcelain -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json state/mechanical_mu_shadow.json)" ]; then
             echo "No state changes."
             exit 0
           fi
-          git commit -m "state: refresh mechanical mu audit/shadow"
+          git commit -m "state: refresh mechanical mu parity/shadow"
           git push
