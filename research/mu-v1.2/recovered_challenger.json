@@ -1,0 +1,76 @@
+{
+  "version": "mu-v1.2-recovered-challenger-v0.5",
+  "status": "RESEARCH_CHALLENGER_ACTIVE",
+  "official_shadow_allowed": false,
+  "base_model": "research/mu-v1.2/model_spec.json",
+  "coefficients": "FROZEN_ORIGINAL_V1_2_UNCHANGED",
+  "scalers": "FROZEN_ORIGINAL_V1_2_UNCHANGED",
+  "gamma_nb": "FROZEN_ORIGINAL_V1_2_UNCHANGED",
+  "preprocessing": {
+    "history_start": "2024-01-01",
+    "offense": {
+      "scope": "continuous_history",
+      "f5_long_pseudo_games": 5.2,
+      "f5_30d_pseudo_games": 6.1,
+      "late_features": "FULL_MINUS_F5",
+      "late_long_pseudo_games": 13.75,
+      "late_30d_pseudo_games": 6.0,
+      "league_late_30d_offset": "INNINGS_6_TO_9_PA_RUNS"
+    },
+    "starter": {
+      "mapping": "SELF_TEAM_STARTER",
+      "mapping_evidence": "VERY_HIGH_FORENSIC_SUPPORT; whole-row inversion rejected",
+      "rate_denominator": "ALL_BF",
+      "kbb_definition": "K-BB-HBP",
+      "long_prior": "league with 150 BF pseudo-count",
+      "recent5_prior": "shrunk long with 150 BF pseudo-count",
+      "ip_long_prior": "league with 5 starts pseudo-count",
+      "ip_recent5_prior": "shrunk long with 5 starts pseudo-count"
+    },
+    "bullpen": {
+      "mapping": "OPPONENT_BULLPEN",
+      "definition": "INNING_6_PLUS",
+      "long_scope": "SEASON_RESET",
+      "recent_window": "CALENDAR_30D",
+      "long_pseudo_outs": 360.0,
+      "recent_pseudo_outs": 54.0,
+      "recent_relative_semantics": "RECENT_OVER_LEAGUE30_PRIOR_TEAMLONG_BEST_PLAUSIBLE"
+    },
+    "park": {
+      "scope": "continuous_history",
+      "pseudo_games": 5.5
+    }
+  },
+  "frozen_2026_oos_reference": {
+    "team_games": 1368,
+    "games": 684,
+    "f5_mae": 1.9487315168260726,
+    "f5_wdl_logloss": 0.9950885320926939,
+    "f5_decided_side": 0.5500848896434635,
+    "f5_mean_mu": 2.6771296267457716,
+    "full_mae": 2.705980914673679,
+    "full_wdl_logloss": 0.8121394667600154,
+    "full_decided_side": 0.5583832335329342,
+    "full_mean_mu": 4.971557907333973
+  },
+  "published_v1_2_reference": {
+    "f5_mae": 1.930994,
+    "f5_wdl_logloss": 0.993735,
+    "f5_decided_side": 0.560272,
+    "f5_mean_mu": 2.668074,
+    "full_mae": 2.705128,
+    "full_wdl_logloss": 0.813524,
+    "full_decided_side": 0.571856,
+    "full_mean_mu": 5.001728
+  },
+  "known_unresolved": [
+    "Late target/offset exact historical semantics: coefficient parity favors inning6+, aggregate OOS favors inning6-9 offset.",
+    "Bullpen 30d relative frozen mean remains lower by about 0.0144 under best plausible recovered semantic.",
+    "Exact row-level parity has not been demonstrated for every historical feature row."
+  ],
+  "usage": {
+    "daily_analysis": "USE_AS_RESEARCH_CHALLENGER",
+    "betting_decision": "DO_NOT_TREAT_AS_OFFICIAL_MECHANICAL_SHADOW",
+    "promotion_gate": "Resolve remaining semantics and pass exact row-level reproducibility gate."
+  }
+}
