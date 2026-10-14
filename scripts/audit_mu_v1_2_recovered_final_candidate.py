@@ -8,6 +8,7 @@ import numpy as np
 import mu_v1_3 as engine
 import audit_mu_v1_2_recovered_oos as recovered
 import audit_mu_v1_2_late_total_variants as lateaudit
+import audit_mu_v1_2_late_offset_semantics as lateoffset
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
@@ -33,9 +34,12 @@ def main():
     pub=json.loads(METRICS_PATH.read_text(encoding="utf-8"))
     tg,st,bp6=recovered.load_tables()
 
+    # Preserve the recovered frozen-feature semantics for late offense:
+    # off_late_* uses Full-F5 history, while the lost implementation appears
+    # to have used inning 6-9 scoring only for the league_late_30d offset.
     rows=recovered.make_oos_rows(tg,st,bp6)
     rows=lateaudit.swap_starter(rows)
-    rows=lateaudit.apply_late_features(rows,tg,"late_6to9_pa")
+    rows=lateoffset.apply_offset_only(rows,tg,"late_6to9_pa")
 
     if len(rows)!=1368 or rows.game_pk.nunique()!=684:
         raise RuntimeError(f"OOS gate failed rows={len(rows)} games={rows.game_pk.nunique()}")
@@ -77,14 +81,15 @@ def main():
         }
 
     payload={
-        "version":"mu-v1.2-recovered-final-candidate-v0.3",
+        "version":"mu-v1.2-recovered-final-candidate-v0.4",
         "status":"CHALLENGER_DIAGNOSTIC",
         "official_shadow_allowed":False,
         "oos_team_games":int(len(rows)),
         "oos_games":int(rows.game_pk.nunique()),
         "recovered_semantics":{
             "starter_mapping":"SELF_TEAM_STARTER",
-            "late_scoring":"INNINGS_6_TO_9_PA_RUNS",
+            "late_offense_features":"FULL_MINUS_F5",
+            "league_late_30d_offset":"INNINGS_6_TO_9_PA_RUNS",
             "bullpen_mapping":"OPPONENT_BULLPEN",
             "starter_rate_prior":"league->long 150 BF; long->recent5 150 BF",
             "starter_ip_prior":"league->long 5 starts; long->recent5 5 starts",
