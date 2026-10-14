@@ -1,0 +1,59 @@
+{
+  "version": "mu-v1.2-late-offset-semantics-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "rows": 1368,
+  "games": 684,
+  "starter_mapping": "SELF_TEAM_STARTER",
+  "published_full": {
+    "mae": 2.705128,
+    "nb_nll": 2.55299,
+    "wdl_brier": 0.172763,
+    "wdl_logloss": 0.813524,
+    "mean_mu": 5.001728,
+    "side": 0.571856
+  },
+  "ranked": [
+    {
+      "variant": "features_6to9_offset_6to9",
+      "distance": 0.0324075405796902,
+      "mae": 2.705980914673679,
+      "nb_nll": 2.557782329613937,
+      "wdl_brier": 0.1722222248125326,
+      "wdl_logloss": 0.8121394667600154,
+      "side": 0.5583832335329342,
+      "mean_mu": 4.971557907333973
+    },
+    {
+      "variant": "features_fullminus_offset_6to9",
+      "distance": 0.032453356930108535,
+      "mae": 2.706033875478306,
+      "nb_nll": 2.5577953700526153,
+      "wdl_brier": 0.17222220855049952,
+      "wdl_logloss": 0.8121428650213101,
+      "side": 0.5583832335329342,
+      "mean_mu": 4.971561653526887
+    },
+    {
+      "variant": "features_fullminus_offset_6plus",
+      "distance": 0.056133878665342696,
+      "mae": 2.713037735115712,
+      "nb_nll": 2.556436121670091,
+      "wdl_brier": 0.17213681760416522,
+      "wdl_logloss": 0.811163986988407,
+      "side": 0.5583832335329342,
+      "mean_mu": 5.047592130538038
+    },
+    {
+      "variant": "features_fullminus_offset_fullminus",
+      "distance": 0.12674633837476923,
+      "mae": 2.722044476845844,
+      "nb_nll": 2.556445291255892,
+      "wdl_brier": 0.17208713207470253,
+      "wdl_logloss": 0.8104654261083257,
+      "side": 0.5583832335329342,
+      "mean_mu": 5.108499287637251
+    }
+  ],
+  "note": "Tests late offense feature semantics separately from the league_late_30d offset semantics. No production promotion is authorized by this file alone."
+}
