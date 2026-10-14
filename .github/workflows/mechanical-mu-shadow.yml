@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - "scripts/build_mu_v1_2_features.py"
+      - "scripts/run_mu_v1_2_pipeline.py"
       - "research/mu-v1.2/model_spec.json"
       - "state/mechanical_mu_input.json"
       - ".github/workflows/mechanical-mu-shadow.yml"
@@ -43,26 +44,28 @@ jobs:
 
       - name: Audit feature-pipeline parity
         run: |
-          python scripts/build_mu_v1_2_features.py audit \
+          python scripts/run_mu_v1_2_pipeline.py audit \
             --out state/mechanical_mu_pipeline_audit.json
 
       - name: Build current shadow when input exists
         shell: bash
         run: |
           if [ -f state/mechanical_mu_input.json ]; then
-            python scripts/build_mu_v1_2_features.py shadow \
+            python scripts/run_mu_v1_2_pipeline.py shadow \
               --input state/mechanical_mu_input.json \
               --audit state/mechanical_mu_pipeline_audit.json \
               --out state/mechanical_mu_shadow.json
           fi
 
       - name: Save PBP cache
+        if: always()
         uses: actions/cache/save@v4
         with:
           path: data
           key: kbo-history-${{ runner.os }}-mechanical-mu-${{ github.run_id }}
 
       - name: Commit audit/shadow state
+        if: success()
         shell: bash
         run: |
           if git diff --quiet -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_shadow.json 2>/dev/null; then
