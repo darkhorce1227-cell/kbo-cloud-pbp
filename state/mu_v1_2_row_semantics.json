@@ -1,0 +1,66 @@
+{
+  "version": "mu-v1.2-row-semantics-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "ranked": [
+    {
+      "variant": "SELF_STARTER_ONLY",
+      "score": 0.3617542180786921,
+      "simple_f5": {
+        "param_norm_mae": 0.22104574192337823,
+        "param_corr": 0.974472449962646,
+        "param_mae": 0.0026597836053206428
+      },
+      "core_f5": {
+        "param_norm_mae": 0.14070847615531387,
+        "param_corr": 0.9844159741480182,
+        "param_mae": 0.0009380806793428182
+      }
+    },
+    {
+      "variant": "SELF_STARTER_PLUS_SWAP_OFFENSE_HOME",
+      "score": 1.0677538982956027,
+      "simple_f5": {
+        "param_norm_mae": 0.7530234383414626,
+        "param_corr": -0.09211304526444121,
+        "param_mae": 0.016430102960515707
+      },
+      "core_f5": {
+        "param_norm_mae": 0.3147304599541401,
+        "param_corr": 0.4438676383051914,
+        "param_mae": 0.003172745761467109
+      }
+    },
+    {
+      "variant": "OPP_STARTER_CURRENT_ROW",
+      "score": 2.403701706750933,
+      "simple_f5": {
+        "param_norm_mae": 0.22104574192337823,
+        "param_corr": 0.974472449962646,
+        "param_mae": 0.0026597836053206428
+      },
+      "core_f5": {
+        "param_norm_mae": 2.1826559648275548,
+        "param_corr": 0.44890933225860674,
+        "param_mae": 0.011591953681047337
+      }
+    },
+    {
+      "variant": "SWAP_OFFENSE_HOME_ONLY",
+      "score": 3.0956250231425084,
+      "simple_f5": {
+        "param_norm_mae": 0.7530234383414626,
+        "param_corr": -0.09211304526444121,
+        "param_mae": 0.016430102960515707
+      },
+      "core_f5": {
+        "param_norm_mae": 2.342601584801046,
+        "param_corr": 0.30017366422756964,
+        "param_mae": 0.013625357880365955
+      }
+    }
+  ],
+  "interpretation_rule": "If SELF_STARTER_ONLY wins while swapping offense/home worsens parity, the evidence favors a historical starter-mapping implementation bug over a wholesale team-row inversion."
+}
