@@ -34,12 +34,12 @@ def main():
     pub=json.loads(METRICS_PATH.read_text(encoding="utf-8"))
     tg,st,bp6=recovered.load_tables()
 
-    # Preserve the recovered frozen-feature semantics for late offense:
-    # off_late_* uses Full-F5 history, while the lost implementation appears
-    # to have used inning 6-9 scoring only for the league_late_30d offset.
+    # Historical-parity recovered semantics:
+    # off_late_* remains Full-F5 history, while frozen coefficient parity strongly
+    # identifies inning 6+ PA runs for the league_late_30d offset/training target.
     rows=recovered.make_oos_rows(tg,st,bp6)
     rows=lateaudit.swap_starter(rows)
-    rows=lateoffset.apply_offset_only(rows,tg,"late_6to9_pa")
+    rows=lateoffset.apply_offset_only(rows,tg,"late_6plus_pa")
 
     if len(rows)!=1368 or rows.game_pk.nunique()!=684:
         raise RuntimeError(f"OOS gate failed rows={len(rows)} games={rows.game_pk.nunique()}")
@@ -81,7 +81,7 @@ def main():
         }
 
     payload={
-        "version":"mu-v1.2-recovered-final-candidate-v0.4",
+        "version":"mu-v1.2-recovered-final-candidate-v0.6-historical-parity",
         "status":"CHALLENGER_DIAGNOSTIC",
         "official_shadow_allowed":False,
         "oos_team_games":int(len(rows)),
@@ -89,7 +89,8 @@ def main():
         "recovered_semantics":{
             "starter_mapping":"SELF_TEAM_STARTER",
             "late_offense_features":"FULL_MINUS_F5",
-            "league_late_30d_offset":"INNINGS_6_TO_9_PA_RUNS",
+            "historical_late_training_target":"INNINGS_6_PLUS_PA_RUNS",
+            "league_late_30d_offset":"INNINGS_6_PLUS_PA_RUNS",
             "bullpen_mapping":"OPPONENT_BULLPEN",
             "starter_rate_prior":"league->long 150 BF; long->recent5 150 BF",
             "starter_ip_prior":"league->long 5 starts; long->recent5 5 starts",
@@ -97,7 +98,7 @@ def main():
         "recovered_2026_oos":got,
         "published_v1_2_hybrid_2026_oos":published,
         "delta_recovered_minus_published":deltas,
-        "note":"Diagnostic only. Frozen v1.2 coefficients/scalers/gamma/NB alpha are unchanged. This candidate cannot activate Official Shadow until parity/reproducibility gates are approved.",
+        "note":"Diagnostic only. Frozen v1.2 coefficients/scalers/gamma/NB alpha are unchanged. Historical late semantics are chosen from 2024-2025 frozen coefficient parity, not 2026 OOS selection. Official Shadow remains gated on BP30 and exact row parity.",
     }
     OUT_PATH.parent.mkdir(parents=True,exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
