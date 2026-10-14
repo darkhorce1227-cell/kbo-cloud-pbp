@@ -5,9 +5,14 @@ on:
   push:
     paths:
       - "scripts/mu_v1_2_recovered_challenger.py"
+      - "scripts/audit_mu_v1_2_recovered_final_candidate.py"
       - "research/mu-v1.2/recovered_challenger.json"
       - "research/mu-v1.2/recovery_status.json"
       - ".github/workflows/test-mu-v1-2-recovered-challenger.yml"
+
+concurrency:
+  group: test-recovered-mu-v1-2-challenger
+  cancel-in-progress: true
 
 jobs:
   regression:
