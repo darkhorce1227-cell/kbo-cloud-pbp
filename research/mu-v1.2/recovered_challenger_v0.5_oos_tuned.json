@@ -1,0 +1,20 @@
+{
+  "version": "mu-v1.2-recovered-challenger-v0.5-oos-tuned",
+  "status": "POSTHOC_OOS_TUNED_DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "selection_warning": "The 6-to-9 late offset was selected after inspecting 2026 OOS aggregate performance. Preserve for diagnostics only; do not use as the historical-recovery default or as clean OOS evidence.",
+  "base_model": "research/mu-v1.2/model_spec.json",
+  "preprocessing_difference_from_v0_6": "league_late_30d offset uses innings 6-9 PA runs instead of innings 6+ PA runs",
+  "oos_2026": {
+    "team_games": 1368,
+    "games": 684,
+    "f5_mae": 1.9487315168260726,
+    "f5_wdl_logloss": 0.9950885320926939,
+    "f5_decided_side": 0.5500848896434635,
+    "f5_mean_mu": 2.6771296267457716,
+    "full_mae": 2.706033875478306,
+    "full_wdl_logloss": 0.8121428650213101,
+    "full_decided_side": 0.5583832335329342,
+    "full_mean_mu": 4.971561653526887
+  }
+}
