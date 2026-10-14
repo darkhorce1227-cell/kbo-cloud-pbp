@@ -1,0 +1,105 @@
+{
+  "version": "mu-v1.2-bp30-relative-semantics-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "rows": 2628,
+  "fixed_semantics": {
+    "definition": "inning6plus",
+    "scope": "season_reset",
+    "window": "calendar30",
+    "p_long_outs": 360.0,
+    "p_recent_outs": 54.0
+  },
+  "long_check": {
+    "mean": 0.9991307966400436,
+    "scale": 0.10301914447223882,
+    "frozen_mean": 0.9992120209659929,
+    "frozen_scale": 0.10310527072845412,
+    "mean_error": -8.122432594936946e-05,
+    "scale_error": -8.612625621529091e-05,
+    "loss": 0.0016231040467893014
+  },
+  "ranked_recent_variants": [
+    {
+      "variant": "recent_over_league30_prior_teamlong",
+      "mean": 1.0004947899082408,
+      "scale": 0.21098790633188075,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.014404984306419455,
+      "scale_error": -0.0005992852492679168,
+      "loss": 0.07091293874437046
+    },
+    {
+      "variant": "recent_ratio_shrunk",
+      "mean": 1.001349679269994,
+      "scale": 0.2104156472203792,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.015259873668172719,
+      "scale_error": -0.0011715443607694664,
+      "loss": 0.07765790502796267
+    },
+    {
+      "variant": "recent_over_leaguelong_prior_teamlong",
+      "mean": 1.0057679153015249,
+      "scale": 0.21426784109572108,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.019678109699703517,
+      "scale_error": 0.0026806495145724196,
+      "loss": 0.10567161011587427
+    },
+    {
+      "variant": "recent_over_league30_prior_leaguelong",
+      "mean": 1.0006714009632809,
+      "scale": 0.1974210132004381,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.014581595361459532,
+      "scale_error": -0.014166178380710576,
+      "loss": 0.13586726836980895
+    },
+    {
+      "variant": "recent_over_league30_prior_league30",
+      "mean": 1.0015187582878335,
+      "scale": 0.19668721797161817,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.015428952686012187,
+      "scale_error": -0.014899973609530492,
+      "loss": 0.14334008627318456
+    },
+    {
+      "variant": "recent_over_leaguelong_loo_prior_teamlong",
+      "mean": 1.009498615689588,
+      "scale": 0.23386428291291902,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.02340881008776663,
+      "scale_error": 0.02227709133177036,
+      "loss": 0.2159199764321054
+    },
+    {
+      "variant": "recent_over_league30_loo_prior_teamlong",
+      "mean": 1.007429615415243,
+      "scale": 0.24400189904571445,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.02133980981342154,
+      "scale_error": 0.03241470746456579,
+      "loss": 0.2540537396252136
+    },
+    {
+      "variant": "recent_over_teamlong_prior_teamlong",
+      "mean": 1.0020180117380983,
+      "scale": 0.16051652465753743,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.01592820613627699,
+      "scale_error": -0.05107066692361123,
+      "loss": 0.31664900204600793
+    }
+  ],
+  "note": "Only plausible relative/prior semantics are compared. No arbitrary coefficient fitting and no production promotion."
+}
