@@ -42,11 +42,11 @@ def _inject_current_starter(st, *, game_pk, d, pitching_team, starter):
     return pd.concat([st, pd.DataFrame([row], columns=st.columns)], ignore_index=True)
 
 
-def _league_late_6to9_30d(tg, d):
+def _league_late_6plus_30d(tg, d):
     pre30 = tg[(tg.game_date < d) & (tg.game_date >= d - pd.Timedelta(days=30))]
-    if "late_6to9_pa" not in pre30.columns or pre30.empty:
-        raise RuntimeError("late_6to9_pa unavailable for recovered late offset")
-    return float(pre30["late_6to9_pa"].mean())
+    if "late_6plus_pa" not in pre30.columns or pre30.empty:
+        raise RuntimeError("late_6plus_pa unavailable for recovered late offset")
+    return float(pre30["late_6plus_pa"].mean())
 
 
 def build_pregame_features(tg, st, bp6, *, d, game_pk, team, opponent, self_starter, is_home, park_factor_override=None):
@@ -56,7 +56,9 @@ def build_pregame_features(tg, st, bp6, *, d, game_pk, team, opponent, self_star
     st2 = _inject_current_starter(st, game_pk=fake_pk, d=d, pitching_team=opponent, starter=self_starter)
     row = SimpleNamespace(game_pk=fake_pk, game_date=d, team=team, opponent=opponent, is_home=int(is_home))
     f = recovered.build_features(tg, st2, bp6, row=row)
-    f["league_late_30d"] = _league_late_6to9_30d(tg, d)
+    # Historical-recovery default: frozen coefficient parity strongly favors
+    # inning 6+ for both the late target and the league_late_30d offset.
+    f["league_late_30d"] = _league_late_6plus_30d(tg, d)
     if park_factor_override is not None:
         f["park_factor"] = float(park_factor_override)
     return f
@@ -69,11 +71,43 @@ def score_input(payload: dict) -> dict:
     tg, st, bp6 = _load_history(target)
     games_out = []
     for g in payload.get("games", []):
-        af = build_pregame_features(tg, st, bp6, d=target, game_pk=str(g.get("game_pk", "UNKNOWN")), team=str(g["away_team"]), opponent=str(g["home_team"]), self_starter=str(g["away_starter"]), is_home=0, park_factor_override=g.get("park_factor"))
-        hf = build_pregame_features(tg, st, bp6, d=target, game_pk=str(g.get("game_pk", "UNKNOWN")), team=str(g["home_team"]), opponent=str(g["away_team"]), self_starter=str(g["home_starter"]), is_home=1, park_factor_override=g.get("park_factor"))
+        af = build_pregame_features(
+            tg, st, bp6,
+            d=target,
+            game_pk=str(g.get("game_pk", "UNKNOWN")),
+            team=str(g["away_team"]),
+            opponent=str(g["home_team"]),
+            self_starter=str(g["away_starter"]),
+            is_home=0,
+            park_factor_override=g.get("park_factor"),
+        )
+        hf = build_pregame_features(
+            tg, st, bp6,
+            d=target,
+            game_pk=str(g.get("game_pk", "UNKNOWN")),
+            team=str(g["home_team"]),
+            opponent=str(g["away_team"]),
+            self_starter=str(g["home_starter"]),
+            is_home=1,
+            park_factor_override=g.get("park_factor"),
+        )
         pred = engine.score(model, af, hf)
-        games_out.append({"game_pk": g.get("game_pk"), "away_team": g["away_team"], "home_team": g["home_team"], "away_features": af, "home_features": hf, "mechanical_mu": pred})
-    return {"status": "RESEARCH_CHALLENGER_ACTIVE", "model": meta["version"], "official_shadow_allowed": False, "target_date": str(target.date()), "known_unresolved": meta["known_unresolved"], "games": games_out}
+        games_out.append({
+            "game_pk": g.get("game_pk"),
+            "away_team": g["away_team"],
+            "home_team": g["home_team"],
+            "away_features": af,
+            "home_features": hf,
+            "mechanical_mu": pred,
+        })
+    return {
+        "status": "RESEARCH_CHALLENGER_ACTIVE",
+        "model": meta["version"],
+        "official_shadow_allowed": False,
+        "target_date": str(target.date()),
+        "known_unresolved": meta["known_unresolved"],
+        "games": games_out,
+    }
 
 
 def main():
