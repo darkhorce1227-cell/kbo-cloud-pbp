@@ -1,0 +1,48 @@
+name: Audit Mu v1.2 Late Offset Semantics
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/audit_mu_v1_2_late_offset_semantics.py"
+      - ".github/workflows/audit-mu-v1-2-late-offset-semantics.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-mu-v1-2-late-offset-semantics
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-late-offset
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+      - run: pip install -r requirements.txt
+      - name: Audit late offset semantics
+        run: python scripts/audit_mu_v1_2_late_offset_semantics.py
+      - name: Commit diagnostic state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+          git add state/mu_v1_2_late_offset_semantics.json
+          if [ -z "$(git status --porcelain -- state/mu_v1_2_late_offset_semantics.json)" ]; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "state: record mu-v1.2 late offset semantic audit"
+          git push
