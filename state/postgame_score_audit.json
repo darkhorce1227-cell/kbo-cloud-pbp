@@ -1,7 +1,7 @@
 {
   "expected_games": 1,
   "final_games": 0,
-  "generated_at_kst": "2026-10-14T23:36:56.496741+09:00",
+  "generated_at_kst": "2026-10-15T00:40:22.588172+09:00",
   "reason": "no completed validated target slate available for score audit",
   "source": null,
   "target_date": "2026-10-14",
