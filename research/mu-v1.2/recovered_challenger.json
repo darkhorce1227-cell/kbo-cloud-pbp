@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-recovered-challenger-v0.5",
+  "version": "mu-v1.2-recovered-challenger-v0.6-historical-parity",
   "status": "RESEARCH_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "base_model": "research/mu-v1.2/model_spec.json",
@@ -15,7 +15,9 @@
       "late_features": "FULL_MINUS_F5",
       "late_long_pseudo_games": 13.75,
       "late_30d_pseudo_games": 6.0,
-      "league_late_30d_offset": "INNINGS_6_TO_9_PA_RUNS"
+      "historical_late_training_target": "INNINGS_6_PLUS_PA_RUNS",
+      "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
+      "late_semantics_evidence": "VERY_HIGH_FORENSIC_SUPPORT: target6plus+offset6plus coefficient-parity score 0.220774 vs 0.269134 for 6to9+6to9; crossed definitions 1.44-1.55; frozen-beta target-direction projection 0.855 simple / 1.067 core under 6plus offset."
     },
     "starter": {
       "mapping": "SELF_TEAM_STARTER",
@@ -48,10 +50,10 @@
     "f5_wdl_logloss": 0.9950885320926939,
     "f5_decided_side": 0.5500848896434635,
     "f5_mean_mu": 2.6771296267457716,
-    "full_mae": 2.706033875478306,
-    "full_wdl_logloss": 0.8121428650213101,
+    "full_mae": 2.713037735115712,
+    "full_wdl_logloss": 0.811163986988407,
     "full_decided_side": 0.5583832335329342,
-    "full_mean_mu": 4.971561653526887
+    "full_mean_mu": 5.047592130538038
   },
   "published_v1_2_reference": {
     "f5_mae": 1.930994,
@@ -63,14 +65,14 @@
     "full_decided_side": 0.571856,
     "full_mean_mu": 5.001728
   },
+  "posthoc_variant": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
   "known_unresolved": [
-    "Late target/offset exact historical semantics: coefficient parity favors inning6+, aggregate OOS favors inning6-9 offset.",
     "Bullpen 30d relative frozen mean remains lower by about 0.0144 under best plausible recovered semantic.",
     "Exact row-level parity has not been demonstrated for every historical feature row."
   ],
   "usage": {
     "daily_analysis": "USE_AS_RESEARCH_CHALLENGER",
     "betting_decision": "DO_NOT_TREAT_AS_OFFICIAL_MECHANICAL_SHADOW",
-    "promotion_gate": "Resolve remaining semantics and pass exact row-level reproducibility gate."
+    "promotion_gate": "Resolve BP30 semantics and pass exact row-level reproducibility gate."
   }
 }
