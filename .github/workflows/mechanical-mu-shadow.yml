@@ -1,0 +1,79 @@
+name: KBO Mechanical Mu Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/build_mu_v1_2_features.py"
+      - "research/mu-v1.2/model_spec.json"
+      - "state/mechanical_mu_input.json"
+      - ".github/workflows/mechanical-mu-shadow.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-mechanical-mu-shadow
+  cancel-in-progress: false
+
+jobs:
+  audit-and-shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore PBP cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu
+          restore-keys: |
+            kbo-history-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Audit feature-pipeline parity
+        run: |
+          python scripts/build_mu_v1_2_features.py audit \
+            --out state/mechanical_mu_pipeline_audit.json
+
+      - name: Build current shadow when input exists
+        shell: bash
+        run: |
+          if [ -f state/mechanical_mu_input.json ]; then
+            python scripts/build_mu_v1_2_features.py shadow \
+              --input state/mechanical_mu_input.json \
+              --audit state/mechanical_mu_pipeline_audit.json \
+              --out state/mechanical_mu_shadow.json
+          fi
+
+      - name: Save PBP cache
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-${{ github.run_id }}
+
+      - name: Commit audit/shadow state
+        shell: bash
+        run: |
+          if git diff --quiet -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_shadow.json 2>/dev/null; then
+            echo "No state changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/mechanical_mu_pipeline_audit.json
+          if [ -f state/mechanical_mu_shadow.json ]; then
+            git add state/mechanical_mu_shadow.json
+          fi
+          git commit -m "state: refresh mechanical mu audit/shadow"
+          git push
