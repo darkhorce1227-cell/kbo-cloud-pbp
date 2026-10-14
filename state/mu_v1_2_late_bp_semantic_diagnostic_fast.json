@@ -1,0 +1,2184 @@
+{
+  "version": "mu-v1.2-late-bp-semantic-diagnostic-fast-v0.1",
+  "rows": 2628,
+  "official_shadow_allowed": false,
+  "best": {
+    "late_offense": {
+      "target": "late_full_minus_f5",
+      "window": "calendar30",
+      "p_long": 13.75,
+      "p_recent": 6.0,
+      "loss": 0.013374137723602495,
+      "detail": {
+        "off_late_long_ratio": {
+          "mean": 1.0006990887851936,
+          "scale": 0.08634468947090422,
+          "frozen_mean": 1.0014670244666999,
+          "frozen_scale": 0.08634572158882317,
+          "loss": 0.00890568502151154
+        },
+        "off_late_30d_ratio": {
+          "mean": 1.0013654535819405,
+          "scale": 0.1666875420832338,
+          "frozen_mean": 1.0014585356514605,
+          "frozen_scale": 0.16603868812813596,
+          "loss": 0.004468452702090954
+        }
+      }
+    },
+    "bullpen": {
+      "definition": "inning6plus",
+      "scope": "season_reset",
+      "window": "calendar30",
+      "p_long_outs": 360.0,
+      "p_recent_outs": 54.0,
+      "loss": 0.07253604279115976,
+      "detail": {
+        "opp_bp_ra9_long_rel": {
+          "mean": 0.9991307966400436,
+          "scale": 0.10301914447223882,
+          "frozen_mean": 0.9992120209659929,
+          "frozen_scale": 0.10310527072845412,
+          "loss": 0.0016231040467893014
+        },
+        "opp_bp_ra9_30d_rel": {
+          "mean": 1.0004947899082408,
+          "scale": 0.21098790633188075,
+          "frozen_mean": 0.9860898056018214,
+          "frozen_scale": 0.21158719158114866,
+          "loss": 0.07091293874437046
+        }
+      }
+    }
+  },
+  "top": {
+    "late_offense": [
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.75,
+        "p_recent": 6.0,
+        "loss": 0.013374137723602495,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006990887851936,
+            "scale": 0.08634468947090422,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.00890568502151154
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.75,
+        "p_recent": 6.0,
+        "loss": 0.01490389532687777,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513439942912,
+            "scale": 0.08630895643732597,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.009872470902092662
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.5,
+        "p_recent": 6.0,
+        "loss": 0.015565982800534154,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006992162705466,
+            "scale": 0.08653613763687364,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.0110975300984432
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.0,
+        "p_recent": 6.0,
+        "loss": 0.01557864033996066,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006989573730782,
+            "scale": 0.08615447151386574,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011110187637869706
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.75,
+        "p_recent": 6.5,
+        "loss": 0.015774071451836492,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006958803964257,
+            "scale": 0.08639121910823011,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.009457811859746855
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.75,
+        "p_recent": 6.25,
+        "loss": 0.01612526218621762,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006990887851936,
+            "scale": 0.08634468947090422,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.00890568502151154
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.5,
+        "p_recent": 6.0,
+        "loss": 0.016313437292997064,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513596305628,
+            "scale": 0.08650421029476628,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011282012868211958
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 9.0,
+        "p_recent": 6.5,
+        "loss": 0.017061678109246498,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006958142330045,
+            "scale": 0.08618911090688078,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.010745418517156862
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 13.0,
+        "p_recent": 6.0,
+        "loss": 0.017150494072456966,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513235534806,
+            "scale": 0.08611499268832899,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.012119069647671857
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.25,
+        "p_recent": 6.0,
+        "loss": 0.017769110737292974,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006988221117326,
+            "scale": 0.0859654690281348,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013300658035202018
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.25,
+        "p_recent": 6.0,
+        "loss": 0.01779620218418148,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006993397497805,
+            "scale": 0.08672883101809,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013327749482090527
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.5,
+        "p_recent": 6.5,
+        "loss": 0.018130874471865073,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006959411344845,
+            "scale": 0.086594779703696,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011814614879775438
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.5,
+        "p_recent": 6.25,
+        "loss": 0.018317107263149276,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006992162705466,
+            "scale": 0.08653613763687364,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.0110975300984432
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.0,
+        "p_recent": 6.25,
+        "loss": 0.018329764802575782,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006989573730782,
+            "scale": 0.08615447151386574,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011110187637869706
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.25,
+        "p_recent": 6.0,
+        "loss": 0.018589745161116944,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513703689903,
+            "scale": 0.08670077047862489,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013558320736331836
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.75,
+        "p_recent": 5.75,
+        "loss": 0.018757775659288257,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513439942912,
+            "scale": 0.08630895643732597,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.009872470902092662
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011957292419986,
+            "scale": 0.16725118606417755,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.008885304757195595
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.75,
+        "p_recent": 6.75,
+        "loss": 0.019228944024094582,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006958803964257,
+            "scale": 0.08639121910823011,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.009457811859746855
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0009514992388642,
+            "scale": 0.16492333857463734,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.009771132164347726
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 13.25,
+        "p_recent": 6.0,
+        "loss": 0.01938239057173241,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006512983992872,
+            "scale": 0.08592230312878088,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.014350966146947305
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 9.25,
+        "p_recent": 6.5,
+        "loss": 0.019386597911661967,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000695742763659,
+            "scale": 0.08598843549825062,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013070338319572328
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.5,
+        "p_recent": 6.0,
+        "loss": 0.019945715681635633,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006986830769176,
+            "scale": 0.08577766753841673,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.015477262979544678
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.0,
+        "p_recent": 6.0,
+        "loss": 0.020041067159288127,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006994591416651,
+            "scale": 0.08692278489611965,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.015572614457197171
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.5,
+        "p_recent": 5.75,
+        "loss": 0.020167317625407553,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513596305628,
+            "scale": 0.08650421029476628,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011282012868211958
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011957292419986,
+            "scale": 0.16725118606417755,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.008885304757195595
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.25,
+        "p_recent": 6.5,
+        "loss": 0.020504794131438193,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000695996324514,
+            "scale": 0.08679981269972517,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.014188534539348555
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 9.0,
+        "p_recent": 6.75,
+        "loss": 0.02051655068150459,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006958142330045,
+            "scale": 0.08618911090688078,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.010745418517156862
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0009514992388642,
+            "scale": 0.16492333857463734,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.009771132164347726
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.25,
+        "p_recent": 6.25,
+        "loss": 0.020520235199908095,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006988221117326,
+            "scale": 0.0859654690281348,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013300658035202018
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.25,
+        "p_recent": 6.25,
+        "loss": 0.020547326646796604,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006993397497805,
+            "scale": 0.08672883101809,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013327749482090527
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.0,
+        "p_recent": 6.0,
+        "loss": 0.02088143125786157,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000651376114055,
+            "scale": 0.08689865351336802,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.015850006833076465
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 13.0,
+        "p_recent": 5.75,
+        "loss": 0.02100437440486745,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513235534806,
+            "scale": 0.08611499268832899,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.012119069647671857
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011957292419986,
+            "scale": 0.16725118606417755,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.008885304757195595
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.5,
+        "p_recent": 6.75,
+        "loss": 0.021585747044123166,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006959411344845,
+            "scale": 0.086594779703696,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.011814614879775438
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0009514992388642,
+            "scale": 0.16492333857463734,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.009771132164347726
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 13.5,
+        "p_recent": 6.0,
+        "loss": 0.021599764778379972,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000651268620778,
+            "scale": 0.08573087213138467,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.016568340353594863
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 9.5,
+        "p_recent": 6.5,
+        "loss": 0.021695206588561687,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006956661047004,
+            "scale": 0.08578917367513601,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.01537894699647205
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.75,
+        "p_recent": 6.0,
+        "loss": 0.02210861899239113,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000698540342672,
+            "scale": 0.08559105282556823,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.01764016629030018
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 12.75,
+        "p_recent": 6.0,
+        "loss": 0.022300758936178236,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006995743630391,
+            "scale": 0.08711801483453756,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.01783230623408728
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013654535819405,
+            "scale": 0.1666875420832338,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.004468452702090954
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 12.25,
+        "p_recent": 5.75,
+        "loss": 0.02244362549352743,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513703689903,
+            "scale": 0.08670077047862489,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013558320736331836
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011957292419986,
+            "scale": 0.16725118606417755,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.008885304757195595
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 14.5,
+        "p_recent": 6.25,
+        "loss": 0.022696840144250753,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006986830769176,
+            "scale": 0.08577766753841673,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.015477262979544678
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_full_minus_f5",
+        "window": "calendar30",
+        "p_long": 13.0,
+        "p_recent": 6.25,
+        "loss": 0.022792191621903247,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006994591416651,
+            "scale": 0.08692278489611965,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.015572614457197171
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0013302592485227,
+            "scale": 0.1649682354098061,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.0072195771647060765
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 9.25,
+        "p_recent": 6.75,
+        "loss": 0.022841470483920052,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.000695742763659,
+            "scale": 0.08598843549825062,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.013070338319572328
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0009514992388642,
+            "scale": 0.16492333857463734,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.009771132164347726
+          }
+        }
+      },
+      {
+        "target": "late_6to9_pa",
+        "window": "calendar30",
+        "p_long": 8.0,
+        "p_recent": 6.5,
+        "loss": 0.022896068412592126,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.00069604584051,
+            "scale": 0.0870063385190444,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.016579808820502487
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.000979683060602,
+            "scale": 0.16660857899382472,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.006316259592089637
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 11.75,
+        "p_recent": 6.0,
+        "loss": 0.023188691730771795,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006513767679606,
+            "scale": 0.08709787623770042,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.018157267305986685
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011623043562867,
+            "scale": 0.16549950831240254,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.005031424424785108
+          }
+        }
+      },
+      {
+        "target": "late_6plus_pa",
+        "window": "calendar30",
+        "p_long": 13.25,
+        "p_recent": 5.75,
+        "loss": 0.0232362709041429,
+        "detail": {
+          "off_late_long_ratio": {
+            "mean": 1.0006512983992872,
+            "scale": 0.08592230312878088,
+            "frozen_mean": 1.0014670244666999,
+            "frozen_scale": 0.08634572158882317,
+            "loss": 0.014350966146947305
+          },
+          "off_late_30d_ratio": {
+            "mean": 1.0011957292419986,
+            "scale": 0.16725118606417755,
+            "frozen_mean": 1.0014585356514605,
+            "frozen_scale": 0.16603868812813596,
+            "loss": 0.008885304757195595
+          }
+        }
+      }
+    ],
+    "bullpen": [
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.07253604279115976,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991307966400436,
+            "scale": 0.10301914447223882,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0016231040467893014
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0004947899082408,
+            "scale": 0.21098790633188075,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07091293874437046
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 385.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.07411795126853488,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976054875612438,
+            "scale": 0.10295330078992514,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.017055416574284072
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9974924883393798,
+            "scale": 0.21091617285824868,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.0570625346942508
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.0751462495245313,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988973293643505,
+            "scale": 0.1031215642465798,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.003210166826871786
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.000596914859975,
+            "scale": 0.2108735471279552,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07193608269765953
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.07522225963921585,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991307966400436,
+            "scale": 0.10301914447223882,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0016231040467893014
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006063957537203,
+            "scale": 0.2126432400637952,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07359915559242655
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.07528538859275746,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991349297061098,
+            "scale": 0.10352135949640996,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.004783266891736426
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0004965069713032,
+            "scale": 0.21107654701939912,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07050212170102103
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 380.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.07563236003089155,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9975923559222145,
+            "scale": 0.1034357749779061,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.018914351123392265
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9974891752336463,
+            "scale": 0.2109857569961613,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05671800890749929
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.07676720015033647,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988973293643505,
+            "scale": 0.1031215642465798,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.003210166826871786
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006818063672316,
+            "scale": 0.2125589169176913,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.0735570333234647
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 385.0,
+        "p_recent_outs": 39.0,
+        "loss": 0.0771252607655021,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976054875612438,
+            "scale": 0.10295330078992514,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.017055416574284072
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9976395720470448,
+            "scale": 0.21274743476706223,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.060069844191218025
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.07778944548821261,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991267980309648,
+            "scale": 0.10252318709400784,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0064720897851269525
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0004931219936362,
+            "scale": 0.21090066896875376,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07131735570308566
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.0787922525905191,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991349297061098,
+            "scale": 0.10352135949640996,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.004783266891736426
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006080565139979,
+            "scale": 0.21272829410474697,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07400898569878267
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 390.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.0789565132566999,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976184428563111,
+            "scale": 0.10247645723400904,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.021554587737614237
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9974957558214222,
+            "scale": 0.21084762958881595,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05740192551908567
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 380.0,
+        "p_recent_outs": 39.0,
+        "loss": 0.0792800600360593,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9975923559222145,
+            "scale": 0.1034357749779061,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.018914351123392265
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9976364389935803,
+            "scale": 0.212813169006026,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06036570891266703
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.07958997445912182,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991307966400436,
+            "scale": 0.10301914447223882,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0016231040467893014
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0003876997509544,
+            "scale": 0.20938829458336494,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07796687041233252
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.07961077066082285,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988988570635035,
+            "scale": 0.1036270334330988,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.008097807233667893
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005979147111839,
+            "scale": 0.21096407359731406,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07151296342715496
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.07966803344186611,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991267980309648,
+            "scale": 0.10252318709400784,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0064720897851269525
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006047825228588,
+            "scale": 0.21255953881357267,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07319594365673916
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 350.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.07975958966422828,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991392015970816,
+            "scale": 0.10402998114045872,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.009674866996306368
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0004982748314903,
+            "scale": 0.21116663116876838,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07008472266792191
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08010267442209382,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988958880732268,
+            "scale": 0.10262234015250446,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.007749976922326673
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005959485471605,
+            "scale": 0.21078443045919168,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07235269749976714
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.08014691347434161,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.997579043821223,
+            "scale": 0.10392400304874047,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.02377870159046784
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9974858153619156,
+            "scale": 0.21105640969428294,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05636821188387376
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08089861239075893,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988958880732268,
+            "scale": 0.10262234015250446,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.007749976922326673
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006808701289747,
+            "scale": 0.21247344140075414,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07314863546843225
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 390.0,
+        "p_recent_outs": 39.0,
+        "loss": 0.08133303438400774,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976184428563111,
+            "scale": 0.10247645723400904,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.021554587737614237
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9976426618613236,
+            "scale": 0.2126826889646404,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05977844664639351
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 385.0,
+        "p_recent_outs": 45.0,
+        "loss": 0.0817580841944695,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976054875612438,
+            "scale": 0.10295330078992514,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.017055416574284072
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9973493456806383,
+            "scale": 0.209156475930402,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06470266762018544
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08206981176370483,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988988570635035,
+            "scale": 0.1036270334330988,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.008097807233667893
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006827750399885,
+            "scale": 0.21264575083712006,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07397200453003694
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.08232298648904554,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991349297061098,
+            "scale": 0.10352135949640996,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.004783266891736426
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0003894710648407,
+            "scale": 0.20948044553858358,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07753971959730911
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.08245766680598088,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988973293643505,
+            "scale": 0.1031215642465798,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.003210166826871786
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005157611932143,
+            "scale": 0.20924539121213476,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.0792474999791091
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08297606090930552,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991229296837764,
+            "scale": 0.10203334368823269,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.011260513785912448
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0004915016484466,
+            "scale": 0.21081479641922962,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07171554712339308
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 380.0,
+        "p_recent_outs": 45.0,
+        "loss": 0.08325390989342762,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9975923559222145,
+            "scale": 0.1034357749779061,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.018914351123392265
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9973458587159475,
+            "scale": 0.20922981814755276,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06433955877003536
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 395.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.08373828893888167,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976312257902706,
+            "scale": 0.10200512508860594,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.026001976393924563
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9974989787811073,
+            "scale": 0.21078010053679566,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05773631254495711
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 48.0,
+        "loss": 0.08387929145949227,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991307966400436,
+            "scale": 0.10301914447223882,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0016231040467893014
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0007228547986309,
+            "scale": 0.2143584980691656,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.08225618741270298
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08405968029483389,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991229296837764,
+            "scale": 0.10203334368823269,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.011260513785912448
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006032152915858,
+            "scale": 0.21247715308245532,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07279916650892145
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 350.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08410049213815451,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991392015970816,
+            "scale": 0.10402998114045872,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.009674866996306368
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006097664011346,
+            "scale": 0.21281473978727036,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07442562514184814
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08412972757821997,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9989004741239507,
+            "scale": 0.10413889394434331,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.013046569282323114
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005989492242042,
+            "scale": 0.2110560493709845,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07108315829589686
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 345.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08428926411024032,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991436168628649,
+            "scale": 0.10454516395187571,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.014628712149178026
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005000952111012,
+            "scale": 0.21125820063699463,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06966055196106229
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 39.0,
+        "loss": 0.08444486215784264,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.997579043821223,
+            "scale": 0.10392400304874047,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.02377870159046784
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9976332616152879,
+            "scale": 0.212879918106144,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.060666160567374804
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "last30_team_games",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 0.0,
+        "loss": 0.08466801611377126,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988973293643505,
+            "scale": 0.1031215642465798,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.003210166826871786
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0000513973980147,
+            "scale": 0.20831334581448652,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.08145784928689948
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 42.0,
+        "loss": 0.08471488782316604,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9975655469988861,
+            "scale": 0.1044181124728887,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.028701885855430983
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.997482407538826,
+            "scale": 0.2111281597397709,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.05601300196773506
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.0848594856274051,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991267980309648,
+            "scale": 0.10252318709400784,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0064720897851269525
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.000385979145038,
+            "scale": 0.20929759618273788,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07838739584227815
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08529246369366703,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988945303530341,
+            "scale": 0.10212922003014689,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.012545831092115732
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006799652818033,
+            "scale": 0.21238928759031464,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.0727466326015513
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08530881311354266,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988945303530341,
+            "scale": 0.10212922003014689,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.012545831092115732
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005950146956326,
+            "scale": 0.21069668565797658,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07276298202142693
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 365.0,
+        "p_recent_outs": 48.0,
+        "loss": 0.0854434745311463,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988973293643505,
+            "scale": 0.1031215642465798,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.003210166826871786
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.000770723689581,
+            "scale": 0.2143057881249648,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.08223330770427452
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 395.0,
+        "p_recent_outs": 39.0,
+        "loss": 0.08549337744185369,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976312257902706,
+            "scale": 0.10200512508860594,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.026001976393924563
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9976457094830175,
+            "scale": 0.2126189061709117,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.059491401047929125
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 60.0,
+        "loss": 0.0864179010484913,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991307966400436,
+            "scale": 0.10301914447223882,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.0016231040467893014
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0002848241775575,
+            "scale": 0.20784071719860106,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.084794797001702
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 390.0,
+        "p_recent_outs": 45.0,
+        "loss": 0.08661497784318369,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976184428563111,
+            "scale": 0.10247645723400904,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.021554587737614237
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9973527847261188,
+            "scale": 0.20908422547983468,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06506039010556945
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 350.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.08678062282451618,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991392015970816,
+            "scale": 0.10402998114045872,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.009674866996306368
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0003912947845877,
+            "scale": 0.20957409043348227,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07710575582820982
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 385.0,
+        "p_recent_outs": 36.0,
+        "loss": 0.0868653249050116,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9976054875612438,
+            "scale": 0.10295330078992514,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.017055416574284072
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9977907636493055,
+            "scale": 0.21465711598190057,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06980990833072753
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 360.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.08690524606782471,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988988570635035,
+            "scale": 0.1036270334330988,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.008097807233667893
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005167910347674,
+            "scale": 0.20933953235547234,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07880743883415682
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 370.0,
+        "p_recent_outs": 57.0,
+        "loss": 0.08743080186321839,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9988958880732268,
+            "scale": 0.10262234015250446,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.007749976922326673
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0005147659542242,
+            "scale": 0.20915270996143906,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07968082494089171
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 48.0,
+        "loss": 0.08743167454472561,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991349297061098,
+            "scale": 0.10352135949640996,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.004783266891736426
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0007244570653704,
+            "scale": 0.21443988458154953,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.08264840765298918
+          }
+        }
+      },
+      {
+        "definition": "inning6to9",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 355.0,
+        "p_recent_outs": 51.0,
+        "loss": 0.08744030415046133,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9989004741239507,
+            "scale": 0.10413889394434331,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.013046569282323114
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.0006837772356358,
+            "scale": 0.21273398137931612,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.07439373486813822
+          }
+        }
+      },
+      {
+        "definition": "reliever_stint",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 45.0,
+        "loss": 0.08774962283298617,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.997579043821223,
+            "scale": 0.10392400304874047,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.02377870159046784
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 0.9973423226354622,
+            "scale": 0.2093042810462262,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.06397092124251832
+          }
+        }
+      },
+      {
+        "definition": "inning6plus",
+        "scope": "season_reset",
+        "window": "calendar30",
+        "p_long_outs": 375.0,
+        "p_recent_outs": 54.0,
+        "loss": 0.08809744026946789,
+        "detail": {
+          "opp_bp_ra9_long_rel": {
+            "mean": 0.9991191875675995,
+            "scale": 0.1015494756256601,
+            "frozen_mean": 0.9992120209659929,
+            "frozen_scale": 0.10310527072845412,
+            "loss": 0.015989759684830893
+          },
+          "opp_bp_ra9_30d_rel": {
+            "mean": 1.000489927359512,
+            "scale": 0.21073025171250548,
+            "frozen_mean": 0.9860898056018214,
+            "frozen_scale": 0.21158719158114866,
+            "loss": 0.072107680584637
+          }
+        }
+      }
+    ]
+  },
+  "confirmed_exact": {
+    "starter_rates": "all PA; K-BB-HBP; long->league 150 PA; recent5->shrunk long 150 PA"
+  },
+  "note": "Vectorized semantic diagnostic on exact frozen development artifact."
+}
