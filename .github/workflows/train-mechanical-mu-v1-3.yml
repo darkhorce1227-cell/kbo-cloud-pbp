@@ -1,0 +1,57 @@
+name: Train KBO Mechanical Mu v1.3
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/mu_v1_3.py"
+      - "research/mu-v1.3/preprocessing.json"
+      - ".github/workflows/train-mechanical-mu-v1-3.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-mechanical-mu-v1-3-train
+  cancel-in-progress: false
+
+jobs:
+  train-oos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Restore PBP cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Train 2024-2025 and score untouched 2026 OOS
+        run: python scripts/mu_v1_3.py train
+      - name: Save PBP cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13-${{ github.run_id }}
+      - name: Commit frozen model and OOS metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/mu-v1.3/model_spec.json research/mu-v1.3/metrics.json
+          if [ -z "$(git status --porcelain -- research/mu-v1.3/model_spec.json research/mu-v1.3/metrics.json)" ]; then
+            echo "No model changes."
+            exit 0
+          fi
+          git commit -m "research: freeze mu v1.3 model and OOS metrics"
+          git pull --rebase origin main
+          git push
