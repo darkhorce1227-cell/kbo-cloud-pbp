@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-core-side-ablation-v0.1",
+  "version": "mu-v1.2-core-side-ablation-v0.2-fast",
   "status": "DIAGNOSTIC_ONLY",
   "official_shadow_allowed": false,
   "rows": 1368,
@@ -7,220 +7,201 @@
   "published_target": {
     "f5": {
       "mae": 1.930994,
-      "nb_nll": 2.119493,
-      "wdl_brier": 0.20187,
-      "wdl_logloss": 0.993735,
-      "mean_mu": 2.668074,
       "side": 0.560272
     },
     "full": {
       "mae": 2.705128,
-      "nb_nll": 2.55299,
-      "wdl_brier": 0.172763,
-      "wdl_logloss": 0.813524,
-      "mean_mu": 5.001728,
       "side": 0.571856
     }
   },
   "ranked": [
     {
       "variant": "swap_starter_all",
-      "distance": 0.02807198280797052,
+      "side_distance": 0.023659876823602377,
+      "mae_distance": 0.03465399367191635,
       "f5": {
         "mae": 1.9487315168260726,
-        "nb_nll": 2.122876745724435,
-        "wdl_brier": 0.2022728226042618,
-        "wdl_logloss": 0.9950885320926939,
-        "side": 0.5500848896434635
+        "side": 0.5500848896434635,
+        "margin_corr": 0.09865859850319257,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.722044476845844,
-        "nb_nll": 2.556445291255892,
-        "wdl_brier": 0.17208713207470253,
-        "wdl_logloss": 0.8104654261083257,
-        "side": 0.5583832335329342
+        "side": 0.5583832335329342,
+        "margin_corr": 0.15077576859847727,
+        "decided_games": 668
       }
     },
     {
       "variant": "swap_starter_ip",
-      "distance": 0.05067606807423075,
+      "side_distance": 0.04144095304128592,
+      "mae_distance": 0.04780313885557974,
       "f5": {
         "mae": 1.9579120159294925,
-        "nb_nll": 2.1266297497101356,
-        "wdl_brier": 0.20425423827573724,
-        "wdl_logloss": 1.0025126791699193,
-        "side": 0.5263157894736842
+        "side": 0.5263157894736842,
+        "margin_corr": 0.046107602820350216,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.7260131229260876,
-        "nb_nll": 2.558752023096854,
-        "wdl_brier": 0.17285271877156294,
-        "wdl_logloss": 0.8130665641369744,
-        "side": 0.5643712574850299
+        "side": 0.5643712574850299,
+        "margin_corr": 0.11267727457875068,
+        "decided_games": 668
       }
     },
     {
       "variant": "neutral_starter_all",
-      "distance": 0.06758598309766017,
+      "side_distance": 0.0572141604465094,
+      "mae_distance": 0.049255752495700245,
       "f5": {
         "mae": 1.957906534224209,
-        "nb_nll": 2.1267307355164458,
-        "wdl_brier": 0.20417684109721737,
-        "wdl_logloss": 1.0021239796679713,
-        "side": 0.5195246179966044
+        "side": 0.5195246179966044,
+        "margin_corr": 0.04090108235524412,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.7274712182714915,
-        "nb_nll": 2.559426137893578,
-        "wdl_brier": 0.1735916142741434,
-        "wdl_logloss": 0.8155068429831795,
-        "side": 0.5553892215568862
+        "side": 0.5553892215568862,
+        "margin_corr": 0.10399324244488152,
+        "decided_games": 668
       }
     },
     {
       "variant": "neutral_starter_ip",
-      "distance": 0.07583539287835306,
+      "side_distance": 0.05821809485273932,
+      "mae_distance": 0.060643965965924584,
       "f5": {
         "mae": 1.9638524102340285,
-        "nb_nll": 2.129578186437976,
-        "wdl_brier": 0.2055333637016588,
-        "wdl_logloss": 1.0071149534558028,
-        "side": 0.5110356536502547
+        "side": 0.5110356536502547,
+        "margin_corr": 0.007193721192044609,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.7329135557318964,
-        "nb_nll": 2.5612602925148837,
-        "wdl_brier": 0.17425699198773148,
-        "wdl_logloss": 0.817761344569811,
-        "side": 0.562874251497006
+        "side": 0.562874251497006,
+        "margin_corr": 0.07360724631485586,
+        "decided_games": 668
       }
     },
     {
       "variant": "swap_starter_rates",
-      "distance": 0.08792934348833592,
+      "side_distance": 0.07258579408924093,
+      "mae_distance": 0.05615681401932804,
       "f5": {
         "mae": 1.960699055766566,
-        "nb_nll": 2.128179788005278,
-        "wdl_brier": 0.20455143616888677,
-        "wdl_logloss": 1.003406531572269,
-        "side": 0.5161290322580645
+        "side": 0.5161290322580645,
+        "margin_corr": 0.03160734628315488,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.7315797582527623,
-        "nb_nll": 2.561093300268965,
-        "wdl_brier": 0.1746918186026358,
-        "wdl_logloss": 0.8191960178268262,
-        "side": 0.5434131736526946
+        "side": 0.5434131736526946,
+        "margin_corr": 0.08418746328190145,
+        "decided_games": 668
       }
     },
     {
       "variant": "neutral_pitching_all",
-      "distance": 0.08896323671665729,
+      "side_distance": 0.07786216833565462,
+      "mae_distance": 0.05535626483982514,
       "f5": {
         "mae": 1.9502528993551376,
-        "nb_nll": 2.1237715371647923,
-        "wdl_brier": 0.202409783936265,
-        "wdl_logloss": 0.9958915133429364,
-        "side": 0.534804753820034
+        "side": 0.534804753820034,
+        "margin_corr": -0.00521054028020025,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.741225365484688,
-        "nb_nll": 2.560095519238796,
-        "wdl_brier": 0.1757192745077298,
-        "wdl_logloss": 0.8224685550380664,
-        "side": 0.5194610778443114
+        "side": 0.5194610778443114,
+        "margin_corr": 0.05689983025125274,
+        "decided_games": 668
       }
     },
     {
       "variant": "swap_starter_and_bullpen",
-      "distance": 0.10402919411005607,
+      "side_distance": 0.0843432638695445,
+      "mae_distance": 0.07355094337160528,
       "f5": {
         "mae": 1.9476599054569368,
-        "nb_nll": 2.12703227671475,
-        "wdl_brier": 0.20186025037979063,
-        "wdl_logloss": 0.9943198965217664,
-        "side": 0.5432937181663837
+        "side": 0.5432937181663837,
+        "margin_corr": 0.03186272417766842,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.762013037914669,
-        "nb_nll": 2.565242100551148,
-        "wdl_brier": 0.17871749706955195,
-        "wdl_logloss": 0.8326250337187452,
-        "side": 0.5044910179640718
+        "side": 0.5044910179640718,
+        "margin_corr": 0.003832741659772046,
+        "decided_games": 668
       }
     },
     {
       "variant": "neutral_starter_rates",
-      "distance": 0.11695315706198295,
+      "side_distance": 0.09595332049652816,
+      "mae_distance": 0.06444553494365568,
       "f5": {
         "mae": 1.9653405203878291,
-        "nb_nll": 2.1303104251410483,
-        "wdl_brier": 0.20565893041562092,
-        "wdl_logloss": 1.0074877242768172,
-        "side": 0.49575551782682514
+        "side": 0.49575551782682514,
+        "margin_corr": -0.0007820983820182253,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.735227014555827,
-        "nb_nll": 2.5624520088571363,
-        "wdl_brier": 0.17516326073889582,
-        "wdl_logloss": 0.8207711122886376,
-        "side": 0.5404191616766467
+        "side": 0.5404191616766467,
+        "margin_corr": 0.05882932386971991,
+        "decided_games": 668
       }
     },
     {
       "variant": "baseline_recovered",
-      "distance": 0.12896210763807464,
+      "side_distance": 0.0997504799975601,
+      "mae_distance": 0.0780371718090691,
       "f5": {
         "mae": 1.9717944868598922,
-        "nb_nll": 2.1335740405145054,
-        "wdl_brier": 0.20717250521323238,
-        "wdl_logloss": 1.0130321139874063,
-        "side": 0.48896434634974534
+        "side": 0.48896434634974534,
+        "margin_corr": -0.03284896102160531,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.742364684949177,
-        "nb_nll": 2.5645834319218483,
-        "wdl_brier": 0.17595169844514955,
-        "wdl_logloss": 0.8234385136531083,
-        "side": 0.5434131736526946
+        "side": 0.5434131736526946,
+        "margin_corr": 0.028114347665623943,
+        "decided_games": 668
       }
     },
     {
       "variant": "neutral_bullpen",
-      "distance": 0.17027650688791762,
+      "side_distance": 0.13856334662423886,
+      "mae_distance": 0.08850574130932465,
       "f5": {
         "mae": 1.965675970934929,
-        "nb_nll": 2.131392866053895,
-        "wdl_brier": 0.2057479351420731,
-        "wdl_logloss": 1.0078018292168327,
-        "side": 0.5025466893039049
+        "side": 0.5025466893039049,
+        "margin_corr": -0.13670537438700645,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.758951770374396,
-        "nb_nll": 2.5657752403536738,
-        "wdl_brier": 0.1783338937702926,
-        "wdl_logloss": 0.8311703310468461,
-        "side": 0.49101796407185627
+        "side": 0.49101796407185627,
+        "margin_corr": -0.10189717665019234,
+        "decided_games": 668
       }
     },
     {
       "variant": "swap_bullpen",
-      "distance": 0.23164255613958112,
+      "side_distance": 0.17408991657432166,
+      "mae_distance": 0.1334277139576432,
       "f5": {
         "mae": 1.9756352144714844,
-        "nb_nll": 2.1411094943586066,
-        "wdl_brier": 0.20787254386122903,
-        "wdl_logloss": 1.0161458615047063,
-        "side": 0.5059422750424448
+        "side": 0.5059422750424448,
+        "margin_corr": -0.10840334602825796,
+        "decided_games": 589
       },
       "full": {
         "mae": 2.793914499486159,
-        "nb_nll": 2.5755118718002747,
-        "wdl_brier": 0.18349964841242938,
-        "wdl_logloss": 0.8486657780605532,
-        "side": 0.45209580838323354
+        "side": 0.45209580838323354,
+        "margin_corr": -0.13317346741407715,
+        "decided_games": 668
       }
     }
   ],
-  "interpretation_rule": "A swap improving side/logloss materially suggests the original fitted model used the opposite team mapping for that feature group. Neutral improvements instead suggest that group is still row-level misreconstructed. Neither alone authorizes promotion."
+  "interpretation_rule": "A swap materially reducing side-distance suggests opposite-team mapping for that feature group may match the lost pipeline. Neutral improvement suggests row-level reconstruction error in that group. This is diagnosis only, not promotion permission."
 }
