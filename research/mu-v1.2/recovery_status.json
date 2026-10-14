@@ -1,6 +1,6 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.2",
-  "status": "PARTIALLY_RECOVERED_CHALLENGER_ACTIVE",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.3",
+  "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "active_challenger": {
     "model": "research/mu-v1.2/recovered_challenger.json",
@@ -26,6 +26,12 @@
       "long_shrink": "league prior with 5 starts pseudo-count",
       "recent5_shrink": "shrunk long prior with 5 starts pseudo-count"
     },
+    "late_scoring_semantics": {
+      "training_target": "INNINGS_6_PLUS_PA_RUNS",
+      "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
+      "confidence": "VERY_HIGH_FORENSIC_SUPPORT",
+      "evidence": "2x2 frozen coefficient-parity score 6plus/6plus=0.220774 vs 6to9/6to9=0.269134; crossed definitions=1.437-1.547. Frozen-beta projection toward 6plus under 6plus offset: 0.855 simple, 1.067 core. Development sample has 85 games and 168 runs after the 9th."
+    },
     "bullpen_long": {
       "definition": "inning 6+ pitching",
       "scope": "season reset",
@@ -37,15 +43,15 @@
   },
   "challenger_working_semantics": {
     "late_offense_features": "FULL_MINUS_F5",
-    "league_late_30d_offset": "INNINGS_6_TO_9_PA_RUNS",
+    "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
     "bullpen_30d_relative": "recent over league30 with team-long prior"
   },
+  "posthoc_diagnostic_variant": {
+    "path": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
+    "late_offset": "INNINGS_6_TO_9_PA_RUNS",
+    "warning": "Selected after inspecting 2026 OOS aggregate performance; not eligible as clean historical-recovery evidence."
+  },
   "still_unresolved": {
-    "late_scoring_semantics": {
-      "oos_aggregate_best": "innings 6-9 PA runs",
-      "frozen_coefficient_parity_best": "innings 6+ PA runs",
-      "note": "Challenger temporarily uses 6-9 for league_late_30d offset because it best reproduces aggregate 2026 OOS. This is not an exact historical-semantics claim."
-    },
     "bullpen_30d_relative": {
       "best_plausible_variant": "recent over league30 with team-long prior",
       "remaining_mean_gap": 0.014404984306419455,
@@ -55,10 +61,11 @@
   },
   "key_diagnostics": {
     "row_semantics": "state/mu_v1_2_row_semantics.json",
+    "late_target_offset_2x2": "state/mu_v1_2_late_target_offset_2x2.json",
     "coefficient_parity": "state/mu_v1_2_coefficient_parity.json",
     "bp30_relative": "state/mu_v1_2_bp30_relative_semantics.json",
     "late_offset": "state/mu_v1_2_late_offset_semantics.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until unresolved semantics and exact row-level reproducibility are resolved."
+  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until BP30 semantics and exact row-level reproducibility are resolved."
 }
