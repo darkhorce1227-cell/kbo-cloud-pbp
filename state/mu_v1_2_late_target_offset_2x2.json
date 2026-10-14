@@ -1,0 +1,227 @@
+{
+  "version": "mu-v1.2-late-target-offset-2x2-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "extra_inning_signal": {
+    "rows_with_runs_after_9th": 98,
+    "games_with_runs_after_9th": 85,
+    "total_runs_after_9th": 168.0,
+    "mean_runs_after_9th_per_team_game": 0.0639269406392694
+  },
+  "ranked_2x2": [
+    {
+      "target": "6plus",
+      "offset": "6plus",
+      "score": 0.22077440139042231,
+      "simple_late": {
+        "param_norm_mae": 0.17091235346429817,
+        "param_mae": 0.0018368130994334147,
+        "param_corr": 0.9969158628375757,
+        "params_fit": {
+          "const": -0.004087172841475054,
+          "off_late_long_ratio": 0.02191973710555057,
+          "off_late_30d_ratio": -0.0055072273568596165,
+          "park_factor": 0.01971886072518291,
+          "is_home": -0.05427655323661917
+        },
+        "params_frozen": {
+          "const": -0.008444446778938141,
+          "off_late_long_ratio": 0.02323617859170185,
+          "off_late_30d_ratio": -0.00685845754130136,
+          "park_factor": 0.021296031140491164,
+          "is_home": -0.053694603762816456
+        }
+      },
+      "core_late": {
+        "param_norm_mae": 0.049862047926124156,
+        "param_mae": 0.00024931023963062067,
+        "param_corr": 0.4989163562760913,
+        "params_fit": {
+          "const": -0.0021157761396429072,
+          "off_late_long_ratio": 0.00023236243871917157,
+          "off_late_30d_ratio": 2.6232239709096857e-05,
+          "opp_bp_ra9_long_rel": 0.0002514662679325528,
+          "opp_bp_ra9_30d_rel": 0.00011428340848740699,
+          "sp_ip_long": 0.00019639413664145452,
+          "sp_ip_recent5": 0.0002224910352793755,
+          "park_factor": 0.00023191958762891493,
+          "is_home": -0.0005619006262589398
+        },
+        "params_frozen": {
+          "const": -7.572232220934737e-05,
+          "off_late_long_ratio": 0.0002337207341187566,
+          "off_late_30d_ratio": 3.9543379423747525e-05,
+          "opp_bp_ra9_long_rel": 0.00011012227675079146,
+          "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+          "sp_ip_long": 0.00019431857921315275,
+          "sp_ip_recent5": 0.00023091438499587798,
+          "park_factor": 0.00024342340403401373,
+          "is_home": -0.0005667824214321434
+        }
+      }
+    },
+    {
+      "target": "6to9",
+      "offset": "6to9",
+      "score": 0.269134316969804,
+      "simple_late": {
+        "param_norm_mae": 0.22748553753601303,
+        "param_mae": 0.003439932821548418,
+        "param_corr": 0.9960379291887015,
+        "params_fit": {
+          "const": -0.0033232249896416734,
+          "off_late_long_ratio": 0.019786212389394868,
+          "off_late_30d_ratio": -0.005655196855683579,
+          "park_factor": 0.02372305602951627,
+          "is_home": -0.048696413221320706
+        },
+        "params_frozen": {
+          "const": -0.008444446778938141,
+          "off_late_long_ratio": 0.02323617859170185,
+          "off_late_30d_ratio": -0.00685845754130136,
+          "park_factor": 0.021296031140491164,
+          "is_home": -0.053694603762816456
+        }
+      },
+      "core_late": {
+        "param_norm_mae": 0.04164877943379098,
+        "param_mae": 0.0002082438971689549,
+        "param_corr": 0.545888111663306,
+        "params_fit": {
+          "const": -0.0015740689928538333,
+          "off_late_long_ratio": 0.00021114203367148898,
+          "off_late_30d_ratio": 1.7662973673948473e-05,
+          "opp_bp_ra9_long_rel": 0.0002507118494235162,
+          "opp_bp_ra9_30d_rel": 9.608840445565388e-05,
+          "sp_ip_long": 0.00014804654574846583,
+          "sp_ip_recent5": 0.00018338252333903,
+          "park_factor": 0.00026495322577189733,
+          "is_home": -0.0004939618034764153
+        },
+        "params_frozen": {
+          "const": -7.572232220934737e-05,
+          "off_late_long_ratio": 0.0002337207341187566,
+          "off_late_30d_ratio": 3.9543379423747525e-05,
+          "opp_bp_ra9_long_rel": 0.00011012227675079146,
+          "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+          "sp_ip_long": 0.00019431857921315275,
+          "sp_ip_recent5": 0.00023091438499587798,
+          "park_factor": 0.00024342340403401373,
+          "is_home": -0.0005667824214321434
+        }
+      }
+    },
+    {
+      "target": "6to9",
+      "offset": "6plus",
+      "score": 1.4374543808888918,
+      "simple_late": {
+        "param_norm_mae": 0.710786036872772,
+        "param_mae": 0.007486015441029508,
+        "param_corr": 0.9230568334720279,
+        "params_fit": {
+          "const": -0.0341481834105718,
+          "off_late_long_ratio": 0.01996419328103973,
+          "off_late_30d_ratio": -0.005707268225287253,
+          "park_factor": 0.02360394016422302,
+          "is_home": -0.04869934683971065
+        },
+        "params_frozen": {
+          "const": -0.008444446778938141,
+          "off_late_long_ratio": 0.02323617859170185,
+          "off_late_30d_ratio": -0.00685845754130136,
+          "park_factor": 0.021296031140491164,
+          "is_home": -0.053694603762816456
+        }
+      },
+      "core_late": {
+        "param_norm_mae": 0.7266683440161199,
+        "param_mae": 0.0036333417200805997,
+        "param_corr": 0.2127516316543922,
+        "params_fit": {
+          "const": -0.032399842907177095,
+          "off_late_long_ratio": 0.0002126943408621728,
+          "off_late_30d_ratio": 1.7834330301722e-05,
+          "opp_bp_ra9_long_rel": 0.00024840866323132054,
+          "opp_bp_ra9_30d_rel": 9.745358653403509e-05,
+          "sp_ip_long": 0.00014643568891948427,
+          "sp_ip_recent5": 0.00018120427515042254,
+          "park_factor": 0.000263929578485007,
+          "is_home": -0.0004939591013932973
+        },
+        "params_frozen": {
+          "const": -7.572232220934737e-05,
+          "off_late_long_ratio": 0.0002337207341187566,
+          "off_late_30d_ratio": 3.9543379423747525e-05,
+          "opp_bp_ra9_long_rel": 0.00011012227675079146,
+          "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+          "sp_ip_long": 0.00019431857921315275,
+          "sp_ip_recent5": 0.00023091438499587798,
+          "park_factor": 0.00024342340403401373,
+          "is_home": -0.0005667824214321434
+        }
+      }
+    },
+    {
+      "target": "6plus",
+      "offset": "6to9",
+      "score": 1.547059728161692,
+      "simple_late": {
+        "param_norm_mae": 0.9028248052335133,
+        "param_mae": 0.008022787940783382,
+        "param_corr": 0.880880004334887,
+        "params_fit": {
+          "const": 0.026737388854032252,
+          "off_late_long_ratio": 0.021741715098246028,
+          "off_late_30d_ratio": -0.005457098756144298,
+          "park_factor": 0.019838737212803423,
+          "is_home": -0.05427359162746235
+        },
+        "params_frozen": {
+          "const": -0.008444446778938141,
+          "off_late_long_ratio": 0.02323617859170185,
+          "off_late_30d_ratio": -0.00685845754130136,
+          "park_factor": 0.021296031140491164,
+          "is_home": -0.053694603762816456
+        }
+      },
+      "core_late": {
+        "param_norm_mae": 0.6442349229281787,
+        "param_mae": 0.003221174614640894,
+        "param_corr": -0.1664589683046719,
+        "params_fit": {
+          "const": 0.028710011072044628,
+          "off_late_long_ratio": 0.00023076270534188106,
+          "off_late_30d_ratio": 2.6055461837983757e-05,
+          "opp_bp_ra9_long_rel": 0.0002538399519861681,
+          "opp_bp_ra9_30d_rel": 0.00011287568648627435,
+          "sp_ip_long": 0.00019805393814147424,
+          "sp_ip_recent5": 0.0002247355321238012,
+          "park_factor": 0.00023297434325181046,
+          "is_home": -0.0005619038503204781
+        },
+        "params_frozen": {
+          "const": -7.572232220934737e-05,
+          "off_late_long_ratio": 0.0002337207341187566,
+          "off_late_30d_ratio": 3.9543379423747525e-05,
+          "opp_bp_ra9_long_rel": 0.00011012227675079146,
+          "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+          "sp_ip_long": 0.00019431857921315275,
+          "sp_ip_recent5": 0.00023091438499587798,
+          "park_factor": 0.00024342340403401373,
+          "is_home": -0.0005667824214321434
+        }
+      }
+    }
+  ],
+  "target_direction_projection": {
+    "offset_6plus_simple_late": 0.8552489357386852,
+    "offset_6plus_core_late": 1.0673626778140892,
+    "offset_6to9_simple_late": -0.11548314041215295,
+    "offset_6to9_core_late": 0.04948677574161012
+  },
+  "projection_interpretation": "0 means frozen beta lies at 6to9 fit along the target-semantic direction; 1 means at 6plus fit; values outside [0,1] mean the frozen vector lies beyond that segment.",
+  "decision_rule": "Historical semantics should be selected primarily by frozen coefficient parity, not 2026 aggregate OOS fit. Require target and offset evidence to be directionally coherent before changing the Challenger default."
+}
