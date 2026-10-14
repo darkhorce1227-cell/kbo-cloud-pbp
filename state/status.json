@@ -1,28 +1,27 @@
 {
-  "checked_at_kst": "2026-10-14T05:34:20.321966+09:00",
+  "checked_at_kst": "2026-10-14T17:36:14.885203+09:00",
   "columns": null,
   "csv_gz": null,
   "duplicate_stable_keys": null,
   "expected_game_ids": [
-    "20261013KBO1",
-    "20261013SC1"
+    "44441014OBLG02026"
   ],
-  "expected_games": 2,
+  "expected_games": 1,
   "final_games": 0,
   "first_check_kst": "17:00",
   "found_game_ids": null,
-  "has_1400_game": true,
+  "has_1400_game": null,
   "last_success_date": "2026-10-12",
   "missing_columns": null,
   "parquet": null,
-  "reason": "[NAVER_DATE_STATUS] Only 0/2 expected games are final.; direct PBP fallback failed: RuntimeError: game metadata missing from season schedule: 20261013KBO1",
+  "reason": "[NAVER_DATE_STATUS] Only 0/1 expected games are final.; direct PBP fallback failed: RuntimeError: game metadata missing from season schedule: 44441014OBLG02026",
   "retry_next_hour": true,
   "rows": null,
   "sha256_csv_gz": null,
   "sha256_parquet": null,
   "should_publish": false,
   "state": "GAMES_NOT_FINAL",
-  "target_date": "2026-10-13",
+  "target_date": "2026-10-14",
   "validation": "WAIT",
   "version": "0.2.0"
 }
