@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 import mu_v1_3 as engine
 import audit_mu_v1_2_recovered_oos as recovered
@@ -32,10 +33,41 @@ def swap_starter(rows):
     return z
 
 
+def shrink_mean(total, n, prior, pseudo):
+    den = float(n) + float(pseudo)
+    return float((float(total) + float(pseudo) * float(prior)) / den) if den > 0 else float(prior)
+
+
+def apply_late_features(base_rows, tg, target_col):
+    z = base_rows.copy(deep=True)
+    vals_long=[]; vals_recent=[]; vals_env=[]
+    for r in z.itertuples(index=False):
+        d = pd.Timestamp(r.game_date).normalize()
+        team = str(r.team)
+        pre = tg[(tg.game_date < d) & (tg.game_date >= recovered.HISTORY_START)]
+        pre30 = pre[pre.game_date >= d - pd.Timedelta(days=30)]
+        my = pre[pre.team.astype(str).eq(team)]
+        my30 = pre30[pre30.team.astype(str).eq(team)]
+        if my30.empty:
+            my30 = my.tail(min(30, len(my)))
+        lg = float(pre[target_col].mean()) if len(pre) else 0.0
+        lg30 = float(pre30[target_col].mean()) if len(pre30) else lg
+        team_long = shrink_mean(float(my[target_col].sum()), len(my), lg, recovered.OFF_LATE_LONG_P)
+        team_recent = shrink_mean(float(my30[target_col].sum()), len(my30), lg30, recovered.OFF_LATE_30D_P)
+        vals_long.append(team_long / lg if lg else 1.0)
+        vals_recent.append(team_recent / lg30 if lg30 else 1.0)
+        vals_env.append(lg30)
+    z["off_late_long_ratio"] = vals_long
+    z["off_late_30d_ratio"] = vals_recent
+    z["league_late_30d"] = vals_env
+    return z
+
+
 def mean_mu(rows, model):
     f5=[]; full=[]
     for _, x in rows.groupby("game_pk"):
-        if len(x) != 2: continue
+        if len(x) != 2:
+            continue
         away=x[x.is_home==0].iloc[0].to_dict(); home=x[x.is_home==1].iloc[0].to_dict()
         p=engine.score(model,away,home)
         f5 += [float(p["f5_away"]),float(p["f5_home"])]
@@ -56,6 +88,12 @@ def main():
     model=json.loads(MODEL_PATH.read_text(encoding="utf-8"))
     puball=json.loads(METRICS_PATH.read_text(encoding="utf-8"))
     tg,st,bp6=recovered.load_tables()
+
+    base_rows = recovered.make_oos_rows(tg,st,bp6)
+    base_rows = swap_starter(base_rows)
+    if len(base_rows)!=1368 or base_rows.game_pk.nunique()!=684:
+        raise RuntimeError(f"OOS gate failed: rows={len(base_rows)} games={base_rows.game_pk.nunique()}")
+
     targets={
         "full_minus_f5":"runs_late",
         "inning6plus_pa":"late_6plus_pa",
@@ -63,13 +101,7 @@ def main():
     }
     results={}
     for name,col in targets.items():
-        t=tg.copy(deep=True)
-        if col != "runs_late":
-            t["runs_late"] = t[col].astype(float)
-        rows=recovered.make_oos_rows(t,st,bp6)
-        rows=swap_starter(rows)
-        if len(rows)!=1368 or rows.game_pk.nunique()!=684:
-            raise RuntimeError(f"OOS gate failed {name}: rows={len(rows)} games={rows.game_pk.nunique()}")
+        rows = apply_late_features(base_rows, tg, col)
         results[name]=summarize(rows,model)
 
     pub={
@@ -78,12 +110,24 @@ def main():
     }
     ranked=[]
     for name,r in results.items():
-        dist=abs(r["full"]["mean_mu"]-pub["full"]["mean_mu"]) + abs(r["full"]["mae"]-pub["full"]["mae"]) + abs(r["full"]["wdl_logloss"]-pub["full"]["wdl_logloss"])
+        dist=(abs(r["full"]["mean_mu"]-pub["full"]["mean_mu"])
+              +abs(r["full"]["mae"]-pub["full"]["mae"])
+              +abs(r["full"]["wdl_logloss"]-pub["full"]["wdl_logloss"]))
         ranked.append({"variant":name,"distance":float(dist),**r})
     ranked.sort(key=lambda x:x["distance"])
-    payload={"version":"mu-v1.2-late-total-variants-v0.1","status":"DIAGNOSTIC_ONLY","official_shadow_allowed":False,"rows":1368,"games":684,"starter_mapping":"SELF_TEAM_STARTER","published":pub,"ranked":ranked}
+    payload={
+        "version":"mu-v1.2-late-total-variants-v0.2-fast",
+        "status":"DIAGNOSTIC_ONLY",
+        "official_shadow_allowed":False,
+        "rows":1368,
+        "games":684,
+        "starter_mapping":"SELF_TEAM_STARTER",
+        "published":pub,
+        "ranked":ranked,
+    }
     OUT_PATH.parent.mkdir(parents=True,exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(payload,ensure_ascii=False,indent=2))
 
-if __name__=="__main__": main()
+if __name__=="__main__":
+    main()
