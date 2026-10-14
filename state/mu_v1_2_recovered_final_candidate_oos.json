@@ -1,0 +1,69 @@
+{
+  "version": "mu-v1.2-recovered-final-candidate-v0.3",
+  "status": "CHALLENGER_DIAGNOSTIC",
+  "official_shadow_allowed": false,
+  "oos_team_games": 1368,
+  "oos_games": 684,
+  "recovered_semantics": {
+    "starter_mapping": "SELF_TEAM_STARTER",
+    "late_scoring": "INNINGS_6_TO_9_PA_RUNS",
+    "bullpen_mapping": "OPPONENT_BULLPEN",
+    "starter_rate_prior": "league->long 150 BF; long->recent5 150 BF",
+    "starter_ip_prior": "league->long 5 starts; long->recent5 5 starts"
+  },
+  "recovered_2026_oos": {
+    "f5": {
+      "mae": 1.9487315168260726,
+      "nb_nll": 2.122876745724435,
+      "wdl_brier": 0.2022728226042618,
+      "wdl_logloss": 0.9950885320926939,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6771296267457716
+    },
+    "full": {
+      "mae": 2.705980914673679,
+      "nb_nll": 2.557782329613937,
+      "wdl_brier": 0.1722222248125326,
+      "wdl_logloss": 0.8121394667600154,
+      "decided_side": 0.5583832335329342,
+      "mean_mu": 4.971557907333973
+    }
+  },
+  "published_v1_2_hybrid_2026_oos": {
+    "f5": {
+      "mae": 1.930994,
+      "nb_nll": 2.119493,
+      "wdl_brier": 0.20187,
+      "wdl_logloss": 0.993735,
+      "mean_mu": 2.668074,
+      "decided_side": 0.560272
+    },
+    "full": {
+      "mae": 2.705128,
+      "nb_nll": 2.55299,
+      "wdl_brier": 0.172763,
+      "wdl_logloss": 0.813524,
+      "mean_mu": 5.001728,
+      "decided_side": 0.571856
+    }
+  },
+  "delta_recovered_minus_published": {
+    "f5": {
+      "mae": 0.017737516826072497,
+      "nb_nll": 0.0033837457244350055,
+      "wdl_brier": 0.0004028226042618044,
+      "wdl_logloss": 0.0013535320926938432,
+      "mean_mu": 0.009055626745771761,
+      "decided_side": -0.010187110356536522
+    },
+    "full": {
+      "mae": 0.0008529146736786508,
+      "nb_nll": 0.004792329613937163,
+      "wdl_brier": -0.0005407751874673961,
+      "wdl_logloss": -0.0013845332399846644,
+      "mean_mu": -0.030170092666026882,
+      "decided_side": -0.013472766467065855
+    }
+  },
+  "note": "Diagnostic only. Frozen v1.2 coefficients/scalers/gamma/NB alpha are unchanged. This candidate cannot activate Official Shadow until parity/reproducibility gates are approved."
+}
