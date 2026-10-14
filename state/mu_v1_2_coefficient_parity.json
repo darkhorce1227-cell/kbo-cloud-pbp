@@ -1,0 +1,263 @@
+{
+  "version": "mu-v1.2-coefficient-parity-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "fixed_recovered_semantics": {
+    "late_offense_features": "FULL_MINUS_F5",
+    "league_late_30d_offset": "INNINGS_6_TO_9_PA_RUNS",
+    "bullpen": "INNING6PLUS_SEASON_RESET_CALENDAR30_P360_P54_OPPONENT",
+    "starter_rate_prior": "league->long 150 BF; long->recent5 150 BF",
+    "starter_ip_prior": "league->long 5 starts; long->recent5 5 starts"
+  },
+  "ranked_starter_mapping": [
+    {
+      "variant": "SELF_STARTER",
+      "core_param_norm_score": 9.138202688999712,
+      "all_param_norm_score": 11.23388535497094,
+      "components": {
+        "simple_f5": {
+          "param_mae": 0.005378371124012397,
+          "param_max_abs": 0.01111792622232996,
+          "param_norm_mae": 0.3608343875782765,
+          "param_corr": 0.9636295975041367,
+          "scaler_mean_mae": 6.006119394458276e-05,
+          "scaler_scale_mae": 4.8739916912971665e-05,
+          "params_fit": {
+            "const": -0.006272916976748953,
+            "off_f5_long_ratio": 0.0020576852154061387,
+            "off_f5_30d_ratio": 0.017505618884175532,
+            "park_factor": 0.03111885074257259,
+            "is_home": 0.04239695481302826
+          },
+          "params_frozen": {
+            "const": -0.006240442630378525,
+            "off_f5_long_ratio": 0.008510486621209647,
+            "off_f5_30d_ratio": 0.011041103332007935,
+            "park_factor": 0.028294712649182097,
+            "is_home": 0.0312790285906983
+          }
+        },
+        "core_f5": {
+          "param_mae": 0.018297838172841734,
+          "param_max_abs": 0.06393820978628398,
+          "param_norm_mae": 2.4538143635932568,
+          "param_corr": 0.7384108674836725,
+          "scaler_mean_mae": 0.0015313857007469983,
+          "scaler_scale_mae": 0.00013778832982440123,
+          "params_fit": {
+            "const": -0.008844357751846457,
+            "off_f5_long_ratio": 0.004015137089336276,
+            "off_f5_30d_ratio": 0.017038415152474746,
+            "sp_kbb_long": -0.01619881798296369,
+            "sp_kbb_recent5": 0.026166798094957245,
+            "sp_hr_long": 0.005646406403081155,
+            "sp_hr_recent5": 0.007972290836179683,
+            "sp_h_long": -0.005650975189002944,
+            "sp_h_recent5": 0.0008680581010438284,
+            "sp_ip_long": 0.03918151084039138,
+            "sp_ip_recent5": -0.02036318482350525,
+            "opp_bp_ra9_long_rel": 0.08406893945223132,
+            "opp_bp_ra9_30d_rel": -0.030551376206944966,
+            "park_factor": 0.03040748929104918,
+            "is_home": 0.03995287239370604
+          },
+          "params_frozen": {
+            "const": -0.0029674509531474875,
+            "off_f5_long_ratio": 0.006272303432422266,
+            "off_f5_30d_ratio": 0.006348611363650276,
+            "sp_kbb_long": 0.00487122480428635,
+            "sp_kbb_recent5": 0.0049566765682059165,
+            "sp_hr_long": 0.002168511052806235,
+            "sp_hr_recent5": 0.003922934688358844,
+            "sp_h_long": -0.0018805501989487133,
+            "sp_h_recent5": -3.1408473740499745e-05,
+            "sp_ip_long": 0.00536575750510001,
+            "sp_ip_recent5": 0.003465048946521267,
+            "opp_bp_ra9_long_rel": 0.020130729665947342,
+            "opp_bp_ra9_30d_rel": 0.006828964778174513,
+            "park_factor": 0.01322385920685468,
+            "is_home": 0.014932652069540978
+          }
+        },
+        "simple_late": {
+          "param_mae": 0.020214566370199402,
+          "param_max_abs": 0.0570344578290506,
+          "param_norm_mae": 1.7348482783929515,
+          "param_corr": 0.8294787544101746,
+          "scaler_mean_mae": 0.00024595108726455095,
+          "scaler_scale_mae": 0.00016401033340235002,
+          "params_fit": {
+            "const": 0.048590011050112465,
+            "off_late_long_ratio": 0.03435148235840258,
+            "off_late_30d_ratio": -0.012976087610098162,
+            "park_factor": 0.023081813229408634,
+            "is_home": -0.07871426186034786
+          },
+          "params_frozen": {
+            "const": -0.008444446778938141,
+            "off_late_long_ratio": 0.02323617859170185,
+            "off_late_30d_ratio": -0.00685845754130136,
+            "park_factor": 0.021296031140491164,
+            "is_home": -0.053694603762816456
+          }
+        },
+        "core_late": {
+          "param_mae": 0.03342194162703228,
+          "param_max_abs": 0.07616231388319024,
+          "param_norm_mae": 6.684388325406456,
+          "param_corr": 0.7030473171864547,
+          "scaler_mean_mae": 0.0027728699229672,
+          "scaler_scale_mae": 0.00029876478543739045,
+          "params_fit": {
+            "const": 0.04786748415426623,
+            "off_late_long_ratio": 0.027542687597711328,
+            "off_late_30d_ratio": -0.009762498265171546,
+            "opp_bp_ra9_long_rel": 0.0461038163642672,
+            "opp_bp_ra9_30d_rel": -0.014761873728295294,
+            "sp_ip_long": -0.011695665399580824,
+            "sp_ip_recent5": 0.04401565784316579,
+            "park_factor": 0.02330063091243076,
+            "is_home": -0.07672909630462238
+          },
+          "params_frozen": {
+            "const": -7.572232220934737e-05,
+            "off_late_long_ratio": 0.0002337207341187566,
+            "off_late_30d_ratio": 3.9543379423747525e-05,
+            "opp_bp_ra9_long_rel": 0.00011012227675079146,
+            "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+            "sp_ip_long": 0.00019431857921315275,
+            "sp_ip_recent5": 0.00023091438499587798,
+            "park_factor": 0.00024342340403401373,
+            "is_home": -0.0005667824214321434
+          }
+        }
+      }
+    },
+    {
+      "variant": "OPPONENT_STARTER",
+      "core_param_norm_score": 13.082482007525126,
+      "all_param_norm_score": 15.178164673496354,
+      "components": {
+        "simple_f5": {
+          "param_mae": 0.005378371124012397,
+          "param_max_abs": 0.01111792622232996,
+          "param_norm_mae": 0.3608343875782765,
+          "param_corr": 0.9636295975041367,
+          "scaler_mean_mae": 6.006119394458276e-05,
+          "scaler_scale_mae": 4.8739916912971665e-05,
+          "params_fit": {
+            "const": -0.006272916976748953,
+            "off_f5_long_ratio": 0.0020576852154061387,
+            "off_f5_30d_ratio": 0.017505618884175532,
+            "park_factor": 0.03111885074257259,
+            "is_home": 0.04239695481302826
+          },
+          "params_frozen": {
+            "const": -0.006240442630378525,
+            "off_f5_long_ratio": 0.008510486621209647,
+            "off_f5_30d_ratio": 0.011041103332007935,
+            "park_factor": 0.028294712649182097,
+            "is_home": 0.0312790285906983
+          }
+        },
+        "core_f5": {
+          "param_mae": 0.03609478020761177,
+          "param_max_abs": 0.11859311534639584,
+          "param_norm_mae": 6.421075132819801,
+          "param_corr": 0.44668299358535124,
+          "scaler_mean_mae": 0.0015313857007469983,
+          "scaler_scale_mae": 0.00013778832982440123,
+          "params_fit": {
+            "const": -0.022528865723107697,
+            "off_f5_long_ratio": 0.0009291763598523516,
+            "off_f5_30d_ratio": 0.02158485256758499,
+            "sp_kbb_long": -0.11372189054210949,
+            "sp_kbb_recent5": -0.03402588888146696,
+            "sp_hr_long": 0.029180271892933294,
+            "sp_hr_recent5": -0.010089965369614786,
+            "sp_h_long": 0.009656419850059715,
+            "sp_h_recent5": -0.056075120538825594,
+            "sp_ip_long": 0.04568961174143358,
+            "sp_ip_recent5": -0.0960023842201175,
+            "opp_bp_ra9_long_rel": 0.0479100794285321,
+            "opp_bp_ra9_30d_rel": -0.024017642020082282,
+            "park_factor": 0.030998309455972213,
+            "is_home": 0.03384085411605835
+          },
+          "params_frozen": {
+            "const": -0.0029674509531474875,
+            "off_f5_long_ratio": 0.006272303432422266,
+            "off_f5_30d_ratio": 0.006348611363650276,
+            "sp_kbb_long": 0.00487122480428635,
+            "sp_kbb_recent5": 0.0049566765682059165,
+            "sp_hr_long": 0.002168511052806235,
+            "sp_hr_recent5": 0.003922934688358844,
+            "sp_h_long": -0.0018805501989487133,
+            "sp_h_recent5": -3.1408473740499745e-05,
+            "sp_ip_long": 0.00536575750510001,
+            "sp_ip_recent5": 0.003465048946521267,
+            "opp_bp_ra9_long_rel": 0.020130729665947342,
+            "opp_bp_ra9_30d_rel": 0.006828964778174513,
+            "park_factor": 0.01322385920685468,
+            "is_home": 0.014932652069540978
+          }
+        },
+        "simple_late": {
+          "param_mae": 0.020214566370199402,
+          "param_max_abs": 0.0570344578290506,
+          "param_norm_mae": 1.7348482783929515,
+          "param_corr": 0.8294787544101746,
+          "scaler_mean_mae": 0.00024595108726455095,
+          "scaler_scale_mae": 0.00016401033340235002,
+          "params_fit": {
+            "const": 0.048590011050112465,
+            "off_late_long_ratio": 0.03435148235840258,
+            "off_late_30d_ratio": -0.012976087610098162,
+            "park_factor": 0.023081813229408634,
+            "is_home": -0.07871426186034786
+          },
+          "params_frozen": {
+            "const": -0.008444446778938141,
+            "off_late_long_ratio": 0.02323617859170185,
+            "off_late_30d_ratio": -0.00685845754130136,
+            "park_factor": 0.021296031140491164,
+            "is_home": -0.053694603762816456
+          }
+        },
+        "core_late": {
+          "param_mae": 0.03330703437352663,
+          "param_max_abs": 0.07480884238940541,
+          "param_norm_mae": 6.661406874705325,
+          "param_corr": 0.6344346889017269,
+          "scaler_mean_mae": 0.0027728699229672,
+          "scaler_scale_mae": 0.00029876478543739045,
+          "params_fit": {
+            "const": 0.04814689521259555,
+            "off_late_long_ratio": 0.0310137233768783,
+            "off_late_30d_ratio": -0.01013285873040696,
+            "opp_bp_ra9_long_rel": 0.04488811942049393,
+            "opp_bp_ra9_30d_rel": -0.013320845910819664,
+            "sp_ip_long": -0.030070496327478134,
+            "sp_ip_recent5": 0.025921283892656004,
+            "park_factor": 0.021875397605794447,
+            "is_home": -0.07537562481083755
+          },
+          "params_frozen": {
+            "const": -7.572232220934737e-05,
+            "off_late_long_ratio": 0.0002337207341187566,
+            "off_late_30d_ratio": 3.9543379423747525e-05,
+            "opp_bp_ra9_long_rel": 0.00011012227675079146,
+            "opp_bp_ra9_30d_rel": 9.344301426448374e-05,
+            "sp_ip_long": 0.00019431857921315275,
+            "sp_ip_recent5": 0.00023091438499587798,
+            "park_factor": 0.00024342340403401373,
+            "is_home": -0.0005667824214321434
+          }
+        }
+      }
+    }
+  ],
+  "interpretation": "If SELF_STARTER materially dominates OPPONENT_STARTER in frozen coefficient parity as well as 2026 OOS reproduction, treat self-starter mapping as recovered historical implementation behavior despite README design intent. Exact production promotion still requires a reproducible daily builder and parity gate."
+}
