@@ -1,0 +1,50 @@
+name: Audit Mu v1.2 Core-Side Ablation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/audit_mu_v1_2_core_side_ablation.py"
+      - ".github/workflows/audit-mu-v1-2-core-side-ablation.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-mu-v1-2-core-side-ablation
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Restore PBP cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run core-side semantic ablation
+        run: python scripts/audit_mu_v1_2_core_side_ablation.py
+      - name: Commit diagnostic state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/mu_v1_2_core_side_ablation.json
+          if [ -z "$(git status --porcelain -- state/mu_v1_2_core_side_ablation.json)" ]; then
+            echo "No diagnostic changes."
+            exit 0
+          fi
+          git commit -m "research: record mu-v1.2 core-side ablation"
+          git pull --rebase origin main
+          git push
