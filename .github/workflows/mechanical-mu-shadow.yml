@@ -8,6 +8,7 @@ on:
       - "scripts/run_mu_v1_2_pipeline.py"
       - "scripts/audit_mu_v1_2_fulltrain.py"
       - "scripts/forensic_mu_v1_2_shrink.py"
+      - "scripts/audit_mu_v1_2_crossseason.py"
       - "research/mu-v1.2/model_spec.json"
       - "state/mechanical_mu_input.json"
       - ".github/workflows/mechanical-mu-shadow.yml"
@@ -52,6 +53,9 @@ jobs:
       - name: Audit documented final training window
         run: python scripts/audit_mu_v1_2_fulltrain.py
 
+      - name: Audit cross-season history hypothesis
+        run: python scripts/audit_mu_v1_2_crossseason.py
+
       - name: Search simple shrink hypotheses
         run: python scripts/forensic_mu_v1_2_shrink.py
 
@@ -78,11 +82,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json state/mechanical_mu_shrink_forensics.json
+          git add state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json state/mechanical_mu_crossseason_audit.json state/mechanical_mu_shrink_forensics.json
           if [ -f state/mechanical_mu_shadow.json ]; then
             git add state/mechanical_mu_shadow.json
           fi
-          if [ -z "$(git status --porcelain -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json state/mechanical_mu_shrink_forensics.json state/mechanical_mu_shadow.json)" ]; then
+          if [ -z "$(git status --porcelain -- state/mechanical_mu_pipeline_audit.json state/mechanical_mu_fulltrain_audit.json state/mechanical_mu_crossseason_audit.json state/mechanical_mu_shrink_forensics.json state/mechanical_mu_shadow.json)" ]; then
             echo "No state changes."
             exit 0
           fi
