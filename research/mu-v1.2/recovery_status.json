@@ -1,0 +1,52 @@
+{
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.1",
+  "status": "PARTIALLY_RECOVERED_DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "confirmed_or_strongly_supported": {
+    "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
+    "starter_mapping": {
+      "recovered_semantics": "SELF_TEAM_STARTER",
+      "confidence": "VERY_HIGH_FORENSIC_SUPPORT",
+      "note": "Historical README said opposing starter, but recovered coefficient parity and 2026 OOS behavior strongly favor a starter-only self-team mapping implementation bug. Whole-row inversion is rejected by the row-semantics diagnostic."
+    },
+    "starter_rates": {
+      "denominator": "all BF/PA",
+      "kbb": "K - BB - HBP",
+      "long_shrink": "league prior with 150 BF pseudo-count",
+      "recent5_shrink": "shrunk long prior with 150 BF pseudo-count"
+    },
+    "starter_ip": {
+      "long_shrink": "league prior with 5 starts pseudo-count",
+      "recent5_shrink": "shrunk long prior with 5 starts pseudo-count"
+    },
+    "bullpen_long": {
+      "definition": "inning 6+ pitching",
+      "scope": "season reset",
+      "pseudo_outs": 360,
+      "mapping": "opponent bullpen",
+      "moment_parity": "near-exact"
+    },
+    "ridge_penalty_convention": "mean-loss alpha, equivalent implementation effective alpha = declared alpha * N"
+  },
+  "still_unresolved": {
+    "late_scoring_semantics": {
+      "oos_aggregate_best": "innings 6-9 PA runs",
+      "frozen_coefficient_parity_best": "innings 6+ PA runs",
+      "note": "Do not choose solely by 2026 aggregate OOS fit; coefficient parity currently favors 6+ while aggregate OOS metrics favor 6-9."
+    },
+    "bullpen_30d_relative": {
+      "best_plausible_variant": "recent over league30 with team-long prior",
+      "remaining_mean_gap": 0.014404984306419455,
+      "note": "Scale is close but frozen mean remains materially lower; exact relative/centering semantic is not recovered."
+    },
+    "exact_feature_row_parity": "not yet demonstrated for every feature and every development/OOS row"
+  },
+  "key_diagnostics": {
+    "row_semantics": "state/mu_v1_2_row_semantics.json",
+    "coefficient_parity": "state/mu_v1_2_coefficient_parity.json",
+    "bp30_relative": "state/mu_v1_2_bp30_relative_semantics.json",
+    "late_offset": "state/mu_v1_2_late_offset_semantics.json",
+    "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
+  },
+  "promotion_gate": "Keep Mechanical Mu Shadow UNAVAILABLE until unresolved semantics and exact row-level reproducibility are resolved."
+}
