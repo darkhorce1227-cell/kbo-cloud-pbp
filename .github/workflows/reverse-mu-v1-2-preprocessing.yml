@@ -1,0 +1,68 @@
+name: Reverse Mu v1.2 Preprocessing
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/reverse_mu_v1_2_preprocessing.py"
+      - ".github/workflows/reverse-mu-v1-2-preprocessing.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reverse-mu-v1-2-preprocessing
+  cancel-in-progress: false
+
+jobs:
+  reverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore PBP cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu
+          restore-keys: |
+            kbo-history-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Reverse engineer preprocessing priors
+        run: python scripts/reverse_mu_v1_2_preprocessing.py
+
+      - name: Save PBP cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-reverse-mu-${{ github.run_id }}
+
+      - name: Commit diagnostic state
+        if: success()
+        shell: bash
+        run: |
+          if [ ! -f state/mu_v1_2_preprocessing_reverse.json ]; then
+            echo "Diagnostic file missing"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f state/mu_v1_2_preprocessing_reverse.json
+          if git diff --cached --quiet; then
+            echo "No diagnostic changes."
+            exit 0
+          fi
+          git commit -m "research: record mu-v1.2 preprocessing reverse diagnostic"
+          git push
