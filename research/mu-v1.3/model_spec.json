@@ -1,0 +1,192 @@
+{
+  "version": "mu-v1.3-research",
+  "status": "RESEARCH_CANDIDATE_NOT_CHAMPION",
+  "preprocessing": "research/mu-v1.3/preprocessing.json",
+  "train": "2024-05-01 through 2025-12-31",
+  "alphas": {
+    "f5": 0.54,
+    "full": 0.322
+  },
+  "gamma": {
+    "f5": 5.0,
+    "full": 6.0
+  },
+  "components": {
+    "simple_f5": {
+      "features": [
+        "off_f5_long_ratio",
+        "off_f5_30d_ratio",
+        "park_factor",
+        "is_home"
+      ],
+      "target": "runs_f5",
+      "offset": "league_f5_30d",
+      "ridge_alpha": 1.0,
+      "scaler_mean": {
+        "off_f5_long_ratio": 1.0000459085157536,
+        "off_f5_30d_ratio": 1.0026102148337317,
+        "park_factor": 1.0012064684661115,
+        "is_home": 0.5
+      },
+      "scaler_scale": {
+        "off_f5_long_ratio": 0.07460963438986488,
+        "off_f5_30d_ratio": 0.1637007518581782,
+        "park_factor": 0.05060880946953287,
+        "is_home": 0.5
+      },
+      "params": {
+        "const": -0.006355673232320291,
+        "off_f5_long_ratio": -0.00075188632743645,
+        "off_f5_30d_ratio": 0.01822674953067594,
+        "park_factor": 0.03378435053679491,
+        "is_home": 0.04235321118560737
+      }
+    },
+    "core_f5": {
+      "features": [
+        "off_f5_long_ratio",
+        "off_f5_30d_ratio",
+        "sp_kbb_long",
+        "sp_kbb_recent5",
+        "sp_hr_long",
+        "sp_hr_recent5",
+        "sp_h_long",
+        "sp_h_recent5",
+        "sp_ip_long",
+        "sp_ip_recent5",
+        "opp_bp_ra9_long_rel",
+        "opp_bp_ra9_30d_rel",
+        "park_factor",
+        "is_home"
+      ],
+      "target": "runs_f5",
+      "offset": "league_f5_30d",
+      "ridge_alpha": 5.0,
+      "scaler_mean": {
+        "off_f5_long_ratio": 1.0000459085157536,
+        "off_f5_30d_ratio": 1.0026102148337317,
+        "sp_kbb_long": 0.11956970969991049,
+        "sp_kbb_recent5": 0.1167780322055231,
+        "sp_hr_long": 0.023809475776317833,
+        "sp_hr_recent5": 0.023793188931428743,
+        "sp_h_long": 0.23697571562393263,
+        "sp_h_recent5": 0.23784512562309235,
+        "sp_ip_long": 5.194536389841207,
+        "sp_ip_recent5": 5.152272254581087,
+        "opp_bp_ra9_long_rel": 0.999868941208808,
+        "opp_bp_ra9_30d_rel": 0.9997790451961509,
+        "park_factor": 1.0012064684661115,
+        "is_home": 0.5
+      },
+      "scaler_scale": {
+        "off_f5_long_ratio": 0.07460963438986488,
+        "off_f5_30d_ratio": 0.1637007518581782,
+        "sp_kbb_long": 0.03876254413320688,
+        "sp_kbb_recent5": 0.05148685506475072,
+        "sp_hr_long": 0.006075636721526495,
+        "sp_hr_recent5": 0.009069042655409507,
+        "sp_h_long": 0.01797693149130683,
+        "sp_h_recent5": 0.026896489518287367,
+        "sp_ip_long": 0.5151362287730197,
+        "sp_ip_recent5": 0.615974071348448,
+        "opp_bp_ra9_long_rel": 0.06645267327963944,
+        "opp_bp_ra9_30d_rel": 0.21001369253822172,
+        "park_factor": 0.05060880946953287,
+        "is_home": 0.5
+      },
+      "params": {
+        "const": -0.02265486238774918,
+        "off_f5_long_ratio": -0.0023986941538794403,
+        "off_f5_30d_ratio": 0.021935385849799465,
+        "sp_kbb_long": -0.13371394091149846,
+        "sp_kbb_recent5": -0.015296801058763047,
+        "sp_hr_long": 0.026020855314453552,
+        "sp_hr_recent5": -0.009671764646451489,
+        "sp_h_long": -0.019142725046910447,
+        "sp_h_recent5": -0.03722301084117636,
+        "sp_ip_long": 0.005776301442618046,
+        "sp_ip_recent5": -0.06281722450389253,
+        "opp_bp_ra9_long_rel": 0.0452198510605636,
+        "opp_bp_ra9_30d_rel": -0.016821888493762437,
+        "park_factor": 0.03197026673849353,
+        "is_home": 0.03470451080747223
+      }
+    },
+    "simple_late": {
+      "features": [
+        "off_late_long_ratio",
+        "off_late_30d_ratio",
+        "park_factor",
+        "is_home"
+      ],
+      "target": "runs_late",
+      "offset": "league_late_30d",
+      "ridge_alpha": 1.0,
+      "scaler_mean": {
+        "off_late_long_ratio": 1.0006732120408612,
+        "off_late_30d_ratio": 1.0011160529021592,
+        "park_factor": 1.0012064684661115,
+        "is_home": 0.5
+      },
+      "scaler_scale": {
+        "off_late_long_ratio": 0.07112838818641952,
+        "off_late_30d_ratio": 0.16639365568836523,
+        "park_factor": 0.05060880946953287,
+        "is_home": 0.5
+      },
+      "params": {
+        "const": -0.005224749539881343,
+        "off_late_long_ratio": 0.03768755310395561,
+        "off_late_30d_ratio": -0.01737391025744777,
+        "park_factor": 0.024793773352156483,
+        "is_home": -0.07880188422058107
+      }
+    },
+    "core_late": {
+      "features": [
+        "off_late_long_ratio",
+        "off_late_30d_ratio",
+        "opp_bp_ra9_long_rel",
+        "opp_bp_ra9_30d_rel",
+        "sp_ip_long",
+        "sp_ip_recent5",
+        "park_factor",
+        "is_home"
+      ],
+      "target": "runs_late",
+      "offset": "league_late_30d",
+      "ridge_alpha": 300.0,
+      "scaler_mean": {
+        "off_late_long_ratio": 1.0006732120408612,
+        "off_late_30d_ratio": 1.0011160529021592,
+        "opp_bp_ra9_long_rel": 0.999868941208808,
+        "opp_bp_ra9_30d_rel": 0.9997790451961509,
+        "sp_ip_long": 5.194536389841207,
+        "sp_ip_recent5": 5.152272254581087,
+        "park_factor": 1.0012064684661115,
+        "is_home": 0.5
+      },
+      "scaler_scale": {
+        "off_late_long_ratio": 0.07112838818641952,
+        "off_late_30d_ratio": 0.16639365568836523,
+        "opp_bp_ra9_long_rel": 0.06645267327963944,
+        "opp_bp_ra9_30d_rel": 0.21001369253822172,
+        "sp_ip_long": 0.5151362287730197,
+        "sp_ip_recent5": 0.615974071348448,
+        "park_factor": 0.05060880946953287,
+        "is_home": 0.5
+      },
+      "params": {
+        "const": -0.005222585032935568,
+        "off_late_long_ratio": 0.034521148746967406,
+        "off_late_30d_ratio": -0.015076516463729293,
+        "opp_bp_ra9_long_rel": 0.019241054815050042,
+        "opp_bp_ra9_30d_rel": 0.008042097268553535,
+        "sp_ip_long": -0.024609664673909237,
+        "sp_ip_recent5": 0.022484730924224254,
+        "park_factor": 0.023333279361611586,
+        "is_home": -0.07490188455726626
+      }
+    }
+  }
+}

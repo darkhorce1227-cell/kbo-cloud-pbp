@@ -1,0 +1,27 @@
+{
+  "version": "mu-v1.3-research",
+  "train_team_games": 2628,
+  "train_games": 1314,
+  "oos_team_games": 1368,
+  "oos_games": 684,
+  "oos_window": "2026-01-01 through 2026-10-01",
+  "metrics": {
+    "f5": {
+      "team_score_mae": 2.045865148042133,
+      "nb_nll": 2.2566566150395495,
+      "wdl_brier_mean3": 0.21636673725098238,
+      "wdl_logloss": 1.07893642940438,
+      "decided_side_hit": 0.5704584040747029,
+      "games": 684
+    },
+    "full": {
+      "team_score_mae": 2.915379053142354,
+      "nb_nll": 2.6744806583322656,
+      "wdl_brier_mean3": 0.18758624652081418,
+      "wdl_logloss": 0.8955197499127803,
+      "decided_side_hit": 0.5733532934131736,
+      "games": 684
+    }
+  },
+  "comparison_note": "No 2026 outcome was used to choose preprocessing, ridge alpha, gamma, or NB alpha. v1.3 is a new reproducible candidate, not an exact reconstruction of v1.2."
+}
