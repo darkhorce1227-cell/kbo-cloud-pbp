@@ -1,0 +1,39 @@
+{
+  "version": "mu-v1.3-research",
+  "status": "PREPROCESSING_FROZEN_BEFORE_2026_OOS",
+  "history_start": "2024-01-01",
+  "train_start": "2024-05-01",
+  "train_end": "2025-12-31",
+  "oos_end": "2026-10-01",
+  "carry_history_across_seasons": true,
+  "recent_days": 30,
+  "starter_recent_starts": 5,
+  "shrink": {
+    "off_f5_long_pseudo_games": 25.0,
+    "off_f5_30d_pseudo_games": 6.0,
+    "off_late_long_pseudo_games": 40.0,
+    "off_late_30d_pseudo_games": 6.0,
+    "sp_kbb_long_pseudo_pa": 150.0,
+    "sp_h_long_pseudo_pa": 200.0,
+    "sp_hr_long_pseudo_pa": 175.0,
+    "sp_ip_long_pseudo_starts": 4.0,
+    "sp_kbb_recent5_pseudo_pa": 50.0,
+    "sp_h_recent5_pseudo_pa": 70.0,
+    "sp_hr_recent5_pseudo_pa": 75.0,
+    "sp_ip_recent5_pseudo_starts": 2.0,
+    "bp_long_pseudo_outs": 390.0,
+    "bp_30d_pseudo_outs": 30.0,
+    "park_pseudo_games": 20.0
+  },
+  "model": {
+    "simple_f5_ridge_alpha": 1.0,
+    "core_f5_ridge_alpha": 5.0,
+    "simple_late_ridge_alpha": 1.0,
+    "core_late_ridge_alpha": 300.0,
+    "f5_gamma": 5.0,
+    "full_gamma": 6.0,
+    "f5_nb_alpha": 0.54,
+    "full_nb_alpha": 0.322
+  },
+  "selection_note": "Architecture and ridge/gamma/NB settings are inherited from mu-v1.2. Shrink constants are fixed from 2024-2025 forensic reconstruction only. No 2026 outcomes may be used to choose or retune them."
+}
