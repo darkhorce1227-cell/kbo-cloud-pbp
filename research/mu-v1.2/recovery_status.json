@@ -1,7 +1,14 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.1",
-  "status": "PARTIALLY_RECOVERED_DIAGNOSTIC_ONLY",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.2",
+  "status": "PARTIALLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
+  "active_challenger": {
+    "model": "research/mu-v1.2/recovered_challenger.json",
+    "runner": "scripts/mu_v1_2_recovered_challenger.py",
+    "role": "RESEARCH_CHALLENGER",
+    "use_in_daily_analysis": true,
+    "use_as_official_mechanical_shadow": false
+  },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
     "starter_mapping": {
@@ -28,11 +35,16 @@
     },
     "ridge_penalty_convention": "mean-loss alpha, equivalent implementation effective alpha = declared alpha * N"
   },
+  "challenger_working_semantics": {
+    "late_offense_features": "FULL_MINUS_F5",
+    "league_late_30d_offset": "INNINGS_6_TO_9_PA_RUNS",
+    "bullpen_30d_relative": "recent over league30 with team-long prior"
+  },
   "still_unresolved": {
     "late_scoring_semantics": {
       "oos_aggregate_best": "innings 6-9 PA runs",
       "frozen_coefficient_parity_best": "innings 6+ PA runs",
-      "note": "Do not choose solely by 2026 aggregate OOS fit; coefficient parity currently favors 6+ while aggregate OOS metrics favor 6-9."
+      "note": "Challenger temporarily uses 6-9 for league_late_30d offset because it best reproduces aggregate 2026 OOS. This is not an exact historical-semantics claim."
     },
     "bullpen_30d_relative": {
       "best_plausible_variant": "recent over league30 with team-long prior",
@@ -48,5 +60,5 @@
     "late_offset": "state/mu_v1_2_late_offset_semantics.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Keep Mechanical Mu Shadow UNAVAILABLE until unresolved semantics and exact row-level reproducibility are resolved."
+  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until unresolved semantics and exact row-level reproducibility are resolved."
 }
