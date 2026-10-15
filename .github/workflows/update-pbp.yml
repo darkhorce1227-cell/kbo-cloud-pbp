@@ -7,6 +7,7 @@ on:
       - "cloud/preflight.py"
       - "cloud/build_postgame_score_audit.py"
       - "cloud/update_pbp_forward.py"
+      - "cloud/update_pbp_integrity.py"
       - "cloud/update_pbp_guarded.py"
       - "cloud/update_pbp_resilient.py"
       - "state/manual-trigger.txt"
@@ -87,7 +88,7 @@ jobs:
           if [ "${{ inputs.force }}" = "true" ] || [ "${{ steps.gate.outputs.audit_backfill }}" = "true" ]; then
             ARGS+=(--force)
           fi
-          python cloud/update_pbp_forward.py "${ARGS[@]}"
+          python cloud/update_pbp_integrity.py "${ARGS[@]}"
 
       - name: Build binary-derived postgame score audit
         if: steps.gate.outputs.skip != 'true'
