@@ -1,0 +1,614 @@
+{
+  "version": "mu-v1.2-30d-longprior-refine-v0.2",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "formula": "calendar30 pooled team-game mean shrunk toward all-pregame-history league mean with P pseudo team-games; offseason empty-30D fallback uses most recent 300 pregame team-rows",
+  "scan": {
+    "min": 0,
+    "max": 40,
+    "step": 1
+  },
+  "best_f5": {
+    "pseudo_team_games": 15,
+    "simple_f5_param_norm_mae": 0.19783936717396472,
+    "simple_f5_param_corr": 0.9774397423014632,
+    "simple_late_param_norm_mae": 0.07004460923770174,
+    "simple_late_param_corr": 0.9994126128351032,
+    "simple_sum_param_norm": 0.26788397641166645
+  },
+  "best_late": {
+    "pseudo_team_games": 17,
+    "simple_f5_param_norm_mae": 0.20329102328852344,
+    "simple_f5_param_corr": 0.9778247860380256,
+    "simple_late_param_norm_mae": 0.06169746420815849,
+    "simple_late_param_corr": 0.999483744948866,
+    "simple_sum_param_norm": 0.2649884874966819
+  },
+  "best_combined": {
+    "pseudo_team_games": 17,
+    "simple_f5_param_norm_mae": 0.20329102328852344,
+    "simple_f5_param_corr": 0.9778247860380256,
+    "simple_late_param_norm_mae": 0.06169746420815849,
+    "simple_late_param_corr": 0.999483744948866,
+    "simple_sum_param_norm": 0.2649884874966819
+  },
+  "top10_f5": [
+    {
+      "pseudo_team_games": 15,
+      "simple_f5_param_norm_mae": 0.19783936717396472,
+      "simple_f5_param_corr": 0.9774397423014632,
+      "simple_late_param_norm_mae": 0.07004460923770174,
+      "simple_late_param_corr": 0.9994126128351032,
+      "simple_sum_param_norm": 0.26788397641166645
+    },
+    {
+      "pseudo_team_games": 14,
+      "simple_f5_param_norm_mae": 0.19796133807147367,
+      "simple_f5_param_corr": 0.9772408638880842,
+      "simple_late_param_norm_mae": 0.07552245719100235,
+      "simple_late_param_corr": 0.9993609782181961,
+      "simple_sum_param_norm": 0.273483795262476
+    },
+    {
+      "pseudo_team_games": 16,
+      "simple_f5_param_norm_mae": 0.20054619199273752,
+      "simple_f5_param_corr": 0.9776344550123653,
+      "simple_late_param_norm_mae": 0.06462984450182409,
+      "simple_late_param_corr": 0.9994534175024555,
+      "simple_sum_param_norm": 0.2651760364945616
+    },
+    {
+      "pseudo_team_games": 13,
+      "simple_f5_param_norm_mae": 0.2006843615562786,
+      "simple_f5_param_corr": 0.9770380943802959,
+      "simple_late_param_norm_mae": 0.08106485609716498,
+      "simple_late_param_corr": 0.9992981478403664,
+      "simple_sum_param_norm": 0.2817492176534436
+    },
+    {
+      "pseudo_team_games": 17,
+      "simple_f5_param_norm_mae": 0.20329102328852344,
+      "simple_f5_param_corr": 0.9778247860380256,
+      "simple_late_param_norm_mae": 0.06169746420815849,
+      "simple_late_param_corr": 0.999483744948866,
+      "simple_sum_param_norm": 0.2649884874966819
+    },
+    {
+      "pseudo_team_games": 12,
+      "simple_f5_param_norm_mae": 0.20335408744820152,
+      "simple_f5_param_corr": 0.9768317781481857,
+      "simple_late_param_norm_mae": 0.08667333605531889,
+      "simple_late_param_corr": 0.9992237421532756,
+      "simple_sum_param_norm": 0.2900274235035204
+    },
+    {
+      "pseudo_team_games": 11,
+      "simple_f5_param_norm_mae": 0.20596011895380006,
+      "simple_f5_param_corr": 0.9766223428293223,
+      "simple_late_param_norm_mae": 0.09234949482827515,
+      "simple_late_param_corr": 0.9991373671553782,
+      "simple_sum_param_norm": 0.2983096137820752
+    },
+    {
+      "pseudo_team_games": 18,
+      "simple_f5_param_norm_mae": 0.20606740694384276,
+      "simple_f5_param_corr": 0.9780105687878826,
+      "simple_late_param_norm_mae": 0.06657079683398312,
+      "simple_late_param_corr": 0.9995039354239835,
+      "simple_sum_param_norm": 0.2726382037778259
+    },
+    {
+      "pseudo_team_games": 10,
+      "simple_f5_param_norm_mae": 0.20849014570815427,
+      "simple_f5_param_corr": 0.9764103158009065,
+      "simple_late_param_norm_mae": 0.09809500430415354,
+      "simple_late_param_corr": 0.9990386135966528,
+      "simple_sum_param_norm": 0.3065851500123078
+    },
+    {
+      "pseudo_team_games": 19,
+      "simple_f5_param_norm_mae": 0.20886974116553475,
+      "simple_f5_param_corr": 0.9781916783701042,
+      "simple_late_param_norm_mae": 0.0713949009779588,
+      "simple_late_param_corr": 0.9995143172599783,
+      "simple_sum_param_norm": 0.28026464214349356
+    }
+  ],
+  "top10_late": [
+    {
+      "pseudo_team_games": 17,
+      "simple_f5_param_norm_mae": 0.20329102328852344,
+      "simple_f5_param_corr": 0.9778247860380256,
+      "simple_late_param_norm_mae": 0.06169746420815849,
+      "simple_late_param_corr": 0.999483744948866,
+      "simple_sum_param_norm": 0.2649884874966819
+    },
+    {
+      "pseudo_team_games": 16,
+      "simple_f5_param_norm_mae": 0.20054619199273752,
+      "simple_f5_param_corr": 0.9776344550123653,
+      "simple_late_param_norm_mae": 0.06462984450182409,
+      "simple_late_param_corr": 0.9994534175024555,
+      "simple_sum_param_norm": 0.2651760364945616
+    },
+    {
+      "pseudo_team_games": 18,
+      "simple_f5_param_norm_mae": 0.20606740694384276,
+      "simple_f5_param_corr": 0.9780105687878826,
+      "simple_late_param_norm_mae": 0.06657079683398312,
+      "simple_late_param_corr": 0.9995039354239835,
+      "simple_sum_param_norm": 0.2726382037778259
+    },
+    {
+      "pseudo_team_games": 15,
+      "simple_f5_param_norm_mae": 0.19783936717396472,
+      "simple_f5_param_corr": 0.9774397423014632,
+      "simple_late_param_norm_mae": 0.07004460923770174,
+      "simple_late_param_corr": 0.9994126128351032,
+      "simple_sum_param_norm": 0.26788397641166645
+    },
+    {
+      "pseudo_team_games": 19,
+      "simple_f5_param_norm_mae": 0.20886974116553475,
+      "simple_f5_param_corr": 0.9781916783701042,
+      "simple_late_param_norm_mae": 0.0713949009779588,
+      "simple_late_param_corr": 0.9995143172599783,
+      "simple_sum_param_norm": 0.28026464214349356
+    },
+    {
+      "pseudo_team_games": 14,
+      "simple_f5_param_norm_mae": 0.19796133807147367,
+      "simple_f5_param_corr": 0.9772408638880842,
+      "simple_late_param_norm_mae": 0.07552245719100235,
+      "simple_late_param_corr": 0.9993609782181961,
+      "simple_sum_param_norm": 0.273483795262476
+    },
+    {
+      "pseudo_team_games": 20,
+      "simple_f5_param_norm_mae": 0.21169314438776685,
+      "simple_f5_param_corr": 0.9783680251510755,
+      "simple_late_param_norm_mae": 0.07617064262703954,
+      "simple_late_param_corr": 0.9995152073965876,
+      "simple_sum_param_norm": 0.2878637870148064
+    },
+    {
+      "pseudo_team_games": 21,
+      "simple_f5_param_norm_mae": 0.21453334731185741,
+      "simple_f5_param_corr": 0.9785395493406206,
+      "simple_late_param_norm_mae": 0.08089886459340134,
+      "simple_late_param_corr": 0.9995069118740786,
+      "simple_sum_param_norm": 0.29543221190525876
+    },
+    {
+      "pseudo_team_games": 13,
+      "simple_f5_param_norm_mae": 0.2006843615562786,
+      "simple_f5_param_corr": 0.9770380943802959,
+      "simple_late_param_norm_mae": 0.08106485609716498,
+      "simple_late_param_corr": 0.9992981478403664,
+      "simple_sum_param_norm": 0.2817492176534436
+    },
+    {
+      "pseudo_team_games": 22,
+      "simple_f5_param_norm_mae": 0.21738660401604132,
+      "simple_f5_param_corr": 0.9787062164216815,
+      "simple_late_param_norm_mae": 0.08558038740917918,
+      "simple_late_param_corr": 0.9994897262974907,
+      "simple_sum_param_norm": 0.3029669914252205
+    }
+  ],
+  "top10_combined": [
+    {
+      "pseudo_team_games": 17,
+      "simple_f5_param_norm_mae": 0.20329102328852344,
+      "simple_f5_param_corr": 0.9778247860380256,
+      "simple_late_param_norm_mae": 0.06169746420815849,
+      "simple_late_param_corr": 0.999483744948866,
+      "simple_sum_param_norm": 0.2649884874966819
+    },
+    {
+      "pseudo_team_games": 16,
+      "simple_f5_param_norm_mae": 0.20054619199273752,
+      "simple_f5_param_corr": 0.9776344550123653,
+      "simple_late_param_norm_mae": 0.06462984450182409,
+      "simple_late_param_corr": 0.9994534175024555,
+      "simple_sum_param_norm": 0.2651760364945616
+    },
+    {
+      "pseudo_team_games": 15,
+      "simple_f5_param_norm_mae": 0.19783936717396472,
+      "simple_f5_param_corr": 0.9774397423014632,
+      "simple_late_param_norm_mae": 0.07004460923770174,
+      "simple_late_param_corr": 0.9994126128351032,
+      "simple_sum_param_norm": 0.26788397641166645
+    },
+    {
+      "pseudo_team_games": 18,
+      "simple_f5_param_norm_mae": 0.20606740694384276,
+      "simple_f5_param_corr": 0.9780105687878826,
+      "simple_late_param_norm_mae": 0.06657079683398312,
+      "simple_late_param_corr": 0.9995039354239835,
+      "simple_sum_param_norm": 0.2726382037778259
+    },
+    {
+      "pseudo_team_games": 14,
+      "simple_f5_param_norm_mae": 0.19796133807147367,
+      "simple_f5_param_corr": 0.9772408638880842,
+      "simple_late_param_norm_mae": 0.07552245719100235,
+      "simple_late_param_corr": 0.9993609782181961,
+      "simple_sum_param_norm": 0.273483795262476
+    },
+    {
+      "pseudo_team_games": 19,
+      "simple_f5_param_norm_mae": 0.20886974116553475,
+      "simple_f5_param_corr": 0.9781916783701042,
+      "simple_late_param_norm_mae": 0.0713949009779588,
+      "simple_late_param_corr": 0.9995143172599783,
+      "simple_sum_param_norm": 0.28026464214349356
+    },
+    {
+      "pseudo_team_games": 13,
+      "simple_f5_param_norm_mae": 0.2006843615562786,
+      "simple_f5_param_corr": 0.9770380943802959,
+      "simple_late_param_norm_mae": 0.08106485609716498,
+      "simple_late_param_corr": 0.9992981478403664,
+      "simple_sum_param_norm": 0.2817492176534436
+    },
+    {
+      "pseudo_team_games": 20,
+      "simple_f5_param_norm_mae": 0.21169314438776685,
+      "simple_f5_param_corr": 0.9783680251510755,
+      "simple_late_param_norm_mae": 0.07617064262703954,
+      "simple_late_param_corr": 0.9995152073965876,
+      "simple_sum_param_norm": 0.2878637870148064
+    },
+    {
+      "pseudo_team_games": 12,
+      "simple_f5_param_norm_mae": 0.20335408744820152,
+      "simple_f5_param_corr": 0.9768317781481857,
+      "simple_late_param_norm_mae": 0.08667333605531889,
+      "simple_late_param_corr": 0.9992237421532756,
+      "simple_sum_param_norm": 0.2900274235035204
+    },
+    {
+      "pseudo_team_games": 21,
+      "simple_f5_param_norm_mae": 0.21453334731185741,
+      "simple_f5_param_corr": 0.9785395493406206,
+      "simple_late_param_norm_mae": 0.08089886459340134,
+      "simple_late_param_corr": 0.9995069118740786,
+      "simple_sum_param_norm": 0.29543221190525876
+    }
+  ],
+  "all": [
+    {
+      "pseudo_team_games": 0,
+      "simple_f5_param_norm_mae": 0.22382642681488635,
+      "simple_f5_param_corr": 0.974395217195949,
+      "simple_late_param_norm_mae": 0.15981560587203975,
+      "simple_late_param_corr": 0.9972666828751446,
+      "simple_sum_param_norm": 0.3836420326869261
+    },
+    {
+      "pseudo_team_games": 1,
+      "simple_f5_param_norm_mae": 0.2238589647960562,
+      "simple_f5_param_corr": 0.9745587442670524,
+      "simple_late_param_norm_mae": 0.15325557925287486,
+      "simple_late_param_corr": 0.9975161377333563,
+      "simple_sum_param_norm": 0.3771145440489311
+    },
+    {
+      "pseudo_team_games": 2,
+      "simple_f5_param_norm_mae": 0.22331717838950374,
+      "simple_f5_param_corr": 0.9747386200777991,
+      "simple_late_param_norm_mae": 0.14679071684513026,
+      "simple_late_param_corr": 0.997747894876062,
+      "simple_sum_param_norm": 0.370107895234634
+    },
+    {
+      "pseudo_team_games": 3,
+      "simple_f5_param_norm_mae": 0.22232897623873144,
+      "simple_f5_param_corr": 0.9749308285591569,
+      "simple_late_param_norm_mae": 0.14041673235129917,
+      "simple_late_param_corr": 0.9979626494584025,
+      "simple_sum_param_norm": 0.36274570859003064
+    },
+    {
+      "pseudo_team_games": 4,
+      "simple_f5_param_norm_mae": 0.2209874578477254,
+      "simple_f5_param_corr": 0.9751320912041963,
+      "simple_late_param_norm_mae": 0.13413009683286153,
+      "simple_late_param_corr": 0.9981610368253425,
+      "simple_sum_param_norm": 0.3551175546805869
+    },
+    {
+      "pseudo_team_games": 5,
+      "simple_f5_param_norm_mae": 0.21936220978893725,
+      "simple_f5_param_corr": 0.9753397402955691,
+      "simple_late_param_norm_mae": 0.12792778269594765,
+      "simple_late_param_corr": 0.9983436481957687,
+      "simple_sum_param_norm": 0.3472899924848849
+    },
+    {
+      "pseudo_team_games": 6,
+      "simple_f5_param_norm_mae": 0.21750642588393654,
+      "simple_f5_param_corr": 0.9755516044218614,
+      "simple_late_param_norm_mae": 0.1218071107381928,
+      "simple_late_param_corr": 0.9985110401040703,
+      "simple_sum_param_norm": 0.3393135366221293
+    },
+    {
+      "pseudo_team_games": 7,
+      "simple_f5_param_norm_mae": 0.21546155730782415,
+      "simple_f5_param_corr": 0.9757659132584874,
+      "simple_late_param_norm_mae": 0.11576565546460224,
+      "simple_late_param_corr": 0.9986637403619427,
+      "simple_sum_param_norm": 0.3312272127724264
+    },
+    {
+      "pseudo_team_games": 8,
+      "simple_f5_param_norm_mae": 0.21326044388146675,
+      "simple_f5_param_corr": 0.9759812208329776,
+      "simple_late_param_norm_mae": 0.10980118450483727,
+      "simple_late_param_corr": 0.9988022520111399,
+      "simple_sum_param_norm": 0.32306162838630403
+    },
+    {
+      "pseudo_team_games": 9,
+      "simple_f5_param_norm_mae": 0.21092947959083283,
+      "simple_f5_param_corr": 0.9761963443912813,
+      "simple_late_param_norm_mae": 0.10391161859611295,
+      "simple_late_param_corr": 0.998927056078733,
+      "simple_sum_param_norm": 0.3148410981869458
+    },
+    {
+      "pseudo_team_games": 10,
+      "simple_f5_param_norm_mae": 0.20849014570815427,
+      "simple_f5_param_corr": 0.9764103158009065,
+      "simple_late_param_norm_mae": 0.09809500430415354,
+      "simple_late_param_corr": 0.9990386135966528,
+      "simple_sum_param_norm": 0.3065851500123078
+    },
+    {
+      "pseudo_team_games": 11,
+      "simple_f5_param_norm_mae": 0.20596011895380006,
+      "simple_f5_param_corr": 0.9766223428293223,
+      "simple_late_param_norm_mae": 0.09234949482827515,
+      "simple_late_param_corr": 0.9991373671553782,
+      "simple_sum_param_norm": 0.2983096137820752
+    },
+    {
+      "pseudo_team_games": 12,
+      "simple_f5_param_norm_mae": 0.20335408744820152,
+      "simple_f5_param_corr": 0.9768317781481857,
+      "simple_late_param_norm_mae": 0.08667333605531889,
+      "simple_late_param_corr": 0.9992237421532756,
+      "simple_sum_param_norm": 0.2900274235035204
+    },
+    {
+      "pseudo_team_games": 13,
+      "simple_f5_param_norm_mae": 0.2006843615562786,
+      "simple_f5_param_corr": 0.9770380943802959,
+      "simple_late_param_norm_mae": 0.08106485609716498,
+      "simple_late_param_corr": 0.9992981478403664,
+      "simple_sum_param_norm": 0.2817492176534436
+    },
+    {
+      "pseudo_team_games": 14,
+      "simple_f5_param_norm_mae": 0.19796133807147367,
+      "simple_f5_param_corr": 0.9772408638880842,
+      "simple_late_param_norm_mae": 0.07552245719100235,
+      "simple_late_param_corr": 0.9993609782181961,
+      "simple_sum_param_norm": 0.273483795262476
+    },
+    {
+      "pseudo_team_games": 15,
+      "simple_f5_param_norm_mae": 0.19783936717396472,
+      "simple_f5_param_corr": 0.9774397423014632,
+      "simple_late_param_norm_mae": 0.07004460923770174,
+      "simple_late_param_corr": 0.9994126128351032,
+      "simple_sum_param_norm": 0.26788397641166645
+    },
+    {
+      "pseudo_team_games": 16,
+      "simple_f5_param_norm_mae": 0.20054619199273752,
+      "simple_f5_param_corr": 0.9776344550123653,
+      "simple_late_param_norm_mae": 0.06462984450182409,
+      "simple_late_param_corr": 0.9994534175024555,
+      "simple_sum_param_norm": 0.2651760364945616
+    },
+    {
+      "pseudo_team_games": 17,
+      "simple_f5_param_norm_mae": 0.20329102328852344,
+      "simple_f5_param_corr": 0.9778247860380256,
+      "simple_late_param_norm_mae": 0.06169746420815849,
+      "simple_late_param_corr": 0.999483744948866,
+      "simple_sum_param_norm": 0.2649884874966819
+    },
+    {
+      "pseudo_team_games": 18,
+      "simple_f5_param_norm_mae": 0.20606740694384276,
+      "simple_f5_param_corr": 0.9780105687878826,
+      "simple_late_param_norm_mae": 0.06657079683398312,
+      "simple_late_param_corr": 0.9995039354239835,
+      "simple_sum_param_norm": 0.2726382037778259
+    },
+    {
+      "pseudo_team_games": 19,
+      "simple_f5_param_norm_mae": 0.20886974116553475,
+      "simple_f5_param_corr": 0.9781916783701042,
+      "simple_late_param_norm_mae": 0.0713949009779588,
+      "simple_late_param_corr": 0.9995143172599783,
+      "simple_sum_param_norm": 0.28026464214349356
+    },
+    {
+      "pseudo_team_games": 20,
+      "simple_f5_param_norm_mae": 0.21169314438776685,
+      "simple_f5_param_corr": 0.9783680251510755,
+      "simple_late_param_norm_mae": 0.07617064262703954,
+      "simple_late_param_corr": 0.9995152073965876,
+      "simple_sum_param_norm": 0.2878637870148064
+    },
+    {
+      "pseudo_team_games": 21,
+      "simple_f5_param_norm_mae": 0.21453334731185741,
+      "simple_f5_param_corr": 0.9785395493406206,
+      "simple_late_param_norm_mae": 0.08089886459340134,
+      "simple_late_param_corr": 0.9995069118740786,
+      "simple_sum_param_norm": 0.29543221190525876
+    },
+    {
+      "pseudo_team_games": 22,
+      "simple_f5_param_norm_mae": 0.21738660401604132,
+      "simple_f5_param_corr": 0.9787062164216815,
+      "simple_late_param_norm_mae": 0.08558038740917918,
+      "simple_late_param_corr": 0.9994897262974907,
+      "simple_sum_param_norm": 0.3029669914252205
+    },
+    {
+      "pseudo_team_games": 23,
+      "simple_f5_param_norm_mae": 0.22024961826161724,
+      "simple_f5_param_corr": 0.9788680132789156,
+      "simple_late_param_norm_mae": 0.0902160101416928,
+      "simple_late_param_corr": 0.9994639362748277,
+      "simple_sum_param_norm": 0.31046562840331005
+    },
+    {
+      "pseudo_team_games": 24,
+      "simple_f5_param_norm_mae": 0.2231194820056805,
+      "simple_f5_param_corr": 0.979024944908657,
+      "simple_late_param_norm_mae": 0.09480651114907145,
+      "simple_late_param_corr": 0.9994298178313884,
+      "simple_sum_param_norm": 0.31792599315475195
+    },
+    {
+      "pseudo_team_games": 25,
+      "simple_f5_param_norm_mae": 0.22599362379211874,
+      "simple_f5_param_corr": 0.9791770316147422,
+      "simple_late_param_norm_mae": 0.09935264878970157,
+      "simple_late_param_corr": 0.9993876378020818,
+      "simple_sum_param_norm": 0.3253462725818203
+    },
+    {
+      "pseudo_team_games": 26,
+      "simple_f5_param_norm_mae": 0.22886976519250926,
+      "simple_f5_param_corr": 0.9793243066121541,
+      "simple_late_param_norm_mae": 0.10385516209456243,
+      "simple_late_param_corr": 0.9993376542033178,
+      "simple_sum_param_norm": 0.3327249272870717
+    },
+    {
+      "pseudo_team_games": 27,
+      "simple_f5_param_norm_mae": 0.2317458838498196,
+      "simple_f5_param_corr": 0.9794668139744042,
+      "simple_late_param_norm_mae": 0.10831477140861559,
+      "simple_late_param_corr": 0.9992801165858748,
+      "simple_sum_param_norm": 0.3400606552584352
+    },
+    {
+      "pseudo_team_games": 28,
+      "simple_f5_param_norm_mae": 0.23462018197119652,
+      "simple_f5_param_corr": 0.9796046068717305,
+      "simple_late_param_norm_mae": 0.11273217900539627,
+      "simple_late_param_corr": 0.9992152663699942,
+      "simple_sum_param_norm": 0.3473523609765928
+    },
+    {
+      "pseudo_team_games": 29,
+      "simple_f5_param_norm_mae": 0.237491059343597,
+      "simple_f5_param_corr": 0.9797377460562304,
+      "simple_late_param_norm_mae": 0.1171080696777076,
+      "simple_late_param_corr": 0.9991433371638352,
+      "simple_sum_param_norm": 0.3545991290213046
+    },
+    {
+      "pseudo_team_games": 30,
+      "simple_f5_param_norm_mae": 0.24035709012385587,
+      "simple_f5_param_corr": 0.9798662985573459,
+      "simple_late_param_norm_mae": 0.12144311130638583,
+      "simple_late_param_corr": 0.9990645550663152,
+      "simple_sum_param_norm": 0.3618002014302417
+    },
+    {
+      "pseudo_team_games": 31,
+      "simple_f5_param_norm_mae": 0.24321700279467,
+      "simple_f5_param_corr": 0.9799903365571074,
+      "simple_late_param_norm_mae": 0.1257379554085714,
+      "simple_late_param_corr": 0.9989791389552918,
+      "simple_sum_param_norm": 0.3689549582032414
+    },
+    {
+      "pseudo_team_games": 32,
+      "simple_f5_param_norm_mae": 0.24606966278891235,
+      "simple_f5_param_corr": 0.9801099364194134,
+      "simple_late_param_norm_mae": 0.1299932376665447,
+      "simple_late_param_corr": 0.9988873007619533,
+      "simple_sum_param_norm": 0.37606290045545704
+    },
+    {
+      "pseudo_team_games": 33,
+      "simple_f5_param_norm_mae": 0.2489140573731421,
+      "simple_f5_param_corr": 0.9802251778516613,
+      "simple_late_param_norm_mae": 0.134209578437904,
+      "simple_late_param_corr": 0.9987892457322324,
+      "simple_sum_param_norm": 0.3831236358110461
+    },
+    {
+      "pseudo_team_games": 34,
+      "simple_f5_param_norm_mae": 0.2517492824521165,
+      "simple_f5_param_corr": 0.980336143180374,
+      "simple_late_param_norm_mae": 0.13838758324779907,
+      "simple_late_param_corr": 0.9986851726759929,
+      "simple_sum_param_norm": 0.39013686569991557
+    },
+    {
+      "pseudo_team_games": 35,
+      "simple_f5_param_norm_mae": 0.2545745310134455,
+      "simple_f5_param_corr": 0.9804429167252245,
+      "simple_late_param_norm_mae": 0.14252784326373916,
+      "simple_late_param_corr": 0.9985752742046942,
+      "simple_sum_param_norm": 0.39710237427718464
+    },
+    {
+      "pseudo_team_games": 36,
+      "simple_f5_param_norm_mae": 0.2573890829779646,
+      "simple_f5_param_corr": 0.9805455842581798,
+      "simple_late_param_norm_mae": 0.1466309357535431,
+      "simple_late_param_corr": 0.9984597369581801,
+      "simple_sum_param_norm": 0.4040200187315077
+    },
+    {
+      "pseudo_team_games": 37,
+      "simple_f5_param_norm_mae": 0.2601922962593738,
+      "simple_f5_param_corr": 0.9806442325364074,
+      "simple_late_param_norm_mae": 0.1506974245269,
+      "simple_late_param_corr": 0.9983387418212104,
+      "simple_sum_param_norm": 0.4108897207862738
+    },
+    {
+      "pseudo_team_games": 38,
+      "simple_f5_param_norm_mae": 0.26298359886773054,
+      "simple_f5_param_corr": 0.9807389488992145,
+      "simple_late_param_norm_mae": 0.15472786036101596,
+      "simple_late_param_corr": 0.9982124641302973,
+      "simple_sum_param_norm": 0.41771145922874653
+    },
+    {
+      "pseudo_team_games": 39,
+      "simple_f5_param_norm_mae": 0.265762481917046,
+      "simple_f5_param_corr": 0.9808298209206627,
+      "simple_late_param_norm_mae": 0.15872278141084523,
+      "simple_late_param_corr": 0.9980810738713839,
+      "simple_sum_param_norm": 0.4244852633278912
+    },
+    {
+      "pseudo_team_games": 40,
+      "simple_f5_param_norm_mae": 0.26852849341836305,
+      "simple_f5_param_corr": 0.9809169361106544,
+      "simple_late_param_norm_mae": 0.1626827136043638,
+      "simple_late_param_corr": 0.997944735868862,
+      "simple_sum_param_norm": 0.43121120702272686
+    }
+  ],
+  "decision_rule": "Use frozen 2024-2025 simple coefficient parity only. Prefer a stable/simple pseudo-count shared across F5 and late if supported; do not choose by 2026 OOS."
+}
