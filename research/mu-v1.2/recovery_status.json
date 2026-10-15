@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.5",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.6",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "active_challenger": {
@@ -8,7 +8,8 @@
     "version": "mu-v1.2-recovered-challenger-v0.7-bp30-pregame-reliever",
     "role": "RESEARCH_CHALLENGER",
     "use_in_daily_analysis": true,
-    "use_as_official_mechanical_shadow": false
+    "use_as_official_mechanical_shadow": false,
+    "note": "v0.7 remains active. Do not replace documented 30D league offsets with coefficient-fitted game-count windows without direct historical implementation evidence."
   },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
@@ -29,7 +30,7 @@
     },
     "late_scoring_semantics": {
       "training_target": "INNINGS_6_PLUS_PA_RUNS",
-      "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
+      "league_late_30d_offset_target_stat": "INNINGS_6_PLUS_PA_RUNS",
       "confidence": "VERY_HIGH_FORENSIC_SUPPORT",
       "evidence": "2x2 frozen coefficient-parity score 6plus/6plus=0.220774 vs 6to9/6to9=0.269134; crossed definitions=1.437-1.547. Frozen-beta projection toward 6plus under 6plus offset: 0.855 simple, 1.067 core. Development sample has 85 games and 168 runs after the 9th."
     },
@@ -50,7 +51,9 @@
   },
   "challenger_working_semantics": {
     "late_offense_features": "FULL_MINUS_F5",
-    "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
+    "league_f5_offset_window": "DOCUMENTED_CALENDAR_30D_PREGAME",
+    "league_late_offset_window": "DOCUMENTED_CALENDAR_30D_PREGAME",
+    "league_late_30d_offset_target_stat": "INNINGS_6_PLUS_PA_RUNS",
     "bullpen_long": "opponent inning6plus season-reset P360",
     "bullpen_30d_relative": "opponent reliever-stint, strictly pregame calendar30, P39.25 toward shrunk inning6plus team-long absolute RA9, divided by pooled reliever-stint league30 RA9"
   },
@@ -70,7 +73,20 @@
       "leakage_hypothesis": "REJECTED_AS_HISTORICAL_DEFAULT: same-game variants materially damage frozen coefficient parity.",
       "remaining_issue": "Exact historical centering/prior formula remains unknown; active candidate mean is about 0.00857 below frozen despite near-exact scale."
     },
-    "exact_feature_row_parity": "not yet demonstrated for every feature and every development/OOS row"
+    "league_offset_window": {
+      "status": "DOCUMENTATION_VS_COEFFICIENT_FIT_TENSION",
+      "documented_semantics": "Historical README explicitly calls both league F5 and league late environments 30D and says same-date results do not leak.",
+      "coefficient_fit_findings": {
+        "cross_audit": "Among tested coarse windows, last150 league games gives the best frozen simple coefficient parity for both F5 and late.",
+        "refined_f5_best": "124 league games, normalized coefficient MAE 0.194215; nearby local alternatives are close and the optimum is irregular.",
+        "refined_late_best": "235 league games, normalized coefficient MAE 0.062593 and coefficient correlation 0.999514."
+      },
+      "interpretation": "Do not infer that 124/235 are the historical implementation. Their irregular values can absorb remaining preprocessing mismatch, while the only preserved historical documentation explicitly says 30D. Keep calendar-30D Challenger semantics until direct implementation evidence appears or a mechanistic 30D smoothing rule is recovered."
+    },
+    "exact_feature_row_parity": {
+      "status": "UNTESTABLE_FROM_PRESERVED_V1_2_ARTIFACTS",
+      "reason": "Original v1.2 commits preserve README/model_spec/metrics but no historical feature-row or prediction-row dump. Frozen raw PBP exists, but that is insufficient for direct row-vs-row feature equality testing."
+    }
   },
   "key_diagnostics": {
     "row_semantics": "state/mu_v1_2_row_semantics.json",
@@ -83,8 +99,12 @@
     "bp30_prior_source": "state/mu_v1_2_bp30_prior_source.json",
     "bp30_relative_prior": "state/mu_v1_2_bp30_relative_prior.json",
     "bp30_leakage_forensic": "state/mu_v1_2_bp30_leakage_forensic.json",
+    "simple_offset_semantics": "state/mu_v1_2_simple_offset_semantics.json",
+    "simple_offset_cross": "state/mu_v1_2_simple_offset_cross.json",
+    "offset_n_scan": "state/mu_v1_2_offset_n_scan.json",
+    "offset_n_refine": "state/mu_v1_2_offset_n_refine.json",
     "late_offset": "state/mu_v1_2_late_offset_semantics.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until exact BP30 centering/row semantics and exact row-level reproducibility are resolved."
+  "promotion_gate": "Official Mechanical Mu Shadow remains unavailable. Exact row parity cannot be demanded from missing artifacts; promotion instead requires resolving BP30 centering and obtaining a defensible mechanistic explanation for remaining simple-offset/coefficient residuals, then passing prospective live snapshot comparison."
 }
