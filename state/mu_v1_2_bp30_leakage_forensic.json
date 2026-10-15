@@ -1,0 +1,142 @@
+{
+  "version": "mu-v1.2-bp30-leakage-forensic-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "frozen_bp30": {
+    "mean": 0.9860898056018214,
+    "scale": 0.21158719158114866
+  },
+  "published_oos": {
+    "f5": {
+      "mae": 1.930994,
+      "logloss": 0.993735,
+      "side": 0.560272,
+      "mean_mu": 2.668074
+    },
+    "full": {
+      "mae": 2.705128,
+      "logloss": 0.813524,
+      "side": 0.571856,
+      "mean_mu": 5.001728
+    }
+  },
+  "results": [
+    {
+      "variant": "RELIEVER_PREGAME_ABS6_P39_25",
+      "leakage": false,
+      "bp30_moment": {
+        "mean": 0.9775165782137949,
+        "scale": 0.21166317777385316
+      },
+      "coefficient_parity": {
+        "core_f5_norm": 0.1334453418598845,
+        "core_f5_corr": 0.9833677989432086,
+        "core_late_norm": 0.05092390471501366,
+        "core_late_corr": 0.49860206376457816,
+        "core_sum": 0.18436924657489814
+      },
+      "oos_2026": {
+        "f5": {
+          "mae": 1.9484302026398717,
+          "logloss": 0.994635265139799,
+          "side": 0.5500848896434635,
+          "mean_mu": 2.6771296267457716
+        },
+        "full": {
+          "mae": 2.711894452745128,
+          "logloss": 0.8111287078942179,
+          "side": 0.5598802395209581,
+          "mean_mu": 5.047592130538038
+        }
+      }
+    },
+    {
+      "variant": "BASE_V06_INNING6PLUS_P54",
+      "leakage": false,
+      "bp30_moment": {
+        "mean": 1.0004947899082408,
+        "scale": 0.21098790633188075
+      },
+      "coefficient_parity": {
+        "core_f5_norm": 0.14070847615531362,
+        "core_f5_corr": 0.9844159741480182,
+        "core_late_norm": 0.04986204792612418,
+        "core_late_corr": 0.49891635627609116,
+        "core_sum": 0.1905705240814378
+      },
+      "oos_2026": {
+        "f5": {
+          "mae": 1.9487315168260726,
+          "logloss": 0.9950885320926939,
+          "side": 0.5500848896434635,
+          "mean_mu": 2.6771296267457716
+        },
+        "full": {
+          "mae": 2.713037735115712,
+          "logloss": 0.811163986988407,
+          "side": 0.5583832335329342,
+          "mean_mu": 5.047592130538038
+        }
+      }
+    },
+    {
+      "variant": "RELIEVER_SAMEGAME_RELPRIOR_P34_25",
+      "leakage": true,
+      "bp30_moment": {
+        "mean": 0.9799942597959366,
+        "scale": 0.21161590171987046
+      },
+      "coefficient_parity": {
+        "core_f5_norm": 0.272513369100185,
+        "core_f5_corr": 0.8273614025587485,
+        "core_late_norm": 0.07547954550600747,
+        "core_late_corr": 0.44866906711949234,
+        "core_sum": 0.3479929146061924
+      },
+      "oos_2026": {
+        "f5": {
+          "mae": 1.947678872036935,
+          "logloss": 0.9939034053978868,
+          "side": 0.5466893039049237,
+          "mean_mu": 2.6771296267457716
+        },
+        "full": {
+          "mae": 2.7051605991976273,
+          "logloss": 0.8080442002646926,
+          "side": 0.5658682634730539,
+          "mean_mu": 5.047592130538038
+        }
+      }
+    },
+    {
+      "variant": "RELIEVER_SAMEGAME_ABS6_P35",
+      "leakage": true,
+      "bp30_moment": {
+        "mean": 0.9795533042039247,
+        "scale": 0.21162698323288587
+      },
+      "coefficient_parity": {
+        "core_f5_norm": 0.28134172627866594,
+        "core_f5_corr": 0.8128297903350808,
+        "core_late_norm": 0.07447190890497228,
+        "core_late_corr": 0.451740108159519,
+        "core_sum": 0.35581363518363823
+      },
+      "oos_2026": {
+        "f5": {
+          "mae": 1.9475962813769903,
+          "logloss": 0.9938575493922546,
+          "side": 0.5466893039049237,
+          "mean_mu": 2.677129626745772
+        },
+        "full": {
+          "mae": 2.7052145396603864,
+          "logloss": 0.8080696440355161,
+          "side": 0.5658682634730539,
+          "mean_mu": 5.047592130538038
+        }
+      }
+    }
+  ],
+  "decision_rule": "Do not infer leakage from moment fit alone. A leakage candidate must also improve frozen coefficient parity and 2026 OOS reproduction materially before it can be treated as historical implementation evidence."
+}
