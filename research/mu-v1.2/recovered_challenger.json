@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-recovered-challenger-v0.6-historical-parity",
+  "version": "mu-v1.2-recovered-challenger-v0.7-bp30-pregame-reliever",
   "status": "RESEARCH_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "base_model": "research/mu-v1.2/model_spec.json",
@@ -31,12 +31,16 @@
     },
     "bullpen": {
       "mapping": "OPPONENT_BULLPEN",
-      "definition": "INNING_6_PLUS",
+      "long_definition": "INNING_6_PLUS",
       "long_scope": "SEASON_RESET",
-      "recent_window": "CALENDAR_30D",
       "long_pseudo_outs": 360.0,
-      "recent_pseudo_outs": 54.0,
-      "recent_relative_semantics": "RECENT_OVER_LEAGUE30_PRIOR_TEAMLONG_BEST_PLAUSIBLE"
+      "recent_definition": "RELIEVER_STINT",
+      "recent_window": "CALENDAR_30D_STRICTLY_PREGAME",
+      "recent_pseudo_outs": 39.25,
+      "recent_prior": "SHRUNK_INNING6PLUS_TEAM_LONG_ABSOLUTE_RA9",
+      "recent_league_denominator": "POOLED_RELIEVER_STINT_LEAGUE30_RA9",
+      "same_game_inclusion": false,
+      "evidence": "Pregame reliever candidate improves BP30 moment distance, frozen core coefficient parity (core sum 0.18437 vs 0.19057 for v0.6), and 2026 OOS versus inning6plus. Same-game candidates improve some OOS aggregates but destroy coefficient parity (core sum about 0.348-0.356), so leakage is rejected as historical implementation evidence."
     },
     "park": {
       "scope": "continuous_history",
@@ -46,13 +50,13 @@
   "frozen_2026_oos_reference": {
     "team_games": 1368,
     "games": 684,
-    "f5_mae": 1.9487315168260726,
-    "f5_wdl_logloss": 0.9950885320926939,
+    "f5_mae": 1.9484302026398717,
+    "f5_wdl_logloss": 0.994635265139799,
     "f5_decided_side": 0.5500848896434635,
     "f5_mean_mu": 2.6771296267457716,
-    "full_mae": 2.713037735115712,
-    "full_wdl_logloss": 0.811163986988407,
-    "full_decided_side": 0.5583832335329342,
+    "full_mae": 2.711894452745128,
+    "full_wdl_logloss": 0.8111287078942179,
+    "full_decided_side": 0.5598802395209581,
     "full_mean_mu": 5.047592130538038
   },
   "published_v1_2_reference": {
@@ -65,14 +69,20 @@
     "full_decided_side": 0.571856,
     "full_mean_mu": 5.001728
   },
+  "bp30_development_moment_reference": {
+    "candidate_mean": 0.9775165782137949,
+    "candidate_scale": 0.21166317777385316,
+    "frozen_mean": 0.9860898056018214,
+    "frozen_scale": 0.21158719158114866
+  },
   "posthoc_variant": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
   "known_unresolved": [
-    "Bullpen 30d relative frozen mean remains lower by about 0.0144 under best plausible recovered semantic.",
+    "BP30 exact historical centering/prior formula is still not recovered: v0.7 pregame-reliever candidate has near-exact scale but mean remains about 0.00857 below frozen.",
     "Exact row-level parity has not been demonstrated for every historical feature row."
   ],
   "usage": {
     "daily_analysis": "USE_AS_RESEARCH_CHALLENGER",
     "betting_decision": "DO_NOT_TREAT_AS_OFFICIAL_MECHANICAL_SHADOW",
-    "promotion_gate": "Resolve BP30 semantics and pass exact row-level reproducibility gate."
+    "promotion_gate": "Resolve remaining BP30 centering and pass exact row-level reproducibility gate."
   }
 }
