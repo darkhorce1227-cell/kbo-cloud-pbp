@@ -43,26 +43,32 @@ def slice_recent(z,d,gpk,include_current):
         return x[(x.game_date<d)|(x.game_pk.astype(str)==gpk)]
     return z[(z.game_date<d)&(z.game_date>=d-pd.Timedelta(days=30))]
 
-def family_stats(tg,bps,run_source,out_source,denom_source,include_current):
-    rr=[]; ro=[]; tl=[]; den=[]
-    long_bp=bps["inning6plus"]
-    for r in dev(tg).itertuples(index=False):
+def cache_row_stats(tg,bps):
+    rows=dev(tg); long_bp=bps["inning6plus"]
+    team_long=[]
+    cache={(s,leak):{"opp_runs":[],"opp_outs":[],"league_ra9":[]} for s in SOURCES for leak in (False,True)}
+    for r in rows.itertuples(index=False):
         d=pd.Timestamp(r.game_date); opp=str(r.opponent); gpk=str(r.game_pk)
         pre_all=long_bp[long_bp.game_date<d]; pre=pre_all[pre_all.game_date.dt.year==d.year]
         if pre.empty: pre=pre_all
         oppl=pre[pre.pitching_team.astype(str).eq(opp)]
         lg_long=ra9(float(pre.runs.sum()),float(pre.outs.sum()),4.5)
         tr=float(oppl.runs.sum()); to=float(oppl.outs.sum())
-        team_long=(tr+P_LONG*lg_long/27.0)*27.0/(to+P_LONG) if to+P_LONG>0 else lg_long
-
-        zr=slice_recent(bps[run_source],d,gpk,include_current)
-        zo=slice_recent(bps[out_source],d,gpk,include_current)
-        zd=slice_recent(bps[denom_source],d,gpk,include_current)
-        rr.append(float(zr.loc[zr.pitching_team.astype(str).eq(opp),"runs"].sum()))
-        ro.append(float(zo.loc[zo.pitching_team.astype(str).eq(opp),"outs"].sum()))
-        den.append(ra9(float(zd.runs.sum()),float(zd.outs.sum()),lg_long))
-        tl.append(team_long)
-    return np.asarray(rr),np.asarray(ro),np.asarray(tl),np.asarray(den)
+        tl=(tr+P_LONG*lg_long/27.0)*27.0/(to+P_LONG) if to+P_LONG>0 else lg_long
+        team_long.append(tl)
+        for s in SOURCES:
+            z=bps[s]
+            for leak in (False,True):
+                rec=slice_recent(z,d,gpk,leak)
+                opprec=rec[rec.pitching_team.astype(str).eq(opp)]
+                c=cache[(s,leak)]
+                c["opp_runs"].append(float(opprec.runs.sum()))
+                c["opp_outs"].append(float(opprec.outs.sum()))
+                c["league_ra9"].append(ra9(float(rec.runs.sum()),float(rec.outs.sum()),lg_long))
+    team_long=np.asarray(team_long,float)
+    for c in cache.values():
+        for k in list(c): c[k]=np.asarray(c[k],float)
+    return team_long,cache
 
 def eval_grid(rr,ro,tl,den):
     ans=[]
@@ -75,12 +81,15 @@ def eval_grid(rr,ro,tl,den):
 
 def main():
     tg,bps=load(); assert len(dev(tg))==2628
+    tl,cache=cache_row_stats(tg,bps)
     cand=[]
     for rs in SOURCES:
       for os in SOURCES:
        for ds in SOURCES:
         for leak in (False,True):
-            rr,ro,tl,dn=family_stats(tg,bps,rs,os,ds,leak)
+            rr=cache[(rs,leak)]["opp_runs"]
+            ro=cache[(os,leak)]["opp_outs"]
+            dn=cache[(ds,leak)]["league_ra9"]
             for p,m in eval_grid(rr,ro,tl,dn):
                 cand.append({"run_source":rs,"out_source":os,"league_denominator_source":ds,"include_current_game":leak,"p_recent_outs":p,**m})
     cand.sort(key=lambda x:x["loss"])
@@ -88,7 +97,7 @@ def main():
     for x in cand:
         k=f"runs={x['run_source']}|outs={x['out_source']}|den={x['league_denominator_source']}|current={x['include_current_game']}"
         bestfam.setdefault(k,x)
-    payload={"version":"mu-v1.2-bp30-mixed-source-v0.1","status":"DIAGNOSTIC_ONLY","official_shadow_allowed":False,"rows":2628,"top":cand[:40],"best_by_family":bestfam,"decision_note":"No arbitrary multiplicative calibration. Candidate semantics vary only mechanically plausible recent runs, outs, league denominator source, current-game inclusion, and pseudo-outs; long feature remains inning6plus pregame P360."}
+    payload={"version":"mu-v1.2-bp30-mixed-source-v0.2-cached","status":"DIAGNOSTIC_ONLY","official_shadow_allowed":False,"rows":2628,"top":cand[:40],"best_by_family":bestfam,"decision_note":"No arbitrary multiplicative calibration. Candidate semantics vary only mechanically plausible recent runs, outs, league denominator source, current-game inclusion, and pseudo-outs; long feature remains inning6plus pregame P360."}
     OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(payload,ensure_ascii=False,indent=2))
 if __name__=="__main__": main()
