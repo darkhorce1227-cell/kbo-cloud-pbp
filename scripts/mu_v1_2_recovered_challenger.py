@@ -20,6 +20,7 @@ MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 CHALLENGER_PATH = ROOT / "research" / "mu-v1.2" / "recovered_challenger.json"
 BP_LONG_OUTS_P = 360.0
 BP_RECENT_OUTS_P = 39.25
+LEAGUE_ENV_30D_LONG_PRIOR_P = 17.0
 
 
 def _load_history(target: pd.Timestamp):
@@ -46,11 +47,29 @@ def _inject_current_starter(st, *, game_pk, d, pitching_team, starter):
     return pd.concat([st, pd.DataFrame([row], columns=st.columns)], ignore_index=True)
 
 
-def _league_late_6plus_30d(tg, d):
-    pre30 = tg[(tg.game_date < d) & (tg.game_date >= d - pd.Timedelta(days=30))]
-    if "late_6plus_pa" not in pre30.columns or pre30.empty:
-        raise RuntimeError("late_6plus_pa unavailable for recovered late offset")
-    return float(pre30["late_6plus_pa"].mean())
+def _league_env_30d_longprior(tg, d):
+    """v0.8 recovered league environment offset.
+
+    Preserves the documented strictly-pregame calendar-30D semantics, while
+    weakly shrinking the pooled 30D league team-game mean toward the all-pregame
+    long league mean with 17 pseudo team-games. P=17 was selected only from
+    2024-2025 frozen simple-coefficient parity (F5 optimum 15, late optimum 17,
+    combined optimum 17); 2026 was confirmatory only.
+    """
+    d = pd.Timestamp(d).normalize()
+    pre = tg[tg.game_date < d]
+    if pre.empty:
+        raise RuntimeError(f"no pregame league history before {d.date()}")
+    h30 = pre[pre.game_date >= d - pd.Timedelta(days=30)]
+    if h30.empty:
+        h30 = pre.tail(min(len(pre), 300))
+    p = LEAGUE_ENV_30D_LONG_PRIOR_P
+    n = float(len(h30))
+    long_f5 = float(pre.runs_f5.mean())
+    long_late6 = float(pre.late_6plus_pa.mean())
+    f5 = float((float(h30.runs_f5.sum()) + p * long_f5) / (n + p))
+    late6 = float((float(h30.late_6plus_pa.sum()) + p * long_late6) / (n + p))
+    return f5, late6
 
 
 def _safe_ra9(runs: float, outs: float, fallback: float) -> float:
@@ -58,13 +77,7 @@ def _safe_ra9(runs: float, outs: float, fallback: float) -> float:
 
 
 def _bp30_reliever_pregame(bp6, bprel, *, d, opponent):
-    """Best forensic BP30 working semantic as of v0.7.
-
-    Exported long bullpen feature remains inning6+ / season-reset / P360.
-    The 30d feature uses actual reliever stints, strictly pregame, pooled league30
-    denominator, and P39.25 toward the shrunk inning6+ team-long absolute RA9.
-    This is a Challenger working semantic, not exact historical parity.
-    """
+    """Best forensic BP30 working semantic as of v0.7/v0.8."""
     d = pd.Timestamp(d).normalize()
     opp = str(opponent)
 
@@ -100,11 +113,14 @@ def build_pregame_features(tg, st, bp6, bprel, *, d, game_pk, team, opponent, se
     st2 = _inject_current_starter(st, game_pk=fake_pk, d=d, pitching_team=opponent, starter=self_starter)
     row = SimpleNamespace(game_pk=fake_pk, game_date=d, team=team, opponent=opponent, is_home=int(is_home))
     f = recovered.build_features(tg, st2, bp6, row=row)
-    # Historical-recovery default: frozen coefficient parity strongly favors
-    # inning 6+ for both the late target and the league_late_30d offset.
-    f["league_late_30d"] = _league_late_6plus_30d(tg, d)
-    # BP30 forensic v0.7: pregame reliever-stint recent source beats the v0.6
-    # inning6plus candidate on moment fit, frozen core coefficient parity, and OOS.
+
+    # v0.8: keep the documented pregame calendar-30D league environments, with
+    # weak long-prior smoothing selected from frozen 2024-2025 coefficient parity.
+    league_f5_30d, league_late_30d = _league_env_30d_longprior(tg, d)
+    f["league_f5_30d"] = league_f5_30d
+    f["league_late_30d"] = league_late_30d
+
+    # BP30 forensic v0.7/v0.8: pregame reliever-stint recent source.
     f["opp_bp_ra9_30d_rel"] = _bp30_reliever_pregame(bp6, bprel, d=d, opponent=opponent)
     if park_factor_override is not None:
         f["park_factor"] = float(park_factor_override)
