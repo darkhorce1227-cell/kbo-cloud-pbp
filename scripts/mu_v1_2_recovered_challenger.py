@@ -18,6 +18,8 @@ from diagnose_mu_v1_2_late_bp_semantics import make_team_game, bp_game_tables
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 CHALLENGER_PATH = ROOT / "research" / "mu-v1.2" / "recovered_challenger.json"
+BP_LONG_OUTS_P = 360.0
+BP_RECENT_OUTS_P = 39.25
 
 
 def _load_history(target: pd.Timestamp):
@@ -32,8 +34,10 @@ def _load_history(target: pd.Timestamp):
     st["ip"] = [ip_map.get((str(r.game_pk), str(r.pitching_team)), np.nan) for r in st.itertuples(index=False)]
     if st["ip"].isna().any():
         raise RuntimeError(f"starter IP merge missing rows={int(st['ip'].isna().sum())}")
-    bp6 = bp_game_tables(pa, tg)["inning6plus"].copy()
-    return tg, st, bp6
+    bps = bp_game_tables(pa, tg)
+    bp6 = bps["inning6plus"].copy()
+    bprel = bps["reliever_stint"].copy()
+    return tg, st, bp6, bprel
 
 
 def _inject_current_starter(st, *, game_pk, d, pitching_team, starter):
@@ -49,7 +53,47 @@ def _league_late_6plus_30d(tg, d):
     return float(pre30["late_6plus_pa"].mean())
 
 
-def build_pregame_features(tg, st, bp6, *, d, game_pk, team, opponent, self_starter, is_home, park_factor_override=None):
+def _safe_ra9(runs: float, outs: float, fallback: float) -> float:
+    return float(runs * 27.0 / outs) if outs > 0 else float(fallback)
+
+
+def _bp30_reliever_pregame(bp6, bprel, *, d, opponent):
+    """Best forensic BP30 working semantic as of v0.7.
+
+    Exported long bullpen feature remains inning6+ / season-reset / P360.
+    The 30d feature uses actual reliever stints, strictly pregame, pooled league30
+    denominator, and P39.25 toward the shrunk inning6+ team-long absolute RA9.
+    This is a Challenger working semantic, not exact historical parity.
+    """
+    d = pd.Timestamp(d).normalize()
+    opp = str(opponent)
+
+    pre_all = bp6[bp6.game_date < d]
+    pre = pre_all[pre_all.game_date.dt.year == d.year]
+    if pre.empty:
+        pre = pre_all
+    lg_long = _safe_ra9(float(pre.runs.sum()), float(pre.outs.sum()), 4.5)
+    opp_long = pre[pre.pitching_team.astype(str).eq(opp)]
+    lr = float(opp_long.runs.sum())
+    lo = float(opp_long.outs.sum())
+    team_long = (
+        (lr + BP_LONG_OUTS_P * lg_long / 27.0) * 27.0 / (lo + BP_LONG_OUTS_P)
+        if lo + BP_LONG_OUTS_P > 0 else lg_long
+    )
+
+    rec = bprel[(bprel.game_date < d) & (bprel.game_date >= d - pd.Timedelta(days=30))]
+    opp_rec = rec[rec.pitching_team.astype(str).eq(opp)]
+    lg30 = _safe_ra9(float(rec.runs.sum()), float(rec.outs.sum()), lg_long)
+    rr = float(opp_rec.runs.sum())
+    ro = float(opp_rec.outs.sum())
+    team30 = (
+        (rr + BP_RECENT_OUTS_P * team_long / 27.0) * 27.0 / (ro + BP_RECENT_OUTS_P)
+        if ro + BP_RECENT_OUTS_P > 0 else team_long
+    )
+    return float(team30 / lg30) if lg30 else 1.0
+
+
+def build_pregame_features(tg, st, bp6, bprel, *, d, game_pk, team, opponent, self_starter, is_home, park_factor_override=None):
     fake_pk = f"RECOVERED|{game_pk}|{team}"
     # recovered.build_features looks up a starter under `opponent`; injecting the
     # SELF starter under that key reproduces the recovered starter-only historical bug.
@@ -59,6 +103,9 @@ def build_pregame_features(tg, st, bp6, *, d, game_pk, team, opponent, self_star
     # Historical-recovery default: frozen coefficient parity strongly favors
     # inning 6+ for both the late target and the league_late_30d offset.
     f["league_late_30d"] = _league_late_6plus_30d(tg, d)
+    # BP30 forensic v0.7: pregame reliever-stint recent source beats the v0.6
+    # inning6plus candidate on moment fit, frozen core coefficient parity, and OOS.
+    f["opp_bp_ra9_30d_rel"] = _bp30_reliever_pregame(bp6, bprel, d=d, opponent=opponent)
     if park_factor_override is not None:
         f["park_factor"] = float(park_factor_override)
     return f
@@ -68,11 +115,11 @@ def score_input(payload: dict) -> dict:
     meta = json.loads(CHALLENGER_PATH.read_text(encoding="utf-8"))
     model = json.loads(MODEL_PATH.read_text(encoding="utf-8"))
     target = pd.Timestamp(payload["target_date"]).normalize()
-    tg, st, bp6 = _load_history(target)
+    tg, st, bp6, bprel = _load_history(target)
     games_out = []
     for g in payload.get("games", []):
         af = build_pregame_features(
-            tg, st, bp6,
+            tg, st, bp6, bprel,
             d=target,
             game_pk=str(g.get("game_pk", "UNKNOWN")),
             team=str(g["away_team"]),
@@ -82,7 +129,7 @@ def score_input(payload: dict) -> dict:
             park_factor_override=g.get("park_factor"),
         )
         hf = build_pregame_features(
-            tg, st, bp6,
+            tg, st, bp6, bprel,
             d=target,
             game_pk=str(g.get("game_pk", "UNKNOWN")),
             team=str(g["home_team"]),
