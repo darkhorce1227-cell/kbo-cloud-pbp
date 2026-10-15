@@ -1,0 +1,97 @@
+{
+  "version": "mu-v1.2-bp30-denominator-semantics-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "rows": 2628,
+  "ranked": [
+    {
+      "variant": "equal_team_raw_league30",
+      "mean": 0.9967413474059326,
+      "scale": 0.21233933423539775,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.010651541804111209,
+      "scale_error": 0.0007521426542490828,
+      "loss": 0.05389591105748341
+    },
+    {
+      "variant": "equal_team_shrunk_league30_league30",
+      "mean": 0.9983198191039171,
+      "scale": 0.21044623728597747,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.012230013502095738,
+      "scale_error": -0.0011409542951711926,
+      "loss": 0.06319365410235075
+    },
+    {
+      "variant": "equal_team_shrunk_teamlong_league30",
+      "mean": 0.9985427314681874,
+      "scale": 0.20963420354431564,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.012452925866366038,
+      "scale_error": -0.0019529880368330255,
+      "loss": 0.06808499983173158
+    },
+    {
+      "variant": "pooled_league30",
+      "mean": 1.0004947899082408,
+      "scale": 0.21098790633188075,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.014404984306419455,
+      "scale_error": -0.0005992852492679168,
+      "loss": 0.07091293874437046
+    },
+    {
+      "variant": "pooled_league30_prevday_exclusive",
+      "mean": 1.0006358743040642,
+      "scale": 0.21271811460924306,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.014546068702242843,
+      "scale_error": 0.0011309230280943938,
+      "loss": 0.07409234752437621
+    },
+    {
+      "variant": "pooled_league30_30teamgames",
+      "mean": 0.9988778538095942,
+      "scale": 0.1945672615996394,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": 0.012788048207772795,
+      "scale_error": -0.017019929981509252,
+      "loss": 0.14087798966720527
+    },
+    {
+      "variant": "equal_game_raw_league30",
+      "mean": 0.9576255878453994,
+      "scale": 0.2012659921401021,
+      "frozen_mean": 0.9860898056018214,
+      "frozen_scale": 0.21158719158114866,
+      "mean_error": -0.02846421775642194,
+      "scale_error": -0.010321199441046564,
+      "loss": 0.1833070182917636
+    }
+  ],
+  "baseline_summary": {
+    "pooled": {
+      "mean": 5.000254966095507,
+      "median": 4.91528858198822
+    },
+    "equal_team_raw": {
+      "mean": 5.0217863564488665,
+      "median": 4.974345667390589
+    },
+    "equal_game_raw": {
+      "mean": 5.222892513102322,
+      "median": 5.133976637887253
+    },
+    "equal_team_shrunk_teamlong": {
+      "mean": 5.006567457422549,
+      "median": 4.9575624980151645
+    }
+  },
+  "note": "Tests plausible league-baseline aggregation/window semantics without arbitrary multiplicative fitting."
+}
