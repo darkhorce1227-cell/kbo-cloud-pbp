@@ -6,9 +6,11 @@ from pathlib import Path
 
 KST = timezone(timedelta(hours=9))
 ROOT = Path(__file__).resolve().parents[1]
-STATUS = ROOT / "state" / "status.json"
-AUDIT = ROOT / "state" / "postgame_score_audit.json"
+STATE_DIR = ROOT / "state"
+STATUS = STATE_DIR / "status.json"
+AUDIT = STATE_DIR / "postgame_score_audit.json"
 OUT = Path(os.environ["GITHUB_OUTPUT"])
+RECOVERY_LOOKBACK_DAYS = 7
 
 
 def auto_target(now: datetime) -> date:
@@ -31,14 +33,45 @@ def audit_matches_status(status: dict, target: date) -> bool:
     return True
 
 
+def pending_prior_target(current_target: date) -> date | None:
+    """Find the newest recent dated audit that had games but never passed.
+
+    This is mainly for postseason/live-schedule lag: a later NO_GAMES/PASS status
+    must not hide an unresolved previous-day slate.
+    """
+    for days in range(1, RECOVERY_LOOKBACK_DAYS + 1):
+        candidate = current_target - timedelta(days=days)
+        path = STATE_DIR / f"postgame_score_audit_{candidate.isoformat()}.json"
+        if not path.exists():
+            continue
+        try:
+            audit = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if int(audit.get("expected_games") or 0) <= 0:
+            continue
+        if audit.get("validation") != "PASS":
+            return candidate
+    return None
+
+
 target_raw = os.getenv("INPUT_TARGET_DATE", "").strip()
 force = os.getenv("INPUT_FORCE", "false").lower() == "true"
-target = date.fromisoformat(target_raw) if target_raw else auto_target(datetime.now(KST))
+automatic = auto_target(datetime.now(KST))
+if target_raw:
+    target = date.fromisoformat(target_raw)
+    recovery_target = None
+else:
+    recovery_target = pending_prior_target(automatic)
+    target = recovery_target or automatic
 
 skip = False
 audit_backfill = False
 reason = ""
-if not force and STATUS.exists():
+if recovery_target is not None and not force:
+    # Deliberately do not let a later NO_GAMES/PASS status suppress this repair.
+    reason = f"Recent unresolved score audit detected; recover {recovery_target} before {automatic}"
+elif not force and STATUS.exists():
     try:
         s = json.loads(STATUS.read_text(encoding="utf-8"))
         if s.get("target_date") == target.isoformat() and s.get("validation") == "PASS":
