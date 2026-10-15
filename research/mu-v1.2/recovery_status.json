@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.3",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.4",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "active_challenger": {
@@ -7,7 +7,8 @@
     "runner": "scripts/mu_v1_2_recovered_challenger.py",
     "role": "RESEARCH_CHALLENGER",
     "use_in_daily_analysis": true,
-    "use_as_official_mechanical_shadow": false
+    "use_as_official_mechanical_shadow": false,
+    "note": "Keep v0.6 historical-parity Challenger unchanged while BP30 exact semantics remain unresolved."
   },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
@@ -44,7 +45,7 @@
   "challenger_working_semantics": {
     "late_offense_features": "FULL_MINUS_F5",
     "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
-    "bullpen_30d_relative": "recent over league30 with team-long prior"
+    "bullpen_30d_relative": "inning6plus calendar30 over pooled league30, recent prior from shrunk inning6plus team-long; retained as conservative working formula only"
   },
   "posthoc_diagnostic_variant": {
     "path": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
@@ -53,9 +54,26 @@
   },
   "still_unresolved": {
     "bullpen_30d_relative": {
-      "best_plausible_variant": "recent over league30 with team-long prior",
-      "remaining_mean_gap": 0.014404984306419455,
-      "note": "Scale is close but frozen mean remains materially lower; exact relative/centering semantic is not recovered."
+      "status": "NARROWED_NOT_RECOVERED",
+      "frozen_moments": {
+        "mean": 0.9860898056018214,
+        "scale": 0.21158719158114866
+      },
+      "old_working_inning6plus": {
+        "mean": 1.0004947899082408,
+        "scale": 0.21098790633188075,
+        "mean_gap": 0.014404984306419455
+      },
+      "strongest_narrowed_hypothesis": "Recent source is more likely RELIEVER_STINT than INNING6PLUS, while exported long bullpen feature remains INNING6PLUS.",
+      "evidence": {
+        "denominator_only": "Equal-team league30 improves mean only to 0.996741 with scale 0.212339; denominator aggregation alone cannot explain frozen moments.",
+        "recent_source": "RELIEVER_STINT dominates moment-fit families. With current-game inclusion and pooled reliever denominator, p_recent about 35 yields mean 0.979553 and scale 0.211627; pregame-only p_recent about 39 yields mean 0.977629 and scale 0.211824.",
+        "mixed_runs_outs": "Mixing reliever and inning6plus runs/outs/league denominators does not beat the pure reliever-stint family.",
+        "prior_source": "Replacing the inning6plus long prior with reliever-long prior overshoots the mean to about 0.9975 while preserving scale, so neither pure prior source is exact.",
+        "relative_prior": "Long-relative hierarchical priors modestly improve loss but still leave mean around 0.9800 when scale matches frozen."
+      },
+      "leakage_hypothesis": "Current-game inclusion ranks better than pregame-only among reliever-stint candidates, but because no tested formula reaches exact moment parity, SAME_GAME_LEAKAGE_IS_NOT_CONFIRMED.",
+      "next_forensic_gate": "Compare pregame reliever-stint vs same-game-included reliever-stint candidates using frozen coefficient parity and 2026 OOS directionality before changing Challenger preprocessing."
     },
     "exact_feature_row_parity": "not yet demonstrated for every feature and every development/OOS row"
   },
@@ -64,6 +82,11 @@
     "late_target_offset_2x2": "state/mu_v1_2_late_target_offset_2x2.json",
     "coefficient_parity": "state/mu_v1_2_coefficient_parity.json",
     "bp30_relative": "state/mu_v1_2_bp30_relative_semantics.json",
+    "bp30_denominator": "state/mu_v1_2_bp30_denominator_semantics.json",
+    "bp30_recent_source": "state/mu_v1_2_bp30_recent_source.json",
+    "bp30_mixed_source": "state/mu_v1_2_bp30_mixed_source.json",
+    "bp30_prior_source": "state/mu_v1_2_bp30_prior_source.json",
+    "bp30_relative_prior": "state/mu_v1_2_bp30_relative_prior.json",
     "late_offset": "state/mu_v1_2_late_offset_semantics.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
