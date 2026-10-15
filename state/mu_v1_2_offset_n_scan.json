@@ -1,0 +1,453 @@
+{
+  "version": "mu-v1.2-offset-n-scan-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "scan": {
+    "min": 100,
+    "max": 200,
+    "step": 5
+  },
+  "best_f5": {
+    "n_league_games": 130,
+    "simple_f5_param_norm_mae": 0.19864625034914926,
+    "simple_f5_param_corr": 0.9781659199391841,
+    "simple_late_param_norm_mae": 0.15233483676546364,
+    "simple_late_param_corr": 0.9969337512691944,
+    "simple_sum_param_norm": 0.3509810871146129
+  },
+  "best_late": {
+    "n_league_games": 200,
+    "simple_f5_param_norm_mae": 0.25390738614510344,
+    "simple_f5_param_corr": 0.9755783162372416,
+    "simple_late_param_norm_mae": 0.08600963031845277,
+    "simple_late_param_corr": 0.9991937806043985,
+    "simple_sum_param_norm": 0.3399170164635562
+  },
+  "best_combined": {
+    "n_league_games": 195,
+    "simple_f5_param_norm_mae": 0.2514922884499919,
+    "simple_f5_param_corr": 0.9756621210407914,
+    "simple_late_param_norm_mae": 0.08696858472694563,
+    "simple_late_param_corr": 0.999173800970176,
+    "simple_sum_param_norm": 0.3384608731769375
+  },
+  "top10_f5": [
+    {
+      "n_league_games": 130,
+      "simple_f5_param_norm_mae": 0.19864625034914926,
+      "simple_f5_param_corr": 0.9781659199391841,
+      "simple_late_param_norm_mae": 0.15233483676546364,
+      "simple_late_param_corr": 0.9969337512691944,
+      "simple_sum_param_norm": 0.3509810871146129
+    },
+    {
+      "n_league_games": 115,
+      "simple_f5_param_norm_mae": 0.1995558030715778,
+      "simple_f5_param_corr": 0.9794423769306083,
+      "simple_late_param_norm_mae": 0.17332788666797388,
+      "simple_late_param_corr": 0.9961738589347342,
+      "simple_sum_param_norm": 0.37288368973955166
+    },
+    {
+      "n_league_games": 140,
+      "simple_f5_param_norm_mae": 0.20385336493437317,
+      "simple_f5_param_corr": 0.9783645040458204,
+      "simple_late_param_norm_mae": 0.14907121863101286,
+      "simple_late_param_corr": 0.9973820486090513,
+      "simple_sum_param_norm": 0.35292458356538603
+    },
+    {
+      "n_league_games": 135,
+      "simple_f5_param_norm_mae": 0.20389035808063444,
+      "simple_f5_param_corr": 0.9779242754955444,
+      "simple_late_param_norm_mae": 0.15305347026509472,
+      "simple_late_param_corr": 0.9970499690284399,
+      "simple_sum_param_norm": 0.35694382834572913
+    },
+    {
+      "n_league_games": 120,
+      "simple_f5_param_norm_mae": 0.20488278276191352,
+      "simple_f5_param_corr": 0.9785848120933472,
+      "simple_late_param_norm_mae": 0.17526442466375905,
+      "simple_late_param_corr": 0.9960767803083995,
+      "simple_sum_param_norm": 0.38014720742567254
+    },
+    {
+      "n_league_games": 110,
+      "simple_f5_param_norm_mae": 0.20501830085361292,
+      "simple_f5_param_corr": 0.978557899236717,
+      "simple_late_param_norm_mae": 0.15252421773226096,
+      "simple_late_param_corr": 0.9967882773981676,
+      "simple_sum_param_norm": 0.3575425185858739
+    },
+    {
+      "n_league_games": 125,
+      "simple_f5_param_norm_mae": 0.2066468260074458,
+      "simple_f5_param_corr": 0.9778704829388577,
+      "simple_late_param_norm_mae": 0.1647852817458242,
+      "simple_late_param_corr": 0.9965777842682337,
+      "simple_sum_param_norm": 0.37143210775327
+    },
+    {
+      "n_league_games": 145,
+      "simple_f5_param_norm_mae": 0.20811574450492404,
+      "simple_f5_param_corr": 0.9782814221220164,
+      "simple_late_param_norm_mae": 0.14863453639905058,
+      "simple_late_param_corr": 0.9974472070455881,
+      "simple_sum_param_norm": 0.35675028090397465
+    },
+    {
+      "n_league_games": 150,
+      "simple_f5_param_norm_mae": 0.20944601365812873,
+      "simple_f5_param_corr": 0.9780891136002203,
+      "simple_late_param_norm_mae": 0.14278179774786365,
+      "simple_late_param_corr": 0.9975744370460755,
+      "simple_sum_param_norm": 0.35222781140599235
+    },
+    {
+      "n_league_games": 165,
+      "simple_f5_param_norm_mae": 0.22145923982914853,
+      "simple_f5_param_corr": 0.9772325261826946,
+      "simple_late_param_norm_mae": 0.1237426892980988,
+      "simple_late_param_corr": 0.9983433903502001,
+      "simple_sum_param_norm": 0.34520192912724734
+    }
+  ],
+  "top10_late": [
+    {
+      "n_league_games": 200,
+      "simple_f5_param_norm_mae": 0.25390738614510344,
+      "simple_f5_param_corr": 0.9755783162372416,
+      "simple_late_param_norm_mae": 0.08600963031845277,
+      "simple_late_param_corr": 0.9991937806043985,
+      "simple_sum_param_norm": 0.3399170164635562
+    },
+    {
+      "n_league_games": 195,
+      "simple_f5_param_norm_mae": 0.2514922884499919,
+      "simple_f5_param_corr": 0.9756621210407914,
+      "simple_late_param_norm_mae": 0.08696858472694563,
+      "simple_late_param_corr": 0.999173800970176,
+      "simple_sum_param_norm": 0.3384608731769375
+    },
+    {
+      "n_league_games": 190,
+      "simple_f5_param_norm_mae": 0.2471155780256558,
+      "simple_f5_param_corr": 0.9761686632736706,
+      "simple_late_param_norm_mae": 0.09382954003547397,
+      "simple_late_param_corr": 0.9990433071809622,
+      "simple_sum_param_norm": 0.3409451180611298
+    },
+    {
+      "n_league_games": 185,
+      "simple_f5_param_norm_mae": 0.2455735221959614,
+      "simple_f5_param_corr": 0.9762342064551172,
+      "simple_late_param_norm_mae": 0.09987018353862226,
+      "simple_late_param_corr": 0.9989144304194473,
+      "simple_sum_param_norm": 0.34544370573458366
+    },
+    {
+      "n_league_games": 180,
+      "simple_f5_param_norm_mae": 0.23837243184473741,
+      "simple_f5_param_corr": 0.9767665230582544,
+      "simple_late_param_norm_mae": 0.11087246570550187,
+      "simple_late_param_corr": 0.9986393721622503,
+      "simple_sum_param_norm": 0.3492448975502393
+    },
+    {
+      "n_league_games": 175,
+      "simple_f5_param_norm_mae": 0.23888526945071406,
+      "simple_f5_param_corr": 0.9764409824771714,
+      "simple_late_param_norm_mae": 0.11863406909669194,
+      "simple_late_param_corr": 0.9984868796115902,
+      "simple_sum_param_norm": 0.35751933854740603
+    },
+    {
+      "n_league_games": 170,
+      "simple_f5_param_norm_mae": 0.23480113337320985,
+      "simple_f5_param_corr": 0.9764873900644395,
+      "simple_late_param_norm_mae": 0.12194669334664657,
+      "simple_late_param_corr": 0.9983919823230226,
+      "simple_sum_param_norm": 0.3567478267198564
+    },
+    {
+      "n_league_games": 165,
+      "simple_f5_param_norm_mae": 0.22145923982914853,
+      "simple_f5_param_corr": 0.9772325261826946,
+      "simple_late_param_norm_mae": 0.1237426892980988,
+      "simple_late_param_corr": 0.9983433903502001,
+      "simple_sum_param_norm": 0.34520192912724734
+    },
+    {
+      "n_league_games": 160,
+      "simple_f5_param_norm_mae": 0.22354972723846825,
+      "simple_f5_param_corr": 0.9773068662421627,
+      "simple_late_param_norm_mae": 0.12720810657363138,
+      "simple_late_param_corr": 0.998193357711586,
+      "simple_sum_param_norm": 0.35075783381209963
+    },
+    {
+      "n_league_games": 155,
+      "simple_f5_param_norm_mae": 0.2219799722249239,
+      "simple_f5_param_corr": 0.9771295622558597,
+      "simple_late_param_norm_mae": 0.12975415121133474,
+      "simple_late_param_corr": 0.9980414219309294,
+      "simple_sum_param_norm": 0.35173412343625865
+    }
+  ],
+  "top10_combined": [
+    {
+      "n_league_games": 195,
+      "simple_f5_param_norm_mae": 0.2514922884499919,
+      "simple_f5_param_corr": 0.9756621210407914,
+      "simple_late_param_norm_mae": 0.08696858472694563,
+      "simple_late_param_corr": 0.999173800970176,
+      "simple_sum_param_norm": 0.3384608731769375
+    },
+    {
+      "n_league_games": 200,
+      "simple_f5_param_norm_mae": 0.25390738614510344,
+      "simple_f5_param_corr": 0.9755783162372416,
+      "simple_late_param_norm_mae": 0.08600963031845277,
+      "simple_late_param_corr": 0.9991937806043985,
+      "simple_sum_param_norm": 0.3399170164635562
+    },
+    {
+      "n_league_games": 190,
+      "simple_f5_param_norm_mae": 0.2471155780256558,
+      "simple_f5_param_corr": 0.9761686632736706,
+      "simple_late_param_norm_mae": 0.09382954003547397,
+      "simple_late_param_corr": 0.9990433071809622,
+      "simple_sum_param_norm": 0.3409451180611298
+    },
+    {
+      "n_league_games": 165,
+      "simple_f5_param_norm_mae": 0.22145923982914853,
+      "simple_f5_param_corr": 0.9772325261826946,
+      "simple_late_param_norm_mae": 0.1237426892980988,
+      "simple_late_param_corr": 0.9983433903502001,
+      "simple_sum_param_norm": 0.34520192912724734
+    },
+    {
+      "n_league_games": 185,
+      "simple_f5_param_norm_mae": 0.2455735221959614,
+      "simple_f5_param_corr": 0.9762342064551172,
+      "simple_late_param_norm_mae": 0.09987018353862226,
+      "simple_late_param_corr": 0.9989144304194473,
+      "simple_sum_param_norm": 0.34544370573458366
+    },
+    {
+      "n_league_games": 180,
+      "simple_f5_param_norm_mae": 0.23837243184473741,
+      "simple_f5_param_corr": 0.9767665230582544,
+      "simple_late_param_norm_mae": 0.11087246570550187,
+      "simple_late_param_corr": 0.9986393721622503,
+      "simple_sum_param_norm": 0.3492448975502393
+    },
+    {
+      "n_league_games": 160,
+      "simple_f5_param_norm_mae": 0.22354972723846825,
+      "simple_f5_param_corr": 0.9773068662421627,
+      "simple_late_param_norm_mae": 0.12720810657363138,
+      "simple_late_param_corr": 0.998193357711586,
+      "simple_sum_param_norm": 0.35075783381209963
+    },
+    {
+      "n_league_games": 130,
+      "simple_f5_param_norm_mae": 0.19864625034914926,
+      "simple_f5_param_corr": 0.9781659199391841,
+      "simple_late_param_norm_mae": 0.15233483676546364,
+      "simple_late_param_corr": 0.9969337512691944,
+      "simple_sum_param_norm": 0.3509810871146129
+    },
+    {
+      "n_league_games": 155,
+      "simple_f5_param_norm_mae": 0.2219799722249239,
+      "simple_f5_param_corr": 0.9771295622558597,
+      "simple_late_param_norm_mae": 0.12975415121133474,
+      "simple_late_param_corr": 0.9980414219309294,
+      "simple_sum_param_norm": 0.35173412343625865
+    },
+    {
+      "n_league_games": 150,
+      "simple_f5_param_norm_mae": 0.20944601365812873,
+      "simple_f5_param_corr": 0.9780891136002203,
+      "simple_late_param_norm_mae": 0.14278179774786365,
+      "simple_late_param_corr": 0.9975744370460755,
+      "simple_sum_param_norm": 0.35222781140599235
+    }
+  ],
+  "all": [
+    {
+      "n_league_games": 100,
+      "simple_f5_param_norm_mae": 0.22624273279075452,
+      "simple_f5_param_corr": 0.9763283486694946,
+      "simple_late_param_norm_mae": 0.15963351531793452,
+      "simple_late_param_corr": 0.9965795391136703,
+      "simple_sum_param_norm": 0.38587624810868904
+    },
+    {
+      "n_league_games": 105,
+      "simple_f5_param_norm_mae": 0.2260947385331505,
+      "simple_f5_param_corr": 0.9772918941273662,
+      "simple_late_param_norm_mae": 0.1645618361103087,
+      "simple_late_param_corr": 0.9963021463840671,
+      "simple_sum_param_norm": 0.3906565746434592
+    },
+    {
+      "n_league_games": 110,
+      "simple_f5_param_norm_mae": 0.20501830085361292,
+      "simple_f5_param_corr": 0.978557899236717,
+      "simple_late_param_norm_mae": 0.15252421773226096,
+      "simple_late_param_corr": 0.9967882773981676,
+      "simple_sum_param_norm": 0.3575425185858739
+    },
+    {
+      "n_league_games": 115,
+      "simple_f5_param_norm_mae": 0.1995558030715778,
+      "simple_f5_param_corr": 0.9794423769306083,
+      "simple_late_param_norm_mae": 0.17332788666797388,
+      "simple_late_param_corr": 0.9961738589347342,
+      "simple_sum_param_norm": 0.37288368973955166
+    },
+    {
+      "n_league_games": 120,
+      "simple_f5_param_norm_mae": 0.20488278276191352,
+      "simple_f5_param_corr": 0.9785848120933472,
+      "simple_late_param_norm_mae": 0.17526442466375905,
+      "simple_late_param_corr": 0.9960767803083995,
+      "simple_sum_param_norm": 0.38014720742567254
+    },
+    {
+      "n_league_games": 125,
+      "simple_f5_param_norm_mae": 0.2066468260074458,
+      "simple_f5_param_corr": 0.9778704829388577,
+      "simple_late_param_norm_mae": 0.1647852817458242,
+      "simple_late_param_corr": 0.9965777842682337,
+      "simple_sum_param_norm": 0.37143210775327
+    },
+    {
+      "n_league_games": 130,
+      "simple_f5_param_norm_mae": 0.19864625034914926,
+      "simple_f5_param_corr": 0.9781659199391841,
+      "simple_late_param_norm_mae": 0.15233483676546364,
+      "simple_late_param_corr": 0.9969337512691944,
+      "simple_sum_param_norm": 0.3509810871146129
+    },
+    {
+      "n_league_games": 135,
+      "simple_f5_param_norm_mae": 0.20389035808063444,
+      "simple_f5_param_corr": 0.9779242754955444,
+      "simple_late_param_norm_mae": 0.15305347026509472,
+      "simple_late_param_corr": 0.9970499690284399,
+      "simple_sum_param_norm": 0.35694382834572913
+    },
+    {
+      "n_league_games": 140,
+      "simple_f5_param_norm_mae": 0.20385336493437317,
+      "simple_f5_param_corr": 0.9783645040458204,
+      "simple_late_param_norm_mae": 0.14907121863101286,
+      "simple_late_param_corr": 0.9973820486090513,
+      "simple_sum_param_norm": 0.35292458356538603
+    },
+    {
+      "n_league_games": 145,
+      "simple_f5_param_norm_mae": 0.20811574450492404,
+      "simple_f5_param_corr": 0.9782814221220164,
+      "simple_late_param_norm_mae": 0.14863453639905058,
+      "simple_late_param_corr": 0.9974472070455881,
+      "simple_sum_param_norm": 0.35675028090397465
+    },
+    {
+      "n_league_games": 150,
+      "simple_f5_param_norm_mae": 0.20944601365812873,
+      "simple_f5_param_corr": 0.9780891136002203,
+      "simple_late_param_norm_mae": 0.14278179774786365,
+      "simple_late_param_corr": 0.9975744370460755,
+      "simple_sum_param_norm": 0.35222781140599235
+    },
+    {
+      "n_league_games": 155,
+      "simple_f5_param_norm_mae": 0.2219799722249239,
+      "simple_f5_param_corr": 0.9771295622558597,
+      "simple_late_param_norm_mae": 0.12975415121133474,
+      "simple_late_param_corr": 0.9980414219309294,
+      "simple_sum_param_norm": 0.35173412343625865
+    },
+    {
+      "n_league_games": 160,
+      "simple_f5_param_norm_mae": 0.22354972723846825,
+      "simple_f5_param_corr": 0.9773068662421627,
+      "simple_late_param_norm_mae": 0.12720810657363138,
+      "simple_late_param_corr": 0.998193357711586,
+      "simple_sum_param_norm": 0.35075783381209963
+    },
+    {
+      "n_league_games": 165,
+      "simple_f5_param_norm_mae": 0.22145923982914853,
+      "simple_f5_param_corr": 0.9772325261826946,
+      "simple_late_param_norm_mae": 0.1237426892980988,
+      "simple_late_param_corr": 0.9983433903502001,
+      "simple_sum_param_norm": 0.34520192912724734
+    },
+    {
+      "n_league_games": 170,
+      "simple_f5_param_norm_mae": 0.23480113337320985,
+      "simple_f5_param_corr": 0.9764873900644395,
+      "simple_late_param_norm_mae": 0.12194669334664657,
+      "simple_late_param_corr": 0.9983919823230226,
+      "simple_sum_param_norm": 0.3567478267198564
+    },
+    {
+      "n_league_games": 175,
+      "simple_f5_param_norm_mae": 0.23888526945071406,
+      "simple_f5_param_corr": 0.9764409824771714,
+      "simple_late_param_norm_mae": 0.11863406909669194,
+      "simple_late_param_corr": 0.9984868796115902,
+      "simple_sum_param_norm": 0.35751933854740603
+    },
+    {
+      "n_league_games": 180,
+      "simple_f5_param_norm_mae": 0.23837243184473741,
+      "simple_f5_param_corr": 0.9767665230582544,
+      "simple_late_param_norm_mae": 0.11087246570550187,
+      "simple_late_param_corr": 0.9986393721622503,
+      "simple_sum_param_norm": 0.3492448975502393
+    },
+    {
+      "n_league_games": 185,
+      "simple_f5_param_norm_mae": 0.2455735221959614,
+      "simple_f5_param_corr": 0.9762342064551172,
+      "simple_late_param_norm_mae": 0.09987018353862226,
+      "simple_late_param_corr": 0.9989144304194473,
+      "simple_sum_param_norm": 0.34544370573458366
+    },
+    {
+      "n_league_games": 190,
+      "simple_f5_param_norm_mae": 0.2471155780256558,
+      "simple_f5_param_corr": 0.9761686632736706,
+      "simple_late_param_norm_mae": 0.09382954003547397,
+      "simple_late_param_corr": 0.9990433071809622,
+      "simple_sum_param_norm": 0.3409451180611298
+    },
+    {
+      "n_league_games": 195,
+      "simple_f5_param_norm_mae": 0.2514922884499919,
+      "simple_f5_param_corr": 0.9756621210407914,
+      "simple_late_param_norm_mae": 0.08696858472694563,
+      "simple_late_param_corr": 0.999173800970176,
+      "simple_sum_param_norm": 0.3384608731769375
+    },
+    {
+      "n_league_games": 200,
+      "simple_f5_param_norm_mae": 0.25390738614510344,
+      "simple_f5_param_corr": 0.9755783162372416,
+      "simple_late_param_norm_mae": 0.08600963031845277,
+      "simple_late_param_corr": 0.9991937806043985,
+      "simple_sum_param_norm": 0.3399170164635562
+    }
+  ],
+  "decision_rule": "This scan uses 2024-2025 frozen simple coefficient parity only. It does not inspect 2026 outcomes to select N."
+}
