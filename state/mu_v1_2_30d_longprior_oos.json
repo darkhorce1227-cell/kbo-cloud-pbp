@@ -1,0 +1,100 @@
+{
+  "version": "mu-v1.2-30d-longprior-oos-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "selection_discipline": "P=17 selected using 2024-2025 frozen coefficient parity only; 2026 OOS is confirmatory and cannot retune P.",
+  "offset_formula": "pregame calendar30 pooled league team-game mean shrunk toward all-pregame-history league mean with 17 pseudo team-games; offseason empty-30D fallback uses most recent 300 pregame team-rows",
+  "oos_team_games": 1368,
+  "oos_games": 684,
+  "candidate_p17": {
+    "f5": {
+      "mae": 1.9479289113359635,
+      "nb_nll": 2.1221947875637133,
+      "wdl_brier": 0.20216111814891163,
+      "wdl_logloss": 0.9947372494244769,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6820510933039112
+    },
+    "full": {
+      "mae": 2.706959168420159,
+      "nb_nll": 2.5555479478092153,
+      "wdl_brier": 0.172130484232787,
+      "wdl_logloss": 0.8112552612320332,
+      "decided_side": 0.561377245508982,
+      "mean_mu": 5.0209460416519
+    }
+  },
+  "current_v0_7": {
+    "f5": {
+      "mae": 1.9487315168260726,
+      "nb_nll": 2.122876745724435,
+      "wdl_brier": 0.2022728226042618,
+      "wdl_logloss": 0.9950885320926939,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6771296267457716
+    },
+    "full": {
+      "mae": 2.705980914673679,
+      "nb_nll": 2.557782329613937,
+      "wdl_brier": 0.1722222248125326,
+      "wdl_logloss": 0.8121394667600154,
+      "decided_side": 0.5583832335329342,
+      "mean_mu": 4.971557907333973
+    }
+  },
+  "published_v1_2": {
+    "f5": {
+      "mae": 1.930994,
+      "nb_nll": 2.119493,
+      "wdl_brier": 0.20187,
+      "wdl_logloss": 0.993735,
+      "mean_mu": 2.668074,
+      "decided_side": 0.560272
+    },
+    "full": {
+      "mae": 2.705128,
+      "nb_nll": 2.55299,
+      "wdl_brier": 0.172763,
+      "wdl_logloss": 0.813524,
+      "mean_mu": 5.001728,
+      "decided_side": 0.571856
+    }
+  },
+  "delta_p17_minus_current": {
+    "f5": {
+      "mae": -0.0008026054901091317,
+      "nb_nll": -0.0006819581607215852,
+      "wdl_brier": -0.00011170445535016449,
+      "wdl_logloss": -0.00035128266821693455,
+      "decided_side": 0.0,
+      "mean_mu": 0.004921466558139631
+    },
+    "full": {
+      "mae": 0.0009782537464801955,
+      "nb_nll": -0.0022343818047216857,
+      "wdl_brier": -9.174057974559169e-05,
+      "wdl_logloss": -0.0008842055279821848,
+      "decided_side": 0.0029940119760478723,
+      "mean_mu": 0.04938813431792699
+    }
+  },
+  "delta_p17_minus_published": {
+    "f5": {
+      "mae": 0.016934911335963365,
+      "nb_nll": 0.0027017875637134203,
+      "wdl_brier": 0.0002911181489116399,
+      "wdl_logloss": 0.0010022494244769087,
+      "decided_side": -0.010187110356536522,
+      "mean_mu": 0.013977093303911392
+    },
+    "full": {
+      "mae": 0.0018311684201588463,
+      "nb_nll": 0.0025579478092154773,
+      "wdl_brier": -0.0006325157672129877,
+      "wdl_logloss": -0.002268738767966849,
+      "decided_side": -0.010478754491017983,
+      "mean_mu": 0.01921804165190011
+    }
+  },
+  "promotion_note": "This can support a v0.8 research-challenger preprocessing update only; it cannot activate Official Mechanical Shadow."
+}
