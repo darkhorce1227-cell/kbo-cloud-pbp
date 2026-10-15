@@ -1,32 +1,36 @@
 {
-  "version": "mu-v1.2-recovered-final-candidate-v0.3",
+  "version": "mu-v1.2-recovered-final-candidate-v0.8-30d-longprior-p17",
   "status": "CHALLENGER_DIAGNOSTIC",
   "official_shadow_allowed": false,
   "oos_team_games": 1368,
   "oos_games": 684,
   "recovered_semantics": {
     "starter_mapping": "SELF_TEAM_STARTER",
-    "late_scoring": "INNINGS_6_TO_9_PA_RUNS",
-    "bullpen_mapping": "OPPONENT_BULLPEN",
+    "late_offense_features": "FULL_MINUS_F5",
+    "historical_late_training_target": "INNINGS_6_PLUS_PA_RUNS",
+    "league_environment_offsets": "STRICT_PREGAME_CALENDAR30_POOLED_SHRUNK_TO_LONG_LEAGUE_MEAN_P17",
+    "league_late_stat": "INNINGS_6_PLUS_PA_RUNS",
+    "bullpen_long": "OPPONENT_INNING6PLUS_SEASON_RESET_P360",
+    "bullpen_30d_working": "OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR30_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
     "starter_rate_prior": "league->long 150 BF; long->recent5 150 BF",
     "starter_ip_prior": "league->long 5 starts; long->recent5 5 starts"
   },
   "recovered_2026_oos": {
     "f5": {
-      "mae": 1.9487315168260726,
-      "nb_nll": 2.122876745724435,
-      "wdl_brier": 0.2022728226042618,
-      "wdl_logloss": 0.9950885320926939,
+      "mae": 1.9479289113359635,
+      "nb_nll": 2.1221947875637133,
+      "wdl_brier": 0.20216111814891163,
+      "wdl_logloss": 0.9947372494244769,
       "decided_side": 0.5500848896434635,
-      "mean_mu": 2.6771296267457716
+      "mean_mu": 2.6820510933039112
     },
     "full": {
-      "mae": 2.705980914673679,
-      "nb_nll": 2.557782329613937,
-      "wdl_brier": 0.1722222248125326,
-      "wdl_logloss": 0.8121394667600154,
-      "decided_side": 0.5583832335329342,
-      "mean_mu": 4.971557907333973
+      "mae": 2.706959168420159,
+      "nb_nll": 2.5555479478092153,
+      "wdl_brier": 0.172130484232787,
+      "wdl_logloss": 0.8112552612320332,
+      "decided_side": 0.561377245508982,
+      "mean_mu": 5.0209460416519
     }
   },
   "published_v1_2_hybrid_2026_oos": {
@@ -49,21 +53,21 @@
   },
   "delta_recovered_minus_published": {
     "f5": {
-      "mae": 0.017737516826072497,
-      "nb_nll": 0.0033837457244350055,
-      "wdl_brier": 0.0004028226042618044,
-      "wdl_logloss": 0.0013535320926938432,
-      "mean_mu": 0.009055626745771761,
+      "mae": 0.016934911335963365,
+      "nb_nll": 0.0027017875637134203,
+      "wdl_brier": 0.0002911181489116399,
+      "wdl_logloss": 0.0010022494244769087,
+      "mean_mu": 0.013977093303911392,
       "decided_side": -0.010187110356536522
     },
     "full": {
-      "mae": 0.0008529146736786508,
-      "nb_nll": 0.004792329613937163,
-      "wdl_brier": -0.0005407751874673961,
-      "wdl_logloss": -0.0013845332399846644,
-      "mean_mu": -0.030170092666026882,
-      "decided_side": -0.013472766467065855
+      "mae": 0.0018311684201588463,
+      "nb_nll": 0.0025579478092154773,
+      "wdl_brier": -0.0006325157672129877,
+      "wdl_logloss": -0.002268738767966849,
+      "mean_mu": 0.01921804165190011,
+      "decided_side": -0.010478754491017983
     }
   },
-  "note": "Diagnostic only. Frozen v1.2 coefficients/scalers/gamma/NB alpha are unchanged. This candidate cannot activate Official Shadow until parity/reproducibility gates are approved."
+  "note": "Diagnostic only. P17 was selected on 2024-2025 frozen coefficient parity, not 2026 OOS. Exact BP30 centering remains unresolved and original row-level feature dumps do not survive. Official Shadow remains unavailable."
 }
