@@ -37,12 +37,13 @@ def load():
     return tg,bps
 
 def equal_team_raw(z, fallback):
+    if z.empty: return float(fallback)
     g=z.groupby("pitching_team",as_index=False).agg(runs=("runs","sum"),outs=("outs","sum"))
-    a=[ra9(float(r.runs),float(r.outs),np.nan) for r in g.itertuples(index=False) if float(r.outs)>0]
-    return float(np.mean(a)) if a else float(fallback)
+    a=(g.loc[g.outs>0,"runs"].to_numpy(float)*27.0/g.loc[g.outs>0,"outs"].to_numpy(float))
+    return float(a.mean()) if len(a) else float(fallback)
 
-def build_one(tg,long_bp,recent_bp,include_current,denom_mode,p_recent):
-    out=[]
+def family_stats(tg,long_bp,recent_bp,include_current,denom_mode):
+    rr=[]; ro=[]; tl=[]; den=[]
     for r in dev(tg).itertuples(index=False):
         d=pd.Timestamp(r.game_date); opp=str(r.opponent); gpk=str(r.game_pk)
         pre_all=long_bp[long_bp.game_date<d]; pre=pre_all[pre_all.game_date.dt.year==d.year]
@@ -53,17 +54,23 @@ def build_one(tg,long_bp,recent_bp,include_current,denom_mode,p_recent):
         team_long=(tr+P_LONG*lg_long/27.0)*27.0/(to+P_LONG) if to+P_LONG>0 else lg_long
         if include_current:
             rec=recent_bp[(recent_bp.game_date<=d)&(recent_bp.game_date>=d-pd.Timedelta(days=30))]
-            # On the current date, retain only the current game's rows, avoiding other same-day future games.
             rec=rec[(rec.game_date<d)|(rec.game_pk.astype(str)==gpk)]
         else:
             rec=recent_bp[(recent_bp.game_date<d)&(recent_bp.game_date>=d-pd.Timedelta(days=30))]
         opprec=rec[rec.pitching_team.astype(str).eq(opp)]
         pooled=ra9(float(rec.runs.sum()),float(rec.outs.sum()),lg_long)
-        den=pooled if denom_mode=="pooled" else equal_team_raw(rec,pooled)
-        rr=float(opprec.runs.sum());ro=float(opprec.outs.sum())
-        num=(rr+p_recent*team_long/27.0)*27.0/(ro+p_recent) if ro+p_recent>0 else team_long
-        out.append(num/den if den else 1.0)
-    return np.asarray(out,float)
+        denominator=pooled if denom_mode=="pooled" else equal_team_raw(rec,pooled)
+        rr.append(float(opprec.runs.sum())); ro.append(float(opprec.outs.sum())); tl.append(team_long); den.append(denominator)
+    return np.asarray(rr),np.asarray(ro),np.asarray(tl),np.asarray(den)
+
+def eval_grid(rr,ro,tl,den):
+    out=[]
+    for p in np.arange(0,121,3,dtype=float):
+        d=ro+p
+        num=np.where(d>0,(rr+p*tl/27.0)*27.0/d,tl)
+        rel=np.where(den!=0,num/den,1.0)
+        out.append((float(p),moments(rel)))
+    return out
 
 def main():
     tg,bps=load(); assert len(dev(tg))==2628
@@ -71,12 +78,11 @@ def main():
     for source in ["inning6plus","reliever_stint","inning6to9"]:
       for include_current in [False,True]:
        for denom in ["pooled","equal_team_raw"]:
-        for p in np.arange(0,121,3,dtype=float):
-            a=build_one(tg,bps["inning6plus"],bps[source],include_current,denom,float(p))
-            m=moments(a)
-            candidates.append({"recent_source":source,"include_current_game":include_current,"denominator":denom,"p_recent_outs":float(p),**m})
+        rr,ro,tl,dn=family_stats(tg,bps["inning6plus"],bps[source],include_current,denom)
+        for p,m in eval_grid(rr,ro,tl,dn):
+            candidates.append({"recent_source":source,"include_current_game":include_current,"denominator":denom,"p_recent_outs":p,**m})
     candidates.sort(key=lambda x:x["loss"])
-    payload={"version":"mu-v1.2-bp30-recent-source-v0.1","status":"DIAGNOSTIC_ONLY","official_shadow_allowed":False,"rows":2628,"top":candidates[:30],"best_by_family":{},"note":"Tests recent bullpen source, same-game inclusion leakage, denominator aggregation, and recent pseudo-outs. Long BP remains pregame inning6plus with 360-out prior."}
+    payload={"version":"mu-v1.2-bp30-recent-source-v0.2-fast","status":"DIAGNOSTIC_ONLY","official_shadow_allowed":False,"rows":2628,"top":candidates[:30],"best_by_family":{},"note":"Tests recent bullpen source, same-game inclusion leakage, denominator aggregation, and recent pseudo-outs. Long BP remains pregame inning6plus with 360-out prior."}
     for x in candidates:
         key=f"{x['recent_source']}|include_current={x['include_current_game']}|{x['denominator']}"
         if key not in payload["best_by_family"]: payload["best_by_family"][key]=x
