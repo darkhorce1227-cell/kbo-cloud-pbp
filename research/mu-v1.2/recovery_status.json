@@ -1,14 +1,14 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.4",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.5",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "active_challenger": {
     "model": "research/mu-v1.2/recovered_challenger.json",
     "runner": "scripts/mu_v1_2_recovered_challenger.py",
+    "version": "mu-v1.2-recovered-challenger-v0.7-bp30-pregame-reliever",
     "role": "RESEARCH_CHALLENGER",
     "use_in_daily_analysis": true,
-    "use_as_official_mechanical_shadow": false,
-    "note": "Keep v0.6 historical-parity Challenger unchanged while BP30 exact semantics remain unresolved."
+    "use_as_official_mechanical_shadow": false
   },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
@@ -40,12 +40,19 @@
       "mapping": "opponent bullpen",
       "moment_parity": "near-exact"
     },
+    "bullpen_30d_direction": {
+      "recent_source": "RELIEVER_STINT",
+      "pregame_only": true,
+      "confidence": "STRONG_FORENSIC_SUPPORT_NOT_EXACT_PARITY",
+      "evidence": "Pregame reliever candidate improves development moment distance, frozen core coefficient parity, and 2026 OOS versus inning6plus. Same-game variants are rejected because frozen core coefficient parity deteriorates sharply despite superficially better OOS aggregates."
+    },
     "ridge_penalty_convention": "mean-loss alpha, equivalent implementation effective alpha = declared alpha * N"
   },
   "challenger_working_semantics": {
     "late_offense_features": "FULL_MINUS_F5",
     "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
-    "bullpen_30d_relative": "inning6plus calendar30 over pooled league30, recent prior from shrunk inning6plus team-long; retained as conservative working formula only"
+    "bullpen_long": "opponent inning6plus season-reset P360",
+    "bullpen_30d_relative": "opponent reliever-stint, strictly pregame calendar30, P39.25 toward shrunk inning6plus team-long absolute RA9, divided by pooled reliever-stint league30 RA9"
   },
   "posthoc_diagnostic_variant": {
     "path": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
@@ -54,26 +61,14 @@
   },
   "still_unresolved": {
     "bullpen_30d_relative": {
-      "status": "NARROWED_NOT_RECOVERED",
-      "frozen_moments": {
-        "mean": 0.9860898056018214,
-        "scale": 0.21158719158114866
-      },
-      "old_working_inning6plus": {
-        "mean": 1.0004947899082408,
-        "scale": 0.21098790633188075,
-        "mean_gap": 0.014404984306419455
-      },
-      "strongest_narrowed_hypothesis": "Recent source is more likely RELIEVER_STINT than INNING6PLUS, while exported long bullpen feature remains INNING6PLUS.",
-      "evidence": {
-        "denominator_only": "Equal-team league30 improves mean only to 0.996741 with scale 0.212339; denominator aggregation alone cannot explain frozen moments.",
-        "recent_source": "RELIEVER_STINT dominates moment-fit families. With current-game inclusion and pooled reliever denominator, p_recent about 35 yields mean 0.979553 and scale 0.211627; pregame-only p_recent about 39 yields mean 0.977629 and scale 0.211824.",
-        "mixed_runs_outs": "Mixing reliever and inning6plus runs/outs/league denominators does not beat the pure reliever-stint family.",
-        "prior_source": "Replacing the inning6plus long prior with reliever-long prior overshoots the mean to about 0.9975 while preserving scale, so neither pure prior source is exact.",
-        "relative_prior": "Long-relative hierarchical priors modestly improve loss but still leave mean around 0.9800 when scale matches frozen."
-      },
-      "leakage_hypothesis": "Current-game inclusion ranks better than pregame-only among reliever-stint candidates, but because no tested formula reaches exact moment parity, SAME_GAME_LEAKAGE_IS_NOT_CONFIRMED.",
-      "next_forensic_gate": "Compare pregame reliever-stint vs same-game-included reliever-stint candidates using frozen coefficient parity and 2026 OOS directionality before changing Challenger preprocessing."
+      "status": "NARROWED_WORKING_SEMANTIC_ACTIVE_NOT_EXACT",
+      "frozen_moments": {"mean": 0.9860898056018214, "scale": 0.21158719158114866},
+      "active_candidate_moments": {"mean": 0.9775165782137949, "scale": 0.21166317777385316},
+      "active_candidate": "RELIEVER_STINT_PREGAME_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
+      "coefficient_evidence": "core_f5+core_late normalized parity score 0.184369 vs 0.190571 for prior inning6plus v0.6; same-game candidates worsen to 0.348-0.356",
+      "oos_evidence": "v0.7 F5 MAE/logloss 1.948430/0.994635 and Full MAE/logloss/side 2.711894/0.811129/0.559880, modestly improving v0.6",
+      "leakage_hypothesis": "REJECTED_AS_HISTORICAL_DEFAULT: same-game variants materially damage frozen coefficient parity.",
+      "remaining_issue": "Exact historical centering/prior formula remains unknown; active candidate mean is about 0.00857 below frozen despite near-exact scale."
     },
     "exact_feature_row_parity": "not yet demonstrated for every feature and every development/OOS row"
   },
@@ -87,8 +82,9 @@
     "bp30_mixed_source": "state/mu_v1_2_bp30_mixed_source.json",
     "bp30_prior_source": "state/mu_v1_2_bp30_prior_source.json",
     "bp30_relative_prior": "state/mu_v1_2_bp30_relative_prior.json",
+    "bp30_leakage_forensic": "state/mu_v1_2_bp30_leakage_forensic.json",
     "late_offset": "state/mu_v1_2_late_offset_semantics.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until BP30 semantics and exact row-level reproducibility are resolved."
+  "promotion_gate": "Keep Official Mechanical Mu Shadow UNAVAILABLE until exact BP30 centering/row semantics and exact row-level reproducibility are resolved."
 }
