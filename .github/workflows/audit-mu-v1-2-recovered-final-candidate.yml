@@ -38,11 +38,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add state/mu_v1_2_recovered_final_candidate_oos.json
-          if [ -z "$(git status --porcelain -- state/mu_v1_2_recovered_final_candidate_oos.json)" ]; then
+          if git diff --cached --quiet; then
             echo "No changes."
             exit 0
           fi
           git commit -m "state: record recovered mu-v1.2 final candidate OOS"
+          git pull --rebase origin main
           git push
