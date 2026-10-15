@@ -1,12 +1,12 @@
 {
-  "expected_games": 1,
+  "expected_games": 0,
   "final_games": 0,
-  "generated_at_kst": "2026-10-15T05:33:37.970527+09:00",
+  "generated_at_kst": "2026-10-15T17:36:31.666946+09:00",
   "reason": "no completed validated target slate available for score audit",
   "source": null,
-  "target_date": "2026-10-14",
-  "updater_state": "GAMES_NOT_FINAL",
-  "updater_validation": "WAIT",
+  "target_date": "2026-10-15",
+  "updater_state": "NO_GAMES",
+  "updater_validation": "PASS",
   "validation": "SKIP",
   "version": "1.0.0"
 }
