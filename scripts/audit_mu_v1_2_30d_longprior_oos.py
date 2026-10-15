@@ -16,7 +16,6 @@ import audit_mu_v1_2_30d_longprior_refine as refine
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 METRICS_PATH = ROOT / "research" / "mu-v1.2" / "metrics.json"
-CURRENT_PATH = ROOT / "state" / "mu_v1_2_recovered_final_candidate_oos.json"
 OUT_PATH = ROOT / "state" / "mu_v1_2_30d_longprior_oos.json"
 P = 17.0  # selected on 2024-2025 frozen simple coefficient parity only
 
@@ -57,6 +56,11 @@ def map_eval(rows: pd.DataFrame, model: dict) -> dict:
     }
 
 
+def delta(a,b):
+    keys=["mae","nb_nll","wdl_brier","wdl_logloss","decided_side","mean_mu"]
+    return {k:float(a[k]-b[k]) for k in keys if k in a and k in b}
+
+
 def main():
     model=json.loads(MODEL_PATH.read_text(encoding="utf-8"))
     pub=json.loads(METRICS_PATH.read_text(encoding="utf-8"))
@@ -74,39 +78,35 @@ def main():
     if len(rows)!=1368 or rows.game_pk.nunique()!=684:
         raise RuntimeError(f"OOS gate failed {len(rows)}/{rows.game_pk.nunique()}")
 
-    # Change ONLY the two league environment offset columns. Offense 30D features
-    # remain as in v0.7 because the historical hypothesis being tested is an
-    # offset-environment smoothing rule, not a redefinition of offense features.
-    dates=pd.to_datetime(rows.game_date).dt.normalize().tolist()
+    # Apples-to-apples baseline: exactly the same reconstructed rows and BP30
+    # semantic, before changing only the league-environment offset columns.
+    baseline=map_eval(rows,model)
+
+    candidate_rows=rows.copy(deep=True)
+    dates=pd.to_datetime(candidate_rows.game_date).dt.normalize().tolist()
     stats=refine.precompute(tg,dates)
     f5off,lateoff=refine.vectors(dates,stats,P)
-    rows["league_f5_30d"]=f5off
-    rows["league_late_30d"]=lateoff
+    candidate_rows["league_f5_30d"]=f5off
+    candidate_rows["league_late_30d"]=lateoff
+    got=map_eval(candidate_rows,model)
 
-    got=map_eval(rows,model)
-    current=(json.loads(CURRENT_PATH.read_text(encoding="utf-8"))["recovered_2026_oos"]
-             if CURRENT_PATH.exists() else None)
     published={
         "f5":{**pub["oos_2026"]["f5"]["hybrid"],"decided_side":pub["decided_side_accuracy_2026"]["f5"]},
         "full":{**pub["oos_2026"]["full"]["hybrid"],"decided_side":pub["decided_side_accuracy_2026"]["full"]},
     }
 
-    def delta(a,b):
-        keys=["mae","nb_nll","wdl_brier","wdl_logloss","decided_side","mean_mu"]
-        return {k:float(a[k]-b[k]) for k in keys if k in a and k in b}
-
     payload={
-        "version":"mu-v1.2-30d-longprior-oos-v0.1",
+        "version":"mu-v1.2-30d-longprior-oos-v0.2",
         "status":"DIAGNOSTIC_ONLY",
         "official_shadow_allowed":False,
         "selection_discipline":"P=17 selected using 2024-2025 frozen coefficient parity only; 2026 OOS is confirmatory and cannot retune P.",
         "offset_formula":"pregame calendar30 pooled league team-game mean shrunk toward all-pregame-history league mean with 17 pseudo team-games; offseason empty-30D fallback uses most recent 300 pregame team-rows",
         "oos_team_games":int(len(rows)),
         "oos_games":int(rows.game_pk.nunique()),
+        "baseline_same_run_v0_7_semantics":baseline,
         "candidate_p17":got,
-        "current_v0_7":current,
         "published_v1_2":published,
-        "delta_p17_minus_current":({k:delta(got[k],current[k]) for k in ["f5","full"]} if current else None),
+        "delta_p17_minus_baseline":{k:delta(got[k],baseline[k]) for k in ["f5","full"]},
         "delta_p17_minus_published":{k:delta(got[k],published[k]) for k in ["f5","full"]},
         "promotion_note":"This can support a v0.8 research-challenger preprocessing update only; it cannot activate Official Mechanical Shadow."
     }
