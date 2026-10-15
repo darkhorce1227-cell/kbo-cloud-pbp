@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-recovered-challenger-v0.7-bp30-pregame-reliever",
+  "version": "mu-v1.2-recovered-challenger-v0.8-30d-longprior-p17",
   "status": "RESEARCH_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "base_model": "research/mu-v1.2/model_spec.json",
@@ -16,8 +16,18 @@
       "late_long_pseudo_games": 13.75,
       "late_30d_pseudo_games": 6.0,
       "historical_late_training_target": "INNINGS_6_PLUS_PA_RUNS",
-      "league_late_30d_offset": "INNINGS_6_PLUS_PA_RUNS",
       "late_semantics_evidence": "VERY_HIGH_FORENSIC_SUPPORT: target6plus+offset6plus coefficient-parity score 0.220774 vs 0.269134 for 6to9+6to9; crossed definitions 1.44-1.55; frozen-beta target-direction projection 0.855 simple / 1.067 core under 6plus offset."
+    },
+    "league_environment_offsets": {
+      "window": "CALENDAR_30D_STRICTLY_PREGAME",
+      "aggregation": "POOLED_LEAGUE_TEAM_GAMES",
+      "f5_stat": "RUNS_F5",
+      "late_stat": "INNINGS_6_PLUS_PA_RUNS",
+      "long_prior": "ALL_PREGAME_HISTORY_LEAGUE_MEAN",
+      "pseudo_team_games": 17.0,
+      "offseason_empty_30d_fallback": "MOST_RECENT_300_PREGAME_TEAM_ROWS",
+      "selection_discipline": "P=17 selected only on 2024-2025 frozen simple-coefficient parity; 2026 used confirmatorily, not to retune P.",
+      "evidence": "P scan 0-40: F5 optimum P15, late optimum P17, combined optimum P17; P15-17 form the top cluster. Combined normalized coefficient-parity error improves from 0.383642 for raw calendar30 to 0.264988 at P17. Same-run 2026 confirmation improves Full MAE 2.711894->2.706959 and Full mean_mu 5.047592->5.020946 while keeping logloss essentially flat."
     },
     "starter": {
       "mapping": "SELF_TEAM_STARTER",
@@ -40,7 +50,7 @@
       "recent_prior": "SHRUNK_INNING6PLUS_TEAM_LONG_ABSOLUTE_RA9",
       "recent_league_denominator": "POOLED_RELIEVER_STINT_LEAGUE30_RA9",
       "same_game_inclusion": false,
-      "evidence": "Pregame reliever candidate improves BP30 moment distance, frozen core coefficient parity (core sum 0.18437 vs 0.19057 for v0.6), and 2026 OOS versus inning6plus. Same-game candidates improve some OOS aggregates but destroy coefficient parity (core sum about 0.348-0.356), so leakage is rejected as historical implementation evidence."
+      "evidence": "Pregame reliever candidate improves BP30 moment distance, frozen core coefficient parity, and 2026 OOS versus inning6plus. Same-game leakage is rejected by frozen coefficient parity."
     },
     "park": {
       "scope": "continuous_history",
@@ -50,14 +60,14 @@
   "frozen_2026_oos_reference": {
     "team_games": 1368,
     "games": 684,
-    "f5_mae": 1.9484302026398717,
-    "f5_wdl_logloss": 0.994635265139799,
+    "f5_mae": 1.9479289113359635,
+    "f5_wdl_logloss": 0.9947372494244769,
     "f5_decided_side": 0.5500848896434635,
-    "f5_mean_mu": 2.6771296267457716,
-    "full_mae": 2.711894452745128,
-    "full_wdl_logloss": 0.8111287078942179,
-    "full_decided_side": 0.5598802395209581,
-    "full_mean_mu": 5.047592130538038
+    "f5_mean_mu": 2.6820510933039112,
+    "full_mae": 2.706959168420159,
+    "full_wdl_logloss": 0.8112552612320332,
+    "full_decided_side": 0.561377245508982,
+    "full_mean_mu": 5.0209460416519
   },
   "published_v1_2_reference": {
     "f5_mae": 1.930994,
@@ -77,12 +87,13 @@
   },
   "posthoc_variant": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
   "known_unresolved": [
-    "BP30 exact historical centering/prior formula is still not recovered: v0.7 pregame-reliever candidate has near-exact scale but mean remains about 0.00857 below frozen.",
-    "Exact row-level parity has not been demonstrated for every historical feature row."
+    "BP30 exact historical centering/prior formula is still not recovered: pregame-reliever candidate has near-exact scale but mean remains about 0.00857 below frozen.",
+    "Original v1.2 feature/prediction rows were not preserved, so literal row-to-row parity cannot be demonstrated from surviving artifacts.",
+    "P17 league-environment smoothing is strongly supported by frozen coefficient parity and confirmatory 2026 behavior, but the original training code is absent, so it remains forensic reconstruction rather than direct source-code recovery."
   ],
   "usage": {
     "daily_analysis": "USE_AS_RESEARCH_CHALLENGER",
     "betting_decision": "DO_NOT_TREAT_AS_OFFICIAL_MECHANICAL_SHADOW",
-    "promotion_gate": "Resolve remaining BP30 centering and pass exact row-level reproducibility gate."
+    "promotion_gate": "Resolve remaining BP30 centering or establish a defensible bound on its practical impact, then pass prospective live snapshot comparison."
   }
 }
