@@ -4,17 +4,20 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 import mu_v1_3 as engine
 import audit_mu_v1_2_recovered_oos as recovered
 import audit_mu_v1_2_late_total_variants as lateaudit
 import audit_mu_v1_2_late_offset_semantics as lateoffset
 import audit_mu_v1_2_bp30_leakage_forensic as bpforensic
+import audit_mu_v1_2_30d_longprior_refine as envrefine
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 METRICS_PATH = ROOT / "research" / "mu-v1.2" / "metrics.json"
 OUT_PATH = ROOT / "state" / "mu_v1_2_recovered_final_candidate_oos.json"
+LEAGUE_ENV_P = 17.0
 
 
 def mean_mu(rows, model):
@@ -40,11 +43,19 @@ def main():
     rows=recovered.make_oos_rows(tg,st,bp6)
     rows=lateaudit.swap_starter(rows)
     rows=lateoffset.apply_offset_only(rows,tg,"late_6plus_pa")
-    # v0.7 BP30 working semantic: strictly pregame reliever-stint recent source,
-    # pooled reliever league30 denominator, P39.25 toward shrunk inning6+ team-long.
+    # v0.7/v0.8 BP30 working semantic.
     rows["opp_bp_ra9_30d_rel"]=bpforensic.candidate_bp30(
         rows,tg,bp6,bprel,leak=False,p_recent=39.25,prior_mode="abs6"
     )
+
+    # v0.8 league-environment offsets: documented strictly-pregame calendar30,
+    # weakly shrunk toward all-pregame long league mean with P17. P17 was selected
+    # only from frozen 2024-2025 simple-coefficient parity.
+    dates=pd.to_datetime(rows.game_date).dt.normalize().tolist()
+    stats=envrefine.precompute(tg,dates)
+    f5off,lateoff=envrefine.vectors(dates,stats,LEAGUE_ENV_P)
+    rows["league_f5_30d"]=f5off
+    rows["league_late_30d"]=lateoff
 
     if len(rows)!=1368 or rows.game_pk.nunique()!=684:
         raise RuntimeError(f"OOS gate failed rows={len(rows)} games={rows.game_pk.nunique()}")
@@ -86,7 +97,7 @@ def main():
         }
 
     payload={
-        "version":"mu-v1.2-recovered-final-candidate-v0.7-bp30-pregame-reliever",
+        "version":"mu-v1.2-recovered-final-candidate-v0.8-30d-longprior-p17",
         "status":"CHALLENGER_DIAGNOSTIC",
         "official_shadow_allowed":False,
         "oos_team_games":int(len(rows)),
@@ -95,16 +106,17 @@ def main():
             "starter_mapping":"SELF_TEAM_STARTER",
             "late_offense_features":"FULL_MINUS_F5",
             "historical_late_training_target":"INNINGS_6_PLUS_PA_RUNS",
-            "league_late_30d_offset":"INNINGS_6_PLUS_PA_RUNS",
+            "league_environment_offsets":"STRICT_PREGAME_CALENDAR30_POOLED_SHRUNK_TO_LONG_LEAGUE_MEAN_P17",
+            "league_late_stat":"INNINGS_6_PLUS_PA_RUNS",
             "bullpen_long":"OPPONENT_INNING6PLUS_SEASON_RESET_P360",
             "bullpen_30d_working":"OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR30_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
             "starter_rate_prior":"league->long 150 BF; long->recent5 150 BF",
-            "starter_ip_prior":"league->long 5 starts; long->recent5 5 starts",
+            "starter_ip_prior":"league->long 5 starts; long->recent5 5 starts"
         },
         "recovered_2026_oos":got,
         "published_v1_2_hybrid_2026_oos":published,
         "delta_recovered_minus_published":deltas,
-        "note":"Diagnostic only. BP30 reliever-stint pregame semantic improves frozen core coefficient parity and 2026 OOS versus v0.6, but exact frozen BP30 mean parity is still unresolved. Same-game leakage was rejected by coefficient parity. Official Shadow remains gated on exact row parity.",
+        "note":"Diagnostic only. P17 was selected on 2024-2025 frozen coefficient parity, not 2026 OOS. Exact BP30 centering remains unresolved and original row-level feature dumps do not survive. Official Shadow remains unavailable."
     }
     OUT_PATH.parent.mkdir(parents=True,exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
