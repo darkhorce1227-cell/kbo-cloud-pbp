@@ -1,0 +1,46 @@
+name: Audit Mu v1.2 30D Long Prior Refine
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/audit_mu_v1_2_30d_longprior_refine.py"
+      - ".github/workflows/audit-mu-v1-2-30d-longprior-refine.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-mu-v1-2-30d-longprior-refine
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+      - run: pip install -r requirements.txt
+      - name: Refine 30D long-prior pseudo-count
+        run: python scripts/audit_mu_v1_2_30d_longprior_refine.py
+      - name: Commit diagnostic state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f state/mu_v1_2_30d_longprior_refine.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research: record mu-v1.2 30D long-prior refine"
+          git fetch origin main
+          git rebase --autostash origin/main
+          git push
