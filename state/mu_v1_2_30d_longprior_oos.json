@@ -1,11 +1,29 @@
 {
-  "version": "mu-v1.2-30d-longprior-oos-v0.1",
+  "version": "mu-v1.2-30d-longprior-oos-v0.2",
   "status": "DIAGNOSTIC_ONLY",
   "official_shadow_allowed": false,
   "selection_discipline": "P=17 selected using 2024-2025 frozen coefficient parity only; 2026 OOS is confirmatory and cannot retune P.",
   "offset_formula": "pregame calendar30 pooled league team-game mean shrunk toward all-pregame-history league mean with 17 pseudo team-games; offseason empty-30D fallback uses most recent 300 pregame team-rows",
   "oos_team_games": 1368,
   "oos_games": 684,
+  "baseline_same_run_v0_7_semantics": {
+    "f5": {
+      "mae": 1.9484302026398717,
+      "nb_nll": 2.122654143856277,
+      "wdl_brier": 0.20215056159418396,
+      "wdl_logloss": 0.9946352651397988,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6771296267457716
+    },
+    "full": {
+      "mae": 2.711894452745128,
+      "nb_nll": 2.556061146101787,
+      "wdl_brier": 0.17212866546496663,
+      "wdl_logloss": 0.8111287078942179,
+      "decided_side": 0.5598802395209581,
+      "mean_mu": 5.047592130538038
+    }
+  },
   "candidate_p17": {
     "f5": {
       "mae": 1.9479289113359635,
@@ -22,24 +40,6 @@
       "wdl_logloss": 0.8112552612320332,
       "decided_side": 0.561377245508982,
       "mean_mu": 5.0209460416519
-    }
-  },
-  "current_v0_7": {
-    "f5": {
-      "mae": 1.9487315168260726,
-      "nb_nll": 2.122876745724435,
-      "wdl_brier": 0.2022728226042618,
-      "wdl_logloss": 0.9950885320926939,
-      "decided_side": 0.5500848896434635,
-      "mean_mu": 2.6771296267457716
-    },
-    "full": {
-      "mae": 2.705980914673679,
-      "nb_nll": 2.557782329613937,
-      "wdl_brier": 0.1722222248125326,
-      "wdl_logloss": 0.8121394667600154,
-      "decided_side": 0.5583832335329342,
-      "mean_mu": 4.971557907333973
     }
   },
   "published_v1_2": {
@@ -60,22 +60,22 @@
       "decided_side": 0.571856
     }
   },
-  "delta_p17_minus_current": {
+  "delta_p17_minus_baseline": {
     "f5": {
-      "mae": -0.0008026054901091317,
-      "nb_nll": -0.0006819581607215852,
-      "wdl_brier": -0.00011170445535016449,
-      "wdl_logloss": -0.00035128266821693455,
+      "mae": -0.0005012913039081912,
+      "nb_nll": -0.00045935629256366184,
+      "wdl_brier": 1.055655472767536e-05,
+      "wdl_logloss": 0.00010198428467811382,
       "decided_side": 0.0,
       "mean_mu": 0.004921466558139631
     },
     "full": {
-      "mae": 0.0009782537464801955,
-      "nb_nll": -0.0022343818047216857,
-      "wdl_brier": -9.174057974559169e-05,
-      "wdl_logloss": -0.0008842055279821848,
-      "decided_side": 0.0029940119760478723,
-      "mean_mu": 0.04938813431792699
+      "mae": -0.004935284324969036,
+      "nb_nll": -0.0005131982925714595,
+      "wdl_brier": 1.818767820377376e-06,
+      "wdl_logloss": 0.00012655333781530498,
+      "decided_side": 0.0014970059880239361,
+      "mean_mu": -0.026646088886137953
     }
   },
   "delta_p17_minus_published": {
