@@ -1,0 +1,434 @@
+{
+  "version": "mu-v1.2-offset-n-refine-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "development_rows": 2628,
+  "development_games": 1314,
+  "f5_scan": {
+    "min": 120,
+    "max": 140,
+    "step": 1
+  },
+  "late_scan": {
+    "min": 180,
+    "max": 300,
+    "step": 5
+  },
+  "best_f5": {
+    "n_league_games": 124,
+    "param_norm_mae": 0.1942146943664921,
+    "param_corr": 0.9793160562800971,
+    "param_mae": 0.002365507084773308
+  },
+  "best_late": {
+    "n_league_games": 235,
+    "param_norm_mae": 0.06259343203191207,
+    "param_corr": 0.9995140418403744,
+    "param_mae": 0.0009399561513829858
+  },
+  "top10_f5": [
+    {
+      "n_league_games": 124,
+      "param_norm_mae": 0.1942146943664921,
+      "param_corr": 0.9793160562800971,
+      "param_mae": 0.002365507084773308
+    },
+    {
+      "n_league_games": 134,
+      "param_norm_mae": 0.19437546391803504,
+      "param_corr": 0.9786871993485111,
+      "param_mae": 0.002367788103572253
+    },
+    {
+      "n_league_games": 139,
+      "param_norm_mae": 0.1951718092306057,
+      "param_corr": 0.9790552999204504,
+      "param_mae": 0.0023573678126637657
+    },
+    {
+      "n_league_games": 127,
+      "param_norm_mae": 0.19747726387353398,
+      "param_corr": 0.9787811838748989,
+      "param_mae": 0.0023795763829783058
+    },
+    {
+      "n_league_games": 130,
+      "param_norm_mae": 0.19864625034914934,
+      "param_corr": 0.978165919939184,
+      "param_mae": 0.00241241476379318
+    },
+    {
+      "n_league_games": 129,
+      "param_norm_mae": 0.19909215594202728,
+      "param_corr": 0.9796167941693864,
+      "param_mae": 0.002396594615495958
+    },
+    {
+      "n_league_games": 131,
+      "param_norm_mae": 0.2022396056342862,
+      "param_corr": 0.9783910411630833,
+      "param_mae": 0.002406894786061927
+    },
+    {
+      "n_league_games": 132,
+      "param_norm_mae": 0.2030508587280094,
+      "param_corr": 0.9782992037799113,
+      "param_mae": 0.0024140352664066803
+    },
+    {
+      "n_league_games": 140,
+      "param_norm_mae": 0.20385336493437273,
+      "param_corr": 0.9783645040458204,
+      "param_mae": 0.0024203225424478175
+    },
+    {
+      "n_league_games": 135,
+      "param_norm_mae": 0.2038903580806341,
+      "param_corr": 0.9779242754955444,
+      "param_mae": 0.002440505782793821
+    }
+  ],
+  "top10_late": [
+    {
+      "n_league_games": 235,
+      "param_norm_mae": 0.06259343203191207,
+      "param_corr": 0.9995140418403744,
+      "param_mae": 0.0009399561513829858
+    },
+    {
+      "n_league_games": 230,
+      "param_norm_mae": 0.06359770166732895,
+      "param_corr": 0.9994407380327657,
+      "param_mae": 0.0009548399861031021
+    },
+    {
+      "n_league_games": 220,
+      "param_norm_mae": 0.06614528921604196,
+      "param_corr": 0.9994589923450166,
+      "param_mae": 0.0009786570518367749
+    },
+    {
+      "n_league_games": 225,
+      "param_norm_mae": 0.06637696989758153,
+      "param_corr": 0.9994324006013029,
+      "param_mae": 0.000991852000401291
+    },
+    {
+      "n_league_games": 215,
+      "param_norm_mae": 0.06889723651755639,
+      "param_corr": 0.9994426873122895,
+      "param_mae": 0.0009940543767162928
+    },
+    {
+      "n_league_games": 240,
+      "param_norm_mae": 0.07579610964145575,
+      "param_corr": 0.999533934962017,
+      "param_mae": 0.001060451531464971
+    },
+    {
+      "n_league_games": 210,
+      "param_norm_mae": 0.07679114447707433,
+      "param_corr": 0.9993461945222555,
+      "param_mae": 0.0010701850559797618
+    },
+    {
+      "n_league_games": 205,
+      "param_norm_mae": 0.07713103662635312,
+      "param_corr": 0.9993385588357059,
+      "param_mae": 0.0010720387383421142
+    },
+    {
+      "n_league_games": 245,
+      "param_norm_mae": 0.08405641140323714,
+      "param_corr": 0.999505469942003,
+      "param_mae": 0.00115024615937207
+    },
+    {
+      "n_league_games": 200,
+      "param_norm_mae": 0.0860096303184528,
+      "param_corr": 0.9991937806043986,
+      "param_mae": 0.0011436707553484713
+    }
+  ],
+  "f5_all": [
+    {
+      "n_league_games": 120,
+      "param_norm_mae": 0.2048827827619133,
+      "param_corr": 0.9785848120933472,
+      "param_mae": 0.002402688485336254
+    },
+    {
+      "n_league_games": 121,
+      "param_norm_mae": 0.2078206583868824,
+      "param_corr": 0.9781753434689417,
+      "param_mae": 0.0024325818952083697
+    },
+    {
+      "n_league_games": 122,
+      "param_norm_mae": 0.2069139950539805,
+      "param_corr": 0.9782716957066815,
+      "param_mae": 0.0024302784322377748
+    },
+    {
+      "n_league_games": 123,
+      "param_norm_mae": 0.20749456332426605,
+      "param_corr": 0.9778053291915959,
+      "param_mae": 0.0024600848638242677
+    },
+    {
+      "n_league_games": 124,
+      "param_norm_mae": 0.1942146943664921,
+      "param_corr": 0.9793160562800971,
+      "param_mae": 0.002365507084773308
+    },
+    {
+      "n_league_games": 125,
+      "param_norm_mae": 0.20664682600744566,
+      "param_corr": 0.9778704829388576,
+      "param_mae": 0.002451254151247173
+    },
+    {
+      "n_league_games": 126,
+      "param_norm_mae": 0.20426990574372103,
+      "param_corr": 0.9781779789959294,
+      "param_mae": 0.002428613689209386
+    },
+    {
+      "n_league_games": 127,
+      "param_norm_mae": 0.19747726387353398,
+      "param_corr": 0.9787811838748989,
+      "param_mae": 0.0023795763829783058
+    },
+    {
+      "n_league_games": 128,
+      "param_norm_mae": 0.20917311531945929,
+      "param_corr": 0.9777668216806744,
+      "param_mae": 0.0024610072091637548
+    },
+    {
+      "n_league_games": 129,
+      "param_norm_mae": 0.19909215594202728,
+      "param_corr": 0.9796167941693864,
+      "param_mae": 0.002396594615495958
+    },
+    {
+      "n_league_games": 130,
+      "param_norm_mae": 0.19864625034914934,
+      "param_corr": 0.978165919939184,
+      "param_mae": 0.00241241476379318
+    },
+    {
+      "n_league_games": 131,
+      "param_norm_mae": 0.2022396056342862,
+      "param_corr": 0.9783910411630833,
+      "param_mae": 0.002406894786061927
+    },
+    {
+      "n_league_games": 132,
+      "param_norm_mae": 0.2030508587280094,
+      "param_corr": 0.9782992037799113,
+      "param_mae": 0.0024140352664066803
+    },
+    {
+      "n_league_games": 133,
+      "param_norm_mae": 0.20586405287728465,
+      "param_corr": 0.9778301378841534,
+      "param_mae": 0.0024471702443568106
+    },
+    {
+      "n_league_games": 134,
+      "param_norm_mae": 0.19437546391803504,
+      "param_corr": 0.9786871993485111,
+      "param_mae": 0.002367788103572253
+    },
+    {
+      "n_league_games": 135,
+      "param_norm_mae": 0.2038903580806341,
+      "param_corr": 0.9779242754955444,
+      "param_mae": 0.002440505782793821
+    },
+    {
+      "n_league_games": 136,
+      "param_norm_mae": 0.21407325825598225,
+      "param_corr": 0.9779255709679698,
+      "param_mae": 0.00246952380213835
+    },
+    {
+      "n_league_games": 137,
+      "param_norm_mae": 0.20499655256043087,
+      "param_corr": 0.9785886636887093,
+      "param_mae": 0.002406319301121785
+    },
+    {
+      "n_league_games": 138,
+      "param_norm_mae": 0.20866124565414362,
+      "param_corr": 0.9780310663443553,
+      "param_mae": 0.002448006207968688
+    },
+    {
+      "n_league_games": 139,
+      "param_norm_mae": 0.1951718092306057,
+      "param_corr": 0.9790552999204504,
+      "param_mae": 0.0023573678126637657
+    },
+    {
+      "n_league_games": 140,
+      "param_norm_mae": 0.20385336493437273,
+      "param_corr": 0.9783645040458204,
+      "param_mae": 0.0024203225424478175
+    }
+  ],
+  "late_all": [
+    {
+      "n_league_games": 180,
+      "param_norm_mae": 0.11087246570550187,
+      "param_corr": 0.9986393721622503,
+      "param_mae": 0.0013961937575836254
+    },
+    {
+      "n_league_games": 185,
+      "param_norm_mae": 0.0998701835386222,
+      "param_corr": 0.9989144304194473,
+      "param_mae": 0.001291908570863041
+    },
+    {
+      "n_league_games": 190,
+      "param_norm_mae": 0.09382954003547385,
+      "param_corr": 0.9990433071809622,
+      "param_mae": 0.0012087210887069854
+    },
+    {
+      "n_league_games": 195,
+      "param_norm_mae": 0.08696858472694541,
+      "param_corr": 0.999173800970176,
+      "param_mae": 0.0011378416396751662
+    },
+    {
+      "n_league_games": 200,
+      "param_norm_mae": 0.0860096303184528,
+      "param_corr": 0.9991937806043986,
+      "param_mae": 0.0011436707553484713
+    },
+    {
+      "n_league_games": 205,
+      "param_norm_mae": 0.07713103662635312,
+      "param_corr": 0.9993385588357059,
+      "param_mae": 0.0010720387383421142
+    },
+    {
+      "n_league_games": 210,
+      "param_norm_mae": 0.07679114447707433,
+      "param_corr": 0.9993461945222555,
+      "param_mae": 0.0010701850559797618
+    },
+    {
+      "n_league_games": 215,
+      "param_norm_mae": 0.06889723651755639,
+      "param_corr": 0.9994426873122895,
+      "param_mae": 0.0009940543767162928
+    },
+    {
+      "n_league_games": 220,
+      "param_norm_mae": 0.06614528921604196,
+      "param_corr": 0.9994589923450166,
+      "param_mae": 0.0009786570518367749
+    },
+    {
+      "n_league_games": 225,
+      "param_norm_mae": 0.06637696989758153,
+      "param_corr": 0.9994324006013029,
+      "param_mae": 0.000991852000401291
+    },
+    {
+      "n_league_games": 230,
+      "param_norm_mae": 0.06359770166732895,
+      "param_corr": 0.9994407380327657,
+      "param_mae": 0.0009548399861031021
+    },
+    {
+      "n_league_games": 235,
+      "param_norm_mae": 0.06259343203191207,
+      "param_corr": 0.9995140418403744,
+      "param_mae": 0.0009399561513829858
+    },
+    {
+      "n_league_games": 240,
+      "param_norm_mae": 0.07579610964145575,
+      "param_corr": 0.999533934962017,
+      "param_mae": 0.001060451531464971
+    },
+    {
+      "n_league_games": 245,
+      "param_norm_mae": 0.08405641140323714,
+      "param_corr": 0.999505469942003,
+      "param_mae": 0.00115024615937207
+    },
+    {
+      "n_league_games": 250,
+      "param_norm_mae": 0.08687321249903165,
+      "param_corr": 0.9994917290533303,
+      "param_mae": 0.0011728730257270403
+    },
+    {
+      "n_league_games": 255,
+      "param_norm_mae": 0.09132013757542566,
+      "param_corr": 0.999479149994201,
+      "param_mae": 0.001198551652359868
+    },
+    {
+      "n_league_games": 260,
+      "param_norm_mae": 0.09868234084978357,
+      "param_corr": 0.9994134220980345,
+      "param_mae": 0.0012543436336773094
+    },
+    {
+      "n_league_games": 265,
+      "param_norm_mae": 0.1050126451765081,
+      "param_corr": 0.9993272509394509,
+      "param_mae": 0.0012928972161636153
+    },
+    {
+      "n_league_games": 270,
+      "param_norm_mae": 0.11181654743321774,
+      "param_corr": 0.999221717708978,
+      "param_mae": 0.0013496157740314147
+    },
+    {
+      "n_league_games": 275,
+      "param_norm_mae": 0.11572709947341689,
+      "param_corr": 0.9991438833976417,
+      "param_mae": 0.0013776595198238147
+    },
+    {
+      "n_league_games": 280,
+      "param_norm_mae": 0.1221357852659054,
+      "param_corr": 0.9990226058022067,
+      "param_mae": 0.001431688287835659
+    },
+    {
+      "n_league_games": 285,
+      "param_norm_mae": 0.13195205596133136,
+      "param_corr": 0.9988182644145605,
+      "param_mae": 0.0015161425117519818
+    },
+    {
+      "n_league_games": 290,
+      "param_norm_mae": 0.13803058848570726,
+      "param_corr": 0.9987042144620046,
+      "param_mae": 0.0015772606302631794
+    },
+    {
+      "n_league_games": 295,
+      "param_norm_mae": 0.14387570466516644,
+      "param_corr": 0.998565792131177,
+      "param_mae": 0.0016323310739358888
+    },
+    {
+      "n_league_games": 300,
+      "param_norm_mae": 0.14937068046439678,
+      "param_corr": 0.9984019767247693,
+      "param_mae": 0.0016780002804893362
+    }
+  ],
+  "decision_rule": "Frozen 2024-2025 simple coefficient parity only; no 2026 outcome selection."
+}
