@@ -21,9 +21,14 @@ def precompute(tg: pd.DataFrame, dates: list[pd.Timestamp]) -> dict[pd.Timestamp
     for d0 in sorted(set(pd.Timestamp(x).normalize() for x in dates)):
         d = pd.Timestamp(d0).normalize()
         pre = tg[tg.game_date < d]
+        if pre.empty:
+            raise RuntimeError(f"empty pre history at {d.date()}")
         h30 = pre[pre.game_date >= d - pd.Timedelta(days=30)]
-        if pre.empty or h30.empty:
-            raise RuntimeError(f"empty history at {d.date()}")
+        # Match the successful parent smoothing audit at offseason/opening boundaries:
+        # when no game exists in the literal prior 30 calendar days, seed from the
+        # most recent pregame history rather than leaking same-day games.
+        if h30.empty:
+            h30 = pre.tail(min(len(pre), 300))
         out[d] = (
             float(len(h30)),
             float(h30.runs_f5.sum()),
@@ -69,12 +74,12 @@ def main():
         })
 
     payload = {
-        "version": "mu-v1.2-30d-longprior-refine-v0.1",
+        "version": "mu-v1.2-30d-longprior-refine-v0.2",
         "status": "DIAGNOSTIC_ONLY",
         "official_shadow_allowed": False,
         "development_rows": int(len(dev)),
         "development_games": int(dev.game_pk.nunique()),
-        "formula": "calendar30 pooled team-game mean shrunk toward all-pregame-history league mean with P pseudo team-games",
+        "formula": "calendar30 pooled team-game mean shrunk toward all-pregame-history league mean with P pseudo team-games; offseason empty-30D fallback uses most recent 300 pregame team-rows",
         "scan": {"min": min(PS), "max": max(PS), "step": 1},
         "best_f5": min(rows, key=lambda x: x["simple_f5_param_norm_mae"]),
         "best_late": min(rows, key=lambda x: x["simple_late_param_norm_mae"]),
