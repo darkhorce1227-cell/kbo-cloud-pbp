@@ -1,8 +1,62 @@
 {
-  "version": "1.0.0",
-  "target_date": "2026-10-14",
+  "dataset_columns": 50,
+  "dataset_rows": 221901,
+  "duplicate_stable_keys": 0,
+  "expected_game_ids": [
+    "44441014OBLG02026"
+  ],
   "expected_games": 1,
   "final_games": 1,
-  "validation": "REBUILD_REQUIRED_DATE_METADATA",
-  "reason": "Validated score reconstruction passed, but continuity recovery stamped multiple 2026-10-03 through 2026-10-12 regular-season game rows with 2026-10-14 game_date. Rebuild with game-ID date integrity guard before using recent-window features."
+  "found_game_ids": [
+    "44441014OBLG02026"
+  ],
+  "games": [
+    {
+      "away_team": "OB",
+      "deduplicated_pa_rows": 72,
+      "f5": {
+        "away": 0,
+        "home": 2,
+        "last_at_bat_number": 39
+      },
+      "final": {
+        "away": 1,
+        "half": "top",
+        "home": 4,
+        "inning": 9,
+        "last_at_bat_number": 72
+      },
+      "game": "OB@LG",
+      "game_pk": "44441014OBLG02026",
+      "home_team": "LG",
+      "official_final": {
+        "away": 1,
+        "home": 4
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 298,
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "all_expected_game_ids_present": true,
+    "dataset_sha256_matches_status": true,
+    "expected_equals_final": true,
+    "expected_ids_count_match": true,
+    "required_columns_present": true,
+    "stable_key_duplicates_zero": true,
+    "status_validation_pass": true
+  },
+  "generated_at_kst": "2026-10-16T00:18:52.581419+09:00",
+  "missing_required_columns": [],
+  "official_crosscheck_games_found": 1,
+  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "sha256_parquet": "eded774af1e8694e25bfb0224341667938d71f67772fb9ecc9e3430b6beea7d0",
+  "source": "validated_parquet_binary",
+  "status_sha256_parquet": "eded774af1e8694e25bfb0224341667938d71f67772fb9ecc9e3430b6beea7d0",
+  "target_date": "2026-10-14",
+  "validation": "PASS",
+  "version": "1.0.0"
 }
