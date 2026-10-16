@@ -1,0 +1,68 @@
+name: Rebuild PS Expected IP Shift
+
+on:
+  push:
+    paths:
+      - '.github/ps-eip-full.trigger'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        year: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Collect one-relay starter lines
+        run: python scripts/collect_ps_eip_starter_lines.py --year ${{ matrix.year }} --output-dir /tmp/ps-eip --pause 0.08
+      - name: Show source summary
+        run: cat /tmp/ps-eip/${{ matrix.year }}_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ps-eip-${{ matrix.year }}
+          path: /tmp/ps-eip/*
+          retention-days: 30
+
+  aggregate:
+    needs: collect
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ps-eip-*
+          path: research/postseason-eip/source
+          merge-multiple: true
+      - name: Build sequential historical PS shift
+        run: python scripts/build_ps_expected_ip_shift.py --source-dir research/postseason-eip/source --output-dir research/postseason-eip --start-year 2016 --end-year 2025
+      - name: Show validation
+        run: cat research/postseason-eip/ps_expected_ip_validation.json
+      - name: Commit reproducible source and derived artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/postseason-eip
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "research: rebuild reproducible postseason Expected-IP shift"
+          git pull --rebase origin main
+          git push origin HEAD:main
