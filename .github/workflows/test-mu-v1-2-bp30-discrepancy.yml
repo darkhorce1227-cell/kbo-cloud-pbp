@@ -1,0 +1,35 @@
+name: Test Mu v1.2 BP30 Discrepancy Comparator
+
+on:
+  push:
+    paths:
+      - "scripts/compare_mu_v1_2_bp30_discrepancy.py"
+      - ".github/workflows/test-mu-v1-2-bp30-discrepancy.yml"
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compile comparator stack
+        run: |
+          python -m py_compile scripts/mu_v1_2_recovered_challenger.py
+          python -m py_compile scripts/compare_mu_v1_2_bp30_discrepancy.py
+      - name: CLI help smoke test
+        run: python scripts/compare_mu_v1_2_bp30_discrepancy.py --help
+      - name: Verify source argument guard
+        run: |
+          set +e
+          python scripts/compare_mu_v1_2_bp30_discrepancy.py > /tmp/out.txt 2>&1
+          code=$?
+          set -e
+          cat /tmp/out.txt
+          test "$code" -ne 0
+          grep -q "Pass exactly one of --input or --snapshot" /tmp/out.txt
