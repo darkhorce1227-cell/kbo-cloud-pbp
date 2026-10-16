@@ -1,0 +1,49 @@
+{
+  "version": "mu-v1.2-bp30-prospective-promotion-policy-v0.1",
+  "status": "PREREGISTERED_BEFORE_PROSPECTIVE_RESULTS",
+  "purpose": "Bound the practical prediction impact of the unresolved historical feature-name discrepancy: preserved label '30d' versus the strongest forensic reconstruction RELIEVER_STINT_PREGAME_CALENDAR36_P25.5.",
+  "model_selection_rule": "This policy does not choose or retune the model from future outcomes. It only decides whether the calendar36/calendar30 implementation discrepancy is practically small enough to stop blocking research-shadow promotion.",
+  "official_shadow_allowed_by_this_file": false,
+  "active_semantic": "RELIEVER_STINT_PREGAME_CALENDAR36_P25.5",
+  "comparison_semantic": "RELIEVER_STINT_PREGAME_CALENDAR30_P39.25",
+  "required_prospective_sample": {
+    "minimum_games": 10,
+    "minimum_distinct_capture_dates": 4,
+    "minimum_distinct_teams": 6,
+    "source_requirement": "Only immutable PROSPECTIVE_CLEAN_PRE_RESEARCH snapshots captured market-unseen are eligible.",
+    "reason": "This gate measures deterministic implementation sensitivity rather than predictive accuracy. Historical frozen-moment/coefficient/OOS evidence already exists; the live sample is for practical breadth across dates and teams."
+  },
+  "score_delta_gate": {
+    "eligible_fields": [
+      "f5_away",
+      "f5_home",
+      "full_away",
+      "full_home"
+    ],
+    "excluded_identity_fields": [
+      "f5_total",
+      "full_total"
+    ],
+    "absolute_delta_runs": {
+      "median_max": 0.03,
+      "p95_max": 0.10,
+      "single_observation_max": 0.20
+    },
+    "signed_bias": {
+      "mean_signed_delta_abs_max": 0.02,
+      "definition": "Mean of calendar30/P39.25 minus active calendar36/P25.5 score deltas across eligible team-score fields."
+    }
+  },
+  "decision_stability_gate": {
+    "predicted_side_flip_rate_max": 0.05,
+    "material_margin_flip_forbidden": true,
+    "material_active_full_mu_margin_runs": 0.25,
+    "definition": "Predicted side is the team with larger Full-game mu. A flip is forbidden when the active absolute Full mu margin is at least 0.25 runs."
+  },
+  "interpretation": {
+    "PASS": "All sample-size and discrepancy thresholds pass. The 30d-label/calendar36 discrepancy is practically bounded for promotion purposes, but exact source-code recovery remains unproven.",
+    "WAIT": "Prospective sample breadth is insufficient; keep collecting immutable snapshots without changing thresholds.",
+    "FAIL": "At least one preregistered discrepancy threshold is exceeded; Official Mechanical Shadow remains blocked and the discrepancy must be investigated rather than thresholds relaxed post hoc."
+  },
+  "discipline": "Thresholds are frozen before eligible prospective comparison results are observed. Any later threshold change must create a new version and cannot retroactively qualify already observed snapshots under the old gate."
+}
