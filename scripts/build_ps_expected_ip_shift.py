@@ -68,12 +68,14 @@ def main():
         if (frame["starter_pcode"].astype(str).str.len() == 0).any():
             raise ValueError(f"{label} has missing starter_pcode")
 
+    # Stable player ID is authoritative. Names are descriptive only and must not
+    # split one pitcher's season if spelling/display changes inside the season.
     rs_avg = (
-        rs.groupby(["season", "starter_pcode", "starter_name"], as_index=False)
+        rs.groupby(["season", "starter_pcode"], as_index=False)
         .agg(rs_starter_avg_ip=("actual_ip", "mean"), rs_starts=("actual_ip", "size"))
     )
     linked = ps.merge(
-        rs_avg[["season", "starter_pcode", "rs_starter_avg_ip", "rs_starts"]],
+        rs_avg,
         on=["season", "starter_pcode"],
         how="left",
         validate="many_to_one",
