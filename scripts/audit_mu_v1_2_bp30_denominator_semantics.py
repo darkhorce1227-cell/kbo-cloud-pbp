@@ -11,7 +11,7 @@ import audit_mu_v1_2_late_total_variants as lateaudit
 import mu_v1_3 as engine
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'state'/'mu_v1_2_bp30_denominator_semantics.json'
+OUT=ROOT/'state'/'mu_v1_2_bp30_reliever_denominator_hybrid.json'
 FM=0.9860898056018214
 FS=0.21158719158114866
 P_LONG=360.0
@@ -62,7 +62,7 @@ def main():
     for den in ['RELIEVER_LEAGUE30','INNING6PLUS_LEAGUE30']:
         z=[x for x in rows if x['denominator']==den]
         byden[den]={'best_moment':sorted(z,key=lambda x:x['moment_distance'])[:5],'best_core':sorted(z,key=lambda x:x['core_sum'])[:5]}
-    payload={'version':'mu-v1.2-bp30-denominator-semantics-v0.1','status':'DIAGNOSTIC_ONLY','official_shadow_allowed':False,'numerator':'RELIEVER_STINT_PREGAME_CALENDAR30','prior':'ABSOLUTE_INNING6PLUS_TEAM_LONG','frozen':{'mean':FM,'scale':FS},'scan':{'p_min':10,'p_max':60,'p_step':1},'by_denominator':byden,'decision_rule':'A denominator is preferred only if moment parity and frozen core coefficient parity become directionally more coherent together; no OOS metric used.'}
+    payload={'version':'mu-v1.2-bp30-reliever-denominator-hybrid-v0.1','status':'DIAGNOSTIC_ONLY','official_shadow_allowed':False,'numerator':'RELIEVER_STINT_PREGAME_CALENDAR30','prior':'ABSOLUTE_INNING6PLUS_TEAM_LONG','frozen':{'mean':FM,'scale':FS},'scan':{'p_min':10,'p_max':60,'p_step':1},'by_denominator':byden,'decision_rule':'A denominator is preferred only if moment parity and frozen core coefficient parity become directionally more coherent together; no OOS metric used.'}
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(payload,ensure_ascii=False,indent=2))
 
