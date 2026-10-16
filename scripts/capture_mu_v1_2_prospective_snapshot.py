@@ -12,6 +12,7 @@ import mu_v1_2_recovered_challenger as challenger
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = "state/mechanical_mu_input.json"
 DEFAULT_DIR = "state/prospective_mu_v1_2"
+EMBEDDED_DECLARATION = "MARKET_UNSEEN_AT_INPUT_COMMIT"
 
 
 def _canonical_bytes(obj: object) -> bytes:
@@ -39,6 +40,24 @@ def _git_head() -> str | None:
         return None
 
 
+def embedded_clean_pre_declaration(payload: dict) -> tuple[bool, dict]:
+    """Validate the declaration carried by the committed daily PRE input.
+
+    This lets the daily workflow capture prospectively without pretending that every
+    mechanical_mu_input.json commit was market-unseen. A missing/malformed declaration
+    is ineligible for prospective evidence.
+    """
+    meta = payload.get("prospective_capture")
+    if not isinstance(meta, dict):
+        return False, {}
+    ok = (
+        meta.get("clean_pre_lock") is True
+        and meta.get("market_prices_inspected") is False
+        and meta.get("declaration") == EMBEDDED_DECLARATION
+    )
+    return bool(ok), dict(meta)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(
         description=(
@@ -52,7 +71,16 @@ def main() -> None:
     ap.add_argument(
         "--market-unseen",
         action="store_true",
-        help="Required declaration that betting-market prices have not been inspected.",
+        help="Manual explicit declaration that betting-market prices have not been inspected.",
+    )
+    ap.add_argument(
+        "--require-input-declaration",
+        action="store_true",
+        help=(
+            "Require prospective_capture metadata embedded in the committed input: "
+            "clean_pre_lock=true, market_prices_inspected=false, "
+            "declaration=MARKET_UNSEEN_AT_INPUT_COMMIT."
+        ),
     )
     ap.add_argument(
         "--note",
@@ -61,25 +89,41 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    if not args.market_unseen:
+    if not args.market_unseen and not args.require_input_declaration:
         raise SystemExit(
-            "Refusing prospective CLEAN snapshot: pass --market-unseen only when "
-            "market prices have genuinely not been inspected."
+            "Refusing prospective CLEAN snapshot: use --market-unseen for a manual "
+            "market-unseen capture or --require-input-declaration for an eligible "
+            "committed CLEAN PRE input."
         )
 
     input_path = ROOT / args.input
     payload = json.loads(input_path.read_text(encoding="utf-8"))
+    embedded_ok, embedded_meta = embedded_clean_pre_declaration(payload)
+
+    if args.require_input_declaration:
+        if not embedded_ok:
+            raise SystemExit(
+                "Refusing prospective CLEAN snapshot: committed input is missing a valid "
+                "prospective_capture CLEAN PRE market-unseen declaration."
+            )
+        declaration = EMBEDDED_DECLARATION
+        declaration_source = "INPUT_COMMIT_METADATA"
+    else:
+        declaration = "MARKET_UNSEEN_AT_CAPTURE"
+        declaration_source = "CLI_EXPLICIT_DECLARATION"
 
     captured_at = datetime.now(timezone.utc)
     scored = challenger.score_input(payload)
 
     snapshot = {
-        "snapshot_schema": "mu-v1.2-prospective-snapshot-v0.1",
+        "snapshot_schema": "mu-v1.2-prospective-snapshot-v0.2",
         "capture_type": "PROSPECTIVE_CLEAN_PRE_RESEARCH",
         "captured_at_utc": captured_at.isoformat().replace("+00:00", "Z"),
         "market_state": {
             "prices_inspected": False,
-            "declaration": "MARKET_UNSEEN_AT_CAPTURE",
+            "declaration": declaration,
+            "declaration_source": declaration_source,
+            "input_commit_metadata": embedded_meta if declaration_source == "INPUT_COMMIT_METADATA" else None,
         },
         "official_shadow_allowed": False,
         "git_head": _git_head(),
