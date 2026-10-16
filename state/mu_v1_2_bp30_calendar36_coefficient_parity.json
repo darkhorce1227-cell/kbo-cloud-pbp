@@ -1,0 +1,86 @@
+{
+  "version": "mu-v1.2-bp30-calendar36-coeff-parity-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "frozen": {
+    "mean": 0.9860898056018214,
+    "scale": 0.21158719158114866
+  },
+  "ranked_by_core_sum": [
+    {
+      "variant": "RELIEVER_CAL36_P25_5",
+      "mean": 0.9859358101266639,
+      "scale": 0.2116657250819812,
+      "mean_error": -0.0001539954751574868,
+      "scale_error": 7.853350083253385e-05,
+      "core_f5_norm": 0.13225181116230508,
+      "core_f5_corr": 0.9838531959483698,
+      "core_late_norm": 0.05048936382839418,
+      "core_late_corr": 0.49872589158028985,
+      "core_sum": 0.18274117499069925
+    },
+    {
+      "variant": "RELIEVER_CAL30_P39",
+      "mean": 0.9776292765414826,
+      "scale": 0.2118244234570054,
+      "mean_error": -0.008460529060338784,
+      "scale_error": 0.0002372318758567249,
+      "core_f5_norm": 0.13339908536108583,
+      "core_f5_corr": 0.9833849837229417,
+      "core_late_norm": 0.05092373453782613,
+      "core_late_corr": 0.4986020059810509,
+      "core_sum": 0.18432281989891197
+    },
+    {
+      "variant": "ACTIVE_V0_6_BP30",
+      "mean": 1.0004947899082408,
+      "scale": 0.21098790633188075,
+      "mean_error": 0.014404984306419455,
+      "scale_error": -0.0005992852492679168,
+      "core_f5_norm": 0.14070847615531387,
+      "core_f5_corr": 0.9844159741480182,
+      "core_late_norm": 0.049862047926124156,
+      "core_late_corr": 0.4989163562760913,
+      "core_sum": 0.19057052408143804
+    }
+  ],
+  "variants": [
+    {
+      "variant": "ACTIVE_V0_6_BP30",
+      "mean": 1.0004947899082408,
+      "scale": 0.21098790633188075,
+      "mean_error": 0.014404984306419455,
+      "scale_error": -0.0005992852492679168,
+      "core_f5_norm": 0.14070847615531387,
+      "core_f5_corr": 0.9844159741480182,
+      "core_late_norm": 0.049862047926124156,
+      "core_late_corr": 0.4989163562760913,
+      "core_sum": 0.19057052408143804
+    },
+    {
+      "variant": "RELIEVER_CAL30_P39",
+      "mean": 0.9776292765414826,
+      "scale": 0.2118244234570054,
+      "mean_error": -0.008460529060338784,
+      "scale_error": 0.0002372318758567249,
+      "core_f5_norm": 0.13339908536108583,
+      "core_f5_corr": 0.9833849837229417,
+      "core_late_norm": 0.05092373453782613,
+      "core_late_corr": 0.4986020059810509,
+      "core_sum": 0.18432281989891197
+    },
+    {
+      "variant": "RELIEVER_CAL36_P25_5",
+      "mean": 0.9859358101266639,
+      "scale": 0.2116657250819812,
+      "mean_error": -0.0001539954751574868,
+      "scale_error": 7.853350083253385e-05,
+      "core_f5_norm": 0.13225181116230508,
+      "core_f5_corr": 0.9838531959483698,
+      "core_late_norm": 0.05048936382839418,
+      "core_late_corr": 0.49872589158028985,
+      "core_sum": 0.18274117499069925
+    }
+  ],
+  "decision_rule": "Calendar36 is eligible for Challenger promotion only if its near-exact frozen moments do not materially degrade frozen core coefficient parity versus the best pregame reliever candidate. No OOS metric used."
+}
