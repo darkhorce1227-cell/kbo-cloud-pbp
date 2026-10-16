@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-prospective-gate-status-v0.1",
+  "version": "mu-v1.2-prospective-gate-status-v0.2",
   "official_shadow_allowed": false,
   "active_challenger": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
   "capture_infrastructure": {
@@ -42,12 +42,21 @@
     }
   },
   "bp30_gate_evaluator": {
-    "status": "SMOKE_WORKFLOW_RUNNING_AT_STATUS_CAPTURE",
+    "status": "SMOKE_PASS",
     "script": "scripts/evaluate_mu_v1_2_bp30_promotion_gate.py",
     "workflow": ".github/workflows/test-mu-v1-2-bp30-promotion-gate.yml",
-    "workflow_run_id": 38872317435,
-    "expected_empty_sample_verdict": "WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE"
+    "first_failed_run_id": 38872317435,
+    "first_failure_class": "TEST_OUTPUT_PATH_HANDLING_ONLY",
+    "fixed_commit": "a0a76a8080d3369e9661c71cdf403e942e6ae642",
+    "passing_run_id": 38872516799,
+    "passing_conclusion": "success",
+    "verified": [
+      "evaluator stack compiles",
+      "preregistered policy parses",
+      "empty eligible sample returns WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE",
+      "official_shadow_allowed remains false"
+    ]
   },
   "discipline": "Do not change the v0.1 prospective thresholds after observing eligible snapshots. A future threshold revision requires a new policy version and cannot retroactively qualify the old sample.",
-  "next_gate": "Evaluator smoke PASS, then collect immutable market-unseen prospective snapshots. PASS of the practical discrepancy bound clears only the BP30 discrepancy sub-gate and does not automatically activate Official Mechanical Shadow."
+  "next_gate": "Collect immutable market-unseen prospective snapshots. PASS of the practical discrepancy bound clears only the BP30 discrepancy sub-gate and does not automatically activate Official Mechanical Shadow."
 }
