@@ -1,0 +1,118 @@
+{
+  "version": "mu-v1.2-bp30-window-mode-compare-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "fixed": "reliever_stint; pregame; pooled reliever league denominator; inning6plus long prior P360",
+  "frozen": {
+    "mean": 0.9860898056018214,
+    "scale": 0.21158719158114866
+  },
+  "p_scan": "20..45 step0.25",
+  "by_mode": {
+    "calendar36": {
+      "best": {
+        "p_recent_outs": 25.5,
+        "mean": 0.9859358101266639,
+        "scale": 0.2116657250819812,
+        "mean_error": -0.0001539954751574868,
+        "scale_error": 7.853350083253385e-05,
+        "moment_distance": 0.0008169891851920201
+      },
+      "top5": [
+        {
+          "p_recent_outs": 25.5,
+          "mean": 0.9859358101266639,
+          "scale": 0.2116657250819812,
+          "mean_error": -0.0001539954751574868,
+          "scale_error": 7.853350083253385e-05,
+          "moment_distance": 0.0008169891851920201
+        },
+        {
+          "p_recent_outs": 25.25,
+          "mean": 0.9860500419938297,
+          "scale": 0.2118388486458415,
+          "mean_error": -3.976360799162748e-05,
+          "scale_error": 0.0002516570646928229,
+          "moment_distance": 0.0012041332120700482
+        },
+        {
+          "p_recent_outs": 25.75,
+          "mean": 0.9858218707884837,
+          "scale": 0.2114934685813134,
+          "mean_error": -0.0002679348133376447,
+          "scale_error": -9.372299983526067e-05,
+          "moment_distance": 0.0013415459972721765
+        },
+        {
+          "p_recent_outs": 25.0,
+          "mean": 0.9861645686099095,
+          "scale": 0.2120128521568303,
+          "mean_error": 7.476300808817449e-05,
+          "scale_error": 0.0004256605756816356,
+          "moment_distance": 0.0020425451461456574
+        },
+        {
+          "p_recent_outs": 26.0,
+          "mean": 0.9857082218014608,
+          "scale": 0.21132206661073885,
+          "mean_error": -0.00038158380036057427,
+          "scale_error": -0.00026512497040981353,
+          "moment_distance": 0.002196010330856884
+        }
+      ]
+    },
+    "last30_team_games": {
+      "best": {
+        "p_recent_outs": 20.0,
+        "mean": 0.9914051350659979,
+        "scale": 0.19478801467471857,
+        "mean_error": 0.005315329464176566,
+        "scale_error": -0.016799176906430097,
+        "moment_distance": 0.08327545225621422
+      },
+      "top5": [
+        {
+          "p_recent_outs": 20.0,
+          "mean": 0.9914051350659979,
+          "scale": 0.19478801467471857,
+          "mean_error": 0.005315329464176566,
+          "scale_error": -0.016799176906430097,
+          "moment_distance": 0.08327545225621422
+        },
+        {
+          "p_recent_outs": 20.25,
+          "mean": 0.991316569327614,
+          "scale": 0.19469518094836177,
+          "mean_error": 0.005226763725792671,
+          "scale_error": -0.01689201063278689,
+          "moment_distance": 0.08356918181544117
+        },
+        {
+          "p_recent_outs": 20.5,
+          "mean": 0.9912281292367623,
+          "scale": 0.19460249585743775,
+          "mean_error": 0.005138323634940933,
+          "scale_error": -0.01698469572371092,
+          "moment_distance": 0.08386576672544123
+        },
+        {
+          "p_recent_outs": 20.75,
+          "mean": 0.9911398145238526,
+          "scale": 0.1945099590642927,
+          "mean_error": 0.005050008922031224,
+          "scale_error": -0.017077232516855972,
+          "moment_distance": 0.08416515815405552
+        },
+        {
+          "p_recent_outs": 21.0,
+          "mean": 0.9910516249200727,
+          "scale": 0.19441757023228778,
+          "mean_error": 0.004961819318251348,
+          "scale_error": -0.01716962134886088,
+          "moment_distance": 0.08446730776304809
+        }
+      ]
+    }
+  },
+  "note": "No OOS metrics or coefficient fitting. Direct semantic comparison of the 36-calendar-day forensic hit against last-30-opponent-team-games."
+}
