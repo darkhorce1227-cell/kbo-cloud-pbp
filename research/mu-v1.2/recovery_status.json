@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.11",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.12",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE_REGRESSION_PASS",
   "official_shadow_allowed": false,
   "active_challenger": {
@@ -20,14 +20,39 @@
       "capture_script": "scripts/capture_mu_v1_2_prospective_snapshot.py",
       "manual_capture_workflow": ".github/workflows/capture-mu-v1-2-prospective-snapshot.yml",
       "smoke_test_workflow": ".github/workflows/test-mu-v1-2-prospective-snapshot.yml",
-      "smoke_run_id": 38871598458,
-      "smoke_conclusion": "success",
+      "manual_smoke_run_id": 38871598458,
+      "embedded_declaration_smoke_run_id": 38873999174,
+      "embedded_declaration_smoke_conclusion": "success",
       "guards_verified": [
         "python compile",
         "CLI help",
-        "capture refuses to run without explicit --market-unseen declaration"
+        "capture refuses to run without an explicit market-unseen declaration",
+        "daily input declaration requires clean_pre_lock=true",
+        "daily input declaration requires market_prices_inspected=false",
+        "daily input declaration requires declaration=MARKET_UNSEEN_AT_INPUT_COMMIT",
+        "market-seen or missing declaration metadata is rejected"
       ],
-      "note": "Smoke PASS validates capture plumbing and the market-unseen guard only. It is not itself a prospective live model observation."
+      "note": "Smoke PASS validates capture plumbing and explicit auditable CLEAN PRE declaration handling only. It is not itself a prospective live model observation."
+    },
+    "daily_pre_auto_capture": {
+      "status": "INTEGRATED_SMOKE_PASS_NO_ELIGIBLE_INPUT_YET",
+      "workflow": ".github/workflows/capture-mu-v1-2-prospective-on-daily-input.yml",
+      "trigger_input": "state/mechanical_mu_input.json",
+      "workflow_run_id": 38874032728,
+      "workflow_conclusion": "success",
+      "smoke_behavior": "SAFE_NOOP_WHEN_DAILY_INPUT_ABSENT",
+      "eligible_input_contract": {
+        "prospective_capture.clean_pre_lock": true,
+        "prospective_capture.market_prices_inspected": false,
+        "prospective_capture.declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT"
+      },
+      "on_eligible_push": [
+        "capture immutable v0.9 prospective CLEAN PRE snapshot",
+        "compute BP30 calendar36/P25.5 versus calendar30/P39.25 discrepancy bound",
+        "refresh preregistered BP30 prospective promotion-gate evaluation",
+        "commit prospective evidence and gate state"
+      ],
+      "integrity_note": "The workflow does not infer market-unseen status merely from a file push. Eligibility requires the explicit declaration embedded in the committed daily input."
     },
     "bp30_prospective_gate": {
       "status_file": "research/mu-v1.2/prospective_gate_status.json",
@@ -159,5 +184,5 @@
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json",
     "prospective_gate_status": "research/mu-v1.2/prospective_gate_status.json"
   },
-  "promotion_gate": "v0.9 active challenger regression, prospective capture smoke, BP30 discrepancy comparator smoke, and prospective gate evaluator smoke have all passed. The BP30 practical-impact thresholds are preregistered before eligible prospective results. Official Mechanical Mu Shadow remains unavailable until enough immutable market-unseen prospective snapshots are collected and the preregistered BP30 practical-discrepancy gate passes. Exact historical row parity remains untestable because the original feature-row artifact does not survive."
+  "promotion_gate": "v0.9 active challenger regression, prospective capture/declaration smoke, BP30 discrepancy comparator smoke, prospective gate evaluator smoke, and daily PRE auto-capture integration smoke have all passed. The BP30 practical-impact thresholds are preregistered before eligible prospective results. The next genuine market-unseen state/mechanical_mu_input.json commit with the explicit prospective_capture declaration will begin accumulating immutable eligible evidence automatically. Official Mechanical Mu Shadow remains unavailable until enough prospective snapshots are collected and the preregistered BP30 practical-discrepancy gate passes. Exact historical row parity remains untestable because the original feature-row artifact does not survive."
 }
