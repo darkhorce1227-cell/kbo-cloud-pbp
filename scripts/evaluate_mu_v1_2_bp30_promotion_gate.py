@@ -60,8 +60,12 @@ def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
                 side_flips += 1
                 if abs(active_margin) >= float(policy["decision_stability_gate"]["material_active_full_mu_margin_runs"]):
                     material_margin_flips += 1
+            try:
+                source_snapshot = str(path.relative_to(ROOT))
+            except ValueError:
+                source_snapshot = str(path)
             rows.append({
-                "source_snapshot": str(path.relative_to(ROOT)),
+                "source_snapshot": source_snapshot,
                 "target_date": comp["target_date"],
                 "game_pk": g.get("game_pk"),
                 "away_team": g["away_team"],
@@ -155,15 +159,21 @@ def main() -> None:
     policy = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
     paths = [Path(p) for p in sorted(glob.glob(str(ROOT / args.snapshot_glob)))]
     result = evaluate(paths, policy)
-    out = ROOT / args.out
+    out = Path(args.out)
+    if not out.is_absolute():
+        out = ROOT / out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:
+        out_label = str(out.relative_to(ROOT))
+    except ValueError:
+        out_label = str(out)
     print(json.dumps({
         "verdict": result["verdict"],
         "games": result["sample"]["games"],
         "dates": result["sample"]["distinct_capture_dates"],
         "teams": result["sample"]["distinct_teams"],
-        "out": str(out.relative_to(ROOT)),
+        "out": out_label,
     }, ensure_ascii=False))
 
 
