@@ -1,0 +1,59 @@
+name: Capture Mu v1.2 Prospective Snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      input_path:
+        description: "Pregame input JSON path already committed in the repository"
+        required: true
+        default: "state/mechanical_mu_input.json"
+      note:
+        description: "Optional contemporaneous note; no hindsight edits"
+        required: false
+        default: ""
+      market_unseen:
+        description: "Must be true only if betting-market prices have genuinely not been inspected"
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  capture:
+    if: ${{ inputs.market_unseen == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+      - run: pip install -r requirements.txt
+      - name: Capture immutable CLEAN PRE research snapshot
+        run: >-
+          python scripts/capture_mu_v1_2_prospective_snapshot.py
+          --input "${{ inputs.input_path }}"
+          --market-unseen
+          --note "${{ inputs.note }}"
+      - name: Commit prospective snapshot artifact
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/prospective_mu_v1_2/*.json
+          if git diff --cached --quiet; then
+            echo "No snapshot artifact created"
+            exit 1
+          fi
+          git commit -m "research: capture prospective mu v1.2 CLEAN PRE snapshot"
+          git push
