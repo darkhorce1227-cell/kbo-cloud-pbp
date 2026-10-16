@@ -1,0 +1,41 @@
+name: Test Mu v1.2 BP30 Prospective Promotion Gate
+
+on:
+  push:
+    paths:
+      - "scripts/evaluate_mu_v1_2_bp30_promotion_gate.py"
+      - "scripts/compare_mu_v1_2_bp30_discrepancy.py"
+      - "research/mu-v1.2/bp30_prospective_promotion_policy.json"
+      - ".github/workflows/test-mu-v1-2-bp30-promotion-gate.yml"
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compile evaluator stack
+        run: |
+          python -m py_compile scripts/mu_v1_2_recovered_challenger.py
+          python -m py_compile scripts/compare_mu_v1_2_bp30_discrepancy.py
+          python -m py_compile scripts/evaluate_mu_v1_2_bp30_promotion_gate.py
+      - name: Verify preregistered policy parses
+        run: python -m json.tool research/mu-v1.2/bp30_prospective_promotion_policy.json >/dev/null
+      - name: Empty prospective sample must WAIT rather than PASS
+        run: |
+          python scripts/evaluate_mu_v1_2_bp30_promotion_gate.py \
+            --snapshot-glob 'state/__no_such_prospective_snapshot__/*.json' \
+            --out /tmp/bp30_gate.json
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/bp30_gate.json'))
+          assert p['verdict']=='WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE', p
+          assert p['official_shadow_allowed'] is False, p
+          print('BP30_PROMOTION_GATE_EMPTY_SAMPLE_WAIT_PASS')
+          PY
