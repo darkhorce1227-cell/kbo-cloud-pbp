@@ -37,5 +37,55 @@ jobs:
           p=json.load(open('/tmp/bp30_gate.json'))
           assert p['verdict']=='WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE', p
           assert p['official_shadow_allowed'] is False, p
+          assert p['sample']['games']==0, p
           print('BP30_PROMOTION_GATE_EMPTY_SAMPLE_WAIT_PASS')
+          PY
+      - name: Exact duplicate snapshots must not inflate prospective game count
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, 'scripts')
+          import evaluate_mu_v1_2_bp30_promotion_gate as e
+
+          p1=Path('/tmp/dup_snapshot_1.json')
+          p2=Path('/tmp/dup_snapshot_2.json')
+          snap={
+              'capture_type':'PROSPECTIVE_CLEAN_PRE_RESEARCH',
+              'market_state':{'prices_inspected':False},
+              'input_sha256':'SAME_INPUT_SHA',
+              'input_payload':{'fake':True},
+          }
+          p1.write_text(json.dumps(snap))
+          p2.write_text(json.dumps(snap))
+
+          fake_comp={
+              'target_date':'2026-10-20',
+              'games':[
+                  {
+                      'game_pk':'TEST-GAME-1',
+                      'away_team':'AWAY',
+                      'home_team':'HOME',
+                      'active_prediction':{
+                          'f5_away':2.0,'f5_home':2.1,
+                          'full_away':4.0,'full_home':4.2,
+                      },
+                      'calendar30_p39_25_prediction':{
+                          'f5_away':2.0,'f5_home':2.1,
+                          'full_away':4.0,'full_home':4.2,
+                      },
+                  }
+              ],
+          }
+          e.cmp.compare_payload=lambda payload: fake_comp
+          policy=json.load(open('research/mu-v1.2/bp30_prospective_promotion_policy.json'))
+          out=e.evaluate([p1,p2], policy)
+          assert out['sample']['snapshot_files_total']==2, out
+          assert out['sample']['games']==1, out
+          assert out['dedupe']['duplicate_game_observations_ignored']==1, out
+          assert len(out['games'])==1, out
+          assert out['verdict']=='WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE', out
+          print('BP30_PROSPECTIVE_DEDUPE_PASS')
           PY
