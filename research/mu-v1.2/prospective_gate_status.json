@@ -1,15 +1,39 @@
 {
-  "version": "mu-v1.2-prospective-gate-status-v0.2",
+  "version": "mu-v1.2-prospective-gate-status-v0.3",
   "official_shadow_allowed": false,
   "active_challenger": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
   "capture_infrastructure": {
     "status": "SMOKE_PASS",
-    "workflow_run_id": 38871598458,
+    "manual_smoke_run_id": 38871598458,
+    "embedded_declaration_smoke_run_id": 38873999174,
+    "embedded_declaration_smoke_conclusion": "success",
     "verified": [
       "capture stack compiles",
       "CLI loads",
-      "unsafe capture without explicit market-unseen declaration is rejected"
+      "unsafe capture without explicit market-unseen declaration is rejected",
+      "embedded daily CLEAN PRE declaration passes only when clean_pre_lock=true, market_prices_inspected=false, and declaration=MARKET_UNSEEN_AT_INPUT_COMMIT",
+      "market-seen or missing declaration metadata is rejected"
     ]
+  },
+  "daily_pre_auto_capture": {
+    "status": "INTEGRATED_SMOKE_PASS_NO_ELIGIBLE_INPUT_YET",
+    "workflow": ".github/workflows/capture-mu-v1-2-prospective-on-daily-input.yml",
+    "trigger_input": "state/mechanical_mu_input.json",
+    "workflow_run_id": 38874032728,
+    "workflow_conclusion": "success",
+    "smoke_mode": "SAFE_NOOP_BECAUSE_DAILY_INPUT_ABSENT",
+    "eligible_input_contract": {
+      "prospective_capture.clean_pre_lock": true,
+      "prospective_capture.market_prices_inspected": false,
+      "prospective_capture.declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT"
+    },
+    "on_eligible_push": [
+      "capture immutable v0.9 prospective CLEAN PRE snapshot",
+      "compute calendar36/P25.5 versus calendar30/P39.25 BP30 discrepancy bound",
+      "refresh preregistered BP30 prospective promotion-gate evaluation",
+      "commit immutable prospective evidence and gate state"
+    ],
+    "note": "The integration smoke did not manufacture a prospective observation. With no state/mechanical_mu_input.json present, all scoring/capture steps were skipped and the workflow completed successfully."
   },
   "bp30_discrepancy_comparator": {
     "status": "SMOKE_PASS",
@@ -58,5 +82,5 @@
     ]
   },
   "discipline": "Do not change the v0.1 prospective thresholds after observing eligible snapshots. A future threshold revision requires a new policy version and cannot retroactively qualify the old sample.",
-  "next_gate": "Collect immutable market-unseen prospective snapshots. PASS of the practical discrepancy bound clears only the BP30 discrepancy sub-gate and does not automatically activate Official Mechanical Shadow."
+  "next_gate": "Commit the next genuine market-unseen daily CLEAN PRE input with the explicit prospective_capture declaration. The auto-capture workflow will then begin accumulating immutable eligible observations. PASS of the practical discrepancy bound clears only the BP30 discrepancy sub-gate and does not automatically activate Official Mechanical Shadow."
 }
