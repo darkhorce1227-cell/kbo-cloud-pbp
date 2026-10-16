@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-recovered-final-candidate-v0.8-30d-longprior-p17",
+  "version": "mu-v1.2-recovered-final-candidate-v0.9-bp30-cal36-p25.5",
   "status": "CHALLENGER_DIAGNOSTIC",
   "official_shadow_allowed": false,
   "oos_team_games": 1368,
@@ -11,25 +11,25 @@
     "league_environment_offsets": "STRICT_PREGAME_CALENDAR30_POOLED_SHRUNK_TO_LONG_LEAGUE_MEAN_P17",
     "league_late_stat": "INNINGS_6_PLUS_PA_RUNS",
     "bullpen_long": "OPPONENT_INNING6PLUS_SEASON_RESET_P360",
-    "bullpen_30d_working": "OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR30_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
+    "bullpen_30d_working": "OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR36_P25.5_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE36",
     "starter_rate_prior": "league->long 150 BF; long->recent5 150 BF",
     "starter_ip_prior": "league->long 5 starts; long->recent5 5 starts"
   },
   "recovered_2026_oos": {
     "f5": {
-      "mae": 1.9479289113359635,
-      "nb_nll": 2.1221947875637133,
-      "wdl_brier": 0.20216111814891163,
-      "wdl_logloss": 0.9947372494244769,
-      "decided_side": 0.5500848896434635,
-      "mean_mu": 2.6820510933039112
+      "mae": 1.948367292904739,
+      "nb_nll": 2.122288236681057,
+      "wdl_brier": 0.20221341518095043,
+      "wdl_logloss": 0.9949094939724629,
+      "decided_side": 0.5483870967741935,
+      "mean_mu": 2.6820510933039117
     },
     "full": {
-      "mae": 2.706959168420159,
-      "nb_nll": 2.5555479478092153,
-      "wdl_brier": 0.172130484232787,
-      "wdl_logloss": 0.8112552612320332,
-      "decided_side": 0.561377245508982,
+      "mae": 2.7070897728312047,
+      "nb_nll": 2.5555005851934296,
+      "wdl_brier": 0.17200207378115678,
+      "wdl_logloss": 0.81082341018735,
+      "decided_side": 0.5643712574850299,
       "mean_mu": 5.0209460416519
     }
   },
@@ -53,21 +53,21 @@
   },
   "delta_recovered_minus_published": {
     "f5": {
-      "mae": 0.016934911335963365,
-      "nb_nll": 0.0027017875637134203,
-      "wdl_brier": 0.0002911181489116399,
-      "wdl_logloss": 0.0010022494244769087,
-      "mean_mu": 0.013977093303911392,
-      "decided_side": -0.010187110356536522
+      "mae": 0.01737329290473899,
+      "nb_nll": 0.0027952366810573004,
+      "wdl_brier": 0.0003434151809504349,
+      "wdl_logloss": 0.0011744939724628312,
+      "mean_mu": 0.013977093303911836,
+      "decided_side": -0.011884903225806487
     },
     "full": {
-      "mae": 0.0018311684201588463,
-      "nb_nll": 0.0025579478092154773,
-      "wdl_brier": -0.0006325157672129877,
-      "wdl_logloss": -0.002268738767966849,
+      "mae": 0.001961772831204467,
+      "nb_nll": 0.0025105851934297263,
+      "wdl_brier": -0.0007609262188432164,
+      "wdl_logloss": -0.0027005898126499783,
       "mean_mu": 0.01921804165190011,
-      "decided_side": -0.010478754491017983
+      "decided_side": -0.007484742514970111
     }
   },
-  "note": "Diagnostic only. P17 was selected on 2024-2025 frozen coefficient parity, not 2026 OOS. Exact BP30 centering remains unresolved and original row-level feature dumps do not survive. Official Shadow remains unavailable."
+  "note": "Diagnostic only. Calendar36/P25.5 was selected only from 2024-2025 frozen moments plus coefficient parity; 2026 OOS is confirmatory. The feature label says 30d while the forensic candidate is 36 calendar days, so original source semantics remain unproven. Official Shadow remains unavailable."
 }
