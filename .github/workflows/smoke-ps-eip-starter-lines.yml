@@ -1,0 +1,31 @@
+name: Smoke PS EIP Starter Lines
+
+on:
+  push:
+    paths:
+      - 'scripts/collect_ps_eip_starter_lines.py'
+      - '.github/workflows/smoke-ps-eip-starter-lines.yml'
+  workflow_dispatch:
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2016, 2025]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Collect starter lines
+        run: python scripts/collect_ps_eip_starter_lines.py --year ${{ matrix.year }} --output-dir /tmp/ps-eip --pause 0.08
+      - name: Show summary
+        run: cat /tmp/ps-eip/${{ matrix.year }}_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ps-eip-smoke-${{ matrix.year }}
+          path: /tmp/ps-eip/*
