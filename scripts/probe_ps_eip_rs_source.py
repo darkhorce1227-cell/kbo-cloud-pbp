@@ -11,10 +11,20 @@ def walk(obj, prefix=""):
             yield p, v
             yield from walk(v, p)
     elif isinstance(obj, list):
-        for i, v in enumerate(obj[:5]):
+        for i, v in enumerate(obj[:20]):
             p = f"{prefix}[{i}]"
             yield p, v
             yield from walk(v, p)
+
+
+def scalar_player_candidates(obj):
+    out = []
+    for path, value in walk(obj):
+        low = path.lower()
+        if any(tok in low for tok in ("pcode", "playercode", "playerid", "pitchercode", "pitcherid")):
+            if isinstance(value, (str, int)) and str(value).strip():
+                out.append((path, str(value).strip()))
+    return out
 
 
 def main():
@@ -24,33 +34,40 @@ def main():
     if not rs:
         raise SystemExit("no regular-season games")
     game = rs[0]
-    print("SCHEDULE_GAME_ID", game.get("gameId") or game.get("id"))
-    print("SCHEDULE_TOP_KEYS", json.dumps(sorted(game.keys()), ensure_ascii=False))
+    gid = game.get("gameId") or game.get("id")
+    print("SCHEDULE_GAME_ID", gid)
+    print("AWAY_STARTER_NAME", game.get("awayStarterName"))
+    print("HOME_STARTER_NAME", game.get("homeStarterName"))
 
-    candidates = []
-    for path, value in walk(game):
-        low = path.lower()
-        if any(tok in low for tok in ("pitcher", "pcode", "playercode", "playerid")):
-            print("SCHEDULE_CANDIDATE", path, json.dumps(value, ensure_ascii=False, default=str))
-            if isinstance(value, (str, int)) and str(value).strip():
-                candidates.append(str(value).strip())
+    relay = naver.fetch_relay(str(gid), 1)
+    print("RELAY_TOP_KEYS", json.dumps(sorted(relay.keys()), ensure_ascii=False))
+
+    candidates = scalar_player_candidates(relay)
+    for path, value in candidates[:50]:
+        print("RELAY_PLAYER_CANDIDATE", path, value)
 
     tried = []
-    for pcode in candidates:
+    for path, pcode in candidates:
         if pcode in tried:
             continue
         tried.append(pcode)
         try:
             result = naver.fetch_player_season(pcode, year)
         except Exception as exc:
-            print("PLAYER_FETCH_FAIL", pcode, type(exc).__name__, str(exc))
             continue
         ps = result.get("pitcherStats")
         if ps:
+            player = result.get("player") or {}
             print("PLAYER_CODE", pcode)
+            print("PLAYER_NAME", player.get("name") or player.get("playerName") or player.get("nameKo"))
+            print("PLAYER_SOURCE_PATH", path)
             print("PITCHER_STATS", json.dumps(ps, ensure_ascii=False, sort_keys=True, default=str))
-            return
-    print("NO_FETCHABLE_STARTER_CODE_FROM_SCHEDULE")
+            # keep probing until both schedule starters are found if names are available
+            found_name = str(player.get("name") or player.get("playerName") or player.get("nameKo") or "")
+            if found_name in {str(game.get("awayStarterName") or ""), str(game.get("homeStarterName") or "")}:
+                print("MATCHED_SCHEDULE_STARTER", found_name)
+                return
+    print("NO_FETCHABLE_STARTER_CODE_FROM_RELAY")
 
 
 if __name__ == "__main__":
