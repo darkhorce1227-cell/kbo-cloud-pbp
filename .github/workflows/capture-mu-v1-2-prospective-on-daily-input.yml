@@ -1,0 +1,95 @@
+name: Capture Mu v1.2 Prospective Snapshot From Daily PRE Input
+
+on:
+  push:
+    paths:
+      - "state/mechanical_mu_input.json"
+      - ".github/workflows/capture-mu-v1-2-prospective-on-daily-input.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mu-v1-2-prospective-daily-capture
+  cancel-in-progress: false
+
+jobs:
+  capture-and-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Skip setup when no daily input exists
+        id: input
+        shell: bash
+        run: |
+          if [ -f state/mechanical_mu_input.json ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "No state/mechanical_mu_input.json; workflow-file creation/update smoke is a no-op."
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.input.outputs.exists == 'true'
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - uses: actions/cache/restore@v4
+        if: steps.input.outputs.exists == 'true'
+        with:
+          path: data
+          key: kbo-history-${{ runner.os }}-mechanical-mu-v13
+          restore-keys: |
+            kbo-history-${{ runner.os }}-mechanical-mu-
+            kbo-history-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.input.outputs.exists == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Validate committed CLEAN PRE declaration and capture immutable v0.9 snapshot
+        if: steps.input.outputs.exists == 'true'
+        id: capture
+        shell: bash
+        run: |
+          snapshot_path=$(python scripts/capture_mu_v1_2_prospective_snapshot.py \
+            --input state/mechanical_mu_input.json \
+            --require-input-declaration \
+            --note "AUTO_FROM_DAILY_MECHANICAL_MU_INPUT")
+          echo "snapshot_path=$snapshot_path" >> "$GITHUB_OUTPUT"
+          echo "Captured: $snapshot_path"
+
+      - name: Bound BP30 calendar36 vs documented-30d discrepancy on this snapshot
+        if: steps.input.outputs.exists == 'true'
+        run: |
+          python scripts/compare_mu_v1_2_bp30_discrepancy.py \
+            --snapshot "${{ steps.capture.outputs.snapshot_path }}" \
+            --out state/mu_v1_2_bp30_live_discrepancy_bound.json
+
+      - name: Refresh preregistered BP30 prospective promotion gate
+        if: steps.input.outputs.exists == 'true'
+        run: |
+          python scripts/evaluate_mu_v1_2_bp30_promotion_gate.py \
+            --out state/mu_v1_2_bp30_prospective_promotion_gate.json
+
+      - name: Commit immutable prospective evidence and gate state
+        if: steps.input.outputs.exists == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/prospective_mu_v1_2/*.json
+          git add state/mu_v1_2_bp30_live_discrepancy_bound.json
+          git add state/mu_v1_2_bp30_prospective_promotion_gate.json
+          if git diff --cached --quiet; then
+            echo "No prospective state changes."
+            exit 0
+          fi
+          git commit -m "state: capture daily prospective mu v1.2 CLEAN PRE evidence"
+          git pull --rebase origin main
+          git push
