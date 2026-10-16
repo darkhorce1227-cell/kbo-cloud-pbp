@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-recovered-challenger-v0.8-30d-longprior-p17",
+  "version": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
   "status": "RESEARCH_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "base_model": "research/mu-v1.2/model_spec.json",
@@ -45,12 +45,13 @@
       "long_scope": "SEASON_RESET",
       "long_pseudo_outs": 360.0,
       "recent_definition": "RELIEVER_STINT",
-      "recent_window": "CALENDAR_30D_STRICTLY_PREGAME",
-      "recent_pseudo_outs": 39.25,
+      "recent_window": "CALENDAR_36D_STRICTLY_PREGAME",
+      "recent_pseudo_outs": 25.5,
       "recent_prior": "SHRUNK_INNING6PLUS_TEAM_LONG_ABSOLUTE_RA9",
-      "recent_league_denominator": "POOLED_RELIEVER_STINT_LEAGUE30_RA9",
+      "recent_league_denominator": "POOLED_RELIEVER_STINT_LEAGUE36_RA9",
       "same_game_inclusion": false,
-      "evidence": "Pregame reliever candidate improves BP30 moment distance, frozen core coefficient parity, and 2026 OOS versus inning6plus. Same-game leakage is rejected by frozen coefficient parity."
+      "selection_discipline": "Calendar36/P25.5 selected only from 2024-2025 frozen moment parity plus frozen coefficient parity; 2026 used confirmatorily and did not retune the candidate.",
+      "evidence": "Development moments are near-exact: mean 0.9859358101 vs frozen 0.9860898056 and scale 0.2116657251 vs frozen 0.2115871916, standardized moment distance 0.000817. Frozen core coefficient-parity sum improves to 0.182741 from 0.184323 for reliever calendar30/P39 and 0.190571 for the prior active inning6plus BP30. Confirmatory 2026 OOS is essentially neutral in F5 and slightly better in Full logloss/Brier/side accuracy."
     },
     "park": {
       "scope": "continuous_history",
@@ -60,13 +61,13 @@
   "frozen_2026_oos_reference": {
     "team_games": 1368,
     "games": 684,
-    "f5_mae": 1.9479289113359635,
-    "f5_wdl_logloss": 0.9947372494244769,
-    "f5_decided_side": 0.5500848896434635,
-    "f5_mean_mu": 2.6820510933039112,
-    "full_mae": 2.706959168420159,
-    "full_wdl_logloss": 0.8112552612320332,
-    "full_decided_side": 0.561377245508982,
+    "f5_mae": 1.948367292904739,
+    "f5_wdl_logloss": 0.9949094939724629,
+    "f5_decided_side": 0.5483870967741935,
+    "f5_mean_mu": 2.6820510933039117,
+    "full_mae": 2.7070897728312047,
+    "full_wdl_logloss": 0.81082341018735,
+    "full_decided_side": 0.5643712574850299,
     "full_mean_mu": 5.0209460416519
   },
   "published_v1_2_reference": {
@@ -80,20 +81,21 @@
     "full_mean_mu": 5.001728
   },
   "bp30_development_moment_reference": {
-    "candidate_mean": 0.9775165782137949,
-    "candidate_scale": 0.21166317777385316,
+    "candidate_mean": 0.9859358101266639,
+    "candidate_scale": 0.2116657250819812,
     "frozen_mean": 0.9860898056018214,
-    "frozen_scale": 0.21158719158114866
+    "frozen_scale": 0.21158719158114866,
+    "standardized_moment_distance": 0.0008169891851920201
   },
   "posthoc_variant": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
   "known_unresolved": [
-    "BP30 exact historical centering/prior formula is still not recovered: pregame-reliever candidate has near-exact scale but mean remains about 0.00857 below frozen.",
+    "The surviving feature label says BP30/30d, while the strongest forensic reconstruction uses a 36-calendar-day reliever window. The original feature-generation code is absent, so this calendar36 semantic cannot be proven by direct source inspection.",
     "Original v1.2 feature/prediction rows were not preserved, so literal row-to-row parity cannot be demonstrated from surviving artifacts.",
     "P17 league-environment smoothing is strongly supported by frozen coefficient parity and confirmatory 2026 behavior, but the original training code is absent, so it remains forensic reconstruction rather than direct source-code recovery."
   ],
   "usage": {
     "daily_analysis": "USE_AS_RESEARCH_CHALLENGER",
     "betting_decision": "DO_NOT_TREAT_AS_OFFICIAL_MECHANICAL_SHADOW",
-    "promotion_gate": "Resolve remaining BP30 centering or establish a defensible bound on its practical impact, then pass prospective live snapshot comparison."
+    "promotion_gate": "Pass prospective live snapshot comparison and document/bound the practical impact of the BP30 label-vs-calendar36 forensic discrepancy. Literal historical row parity is unavailable because the original feature-row artifact does not survive."
   }
 }
