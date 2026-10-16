@@ -19,7 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 CHALLENGER_PATH = ROOT / "research" / "mu-v1.2" / "recovered_challenger.json"
 BP_LONG_OUTS_P = 360.0
-BP_RECENT_OUTS_P = 39.25
+BP_RECENT_WINDOW_DAYS = 36
+BP_RECENT_OUTS_P = 25.5
 LEAGUE_ENV_30D_LONG_PRIOR_P = 17.0
 
 
@@ -48,7 +49,7 @@ def _inject_current_starter(st, *, game_pk, d, pitching_team, starter):
 
 
 def _league_env_30d_longprior(tg, d):
-    """v0.8 recovered league environment offset.
+    """v0.8+ recovered league environment offset.
 
     Preserves the documented strictly-pregame calendar-30D semantics, while
     weakly shrinking the pooled 30D league team-game mean toward the all-pregame
@@ -77,7 +78,7 @@ def _safe_ra9(runs: float, outs: float, fallback: float) -> float:
 
 
 def _bp30_reliever_pregame(bp6, bprel, *, d, opponent):
-    """Best forensic BP30 working semantic as of v0.7/v0.8."""
+    """v0.9 forensic BP30 semantic: pregame reliever-stint, calendar36, P25.5."""
     d = pd.Timestamp(d).normalize()
     opp = str(opponent)
 
@@ -94,16 +95,16 @@ def _bp30_reliever_pregame(bp6, bprel, *, d, opponent):
         if lo + BP_LONG_OUTS_P > 0 else lg_long
     )
 
-    rec = bprel[(bprel.game_date < d) & (bprel.game_date >= d - pd.Timedelta(days=30))]
+    rec = bprel[(bprel.game_date < d) & (bprel.game_date >= d - pd.Timedelta(days=BP_RECENT_WINDOW_DAYS))]
     opp_rec = rec[rec.pitching_team.astype(str).eq(opp)]
-    lg30 = _safe_ra9(float(rec.runs.sum()), float(rec.outs.sum()), lg_long)
+    lg_recent = _safe_ra9(float(rec.runs.sum()), float(rec.outs.sum()), lg_long)
     rr = float(opp_rec.runs.sum())
     ro = float(opp_rec.outs.sum())
-    team30 = (
+    team_recent = (
         (rr + BP_RECENT_OUTS_P * team_long / 27.0) * 27.0 / (ro + BP_RECENT_OUTS_P)
         if ro + BP_RECENT_OUTS_P > 0 else team_long
     )
-    return float(team30 / lg30) if lg30 else 1.0
+    return float(team_recent / lg_recent) if lg_recent else 1.0
 
 
 def build_pregame_features(tg, st, bp6, bprel, *, d, game_pk, team, opponent, self_starter, is_home, park_factor_override=None):
@@ -114,13 +115,13 @@ def build_pregame_features(tg, st, bp6, bprel, *, d, game_pk, team, opponent, se
     row = SimpleNamespace(game_pk=fake_pk, game_date=d, team=team, opponent=opponent, is_home=int(is_home))
     f = recovered.build_features(tg, st2, bp6, row=row)
 
-    # v0.8: keep the documented pregame calendar-30D league environments, with
+    # v0.8+: keep the documented pregame calendar-30D league environments, with
     # weak long-prior smoothing selected from frozen 2024-2025 coefficient parity.
     league_f5_30d, league_late_30d = _league_env_30d_longprior(tg, d)
     f["league_f5_30d"] = league_f5_30d
     f["league_late_30d"] = league_late_30d
 
-    # BP30 forensic v0.7/v0.8: pregame reliever-stint recent source.
+    # v0.9 BP30 forensic recovery: pregame reliever-stint, calendar36, P25.5.
     f["opp_bp_ra9_30d_rel"] = _bp30_reliever_pregame(bp6, bprel, d=d, opponent=opponent)
     if park_factor_override is not None:
         f["park_factor"] = float(park_factor_override)
