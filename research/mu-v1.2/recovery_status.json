@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.10",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.11",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE_REGRESSION_PASS",
   "official_shadow_allowed": false,
   "active_challenger": {
@@ -28,6 +28,34 @@
         "capture refuses to run without explicit --market-unseen declaration"
       ],
       "note": "Smoke PASS validates capture plumbing and the market-unseen guard only. It is not itself a prospective live model observation."
+    },
+    "bp30_prospective_gate": {
+      "status_file": "research/mu-v1.2/prospective_gate_status.json",
+      "policy": "research/mu-v1.2/bp30_prospective_promotion_policy.json",
+      "policy_version": "mu-v1.2-bp30-prospective-promotion-policy-v0.1",
+      "policy_status": "PREREGISTERED_BEFORE_ELIGIBLE_PROSPECTIVE_RESULTS",
+      "comparator": "scripts/compare_mu_v1_2_bp30_discrepancy.py",
+      "comparator_smoke_run_id": 38871868912,
+      "comparator_smoke_conclusion": "success",
+      "evaluator": "scripts/evaluate_mu_v1_2_bp30_promotion_gate.py",
+      "evaluator_smoke_run_id": 38872516799,
+      "evaluator_smoke_conclusion": "success",
+      "sample_gate": {
+        "minimum_games": 10,
+        "minimum_distinct_capture_dates": 4,
+        "minimum_distinct_teams": 6
+      },
+      "score_delta_gate_runs": {
+        "median_abs_max": 0.03,
+        "p95_abs_max": 0.10,
+        "single_observation_max": 0.20,
+        "mean_signed_bias_abs_max": 0.02
+      },
+      "decision_stability_gate": {
+        "predicted_side_flip_rate_max": 0.05,
+        "material_active_full_mu_margin_flip_forbidden_at_or_above_runs": 0.25
+      },
+      "discipline": "Thresholds were frozen before eligible prospective results. Do not relax them after observing snapshots; any revision requires a new policy version and cannot retroactively qualify the old sample."
     },
     "note": "v0.9 preserves v0.8 league-environment P17 and promotes the BP30 forensic candidate to strictly-pregame reliever-stint calendar36 with P25.5. The candidate was selected only from 2024-2025 frozen moment/coefficient parity and confirmed, not tuned, on 2026 OOS. The active v0.9 regression workflow passed on run 38860571014."
   },
@@ -128,7 +156,8 @@
     "30d_smoothing_semantics": "state/mu_v1_2_30d_smoothing_semantics.json",
     "30d_longprior_refine": "state/mu_v1_2_30d_longprior_refine.json",
     "30d_longprior_oos": "state/mu_v1_2_30d_longprior_oos.json",
-    "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
+    "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json",
+    "prospective_gate_status": "research/mu-v1.2/prospective_gate_status.json"
   },
-  "promotion_gate": "v0.9 active challenger regression gate and prospective capture smoke gate have passed. Official Mechanical Mu Shadow remains unavailable. Remaining gate: collect genuine prospective market-unseen snapshots and bound/document the practical prediction impact of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
+  "promotion_gate": "v0.9 active challenger regression, prospective capture smoke, BP30 discrepancy comparator smoke, and prospective gate evaluator smoke have all passed. The BP30 practical-impact thresholds are preregistered before eligible prospective results. Official Mechanical Mu Shadow remains unavailable until enough immutable market-unseen prospective snapshots are collected and the preregistered BP30 practical-discrepancy gate passes. Exact historical row parity remains untestable because the original feature-row artifact does not survive."
 }
