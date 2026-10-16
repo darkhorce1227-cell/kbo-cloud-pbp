@@ -1,0 +1,52 @@
+name: Register Mu v1.2 Live Collection Ready
+
+on:
+  push:
+    paths:
+      - "scripts/register_mu_v1_2_live_collection_ready.py"
+      - ".github/workflows/register-mu-v1-2-live-collection-ready.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Register development-complete / live-collection-ready state
+        run: python scripts/register_mu_v1_2_live_collection_ready.py
+      - name: Validate status JSON
+        run: |
+          python -m json.tool research/mu-v1.2/prospective_gate_status.json >/dev/null
+          python -m json.tool research/mu-v1.2/recovery_status.json >/dev/null
+          python - <<'PY'
+          import json
+          p=json.load(open('research/mu-v1.2/prospective_gate_status.json'))
+          r=json.load(open('research/mu-v1.2/recovery_status.json'))
+          assert p['development_state']=='DEVELOPMENT_COMPLETE_LIVE_SAMPLE_COLLECTION_ONLY', p
+          assert r['status']=='RECOVERY_DEVELOPMENT_COMPLETE_LIVE_COLLECTION_PENDING', r
+          assert p['official_shadow_allowed'] is False, p
+          assert r['official_shadow_allowed'] is False, r
+          assert p['bp30_gate_evaluator']['dedupe_smoke_conclusion']=='success', p
+          print('MU_V1_2_LIVE_COLLECTION_READY_STATUS_PASS')
+          PY
+      - name: Commit status transition
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/mu-v1.2/prospective_gate_status.json research/mu-v1.2/recovery_status.json
+          if git diff --cached --quiet; then
+            echo "No status changes."
+            exit 0
+          fi
+          git commit -m "research: mark mu v1.2 development complete; live collection pending"
+          git pull --rebase origin main
+          git push
