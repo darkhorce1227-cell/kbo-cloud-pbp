@@ -1,0 +1,311 @@
+{
+  "version": "mu-v1.2-bp30-reliever-denominator-hybrid-v0.1",
+  "status": "DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "numerator": "RELIEVER_STINT_PREGAME_CALENDAR30",
+  "prior": "ABSOLUTE_INNING6PLUS_TEAM_LONG",
+  "frozen": {
+    "mean": 0.9860898056018214,
+    "scale": 0.21158719158114866
+  },
+  "scan": {
+    "p_min": 10,
+    "p_max": 60,
+    "p_step": 1
+  },
+  "by_denominator": {
+    "RELIEVER_LEAGUE30": {
+      "best_moment": [
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 33.0,
+          "mean": 0.9804157485448829,
+          "scale": 0.21586759689022997,
+          "mean_error": -0.005674057056938464,
+          "scale_error": 0.004280405309081303,
+          "moment_distance": 0.0011283842731906724,
+          "core_sum": 0.18322707210030875,
+          "core_f5_norm": 0.13230337273299062,
+          "core_f5_corr": 0.98377735305012,
+          "core_late_norm": 0.05092369936731813,
+          "core_late_corr": 0.4985990801911842
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 34.0,
+          "mean": 0.9799400490916037,
+          "scale": 0.21516922349643405,
+          "mean_error": -0.006149756510217652,
+          "scale_error": 0.0035820319152853886,
+          "moment_distance": 0.0011313699164876882,
+          "core_sum": 0.1834068077797955,
+          "core_f5_norm": 0.1324836931423325,
+          "core_f5_corr": 0.9837147045697884,
+          "core_late_norm": 0.050923114637463004,
+          "core_late_corr": 0.49859979251692943
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 32.0,
+          "mean": 0.9808961901101209,
+          "scale": 0.21657662733245892,
+          "mean_error": -0.005193615491700498,
+          "scale_error": 0.0049894357513102505,
+          "moment_distance": 0.0011585684113606224,
+          "core_sum": 0.18304874137242833,
+          "core_f5_norm": 0.13212419057768593,
+          "core_f5_corr": 0.9838388654100036,
+          "core_late_norm": 0.05092455079474241,
+          "core_late_corr": 0.49859826612269653
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 35.0,
+          "mean": 0.9794689899031137,
+          "scale": 0.21448111543781614,
+          "mean_error": -0.006620815698707649,
+          "scale_error": 0.0028939238566674796,
+          "moment_distance": 0.0011662050292429087,
+          "core_sum": 0.1835878358661897,
+          "core_f5_norm": 0.13266505317913038,
+          "core_f5_corr": 0.9836509359043406,
+          "core_late_norm": 0.050922782687059326,
+          "core_late_corr": 0.49860040855887594
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 31.0,
+          "mean": 0.9813814808013572,
+          "scale": 0.2172967379572304,
+          "mean_error": -0.004708324800464125,
+          "scale_error": 0.005709546376081731,
+          "moment_distance": 0.001223325770524644,
+          "core_sum": 0.18287193381064812,
+          "core_f5_norm": 0.1319462499890798,
+          "core_f5_corr": 0.9838992260974528,
+          "core_late_norm": 0.05092568382156831,
+          "core_late_corr": 0.4985973444199773
+        }
+      ],
+      "best_core": [
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 10.0,
+          "mean": 0.9929896659635699,
+          "scale": 0.23655111019534486,
+          "mean_error": 0.0068998603617485,
+          "scale_error": 0.024963918614196196,
+          "moment_distance": 0.014983654163649534,
+          "core_sum": 0.17965395198774178,
+          "core_f5_norm": 0.12859687407828485,
+          "core_f5_corr": 0.9849153234880386,
+          "core_late_norm": 0.05105707790945693,
+          "core_late_corr": 0.49853485595498853
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 11.0,
+          "mean": 0.9923560698325363,
+          "scale": 0.23532202430833118,
+          "mean_error": 0.0062662642307149685,
+          "scale_error": 0.02373483272718252,
+          "moment_distance": 0.01346035141229153,
+          "core_sum": 0.1797997480553166,
+          "core_f5_norm": 0.12875600485470445,
+          "core_f5_corr": 0.9848717416769334,
+          "core_late_norm": 0.05104374320061215,
+          "core_late_corr": 0.49854083341722416
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 12.0,
+          "mean": 0.9917335631540725,
+          "scale": 0.23414937093643587,
+          "mean_error": 0.005643757552251105,
+          "scale_error": 0.022562179355287204,
+          "moment_distance": 0.01208207128624348,
+          "core_sum": 0.17993964782712418,
+          "core_f5_norm": 0.1289082647459309,
+          "core_f5_corr": 0.9848294487475113,
+          "core_late_norm": 0.05103138308119329,
+          "core_late_corr": 0.498546369854653
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 13.0,
+          "mean": 0.9911213396307735,
+          "scale": 0.23302527154748318,
+          "mean_error": 0.005031534028952178,
+          "scale_error": 0.02143807996633451,
+          "moment_distance": 0.010831291626637212,
+          "core_sum": 0.18007663232093943,
+          "core_f5_norm": 0.12905667258217368,
+          "core_f5_corr": 0.9847877739987168,
+          "core_late_norm": 0.05101995973876575,
+          "core_late_corr": 0.4985514904646624
+        },
+        {
+          "denominator": "RELIEVER_LEAGUE30",
+          "p_recent_outs": 14.0,
+          "mean": 0.9905187237081277,
+          "scale": 0.23194351797832669,
+          "mean_error": 0.004428918106306301,
+          "scale_error": 0.02035632639717802,
+          "moment_distance": 0.009694073718169932,
+          "core_sum": 0.18021276025548566,
+          "core_f5_norm": 0.12920333232443804,
+          "core_f5_corr": 0.9847462191161218,
+          "core_late_norm": 0.051009427931047624,
+          "core_late_corr": 0.49855622180052045
+        }
+      ]
+    },
+    "INNING6PLUS_LEAGUE30": {
+      "best_moment": [
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 60.0,
+          "mean": 1.1177961490081774,
+          "scale": 0.23282554821049156,
+          "mean_error": 0.131706343406356,
+          "scale_error": 0.021238356629342897,
+          "moment_distance": 0.39754234341841793,
+          "core_sum": 0.17435369261525335,
+          "core_f5_norm": 0.12246903668882485,
+          "core_f5_corr": 0.9858700745566481,
+          "core_late_norm": 0.05188465592642851,
+          "core_late_corr": 0.4982178675792798
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 59.0,
+          "mean": 1.118238683487815,
+          "scale": 0.23345363047132328,
+          "mean_error": 0.13214887788599372,
+          "scale_error": 0.021866438890174617,
+          "moment_distance": 0.40075523496892984,
+          "core_sum": 0.17420202139615265,
+          "core_f5_norm": 0.1223221823335559,
+          "core_f5_corr": 0.9858901680524952,
+          "core_late_norm": 0.05187983906259676,
+          "core_late_corr": 0.4982197530658244
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 58.0,
+          "mean": 1.1186847907489315,
+          "scale": 0.23408848691089804,
+          "mean_error": 0.1325949851471101,
+          "scale_error": 0.02250129532974937,
+          "moment_distance": 0.40402247000150415,
+          "core_sum": 0.17405044162235653,
+          "core_f5_norm": 0.12217534384141929,
+          "core_f5_corr": 0.9859096951967543,
+          "core_late_norm": 0.05187509778093725,
+          "core_late_corr": 0.4982215931577677
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 57.0,
+          "mean": 1.1191345232486536,
+          "scale": 0.23473026206204892,
+          "mean_error": 0.13304471764683223,
+          "scale_error": 0.023143070480900252,
+          "moment_distance": 0.4073452997123835,
+          "core_sum": 0.17389897987354766,
+          "core_f5_norm": 0.12202854440660559,
+          "core_f5_corr": 0.9859286526241835,
+          "core_late_norm": 0.05187043546694208,
+          "core_late_corr": 0.49822338619614626
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 56.0,
+          "mean": 1.1195879348186661,
+          "scale": 0.23537910619311275,
+          "mean_error": 0.13349812921684479,
+          "scale_error": 0.023791914611964088,
+          "moment_distance": 0.4107250184539943,
+          "core_sum": 0.1737476643223207,
+          "core_f5_norm": 0.12188180865546562,
+          "core_f5_corr": 0.9859470370525384,
+          "core_late_norm": 0.05186585566685506,
+          "core_late_corr": 0.4982251304411063
+        }
+      ],
+      "best_core": [
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 44.0,
+          "mean": 1.125337623637054,
+          "scale": 0.24378102280268693,
+          "mean_error": 0.13924781803523267,
+          "scale_error": 0.032193831221538266,
+          "moment_distance": 0.45626066884468935,
+          "core_sum": 0.1719561991824737,
+          "core_f5_norm": 0.12013730563219475,
+          "core_f5_corr": 0.9861219155212544,
+          "core_late_norm": 0.051818893550278945,
+          "core_late_corr": 0.49824148483336456
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 45.0,
+          "mean": 1.1248352637697474,
+          "scale": 0.24303293259147893,
+          "mean_error": 0.13874545816792605,
+          "scale_error": 0.031445741010330264,
+          "moment_distance": 0.45207785881352763,
+          "core_sum": 0.1721028268384429,
+          "core_f5_norm": 0.12028069459984132,
+          "core_f5_corr": 0.986110619860726,
+          "core_late_norm": 0.051822132238601576,
+          "core_late_corr": 0.498240499956021
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 43.0,
+          "mean": 1.125844523193318,
+          "scale": 0.24453887852804732,
+          "mean_error": 0.1397547175914967,
+          "scale_error": 0.03295168694689865,
+          "moment_distance": 0.46052246987460405,
+          "core_sum": 0.1721413463945805,
+          "core_f5_norm": 0.12032554264772369,
+          "core_f5_corr": 0.9861326076312177,
+          "core_late_norm": 0.051815803746856806,
+          "core_late_corr": 0.49824238782222974
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 46.0,
+          "mean": 1.1243373641213845,
+          "scale": 0.24229433393663058,
+          "mean_error": 0.13824755851956316,
+          "scale_error": 0.030707142355481915,
+          "moment_distance": 0.4479718884256703,
+          "core_sum": 0.17225010606941893,
+          "core_f5_norm": 0.12042459311986523,
+          "core_f5_corr": 0.9860987218842882,
+          "core_late_norm": 0.05182551294955372,
+          "core_late_corr": 0.4982394366634579
+        },
+        {
+          "denominator": "INNING6PLUS_LEAGUE30",
+          "p_recent_outs": 42.0,
+          "mean": 1.1263560447659564,
+          "scale": 0.24530678934142364,
+          "mean_error": 0.14026623916413505,
+          "scale_error": 0.03371959776027497,
+          "moment_distance": 0.46486551426183054,
+          "core_sum": 0.17233878783769435,
+          "core_f5_norm": 0.12052591775407985,
+          "core_f5_corr": 0.9861426952083119,
+          "core_late_norm": 0.051812870083614494,
+          "core_late_corr": 0.4982432052370582
+        }
+      ]
+    }
+  },
+  "decision_rule": "A denominator is preferred only if moment parity and frozen core coefficient parity become directionally more coherent together; no OOS metric used."
+}
