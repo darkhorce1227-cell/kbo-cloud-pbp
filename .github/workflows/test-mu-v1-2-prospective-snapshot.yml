@@ -33,3 +33,31 @@ jobs:
           echo "$out"
           test "$code" -ne 0
           echo "$out" | grep -q "Refusing prospective CLEAN snapshot"
+      - name: Verify embedded daily CLEAN PRE declaration contract
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'scripts')
+          import capture_mu_v1_2_prospective_snapshot as c
+
+          good = {
+              'prospective_capture': {
+                  'clean_pre_lock': True,
+                  'market_prices_inspected': False,
+                  'declaration': 'MARKET_UNSEEN_AT_INPUT_COMMIT',
+              }
+          }
+          ok, meta = c.embedded_clean_pre_declaration(good)
+          assert ok is True, (ok, meta)
+
+          bad_seen = {
+              'prospective_capture': {
+                  'clean_pre_lock': True,
+                  'market_prices_inspected': True,
+                  'declaration': 'MARKET_UNSEEN_AT_INPUT_COMMIT',
+              }
+          }
+          assert c.embedded_clean_pre_declaration(bad_seen)[0] is False
+          assert c.embedded_clean_pre_declaration({})[0] is False
+          print('EMBEDDED_CLEAN_PRE_DECLARATION_GUARD_PASS')
+          PY
