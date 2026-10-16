@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 POLICY_PATH = ROOT / "research" / "mu-v1.2" / "bp30_prospective_promotion_policy.json"
 DEFAULT_GLOB = "state/prospective_mu_v1_2/*.json"
 DEFAULT_OUT = "state/mu_v1_2_bp30_prospective_promotion_gate.json"
+DEDUPE_KEY_SCHEMA = "input_sha256|target_date|game_pk_or_away>home"
 
 
 def _load_snapshot(path: Path) -> dict:
@@ -23,7 +24,22 @@ def _load_snapshot(path: Path) -> dict:
         raise RuntimeError(f"ineligible snapshot market state: {path}")
     if "input_payload" not in snap:
         raise RuntimeError(f"snapshot missing input_payload: {path}")
+    if not snap.get("input_sha256"):
+        raise RuntimeError(f"snapshot missing input_sha256: {path}")
     return snap
+
+
+def _dedupe_key(snap: dict, comp: dict, game: dict) -> tuple[str, str, str]:
+    input_sha = str(snap["input_sha256"])
+    target_date = str(comp["target_date"])
+    away = str(game["away_team"])
+    home = str(game["home_team"])
+    game_pk = game.get("game_pk")
+    if game_pk is not None and str(game_pk).strip() not in {"", "None", "UNKNOWN"}:
+        matchup = f"pk:{game_pk}|{away}>{home}"
+    else:
+        matchup = f"teams:{away}>{home}"
+    return input_sha, target_date, matchup
 
 
 def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
@@ -32,6 +48,9 @@ def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
     signed: list[float] = []
     dates: set[str] = set()
     teams: set[str] = set()
+    unique_input_shas: set[str] = set()
+    seen_observations: set[tuple[str, str, str]] = set()
+    duplicate_rows = []
     game_count = 0
     side_flips = 0
     material_margin_flips = 0
@@ -40,8 +59,28 @@ def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
     for path in snapshot_paths:
         snap = _load_snapshot(path)
         comp = cmp.compare_payload(snap["input_payload"])
-        dates.add(str(comp["target_date"]))
+        input_sha = str(snap["input_sha256"])
         for g in comp["games"]:
+            dedupe_key = _dedupe_key(snap, comp, g)
+            if dedupe_key in seen_observations:
+                try:
+                    source_snapshot = str(path.relative_to(ROOT))
+                except ValueError:
+                    source_snapshot = str(path)
+                duplicate_rows.append({
+                    "source_snapshot": source_snapshot,
+                    "input_sha256": input_sha,
+                    "target_date": str(comp["target_date"]),
+                    "game_pk": g.get("game_pk"),
+                    "away_team": g["away_team"],
+                    "home_team": g["home_team"],
+                    "dedupe_key": list(dedupe_key),
+                })
+                continue
+
+            seen_observations.add(dedupe_key)
+            unique_input_shas.add(input_sha)
+            dates.add(str(comp["target_date"]))
             game_count += 1
             teams.update([str(g["away_team"]), str(g["home_team"])])
             a = g["active_prediction"]
@@ -66,6 +105,8 @@ def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
                 source_snapshot = str(path)
             rows.append({
                 "source_snapshot": source_snapshot,
+                "input_sha256": input_sha,
+                "dedupe_key": list(dedupe_key),
                 "target_date": comp["target_date"],
                 "game_pk": g.get("game_pk"),
                 "away_team": g["away_team"],
@@ -118,13 +159,20 @@ def evaluate(snapshot_paths: list[Path], policy: dict) -> dict:
         verdict = "FAIL_PRACTICAL_DISCREPANCY_BOUND"
 
     return {
-        "version": "mu-v1.2-bp30-prospective-promotion-gate-evaluation-v0.1",
+        "version": "mu-v1.2-bp30-prospective-promotion-gate-evaluation-v0.2-deduped",
         "policy_version": policy["version"],
         "verdict": verdict,
         "official_shadow_allowed": False,
         "note": "A PASS only clears the BP30 practical-discrepancy sub-gate. It does not by itself activate Official Mechanical Shadow.",
+        "dedupe": {
+            "key_schema": DEDUPE_KEY_SCHEMA,
+            "rule": "Exact duplicate game observations sharing input_sha256, target_date, and matchup are counted once. Later duplicate files remain auditable but do not increase the prospective sample.",
+            "duplicate_game_observations_ignored": len(duplicate_rows),
+            "duplicates": duplicate_rows,
+        },
         "sample": {
-            "snapshot_files": len(snapshot_paths),
+            "snapshot_files_total": len(snapshot_paths),
+            "unique_input_sha256": len(unique_input_shas),
             "games": game_count,
             "distinct_capture_dates": len(dates),
             "distinct_teams": len(teams),
@@ -173,6 +221,7 @@ def main() -> None:
         "games": result["sample"]["games"],
         "dates": result["sample"]["distinct_capture_dates"],
         "teams": result["sample"]["distinct_teams"],
+        "duplicates_ignored": result["dedupe"]["duplicate_game_observations_ignored"],
         "out": out_label,
     }, ensure_ascii=False))
 
