@@ -55,19 +55,20 @@ def main():
     tg,_,bps=src.load_all()
     assert len(dev(tg))==2628
     rows=[]
-    for days in range(27,34):
+    windows=list(range(33,41))
+    for days in windows:
         st=stats_for_window(tg,bps['inning6plus'],bps['reliever_stint'],days)
-        for p in np.arange(20.0,50.01,0.5):
+        for p in np.arange(20.0,45.01,0.5):
             m,s,dist=eval_one(st,float(p))
             rows.append({'window_days':days,'p_recent_outs':float(p),'mean':m,'scale':s,'mean_error':m-FM,'scale_error':s-FS,'moment_distance':dist})
     ranked=sorted(rows,key=lambda x:x['moment_distance'])
     payload={
-      'version':'mu-v1.2-bp30-window-boundary-v0.2','status':'DIAGNOSTIC_ONLY','official_shadow_allowed':False,
+      'version':'mu-v1.2-bp30-window-boundary-v0.3','status':'DIAGNOSTIC_ONLY','official_shadow_allowed':False,
       'fixed':'reliever_stint; pregame; pooled reliever league denominator; inning6plus long prior P360',
-      'scan':{'window_days':[27,28,29,30,31,32,33],'p_recent_outs':'20..50 step0.5'},
+      'scan':{'window_days':windows,'p_recent_outs':'20..45 step0.5'},
       'frozen':{'mean':FM,'scale':FS},'top':ranked[:20],
-      'best_by_window':{str(d):min((x for x in rows if x['window_days']==d),key=lambda x:x['moment_distance']) for d in range(27,34)},
-      'note':'No OOS metric and no coefficient fitting; this isolates only calendar-window boundary semantics.'
+      'best_by_window':{str(d):min((x for x in rows if x['window_days']==d),key=lambda x:x['moment_distance']) for d in windows},
+      'note':'No OOS metric and no coefficient fitting; refinement after v0.2 optimum hit the 33-day upper boundary.'
     }
     OUT.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(payload,ensure_ascii=False,indent=2))
