@@ -1,0 +1,60 @@
+{
+  "version": "mu-v1.2-bp30-calendar36-oos-v0.1",
+  "status": "CONFIRMATORY_DIAGNOSTIC_ONLY",
+  "official_shadow_allowed": false,
+  "selection_discipline": "Calendar36/P25.5 was selected only from 2024-2025 frozen moment + coefficient parity; 2026 OOS is confirmatory and must not retune parameters.",
+  "v0_8_bp30_cal30_p39_25": {
+    "f5": {
+      "mae": 1.9479289113359635,
+      "nb_nll": 2.1221947875637133,
+      "wdl_brier": 0.20216111814891163,
+      "wdl_logloss": 0.9947372494244769,
+      "decided_side": 0.5500848896434635,
+      "mean_mu": 2.6820510933039112
+    },
+    "full": {
+      "mae": 2.706959168420159,
+      "nb_nll": 2.5555479478092153,
+      "wdl_brier": 0.172130484232787,
+      "wdl_logloss": 0.8112552612320332,
+      "decided_side": 0.561377245508982,
+      "mean_mu": 5.0209460416519
+    }
+  },
+  "calendar36_p25_5": {
+    "f5": {
+      "mae": 1.948367292904739,
+      "nb_nll": 2.122288236681057,
+      "wdl_brier": 0.20221341518095043,
+      "wdl_logloss": 0.9949094939724629,
+      "decided_side": 0.5483870967741935,
+      "mean_mu": 2.6820510933039117
+    },
+    "full": {
+      "mae": 2.7070897728312047,
+      "nb_nll": 2.5555005851934296,
+      "wdl_brier": 0.17200207378115678,
+      "wdl_logloss": 0.81082341018735,
+      "decided_side": 0.5643712574850299,
+      "mean_mu": 5.0209460416519
+    }
+  },
+  "delta_new_minus_v0_8": {
+    "f5": {
+      "mae": 0.0004383815687756254,
+      "nb_nll": 9.344911734388006e-05,
+      "wdl_brier": 5.229703203879499e-05,
+      "wdl_logloss": 0.00017224454798592248,
+      "decided_side": -0.001697792869269965,
+      "mean_mu": 4.440892098500626e-16
+    },
+    "full": {
+      "mae": 0.0001306044110456206,
+      "nb_nll": -4.736261578575096e-05,
+      "wdl_brier": -0.00012841045163022868,
+      "wdl_logloss": -0.0004318510446831292,
+      "decided_side": 0.0029940119760478723,
+      "mean_mu": 0.0
+    }
+  }
+}
