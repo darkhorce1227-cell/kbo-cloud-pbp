@@ -1,0 +1,43 @@
+{
+  "version": "ps-expected-ip-frozen-2026-mean-v0.1",
+  "status": "CHALLENGER_ONLY_MEAN_REPRODUCIBLE",
+  "as_of": "2026-10-16",
+  "research_basis": {
+    "source_report": "KBO_NEXT_RESEARCH_EXPECTED_IP.md",
+    "phase2_report": "KBO_PS_MODEL_RESEARCH_PHASE2.md",
+    "repository_reference_commit": "73eab5e40c6c710e8cef65478a2c8b1248e55339",
+    "training_postseasons": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    "residual_appearances": 286,
+    "definition": "actual_postseason_IP - same_player_regular_season_starter_avg_IP",
+    "mean_shift_ip": -0.7588
+  },
+  "forecast_contract": {
+    "mean_challenger_ip_formula": "rs_starter_avg_ip + mean_shift_ip",
+    "baseball_ip_input_format": "decimal innings; e.g. 5 2/3 = 5.6666667, never 5.2",
+    "role": "research challenger only",
+    "must_not_override": [
+      "current role",
+      "pitch cap",
+      "injury/news",
+      "manager leash evidence",
+      "rest/workload constraints",
+      "Champion Expected IP"
+    ]
+  },
+  "historical_validation_reference": {
+    "evaluation_seasons": "2017-2025 walk-forward; 2016 training-only first fold",
+    "evaluation_starter_appearances": 258,
+    "ps_intercept_rmse": 1.67696,
+    "ps_intercept_mae": 1.32339,
+    "rs_ip_rmse": 1.84291,
+    "rs_ip_mae": 1.40227,
+    "rs_vs_candidate_mse_delta": -0.5841,
+    "directional_fold_result": "candidate RMSE lower than RS_IP in 9/9 evaluation seasons"
+  },
+  "reproducibility_scope": {
+    "mean_forecast": "REPRODUCIBLE_FROM_THIS_FILE",
+    "historical_walk_forward_refit": "NOT_YET_REPRODUCIBLE_WITHOUT_ORIGINAL_APPEARANCE_TABLE",
+    "residual_distribution_tail_probabilities": "NOT_YET_REPRODUCIBLE_WITHOUT_286_RESIDUAL_VECTOR",
+    "note": "Do not reconstruct missing residuals or season-level shifts from summary statistics. Preserve UNAVAILABLE for tail outputs until the original vector/table is recovered or rebuilt from source data."
+  }
+}
