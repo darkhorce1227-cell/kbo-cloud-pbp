@@ -1,6 +1,6 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.8",
-  "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.9",
+  "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE_REGRESSION_PASS",
   "official_shadow_allowed": false,
   "active_challenger": {
     "model": "research/mu-v1.2/recovered_challenger.json",
@@ -9,7 +9,14 @@
     "role": "RESEARCH_CHALLENGER",
     "use_in_daily_analysis": true,
     "use_as_official_mechanical_shadow": false,
-    "note": "v0.9 preserves v0.8 league-environment P17 and promotes the BP30 forensic candidate to strictly-pregame reliever-stint calendar36 with P25.5. The candidate was selected only from 2024-2025 frozen moment/coefficient parity and confirmed, not tuned, on 2026 OOS."
+    "regression_gate": {
+      "workflow": "Test Recovered Mu v1.2 Challenger",
+      "run_id": 38860571014,
+      "head_sha": "2c87c6d96b44cf0f8ef7e521696825079a7959cc",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "note": "v0.9 preserves v0.8 league-environment P17 and promotes the BP30 forensic candidate to strictly-pregame reliever-stint calendar36 with P25.5. The candidate was selected only from 2024-2025 frozen moment/coefficient parity and confirmed, not tuned, on 2026 OOS. The active v0.9 regression workflow passed on run 38860571014."
   },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
@@ -110,5 +117,5 @@
     "30d_longprior_oos": "state/mu_v1_2_30d_longprior_oos.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Official Mechanical Mu Shadow remains unavailable. Next gate is prospective live snapshot comparison plus documentation/bounding of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
+  "promotion_gate": "v0.9 active challenger regression gate passed on workflow run 38860571014. Official Mechanical Mu Shadow remains unavailable. Next gate is prospective live snapshot comparison plus documentation/bounding of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
 }
