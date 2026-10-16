@@ -1,0 +1,53 @@
+{
+  "version": "mu-v1.2-prospective-gate-status-v0.1",
+  "official_shadow_allowed": false,
+  "active_challenger": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
+  "capture_infrastructure": {
+    "status": "SMOKE_PASS",
+    "workflow_run_id": 38871598458,
+    "verified": [
+      "capture stack compiles",
+      "CLI loads",
+      "unsafe capture without explicit market-unseen declaration is rejected"
+    ]
+  },
+  "bp30_discrepancy_comparator": {
+    "status": "SMOKE_PASS",
+    "script": "scripts/compare_mu_v1_2_bp30_discrepancy.py",
+    "workflow_run_id": 38871868912,
+    "verified": [
+      "comparator stack compiles",
+      "CLI loads",
+      "exactly one source input is required"
+    ]
+  },
+  "bp30_promotion_policy": {
+    "status": "PREREGISTERED_BEFORE_ELIGIBLE_PROSPECTIVE_RESULTS",
+    "path": "research/mu-v1.2/bp30_prospective_promotion_policy.json",
+    "policy_version": "mu-v1.2-bp30-prospective-promotion-policy-v0.1",
+    "sample_gate": {
+      "minimum_games": 10,
+      "minimum_distinct_capture_dates": 4,
+      "minimum_distinct_teams": 6
+    },
+    "score_delta_gate_runs": {
+      "median_abs_max": 0.03,
+      "p95_abs_max": 0.10,
+      "single_observation_max": 0.20,
+      "mean_signed_bias_abs_max": 0.02
+    },
+    "decision_stability_gate": {
+      "predicted_side_flip_rate_max": 0.05,
+      "no_flip_allowed_when_active_full_mu_margin_at_least_runs": 0.25
+    }
+  },
+  "bp30_gate_evaluator": {
+    "status": "SMOKE_WORKFLOW_RUNNING_AT_STATUS_CAPTURE",
+    "script": "scripts/evaluate_mu_v1_2_bp30_promotion_gate.py",
+    "workflow": ".github/workflows/test-mu-v1-2-bp30-promotion-gate.yml",
+    "workflow_run_id": 38872317435,
+    "expected_empty_sample_verdict": "WAIT_INSUFFICIENT_PROSPECTIVE_SAMPLE"
+  },
+  "discipline": "Do not change the v0.1 prospective thresholds after observing eligible snapshots. A future threshold revision requires a new policy version and cannot retroactively qualify the old sample.",
+  "next_gate": "Evaluator smoke PASS, then collect immutable market-unseen prospective snapshots. PASS of the practical discrepancy bound clears only the BP30 discrepancy sub-gate and does not automatically activate Official Mechanical Shadow."
+}
