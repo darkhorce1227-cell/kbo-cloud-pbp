@@ -18,6 +18,8 @@ MODEL_PATH = ROOT / "research" / "mu-v1.2" / "model_spec.json"
 METRICS_PATH = ROOT / "research" / "mu-v1.2" / "metrics.json"
 OUT_PATH = ROOT / "state" / "mu_v1_2_recovered_final_candidate_oos.json"
 LEAGUE_ENV_P = 17.0
+BP_RECENT_WINDOW_DAYS = 36
+BP_RECENT_OUTS_P = 25.5
 
 
 def mean_mu(rows, model):
@@ -33,6 +35,27 @@ def mean_mu(rows, model):
     return {"f5":float(np.mean(f5)),"full":float(np.mean(full))}
 
 
+def bp30_calendar36(rows, tg, bp6, bprel):
+    vals=[]
+    for r in rows.itertuples(index=False):
+        d=pd.Timestamp(r.game_date).normalize(); opp=str(r.opponent)
+        pre_all=bp6[bp6.game_date<d]
+        pre=pre_all[pre_all.game_date.dt.year==d.year]
+        if pre.empty: pre=pre_all
+        lg_long=bpforensic.ra9(float(pre.runs.sum()),float(pre.outs.sum()),4.5)
+        oppl=pre[pre.pitching_team.astype(str).eq(opp)]
+        tr=float(oppl.runs.sum()); to=float(oppl.outs.sum())
+        team_long=(tr+360.0*lg_long/27.0)*27.0/(to+360.0) if to+360.0>0 else lg_long
+
+        rec=bprel[(bprel.game_date<d)&(bprel.game_date>=d-pd.Timedelta(days=BP_RECENT_WINDOW_DAYS))]
+        opprec=rec[rec.pitching_team.astype(str).eq(opp)]
+        lg_recent=bpforensic.ra9(float(rec.runs.sum()),float(rec.outs.sum()),lg_long)
+        rr=float(opprec.runs.sum()); ro=float(opprec.outs.sum())
+        team_recent=(rr+BP_RECENT_OUTS_P*team_long/27.0)*27.0/(ro+BP_RECENT_OUTS_P) if ro+BP_RECENT_OUTS_P>0 else team_long
+        vals.append(float(team_recent/lg_recent) if lg_recent else 1.0)
+    return np.asarray(vals,float)
+
+
 def main():
     model=json.loads(MODEL_PATH.read_text(encoding="utf-8"))
     pub=json.loads(METRICS_PATH.read_text(encoding="utf-8"))
@@ -43,12 +66,12 @@ def main():
     rows=recovered.make_oos_rows(tg,st,bp6)
     rows=lateaudit.swap_starter(rows)
     rows=lateoffset.apply_offset_only(rows,tg,"late_6plus_pa")
-    # v0.7/v0.8 BP30 working semantic.
-    rows["opp_bp_ra9_30d_rel"]=bpforensic.candidate_bp30(
-        rows,tg,bp6,bprel,leak=False,p_recent=39.25,prior_mode="abs6"
-    )
 
-    # v0.8 league-environment offsets: documented strictly-pregame calendar30,
+    # v0.9 BP30 recovered candidate: reliever stint, strictly pregame calendar36,
+    # P25.5 toward shrunk inning6plus team-long RA9, divided by pooled reliever league36 RA9.
+    rows["opp_bp_ra9_30d_rel"]=bp30_calendar36(rows,tg,bp6,bprel)
+
+    # v0.8+ league-environment offsets: documented strictly-pregame calendar30,
     # weakly shrunk toward all-pregame long league mean with P17. P17 was selected
     # only from frozen 2024-2025 simple-coefficient parity.
     dates=pd.to_datetime(rows.game_date).dt.normalize().tolist()
@@ -97,7 +120,7 @@ def main():
         }
 
     payload={
-        "version":"mu-v1.2-recovered-final-candidate-v0.8-30d-longprior-p17",
+        "version":"mu-v1.2-recovered-final-candidate-v0.9-bp30-cal36-p25.5",
         "status":"CHALLENGER_DIAGNOSTIC",
         "official_shadow_allowed":False,
         "oos_team_games":int(len(rows)),
@@ -109,14 +132,14 @@ def main():
             "league_environment_offsets":"STRICT_PREGAME_CALENDAR30_POOLED_SHRUNK_TO_LONG_LEAGUE_MEAN_P17",
             "league_late_stat":"INNINGS_6_PLUS_PA_RUNS",
             "bullpen_long":"OPPONENT_INNING6PLUS_SEASON_RESET_P360",
-            "bullpen_30d_working":"OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR30_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
+            "bullpen_30d_working":"OPPONENT_RELIEVER_STINT_PREGAME_CALENDAR36_P25.5_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE36",
             "starter_rate_prior":"league->long 150 BF; long->recent5 150 BF",
             "starter_ip_prior":"league->long 5 starts; long->recent5 5 starts"
         },
         "recovered_2026_oos":got,
         "published_v1_2_hybrid_2026_oos":published,
         "delta_recovered_minus_published":deltas,
-        "note":"Diagnostic only. P17 was selected on 2024-2025 frozen coefficient parity, not 2026 OOS. Exact BP30 centering remains unresolved and original row-level feature dumps do not survive. Official Shadow remains unavailable."
+        "note":"Diagnostic only. Calendar36/P25.5 was selected only from 2024-2025 frozen moments plus coefficient parity; 2026 OOS is confirmatory. The feature label says 30d while the forensic candidate is 36 calendar days, so original source semantics remain unproven. Official Shadow remains unavailable."
     }
     OUT_PATH.parent.mkdir(parents=True,exist_ok=True)
     OUT_PATH.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
