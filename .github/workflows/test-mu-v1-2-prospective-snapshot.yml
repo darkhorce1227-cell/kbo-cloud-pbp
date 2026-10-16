@@ -1,0 +1,35 @@
+name: Test Mu v1.2 Prospective Snapshot
+
+on:
+  push:
+    paths:
+      - "scripts/capture_mu_v1_2_prospective_snapshot.py"
+      - "scripts/mu_v1_2_recovered_challenger.py"
+      - ".github/workflows/test-mu-v1-2-prospective-snapshot.yml"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compile prospective capture stack
+        run: |
+          python -m py_compile scripts/mu_v1_2_recovered_challenger.py
+          python -m py_compile scripts/capture_mu_v1_2_prospective_snapshot.py
+      - name: CLI help smoke test
+        run: python scripts/capture_mu_v1_2_prospective_snapshot.py --help
+      - name: Verify market-unseen guard rejects unsafe capture
+        run: |
+          set +e
+          out=$(python scripts/capture_mu_v1_2_prospective_snapshot.py 2>&1)
+          code=$?
+          set -e
+          echo "$out"
+          test "$code" -ne 0
+          echo "$out" | grep -q "Refusing prospective CLEAN snapshot"
