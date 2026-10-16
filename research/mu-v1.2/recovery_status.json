@@ -1,15 +1,15 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.7",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.8",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE",
   "official_shadow_allowed": false,
   "active_challenger": {
     "model": "research/mu-v1.2/recovered_challenger.json",
     "runner": "scripts/mu_v1_2_recovered_challenger.py",
-    "version": "mu-v1.2-recovered-challenger-v0.8-30d-longprior-p17",
+    "version": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
     "role": "RESEARCH_CHALLENGER",
     "use_in_daily_analysis": true,
     "use_as_official_mechanical_shadow": false,
-    "note": "v0.8 preserves the historical README's strictly-pregame calendar-30D league environments and adds weak P17 shrinkage toward the all-pregame long league mean. P17 was selected from 2024-2025 frozen coefficient parity only; 2026 was confirmatory."
+    "note": "v0.9 preserves v0.8 league-environment P17 and promotes the BP30 forensic candidate to strictly-pregame reliever-stint calendar36 with P25.5. The candidate was selected only from 2024-2025 frozen moment/coefficient parity and confirmed, not tuned, on 2026 OOS."
   },
   "confirmed_or_strongly_supported": {
     "development_sample": "2628 team-games / 1314 games for final 2024-05-01 through 2025 development fit",
@@ -54,8 +54,10 @@
     "bullpen_30d_direction": {
       "recent_source": "RELIEVER_STINT",
       "pregame_only": true,
-      "confidence": "STRONG_FORENSIC_SUPPORT_NOT_EXACT_PARITY",
-      "evidence": "Pregame reliever candidate improves development moment distance, frozen core coefficient parity, and 2026 OOS versus inning6plus. Same-game variants are rejected because frozen core coefficient parity deteriorates sharply despite superficially better OOS aggregates."
+      "working_window": "CALENDAR_36D",
+      "recent_pseudo_outs": 25.5,
+      "confidence": "VERY_STRONG_FORENSIC_SUPPORT_NOT_SOURCE_CODE_RECOVERY",
+      "evidence": "Calendar36/P25.5 gives near-exact frozen moments (mean 0.98593581 vs 0.98608981; scale 0.21166573 vs 0.21158719; distance 0.000817) and improves frozen core coefficient-parity sum to 0.182741 vs 0.184323 for calendar30/P39 and 0.190571 for the prior active BP30. 2026 OOS was confirmatory only: F5 changed trivially while Full logloss/Brier/side accuracy improved slightly."
     },
     "ridge_penalty_convention": "mean-loss alpha, equivalent implementation effective alpha = declared alpha * N"
   },
@@ -65,7 +67,7 @@
     "league_late_offset": "strict pregame calendar30 pooled innings-6-plus PA runs, shrunk toward all-pregame long league mean with P17 pseudo team-games",
     "offseason_empty_30d_fallback": "most recent 300 pregame team rows",
     "bullpen_long": "opponent inning6plus season-reset P360",
-    "bullpen_30d_relative": "opponent reliever-stint, strictly pregame calendar30, P39.25 toward shrunk inning6plus team-long absolute RA9, divided by pooled reliever-stint league30 RA9"
+    "bullpen_30d_relative": "opponent reliever-stint, strictly pregame calendar36, P25.5 toward shrunk inning6plus team-long absolute RA9, divided by pooled reliever-stint league36 RA9"
   },
   "posthoc_diagnostic_variant": {
     "path": "research/mu-v1.2/recovered_challenger_v0.5_oos_tuned.json",
@@ -74,11 +76,11 @@
   },
   "still_unresolved": {
     "bullpen_30d_relative": {
-      "status": "NARROWED_WORKING_SEMANTIC_ACTIVE_NOT_EXACT",
+      "status": "NEAR_EXACT_FORENSIC_RECOVERY_NOT_DIRECT_SOURCE_RECOVERY",
       "frozen_moments": {"mean": 0.9860898056018214, "scale": 0.21158719158114866},
-      "active_candidate_moments": {"mean": 0.9775165782137949, "scale": 0.21166317777385316},
-      "active_candidate": "RELIEVER_STINT_PREGAME_P39.25_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE30",
-      "remaining_issue": "Exact historical centering/prior formula remains unknown; active candidate mean is about 0.00857 below frozen despite near-exact scale."
+      "active_candidate_moments": {"mean": 0.9859358101266639, "scale": 0.2116657250819812},
+      "active_candidate": "RELIEVER_STINT_PREGAME_CALENDAR36_P25.5_PRIOR_INNING6PLUS_TEAMLONG_OVER_POOLED_RELIEVER_LEAGUE36",
+      "remaining_issue": "The preserved feature name says 30d while the strongest historical-parity reconstruction uses 36 calendar days. Original feature-generation code and row dumps do not survive, so the 36-day semantic cannot be proven directly."
     },
     "league_environment_30d_source_code": {
       "status": "FORENSICALLY_NARROWED_NOT_DIRECTLY_RECOVERED",
@@ -96,6 +98,10 @@
     "late_target_offset_2x2": "state/mu_v1_2_late_target_offset_2x2.json",
     "coefficient_parity": "state/mu_v1_2_coefficient_parity.json",
     "bp30_leakage_forensic": "state/mu_v1_2_bp30_leakage_forensic.json",
+    "bp30_window_boundary": "state/mu_v1_2_bp30_window_boundary.json",
+    "bp30_window_mode_compare": "state/mu_v1_2_bp30_window_mode_compare.json",
+    "bp30_calendar36_coefficient_parity": "state/mu_v1_2_bp30_calendar36_coefficient_parity.json",
+    "bp30_calendar36_oos": "state/mu_v1_2_bp30_calendar36_oos.json",
     "simple_offset_semantics": "state/mu_v1_2_simple_offset_semantics.json",
     "simple_offset_cross": "state/mu_v1_2_simple_offset_cross.json",
     "offset_n_refine": "state/mu_v1_2_offset_n_refine.json",
@@ -104,5 +110,5 @@
     "30d_longprior_oos": "state/mu_v1_2_30d_longprior_oos.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "Official Mechanical Mu Shadow remains unavailable. Next gate is to resolve BP30 centering or bound its practical impact, then pass prospective live snapshot comparison; literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
+  "promotion_gate": "Official Mechanical Mu Shadow remains unavailable. Next gate is prospective live snapshot comparison plus documentation/bounding of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
 }
