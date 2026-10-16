@@ -1,0 +1,44 @@
+name: Test PS Expected IP Mean Challenger
+
+on:
+  push:
+    paths:
+      - 'research/postseason_expected_ip/frozen_2026_prior.json'
+      - 'scripts/forecast_ps_expected_ip_mean.py'
+      - '.github/workflows/test-ps-expected-ip-mean.yml'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile scripts/forecast_ps_expected_ip_mean.py
+      - name: Reproduce frozen mean shift
+        run: |
+          python scripts/forecast_ps_expected_ip_mean.py --rs-ip 5.6666667 --role ESTABLISHED_STARTER > /tmp/ps_eip.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/ps_eip.json'))
+          assert abs(x['historical_ps_mean_shift_ip'] - (-0.7588)) < 1e-12, x
+          assert abs(x['challenger_mean_ip'] - 4.9078667) < 1e-7, x
+          assert x['reproducibility']['mean_forecast'] == 'REPRODUCIBLE', x
+          assert x['reproducibility']['tail_probabilities'].startswith('UNAVAILABLE_'), x
+          print('PS_EIP_MEAN_REPRODUCIBILITY_PASS')
+          PY
+      - name: Verify special-role guardrail
+        run: |
+          python scripts/forecast_ps_expected_ip_mean.py --rs-ip 4.5 --role RELIEF_TO_STARTER --round wc > /tmp/ps_eip_special.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/ps_eip_special.json'))
+          w=' | '.join(x['warnings'])
+          assert 'LOW_SUPPORT_RS_IP_LT5' in w, x
+          assert 'LOW_SUPPORT_WILDCARD' in w, x
+          assert 'SPECIAL_ROLE_CONTEXT_REQUIRED' in w, x
+          print('PS_EIP_GUARDRAIL_PASS')
+          PY
