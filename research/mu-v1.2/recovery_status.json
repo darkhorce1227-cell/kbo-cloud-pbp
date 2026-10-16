@@ -1,5 +1,5 @@
 {
-  "version": "mu-v1.2-preprocessing-recovery-status-v0.9",
+  "version": "mu-v1.2-preprocessing-recovery-status-v0.10",
   "status": "MOSTLY_RECOVERED_CHALLENGER_ACTIVE_REGRESSION_PASS",
   "official_shadow_allowed": false,
   "active_challenger": {
@@ -15,6 +15,19 @@
       "head_sha": "2c87c6d96b44cf0f8ef7e521696825079a7959cc",
       "status": "completed",
       "conclusion": "success"
+    },
+    "prospective_snapshot_infrastructure": {
+      "capture_script": "scripts/capture_mu_v1_2_prospective_snapshot.py",
+      "manual_capture_workflow": ".github/workflows/capture-mu-v1-2-prospective-snapshot.yml",
+      "smoke_test_workflow": ".github/workflows/test-mu-v1-2-prospective-snapshot.yml",
+      "smoke_run_id": 38871598458,
+      "smoke_conclusion": "success",
+      "guards_verified": [
+        "python compile",
+        "CLI help",
+        "capture refuses to run without explicit --market-unseen declaration"
+      ],
+      "note": "Smoke PASS validates capture plumbing and the market-unseen guard only. It is not itself a prospective live model observation."
     },
     "note": "v0.9 preserves v0.8 league-environment P17 and promotes the BP30 forensic candidate to strictly-pregame reliever-stint calendar36 with P25.5. The candidate was selected only from 2024-2025 frozen moment/coefficient parity and confirmed, not tuned, on 2026 OOS. The active v0.9 regression workflow passed on run 38860571014."
   },
@@ -117,5 +130,5 @@
     "30d_longprior_oos": "state/mu_v1_2_30d_longprior_oos.json",
     "recovered_oos_candidate": "state/mu_v1_2_recovered_final_candidate_oos.json"
   },
-  "promotion_gate": "v0.9 active challenger regression gate passed on workflow run 38860571014. Official Mechanical Mu Shadow remains unavailable. Next gate is prospective live snapshot comparison plus documentation/bounding of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
+  "promotion_gate": "v0.9 active challenger regression gate and prospective capture smoke gate have passed. Official Mechanical Mu Shadow remains unavailable. Remaining gate: collect genuine prospective market-unseen snapshots and bound/document the practical prediction impact of the BP30 30d-label-versus-calendar36 forensic discrepancy. Literal historical row parity cannot be demanded because the original feature-row artifact does not survive."
 }
