@@ -1,29 +1,29 @@
 {
-  "checked_at_kst": "2026-10-17T18:41:43.133107+09:00",
+  "checked_at_kst": "2026-10-17T18:45:35.785999+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "44441014OBLG02026"
+    "33331017LGHT02026"
   ],
   "expected_games": 1,
   "final_games": 1,
-  "first_check_kst": null,
+  "first_check_kst": "17:00",
   "found_game_ids": [
-    "44441014OBLG02026"
+    "33331017LGHT02026"
   ],
-  "has_1400_game": null,
-  "last_success_date": "2026-10-14",
+  "has_1400_game": true,
+  "last_success_date": "2026-10-17",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "reason": "[GAME_PK_CONTINUITY_REPAIR] Recovered all missing prior/checkpoint games. missing_before=['20261003HTLG02026', '20261003LTKT02026', '20261003OBSS02026', '20261003SKNC02026', '20261003WOHH02026', '20261004HTLG02026', '20261004LTKT02026', '20261004OBSS02026', '20261004SKNC02026', '20261004WOHH02026', '20261005HTLG02026', '20261005LTKT02026', '20261005OBSS02026', '20261005SKNC02026', '20261005WOHH02026', '20261006KTWO02026', '20261006NCLG02026', '20261006OBLT02026', '20261006SKHH02026', '20261006SSHT02026', '20261007HHWO02026', '20261007HTLT02026', '20261007NCSK02026', '20261007OBLG02026', '20261007SSKT02026', '20261009HTNC02026', '20261009LGLT02026', '20261009SSSK02026', '20261010LGLT02026', '20261010NCHH02026', '20261010SKHT02026', '20261011KTSS02026', '20261011LTHT02026', '20261012KTSS02026', '20261012LGHT02026', '20261012LTOB02026', '44441014OBLG02026']; required prior+checkpoint game_pk=721; candidate game_pk=721.",
+  "reason": "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games were fetched directly by game ID. Explicit Naver GAME_END(type=99) was accepted as authoritative terminal proof for direct-fetched games, with parsed terminal state retained as QA; dataset validation passed.",
   "retry_next_hour": false,
-  "rows": 221901,
-  "sha256_csv_gz": "12afff4e2e34d61f01f40da40dbccb99d1306838d3a1c41752039526212ead3a",
-  "sha256_parquet": "eded774af1e8694e25bfb0224341667938d71f67772fb9ecc9e3430b6beea7d0",
+  "rows": 222168,
+  "sha256_csv_gz": "d048ead967a9ea2caa54475f708201e9a5abad49ed2e1c39042c19de0682d63c",
+  "sha256_parquet": "13f53152db0cbd7c3e6dab7161a929928209d0d2e908e6719fdccb343ce4e01f",
   "should_publish": true,
-  "state": "CONTINUITY_REPAIRED",
-  "target_date": "2026-10-14",
+  "state": "UPDATED",
+  "target_date": "2026-10-17",
   "validation": "PASS",
-  "version": "0.3.1"
+  "version": "0.2.3"
 }

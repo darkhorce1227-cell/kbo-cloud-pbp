@@ -1,41 +1,41 @@
 {
   "dataset_columns": 50,
-  "dataset_rows": 221901,
+  "dataset_rows": 222168,
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "44441014OBLG02026"
+    "33331017LGHT02026"
   ],
   "expected_games": 1,
   "final_games": 1,
   "found_game_ids": [
-    "44441014OBLG02026"
+    "33331017LGHT02026"
   ],
   "games": [
     {
-      "away_team": "OB",
-      "deduplicated_pa_rows": 72,
+      "away_team": "LG",
+      "deduplicated_pa_rows": 68,
       "f5": {
-        "away": 0,
+        "away": 1,
         "home": 2,
-        "last_at_bat_number": 39
+        "last_at_bat_number": 37
       },
       "final": {
         "away": 1,
         "half": "top",
-        "home": 4,
+        "home": 5,
         "inning": 9,
-        "last_at_bat_number": 72
+        "last_at_bat_number": 68
       },
-      "game": "OB@LG",
-      "game_pk": "44441014OBLG02026",
-      "home_team": "LG",
+      "game": "LG@HT",
+      "game_pk": "33331017LGHT02026",
+      "home_team": "HT",
       "official_final": {
         "away": 1,
-        "home": 4
+        "home": 5
       },
       "official_final_crosscheck": "PASS",
       "problems": [],
-      "raw_rows": 298,
+      "raw_rows": 267,
       "status": "PASS"
     }
   ],
@@ -48,15 +48,15 @@
     "stable_key_duplicates_zero": true,
     "status_validation_pass": true
   },
-  "generated_at_kst": "2026-10-17T18:41:44.470625+09:00",
+  "generated_at_kst": "2026-10-17T18:45:36.997755+09:00",
   "missing_required_columns": [],
   "official_crosscheck_games_found": 1,
   "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "sha256_parquet": "eded774af1e8694e25bfb0224341667938d71f67772fb9ecc9e3430b6beea7d0",
+  "sha256_parquet": "13f53152db0cbd7c3e6dab7161a929928209d0d2e908e6719fdccb343ce4e01f",
   "source": "validated_parquet_binary",
-  "status_sha256_parquet": "eded774af1e8694e25bfb0224341667938d71f67772fb9ecc9e3430b6beea7d0",
-  "target_date": "2026-10-14",
+  "status_sha256_parquet": "13f53152db0cbd7c3e6dab7161a929928209d0d2e908e6719fdccb343ce4e01f",
+  "target_date": "2026-10-17",
   "validation": "PASS",
   "version": "1.0.0"
 }
