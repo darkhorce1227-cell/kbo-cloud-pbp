@@ -5,13 +5,14 @@ Input is a postseason pitch-level Parquet produced by the repository's Naver PBP
 pipeline (for example postseason_screen_pass.parquet).
 
 The extractor is deliberately narrow:
-- one final row is kept per plate appearance;
+- starter identity = first pitcher observed in the raw pitch/event stream for
+  each defending team;
+- one final row is kept per plate appearance for out accounting;
 - defensive outs for the PA are ``post_outs - outs_when_up``;
 - the pitcher on the final row of the PA receives those outs;
-- the first pitcher observed for each defending team is the starter;
 - starter actual IP is recorded outs / 3.
 
-No regular-season baseline is joined here.  This file only creates the PS starter
+No regular-season baseline is joined here. This file only creates the PS starter
 appearance layer needed by the later historical Expected-IP-shift reconstruction.
 """
 
@@ -49,18 +50,22 @@ def _half_to_defending_team(row: pd.Series) -> str:
     raise ValueError(f"unrecognized inning_topbot={row['inning_topbot']!r}")
 
 
-def _prepare_pa_rows(df: pd.DataFrame) -> pd.DataFrame:
+def _prepare_rows(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     missing = sorted(REQUIRED - set(df.columns))
     if missing:
         raise RuntimeError(f"missing required columns: {missing}")
 
     x = df.copy()
+    if x["pitcher"].isna().any():
+        raise RuntimeError("pitcher contains missing values")
+
     x["game_pk"] = x["game_pk"].astype(str)
     x["pitcher"] = x["pitcher"].astype(str)
     x["game_date"] = pd.to_datetime(x["game_date"], errors="raise")
+    x["defending_team"] = x.apply(_half_to_defending_team, axis=1)
 
-    # Stable order within a PA.  The final pitch/event row carries the PA-close
-    # state (post_outs) and the pitcher who actually completed the PA.
+    # Stable played order. The raw stream is retained for starter identity; the
+    # final row of each PA is used only for PA-close out accounting.
     x = x.sort_values(
         ["season", "game_date", "game_pk", "inning", "at_bat_number", "pitch_number"],
         kind="stable",
@@ -79,24 +84,21 @@ def _prepare_pa_rows(df: pd.DataFrame) -> pd.DataFrame:
         ]
         raise RuntimeError(
             "invalid PA out transition(s); sample="
-            + bad[cols].head(10).to_dict(orient="records").__repr__()
+            + repr(bad[cols].head(10).to_dict(orient="records"))
         )
 
-    pa["defending_team"] = pa.apply(_half_to_defending_team, axis=1)
-    return pa
+    return x, pa
 
 
 def extract_starter_appearances(df: pd.DataFrame) -> pd.DataFrame:
-    pa = _prepare_pa_rows(df)
+    raw, pa = _prepare_rows(df)
 
-    # First observed pitcher for each defensive team/game is the starter.
+    # Starter identity comes from the first observed raw pitcher, not the PA's
+    # final pitcher. This remains correct if an injury/substitution occurs in the
+    # middle of the first batter faced.
     first = (
-        pa.sort_values(
-            ["season", "game_date", "game_pk", "inning", "at_bat_number"],
-            kind="stable",
-        )
-        .groupby(["game_pk", "defending_team"], sort=False, as_index=False)
-        .first()[
+        raw.groupby(["game_pk", "defending_team"], sort=False, as_index=False)
+        .head(1)[
             [
                 "season", "game_pk", "game_date", "home_team", "away_team",
                 "defending_team", "pitcher", "pitcher_name",
@@ -106,7 +108,7 @@ def extract_starter_appearances(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     # Attribute each completed PA's recorded outs to the pitcher on that PA's
-    # final row.  This also handles zero-out PAs, double plays and triple plays.
+    # final row. This captures zero-out PAs, double plays and triple plays.
     pitcher_outs = (
         pa.groupby(["game_pk", "defending_team", "pitcher"], as_index=False)["outs_recorded"]
         .sum()
@@ -119,15 +121,11 @@ def extract_starter_appearances(df: pd.DataFrame) -> pd.DataFrame:
         how="left",
         validate="one_to_one",
     )
-    if out["actual_outs"].isna().any():
-        raise RuntimeError("starter identified but actual outs could not be reconstructed")
-
-    out["actual_outs"] = out["actual_outs"].astype(int)
+    # A starter can theoretically leave during the first PA before recording an
+    # out. In that case starter identity is still valid and actual IP is 0.0.
+    out["actual_outs"] = out["actual_outs"].fillna(0).astype(int)
     out["actual_ip"] = out["actual_outs"] / 3.0
 
-    # Exactness gates: two defensive starters per complete game and no duplicate
-    # starter-team key.  Incomplete historical games should fail loudly rather
-    # than silently enter the shift study.
     if out.duplicated(["game_pk", "defending_team"]).any():
         raise RuntimeError("duplicate game/team starter rows")
 
@@ -136,7 +134,7 @@ def extract_starter_appearances(df: pd.DataFrame) -> pd.DataFrame:
     if not bad_games.empty:
         raise RuntimeError(
             "expected exactly two starters per game; bad games="
-            + bad_games.head(20).to_dict().__repr__()
+            + repr(bad_games.head(20).to_dict())
         )
 
     cols = [
