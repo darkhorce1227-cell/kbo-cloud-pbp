@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,80 +23,43 @@ jobs:
       - name: Install runtime deps
         run: pip install pandas pyarrow
 
-      - name: Download screened historical PS master release asset
+      - name: Download screened historical PS master
         run: |
           mkdir -p historical_ps
           curl -L --fail --retry 3 \
             -o historical_ps/postseason_screen_pass.parquet \
             https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/historical-ps-master/postseason_screen_pass.parquet
 
-      - name: Audit out-state semantics by season
+      - name: Inspect 2016-2025 explicit-out rows with zero out delta
         run: |
           python - <<'PY'
           import pandas as pd
 
-          df = pd.read_parquet('historical_ps/postseason_screen_pass.parquet')
-          pa = df.groupby(['season','game_pk','at_bat_number'], sort=False).tail(1).copy()
+          df = pd.read_parquet('historical_ps/postseason_screen_pass.parquet').reset_index(drop=True)
+          keys = ['season','game_pk','at_bat_number']
+          pa = df.groupby(keys, sort=False).tail(1).copy()
           pa['delta'] = pd.to_numeric(pa['post_outs'], errors='coerce') - pd.to_numeric(pa['outs_when_up'], errors='coerce')
+          explicit = {'strikeout','field_out','double_play','force_out','sac_bunt','sac_fly','triple_play'}
+          bad = pa[(pa['season'].between(2016, 2025)) & pa['events'].astype(str).isin(explicit) & (pa['delta'] == 0)].copy()
 
-          explicit_out_events = {
-              'strikeout', 'field_out', 'double_play', 'force_out',
-              'sac_bunt', 'sac_fly', 'triple_play'
-          }
-          pa['explicit_out_event'] = pa['events'].astype(str).isin(explicit_out_events)
-          pa['explicit_out_zero_delta'] = pa['explicit_out_event'] & (pa['delta'] == 0)
+          print('ANOMALY_COUNT', len(bad))
+          cols = [c for c in [
+              'season','game_date','game_pk','inning','inning_topbot','at_bat_number',
+              'batter_name','pitcher_name','outs_when_up','post_outs','events','_naver_events',
+              'description','post_home_score','post_away_score'
+          ] if c in bad.columns]
+          print(bad[cols].to_string(index=False))
 
-          print('season,pa,delta_pos,delta_pos_pct,explicit_out,explicit_out_zero_delta,zero_delta_pct,games')
-          bad_2016_2025 = []
-          for season, g in pa.groupby('season'):
-              explicit = int(g['explicit_out_event'].sum())
-              bad = int(g['explicit_out_zero_delta'].sum())
-              row = {
-                  'season': int(season),
-                  'pa': len(g),
-                  'delta_pos': int((g['delta'] > 0).sum()),
-                  'delta_pos_pct': round(float((g['delta'] > 0).mean()), 4),
-                  'explicit_out': explicit,
-                  'explicit_out_zero_delta': bad,
-                  'zero_delta_pct': round(bad / explicit, 4) if explicit else None,
-                  'games': g['game_pk'].nunique(),
-              }
-              print(','.join(str(row[k]) for k in ('season','pa','delta_pos','delta_pos_pct','explicit_out','explicit_out_zero_delta','zero_delta_pct','games')))
-              if 2016 <= int(season) <= 2025 and bad:
-                  bad_2016_2025.append(row)
-
-          recent = pa[(pa['season'] >= 2016) & (pa['season'] <= 2025)]
-          print('RECENT_2016_2025', {
-              'games': int(recent[['season','game_pk']].drop_duplicates().shape[0]),
-              'pa': int(len(recent)),
-              'explicit_out_events': int(recent['explicit_out_event'].sum()),
-              'explicit_out_zero_delta': int(recent['explicit_out_zero_delta'].sum()),
-              'delta_gt_zero': int((recent['delta'] > 0).sum()),
-              'bad_seasons': bad_2016_2025,
-          })
-          if bad_2016_2025:
-              raise SystemExit('2016-2025 out-state semantics failed explicit-out audit')
+          print('\nPA_CONTEXT')
+          for r in bad.itertuples(index=False):
+              g = pa[(pa['season']==r.season) & (pa['game_pk']==r.game_pk)]
+              pos = g.index.get_loc(r.Index) if hasattr(r, 'Index') else None
+              target_ab = int(r.at_bat_number)
+              ctx = g[g['at_bat_number'].between(target_ab-1, target_ab+1)]
+              ccols = [c for c in [
+                  'inning','inning_topbot','at_bat_number','batter_name','pitcher_name',
+                  'outs_when_up','post_outs','events','_naver_events'
+              ] if c in ctx.columns]
+              print('\n', int(r.season), r.game_pk, 'AB', target_ab)
+              print(ctx[ccols].to_string(index=False))
           PY
-
-      - name: Build starter appearances and audit
-        run: |
-          python scripts/build_ps_starter_appearances.py \
-            --input historical_ps/postseason_screen_pass.parquet \
-            --allow-audit-fail
-          cat historical_ps/ps_starter_appearances_validation.json
-
-      - name: Require structural audit PASS
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          p = Path('historical_ps/ps_starter_appearances_validation.json')
-          audit = json.loads(p.read_text(encoding='utf-8'))
-          if audit['status'] != 'PASS':
-              raise SystemExit(f"starter appearance audit failed: {audit['critical_failures']}")
-          print({k: audit[k] for k in ('status','games','plate_appearances','starter_appearances','mid_pa_pitcher_change_pas')})
-          PY
-
-      - name: Do not commit provisional outputs
-        run: |
-          echo 'Season-level semantic audit only; existing starter artifact remains provisional until semantic policy is encoded in extractor.'
