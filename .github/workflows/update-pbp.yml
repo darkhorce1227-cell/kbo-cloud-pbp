@@ -81,10 +81,7 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
         run: |
-          ARGS=()
-          if [ -n "${{ inputs.target_date }}" ]; then
-            ARGS+=(--date "${{ inputs.target_date }}")
-          fi
+          ARGS=(--date "${{ steps.gate.outputs.target_date }}")
           if [ "${{ inputs.force }}" = "true" ] || [ "${{ steps.gate.outputs.audit_backfill }}" = "true" ]; then
             ARGS+=(--force)
           fi
