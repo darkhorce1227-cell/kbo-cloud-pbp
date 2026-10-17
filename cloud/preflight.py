@@ -58,9 +58,12 @@ def pending_prior_target(current_target: date) -> date | None:
 
 
 def manual_trigger_target_from_push() -> date | None:
-    """Honor an explicit YYYY-MM-DD in manual-trigger.txt only on a push that changed that file.
+    """Honor an explicit YYYY-MM-DD in manual-trigger.txt only for an intentional manual-refresh push.
 
-    Scheduled runs and unrelated code pushes must not get pinned to an old manual target.
+    GitHub push payloads produced by low-level ref updates do not always populate
+    per-commit changed-file lists, so accept either an explicit manual-trigger
+    path change or the dedicated `trigger PBP refresh` commit-message marker.
+    Scheduled runs and unrelated code pushes must not get pinned to an old target.
     """
     if os.getenv("GITHUB_EVENT_NAME") != "push":
         return None
@@ -71,12 +74,19 @@ def manual_trigger_target_from_push() -> date | None:
         event = json.loads(Path(event_path).read_text(encoding="utf-8"))
     except Exception:
         return None
+
     changed: set[str] = set()
     for commit in event.get("commits") or []:
         for key in ("added", "modified", "removed"):
             changed.update(str(p) for p in (commit.get(key) or []))
-    if "state/manual-trigger.txt" not in changed or not MANUAL_TRIGGER.exists():
+    head_message = str((event.get("head_commit") or {}).get("message") or "")
+    explicit_manual_push = (
+        "state/manual-trigger.txt" in changed
+        or "trigger PBP refresh" in head_message
+    )
+    if not explicit_manual_push or not MANUAL_TRIGGER.exists():
         return None
+
     try:
         text = MANUAL_TRIGGER.read_text(encoding="utf-8")
     except Exception:
