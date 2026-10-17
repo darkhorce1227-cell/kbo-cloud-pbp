@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,36 +30,58 @@ jobs:
             -o historical_ps/postseason_screen_pass.parquet \
             https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/historical-ps-master/postseason_screen_pass.parquet
 
-      - name: Inspect 2016-2025 explicit-out rows with zero out delta
+      - name: Build production starter appearances
+        run: |
+          python scripts/build_ps_starter_appearances.py \
+            --input historical_ps/postseason_screen_pass.parquet
+          cat historical_ps/ps_starter_appearances_validation.json
+
+      - name: Require production coverage and integrity
         run: |
           python - <<'PY'
+          import json
           import pandas as pd
+          from pathlib import Path
 
-          df = pd.read_parquet('historical_ps/postseason_screen_pass.parquet').reset_index(drop=True)
-          keys = ['season','game_pk','at_bat_number']
-          pa = df.groupby(keys, sort=False).tail(1).copy()
-          pa['delta'] = pd.to_numeric(pa['post_outs'], errors='coerce') - pd.to_numeric(pa['outs_when_up'], errors='coerce')
-          explicit = {'strikeout','field_out','double_play','force_out','sac_bunt','sac_fly','triple_play'}
-          bad = pa[(pa['season'].between(2016, 2025)) & pa['events'].astype(str).isin(explicit) & (pa['delta'] == 0)].copy()
+          audit = json.loads(Path('historical_ps/ps_starter_appearances_validation.json').read_text(encoding='utf-8'))
+          starters = pd.read_csv('historical_ps/ps_starter_appearances.csv')
 
-          print('ANOMALY_COUNT', len(bad))
-          cols = [c for c in [
-              'season','game_date','game_pk','inning','inning_topbot','at_bat_number',
-              'batter_name','pitcher_name','outs_when_up','post_outs','events','_naver_events',
-              'description','post_home_score','post_away_score'
-          ] if c in bad.columns]
-          print(bad[cols].to_string(index=False))
+          if audit['status'] != 'PASS':
+              raise SystemExit(f"starter appearance audit failed: {audit['critical_failures']}")
 
-          print('\nPA_CONTEXT')
-          for r in bad.itertuples(index=False):
-              g = pa[(pa['season']==r.season) & (pa['game_pk']==r.game_pk)]
-              pos = g.index.get_loc(r.Index) if hasattr(r, 'Index') else None
-              target_ab = int(r.at_bat_number)
-              ctx = g[g['at_bat_number'].between(target_ab-1, target_ab+1)]
-              ccols = [c for c in [
-                  'inning','inning_topbot','at_bat_number','batter_name','pitcher_name',
-                  'outs_when_up','post_outs','events','_naver_events'
-              ] if c in ctx.columns]
-              print('\n', int(r.season), r.game_pk, 'AB', target_ab)
-              print(ctx[ccols].to_string(index=False))
+          c16 = audit['coverage']['2016_2025']
+          c17 = audit['coverage']['2017_2025']
+          if (c16['games'], c16['starter_appearances']) != (143, 286):
+              raise SystemExit(f"unexpected 2016-2025 coverage: {c16}")
+          if (c17['games'], c17['starter_appearances']) != (129, 258):
+              raise SystemExit(f"unexpected 2017-2025 coverage: {c17}")
+          if not (starters['out_state_integrity'] == 'PASS').all():
+              raise SystemExit('non-PASS out-state row leaked into production starter artifact')
+          if starters['actual_outs'].sum() <= 0:
+              raise SystemExit('starter actual_outs sum is non-positive')
+
+          print({
+              'status': audit['status'],
+              'input_games': audit['input_games'],
+              'production_games': audit['production_games'],
+              'unavailable_games': audit['unavailable_games'],
+              'coverage_2016_2025': c16,
+              'coverage_2017_2025': c17,
+              'starter_actual_outs_sum': int(starters['actual_outs'].sum()),
+          })
           PY
+
+      - name: Commit validated outputs
+        run: |
+          rm -f historical_ps/postseason_screen_pass.parquet
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add historical_ps/ps_starter_appearances.csv \
+                  historical_ps/ps_starter_appearances_validation.json \
+                  historical_ps/ps_starter_appearances_defense_outs_audit.csv
+          if git diff --cached --quiet; then
+            echo 'No output changes to commit'
+          else
+            git commit -m 'Publish audited postseason starter appearance artifact'
+            git push
+          fi
