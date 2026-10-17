@@ -1,0 +1,44 @@
+name: Evaluate PS Expected IP Tail Probabilities
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/evaluate_ps_expected_ip_tail_probabilities.py'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip.csv'
+      - '.github/workflows/evaluate-ps-expected-ip-tail-probabilities.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install pandas numpy scipy
+      - name: Run leakage-free tail probability calibration
+        run: python scripts/evaluate_ps_expected_ip_tail_probabilities.py
+      - name: Show validation
+        run: cat research/postseason_expected_ip/ps_expected_ip_tail_validation.json
+      - name: Commit validated research artifacts
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            research/postseason_expected_ip/ps_expected_ip_tail_walk_forward_predictions_2017_2025.csv \
+            research/postseason_expected_ip/ps_expected_ip_tail_walk_forward_metrics.csv \
+            research/postseason_expected_ip/ps_expected_ip_tail_reliability_bins.csv \
+            research/postseason_expected_ip/ps_expected_ip_tail_metrics_by_season.csv \
+            research/postseason_expected_ip/ps_expected_ip_tail_probability_curve_2026.csv \
+            research/postseason_expected_ip/ps_expected_ip_tail_validation.json
+          if git diff --cached --quiet; then
+            echo 'No artifact changes'
+          else
+            git commit -m 'Publish postseason Expected IP tail calibration study'
+            git push
+          fi
