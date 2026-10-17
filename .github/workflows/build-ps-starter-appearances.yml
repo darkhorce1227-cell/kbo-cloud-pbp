@@ -30,22 +30,52 @@ jobs:
             -o historical_ps/postseason_screen_pass.parquet \
             https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/historical-ps-master/postseason_screen_pass.parquet
 
-      - name: Probe actual out-state semantics
+      - name: Audit out-state semantics by season
         run: |
           python - <<'PY'
           import pandas as pd
-          p='historical_ps/postseason_screen_pass.parquet'
-          df=pd.read_parquet(p)
-          pa=df.groupby(['season','game_pk','at_bat_number'],sort=False).tail(1).copy()
-          pa['delta']=pd.to_numeric(pa['post_outs'],errors='coerce')-pd.to_numeric(pa['outs_when_up'],errors='coerce')
-          print('GLOBAL outs_when_up', df['outs_when_up'].value_counts(dropna=False).sort_index().to_dict())
-          print('GLOBAL post_outs', df['post_outs'].value_counts(dropna=False).sort_index().to_dict())
-          print('PA delta', pa['delta'].value_counts(dropna=False).sort_index().to_dict())
-          first=pa[['season','game_pk']].drop_duplicates().iloc[0]
-          g=pa[(pa['season']==first['season'])&(pa['game_pk']==first['game_pk'])]
-          cols=[c for c in ['inning','inning_topbot','at_bat_number','pitcher_name','outs_when_up','post_outs','events','_naver_events'] if c in g.columns]
-          print('FIRST_GAME', first.to_dict())
-          print(g[cols].head(35).to_string(index=False))
+
+          df = pd.read_parquet('historical_ps/postseason_screen_pass.parquet')
+          pa = df.groupby(['season','game_pk','at_bat_number'], sort=False).tail(1).copy()
+          pa['delta'] = pd.to_numeric(pa['post_outs'], errors='coerce') - pd.to_numeric(pa['outs_when_up'], errors='coerce')
+
+          explicit_out_events = {
+              'strikeout', 'field_out', 'double_play', 'force_out',
+              'sac_bunt', 'sac_fly', 'triple_play'
+          }
+          pa['explicit_out_event'] = pa['events'].astype(str).isin(explicit_out_events)
+          pa['explicit_out_zero_delta'] = pa['explicit_out_event'] & (pa['delta'] == 0)
+
+          print('season,pa,delta_pos,delta_pos_pct,explicit_out,explicit_out_zero_delta,zero_delta_pct,games')
+          bad_2016_2025 = []
+          for season, g in pa.groupby('season'):
+              explicit = int(g['explicit_out_event'].sum())
+              bad = int(g['explicit_out_zero_delta'].sum())
+              row = {
+                  'season': int(season),
+                  'pa': len(g),
+                  'delta_pos': int((g['delta'] > 0).sum()),
+                  'delta_pos_pct': round(float((g['delta'] > 0).mean()), 4),
+                  'explicit_out': explicit,
+                  'explicit_out_zero_delta': bad,
+                  'zero_delta_pct': round(bad / explicit, 4) if explicit else None,
+                  'games': g['game_pk'].nunique(),
+              }
+              print(','.join(str(row[k]) for k in ('season','pa','delta_pos','delta_pos_pct','explicit_out','explicit_out_zero_delta','zero_delta_pct','games')))
+              if 2016 <= int(season) <= 2025 and bad:
+                  bad_2016_2025.append(row)
+
+          recent = pa[(pa['season'] >= 2016) & (pa['season'] <= 2025)]
+          print('RECENT_2016_2025', {
+              'games': int(recent[['season','game_pk']].drop_duplicates().shape[0]),
+              'pa': int(len(recent)),
+              'explicit_out_events': int(recent['explicit_out_event'].sum()),
+              'explicit_out_zero_delta': int(recent['explicit_out_zero_delta'].sum()),
+              'delta_gt_zero': int((recent['delta'] > 0).sum()),
+              'bad_seasons': bad_2016_2025,
+          })
+          if bad_2016_2025:
+              raise SystemExit('2016-2025 out-state semantics failed explicit-out audit')
           PY
 
       - name: Build starter appearances and audit
@@ -55,34 +85,18 @@ jobs:
             --allow-audit-fail
           cat historical_ps/ps_starter_appearances_validation.json
 
-      - name: Require semantic audit PASS
+      - name: Require structural audit PASS
         run: |
           python - <<'PY'
           import json
-          import pandas as pd
           from pathlib import Path
           p = Path('historical_ps/ps_starter_appearances_validation.json')
           audit = json.loads(p.read_text(encoding='utf-8'))
-          starters = pd.read_csv('historical_ps/ps_starter_appearances.csv')
           if audit['status'] != 'PASS':
               raise SystemExit(f"starter appearance audit failed: {audit['critical_failures']}")
-          if starters['actual_outs'].sum() <= 0:
-              raise SystemExit('semantic audit failed: total starter actual_outs <= 0')
           print({k: audit[k] for k in ('status','games','plate_appearances','starter_appearances','mid_pa_pitcher_change_pas')})
-          print('starter_actual_outs_sum', int(starters['actual_outs'].sum()))
           PY
 
-      - name: Commit validated outputs
+      - name: Do not commit provisional outputs
         run: |
-          rm -f historical_ps/postseason_screen_pass.parquet
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add historical_ps/ps_starter_appearances.csv \
-                  historical_ps/ps_starter_appearances_validation.json \
-                  historical_ps/ps_starter_appearances_defense_outs_audit.csv
-          if git diff --cached --quiet; then
-            echo 'No output changes to commit'
-          else
-            git commit -m 'Add validated postseason starter appearance artifacts'
-            git push
-          fi
+          echo 'Season-level semantic audit only; existing starter artifact remains provisional until semantic policy is encoded in extractor.'
