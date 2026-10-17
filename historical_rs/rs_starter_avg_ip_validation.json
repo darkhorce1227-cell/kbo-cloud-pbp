@@ -1,0 +1,153 @@
+{
+  "status": "PASS",
+  "definition": "same-season player regular-season starter average IP",
+  "player_key": "Naver stable pcode / postseason starter_id",
+  "source": "Naver inning-1 relay completed Lineup.pitcher; seqno=1 starter",
+  "source_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "rs_games": 7200,
+  "rs_starter_appearances": 14400,
+  "player_season_rows": 1163,
+  "appearance_validation": {
+    "status": "PASS",
+    "failures": {
+      "bad_numeric_rows": 0,
+      "empty_starter_pcode": 0,
+      "duplicate_game_side_rows": 0,
+      "bad_side_rows": 0,
+      "bad_actual_outs_rows": 0,
+      "bad_ip_thirds_rows": 0,
+      "seasons_not_two_starters_per_game": 0
+    },
+    "by_season": [
+      {
+        "season": 2016,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2017,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2018,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2019,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2020,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2021,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2022,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2023,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2024,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      },
+      {
+        "season": 2025,
+        "games": 720,
+        "starter_appearances": 1440,
+        "two_starters_per_game": true
+      }
+    ]
+  },
+  "ps_join_audit": {
+    "ps_rows_2016_2025": 286,
+    "ps_linked_rows_2016_2025": 284,
+    "ps_no_rs_start_history_2016_2025": 2,
+    "ps_games_2017_2025": 129,
+    "ps_rows_2017_2025": 258,
+    "ps_linked_rows_2017_2025": 256,
+    "ps_no_rs_start_history_2017_2025": 2,
+    "no_rs_start_history_details": [
+      {
+        "season": 2018,
+        "game_date": "2018-10-23",
+        "game_pk": "33331023HHWO02018",
+        "team": "HH",
+        "starter_id": "68703",
+        "starter_name": "박주홍",
+        "ps_actual_ip": 3.6666666666666665,
+        "status": "NO_SAME_SEASON_RS_START_HISTORY"
+      },
+      {
+        "season": 2022,
+        "game_date": "2022-11-05",
+        "game_pk": "77771105SKWO02022",
+        "team": "WO",
+        "starter_id": "67603",
+        "starter_name": "이승호",
+        "ps_actual_ip": 4.0,
+        "status": "NO_SAME_SEASON_RS_START_HISTORY"
+      }
+    ],
+    "expected_no_rs_start_history_exact_match": true,
+    "baseline_rs_ip_rmse_matched_2017_2025": 1.8491633790207755,
+    "baseline_rs_ip_mae_matched_2017_2025": 1.408079901731732,
+    "baseline_sample_n": 256,
+    "historical_reference_baseline_rs_ip_rmse": 1.84291,
+    "historical_reference_rmse_delta_on_current_matched_sample": 0.006253379020775496,
+    "historical_reference_status": "NON_REPRODUCIBLE_AS_258_ROW_RS_STARTER_BASELINE",
+    "historical_reference_reason": "Saved Phase-2 builder requires every PS starter to have same-season RS starter history, but raw Naver reconstruction has two verified PS starters with zero same-season RS starts. No inference/fallback is applied here."
+  },
+  "checks": {
+    "all_source_seasons_present": true,
+    "all_rows_two_per_game": true,
+    "expected_720_games_per_season_2016_2025": true,
+    "ps_2017_2025_expected_129_games": true,
+    "ps_2017_2025_expected_258_rows": true,
+    "ps_2017_2025_exactly_256_rs_history_matches": true,
+    "ps_2017_2025_exactly_2_no_rs_start_history": true,
+    "no_rs_start_history_rows_match_reverified_naver_cases": true
+  },
+  "policy": {
+    "zero_rs_start_history": "UNAVAILABLE; no inferred fallback in Step 2",
+    "historical_phase2_reference": "retained for audit only; not a production parity target"
+  },
+  "outputs": {
+    "rs_appearances": "historical_rs/rs_starter_appearances_2016_2025.csv",
+    "player_season_avg": "historical_rs/rs_starter_avg_ip_by_player_season.csv",
+    "ps_join_audit": "historical_rs/ps_rs_starter_avg_ip_join_audit_2016_2025.csv"
+  }
+}

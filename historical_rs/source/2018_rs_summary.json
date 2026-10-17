@@ -1,0 +1,10 @@
+{
+  "year": 2018,
+  "status": "PASS",
+  "rs_games_expected": 720,
+  "rs_games_collected": 720,
+  "rs_starter_rows": 1440,
+  "errors": 0,
+  "duplicate_game_sides": 0,
+  "bad_ip_thirds": 0
+}
