@@ -1,0 +1,70 @@
+name: Forensic PS Expected IP two missing baselines
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/forensic_ps_eip_two_missing.py'
+      - '.github/workflows/forensic-ps-eip-two-missing.yml'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip.csv'
+      - 'research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json'
+      - 'historical_rs/rs_starter_appearances_2016_2025.csv'
+      - 'research/postseason_expected_ip/frozen_2026_prior.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  forensic:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install 'pandas>=2.2,<3'
+      - name: Run two-missing forensic
+        run: |
+          python scripts/forensic_ps_eip_two_missing.py \
+            --joined-input research/postseason_expected_ip/ps_rs_starter_avg_ip.csv \
+            --step5-validation research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json \
+            --rs-appearances historical_rs/rs_starter_appearances_2016_2025.csv \
+            --frozen-reference research/postseason_expected_ip/frozen_2026_prior.json \
+            --output-dir research/postseason_expected_ip
+          cat research/postseason_expected_ip/ps_expected_ip_two_missing_forensic.json
+      - name: Require forensic consistency
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/postseason_expected_ip/ps_expected_ip_two_missing_forensic.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          if x['status'] != 'PASS':
+              raise SystemExit(x)
+          c = x['checks']
+          required = [
+              'known_rows_256','missing_rows_2','best_solution_both_residuals_negative',
+              'best_solution_preserves_9_of_9_season_wins',
+              'baseline_rmse_reconstructs_old_to_reported_precision',
+              'baseline_mae_reconstructs_old_to_reported_precision'
+          ]
+          bad = {k: c.get(k) for k in required if not c.get(k)}
+          if bad:
+              raise SystemExit(bad)
+          print({'status': x['status'], 'best': x['best_enumerated_solution']})
+          PY
+      - name: Commit forensic artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/postseason_expected_ip/ps_expected_ip_two_missing_forensic.json \
+            research/postseason_expected_ip/ps_expected_ip_two_missing_forensic_candidates.csv
+          if git diff --cached --quiet; then
+            echo 'No forensic artifact changes to commit'
+          else
+            git commit -m 'Publish two-missing postseason Expected IP forensic'
+            git push
+          fi
