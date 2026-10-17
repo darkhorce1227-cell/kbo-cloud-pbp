@@ -1,0 +1,59 @@
+name: Test PS Expected IP Live Helper
+
+on:
+  push:
+    paths:
+      - 'scripts/forecast_ps_expected_ip_mean.py'
+      - 'research/postseason_expected_ip/live_operating_contract_2026.json'
+      - 'research/postseason_expected_ip/canonical_recovery_status.json'
+      - 'tests/test_ps_expected_ip_live.py'
+      - '.github/workflows/test-ps-expected-ip-live.yml'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python tests/test_ps_expected_ip_live.py -v
+      - name: Established starter smoke
+        run: |
+          python scripts/forecast_ps_expected_ip_mean.py \
+            --rs-ip 6.0 --rs-starts 30 --role ESTABLISHED_STARTER --champion-ip 5.8 \
+            > /tmp/normal.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/normal.json'))
+          assert d['status']=='CHALLENGER_ONLY'
+          assert abs(d['challenger_mean_ip']-5.2401801)<1e-7
+          assert d['operational_selected_ip'] is None
+          PY
+      - name: Zero-start strict gate smoke
+        run: |
+          python scripts/forecast_ps_expected_ip_mean.py \
+            --rs-ip 0 --rs-starts 0 --role EMERGENCY_START \
+            > /tmp/unavailable.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/unavailable.json'))
+          assert d['status']=='UNAVAILABLE'
+          assert d['challenger_mean_ip'] is None
+          assert d['reason']=='NO_SAME_SEASON_RS_START_HISTORY'
+          PY
+      - name: Current-context priority smoke
+        run: |
+          python scripts/forecast_ps_expected_ip_mean.py \
+            --rs-ip 5.8 --rs-starts 20 --role ESTABLISHED_STARTER \
+            --pitch-cap 70 --injury-news --short-rest --manager-leash tight \
+            > /tmp/context.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/context.json'))
+          assert d['status']=='CONTEXT_REVIEW_REQUIRED'
+          assert {'PITCH_CAP_PRESENT','INJURY_OR_CURRENT_NEWS','SHORT_REST_OR_WORKLOAD','TIGHT_MANAGER_LEASH'} <= set(d['context_flags'])
+          assert d['operational_selected_ip'] is None
+          PY
