@@ -1,0 +1,111 @@
+name: Diagnose RS-PS starter join
+
+on:
+  push:
+    paths:
+      - '.github/workflows/diagnose-rs-ps-join.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'pandas>=2.2,<3'
+
+      - name: Download RS source artifacts from validated collection run
+        uses: actions/download-artifact@v4
+        with:
+          pattern: rs-starters-*
+          path: historical_rs/source
+          merge-multiple: true
+          run-id: 38999236423
+          github-token: ${{ github.token }}
+
+      - name: Diagnose join mismatches and RMSE
+        run: |
+          python - <<'PY'
+          import math
+          from pathlib import Path
+          import pandas as pd
+
+          parts=[]
+          for y in range(2016, 2026):
+              p=Path(f'historical_rs/source/{y}_rs_starters.csv')
+              x=pd.read_csv(p, dtype={'starter_pcode':str,'game_id':str})
+              x['starter_pcode']=x['starter_pcode'].astype(str).str.replace(r'\.0$','',regex=True)
+              parts.append(x)
+          rs=pd.concat(parts,ignore_index=True)
+          rs['season']=rs['season'].astype(int)
+          rs['actual_outs']=rs['actual_outs'].astype(int)
+
+          avg=(rs.groupby(['season','starter_pcode'],as_index=False)
+                 .agg(rs_name=('starter_name','first'),
+                      rs_names=('starter_name',lambda s:'|'.join(sorted(set(str(v) for v in s if pd.notna(v))))),
+                      rs_starts=('game_id','size'),
+                      rs_outs=('actual_outs','sum')))
+          avg['rs_avg_ip']=avg['rs_outs']/(3*avg['rs_starts'])
+
+          ps=pd.read_csv('historical_ps/ps_starter_appearances.csv',dtype={'starter_id':str,'game_pk':str})
+          ps['season']=ps['season'].astype(int)
+          ps['starter_id']=ps['starter_id'].astype(str).str.replace(r'\.0$','',regex=True)
+          ps['actual_ip']=ps['actual_ip'].astype(float)
+          j=ps.merge(avg,left_on=['season','starter_id'],right_on=['season','starter_pcode'],how='left')
+          miss=j[j['rs_avg_ip'].isna()].copy()
+          print('MISSING_COUNT',len(miss))
+          print(miss[['season','game_date','game_pk','team','starter_id','starter_name','actual_ip']].to_string(index=False))
+
+          print('\nNAME_CANDIDATES')
+          candidate_rows=[]
+          for r in miss.itertuples(index=False):
+              cand=avg[(avg.season==r.season)&(avg.rs_name.astype(str)==str(r.starter_name))].copy()
+              print('\nPS',r.season,r.game_pk,r.starter_id,r.starter_name,'IP',r.actual_ip)
+              if cand.empty:
+                  print('NO EXACT NAME CANDIDATE')
+              else:
+                  print(cand[['season','starter_pcode','rs_name','rs_names','rs_starts','rs_avg_ip']].to_string(index=False))
+                  for c in cand.itertuples(index=False):
+                      candidate_rows.append((r.season,r.game_pk,r.starter_id,r.starter_name,c.starter_pcode,c.rs_starts,c.rs_avg_ip))
+
+          evalj=j[j.season.between(2017,2025)].copy()
+          matched=evalj[evalj.rs_avg_ip.notna()].copy()
+          rmse_matched=math.sqrt(((matched.rs_avg_ip-matched.actual_ip)**2).mean())
+          print('\nMATCHED_ONLY',{'n':len(matched),'rmse':rmse_matched})
+
+          # Diagnostic only: fill a missing row iff same-season exact name resolves uniquely.
+          filled=evalj.copy()
+          fill_details=[]
+          for idx,r in filled[filled.rs_avg_ip.isna()].iterrows():
+              cand=avg[(avg.season==r.season)&(avg.rs_name.astype(str)==str(r.starter_name))]
+              if len(cand)==1:
+                  c=cand.iloc[0]
+                  filled.loc[idx,'rs_avg_ip']=c.rs_avg_ip
+                  filled.loc[idx,'starter_pcode']=c.starter_pcode
+                  fill_details.append({
+                      'season':int(r.season),'game_pk':r.game_pk,
+                      'ps_id':r.starter_id,'name':r.starter_name,
+                      'rs_id':c.starter_pcode,'rs_starts':int(c.rs_starts),
+                      'rs_avg_ip':float(c.rs_avg_ip),
+                  })
+          print('UNIQUE_NAME_FILL',fill_details)
+          if filled.rs_avg_ip.notna().all():
+              rmse_full=math.sqrt(((filled.rs_avg_ip-filled.actual_ip)**2).mean())
+              print('FULL_AFTER_UNIQUE_NAME_FILL',{'n':len(filled),'rmse':rmse_full,'delta_vs_reference':rmse_full-1.84291})
+          else:
+              print('STILL_MISSING',filled[filled.rs_avg_ip.isna()][['season','game_pk','starter_id','starter_name']].to_dict('records'))
+
+          # Show all same-season RS pcode rows whose normalized Korean/Latin name contains target token.
+          print('\nFUZZY_NAME_SCAN')
+          for r in miss.itertuples(index=False):
+              token=str(r.starter_name).replace(' ','').lower()
+              cand=avg[(avg.season==r.season)&avg.rs_names.astype(str).str.replace(' ','').str.lower().str.contains(token,regex=False)]
+              print(r.season,r.starter_id,r.starter_name)
+              print(cand[['starter_pcode','rs_names','rs_starts','rs_avg_ip']].to_string(index=False) if len(cand) else 'NONE')
+          PY
