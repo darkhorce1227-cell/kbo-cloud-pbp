@@ -1,0 +1,70 @@
+name: Build PS Expected IP walk-forward validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_ps_expected_ip_walk_forward_validation.py'
+      - '.github/workflows/build-ps-expected-ip-walk-forward-validation.yml'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip.csv'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json'
+      - 'research/postseason_expected_ip/ps_expected_ip_expanding_shift_by_target_season.csv'
+      - 'research/postseason_expected_ip/ps_expected_ip_expanding_shift_validation.json'
+      - 'research/postseason_expected_ip/frozen_2026_prior.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install 'pandas>=2.2,<3'
+      - name: Build Step 5 walk-forward validation artifacts
+        run: |
+          python scripts/build_ps_expected_ip_walk_forward_validation.py \
+            --joined-input research/postseason_expected_ip/ps_rs_starter_avg_ip.csv \
+            --step3-validation research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json \
+            --shift-input research/postseason_expected_ip/ps_expected_ip_expanding_shift_by_target_season.csv \
+            --step4-validation research/postseason_expected_ip/ps_expected_ip_expanding_shift_validation.json \
+            --frozen-reference research/postseason_expected_ip/frozen_2026_prior.json \
+            --output-dir research/postseason_expected_ip
+          cat research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json
+      - name: Require exact Step 5 coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          if x['status'] != 'PASS':
+              raise SystemExit(x)
+          c = x['coverage']
+          got = (c['games_total'], c['starter_appearances_total'], c['eligible_evaluated_appearances'], c['unavailable_appearances'])
+          expected = (129, 258, 256, 2)
+          if got != expected:
+              raise SystemExit(f'coverage mismatch: got={got} expected={expected}')
+          if not all(x['checks'].values()):
+              raise SystemExit(x['checks'])
+          print({'status': x['status'], 'coverage': got, 'metrics': x['rebuilt_metrics_256_eligible']})
+          PY
+      - name: Commit Step 5 artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/postseason_expected_ip/ps_expected_ip_walk_forward_predictions_2017_2025.csv \
+            research/postseason_expected_ip/ps_expected_ip_walk_forward_validation_by_season.csv \
+            research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json
+          if git diff --cached --quiet; then
+            echo 'No Step 5 artifact changes to commit'
+          else
+            git commit -m 'Publish postseason Expected IP walk-forward validation'
+            git push
+          fi
