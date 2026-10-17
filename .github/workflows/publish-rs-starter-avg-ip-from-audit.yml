@@ -1,0 +1,90 @@
+name: Publish audited RS starter average IP
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-rs-starter-avg-ip-from-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build deps
+        run: pip install 'pandas>=2.2,<3'
+
+      - name: Download validated 2016-2025 RS starter source artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: rs-starters-*
+          path: historical_rs/source
+          merge-multiple: true
+          run-id: 38999236423
+          github-token: ${{ github.token }}
+
+      - name: Build audited player-season RS average IP
+        run: |
+          python scripts/build_rs_starter_avg_ip.py \
+            --source-dir historical_rs/source \
+            --ps-input historical_ps/ps_starter_appearances.csv \
+            --output-dir historical_rs \
+            --start-year 2016 \
+            --end-year 2025
+          cat historical_rs/rs_starter_avg_ip_validation.json
+
+      - name: Require exact audited coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          audit = json.loads(Path('historical_rs/rs_starter_avg_ip_validation.json').read_text(encoding='utf-8'))
+          if audit['status'] != 'PASS':
+              raise SystemExit(f"validation failed: {audit}")
+          if (audit['rs_games'], audit['rs_starter_appearances'], audit['player_season_rows']) != (7200, 14400, 1163):
+              raise SystemExit('unexpected RS coverage')
+          j = audit['ps_join_audit']
+          expected = (
+              j['ps_games_2017_2025'],
+              j['ps_rows_2017_2025'],
+              j['ps_linked_rows_2017_2025'],
+              j['ps_no_rs_start_history_2017_2025'],
+              j['baseline_sample_n'],
+          )
+          if expected != (129, 258, 256, 2, 256):
+              raise SystemExit(f'unexpected PS join audit: {expected}')
+          if not j['expected_no_rs_start_history_exact_match']:
+              raise SystemExit('unexpected no-RS-start-history identities')
+          print({
+              'status': audit['status'],
+              'rs_games': audit['rs_games'],
+              'rs_starter_appearances': audit['rs_starter_appearances'],
+              'player_season_rows': audit['player_season_rows'],
+              'ps_2017_2025': expected,
+              'matched_256_baseline_rmse': j['baseline_rs_ip_rmse_matched_2017_2025'],
+              'historical_reference_status': j['historical_reference_status'],
+          })
+          PY
+
+      - name: Commit audited RS source and derived artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add historical_rs
+          if git diff --cached --quiet; then
+            echo 'No RS artifact changes to commit'
+          else
+            git commit -m 'Publish audited 2016-2025 RS starter average IP artifacts'
+            git push
+          fi
