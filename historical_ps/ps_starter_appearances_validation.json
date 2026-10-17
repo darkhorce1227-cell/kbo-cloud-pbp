@@ -1,34 +1,524 @@
 {
   "status": "PASS",
   "source_dataset": "postseason_screen_pass.parquet",
-  "pitch_rows": 56794,
-  "games": 188,
-  "plate_appearances": 14618,
-  "starter_appearances": 376,
-  "mid_pa_pitcher_change_pas": 27,
-  "attribution_rule": "PA outs -> pitcher on final effective row of PA",
+  "input_pitch_rows": 56794,
+  "input_games": 188,
+  "input_plate_appearances": 14618,
+  "production_pitch_rows": 43100,
+  "production_games": 143,
+  "production_plate_appearances": 11126,
+  "starter_appearances": 286,
+  "unavailable_games": 45,
+  "mid_pa_pitcher_change_pas_input": 27,
+  "mid_pa_pitcher_change_pas_production": 17,
+  "boundary_out_reconstruction": {
+    "halves": 2,
+    "outs_added": 2,
+    "details": [
+      {
+        "season": 2016,
+        "game_pk": "33331014LGWO02016",
+        "inning": 4,
+        "half": "bot",
+        "last_source_row": 14634,
+        "pitcher_id": "71118",
+        "pitcher_name": "이동현",
+        "stamped_final_outs": 2,
+        "boundary_outs_added": 1,
+        "reason": "COMPLETED_HALF_BOUNDARY_OUT_NOT_STAMPED_ON_PA"
+      },
+      {
+        "season": 2018,
+        "game_pk": "77771112SKOB02018",
+        "inning": 8,
+        "half": "bot",
+        "last_source_row": 27336,
+        "pitcher_id": "62056",
+        "pitcher_name": "정영일",
+        "stamped_final_outs": 2,
+        "boundary_outs_added": 1,
+        "reason": "COMPLETED_HALF_BOUNDARY_OUT_NOT_STAMPED_ON_PA"
+      }
+    ]
+  },
+  "attribution_rule": "PA-stamped outs -> pitcher on final effective row of PA",
+  "boundary_out_rule": "If an otherwise coherent completed half ends at 1-2 stamped outs, add the missing out(s) to the final active pitcher and audit it. Completed halves ending at 0 outs remain UNAVAILABLE.",
+  "out_state_policy": "Only games with complete half-inning coverage and coherent out-state semantics are emitted; globally broken games remain UNAVAILABLE.",
   "manual_reconstruction_policy": "UNAVAILABLE unless pitcher identity exists; never merged by inference",
   "batters_faced_definition": "count of PAs attributed to pitcher under final-effective-row rule; not claimed as official BF for mid-PA changes",
+  "coverage": {
+    "2016_2025": {
+      "seasons": "2016-2025",
+      "games": 143,
+      "starter_appearances": 286
+    },
+    "2017_2025": {
+      "seasons": "2017-2025",
+      "games": 129,
+      "starter_appearances": 258
+    }
+  },
+  "availability_by_season": [
+    {
+      "season": 2009,
+      "input_games": 16,
+      "production_games": 0,
+      "unavailable_games": 16
+    },
+    {
+      "season": 2014,
+      "input_games": 14,
+      "production_games": 0,
+      "unavailable_games": 14
+    },
+    {
+      "season": 2015,
+      "input_games": 15,
+      "production_games": 0,
+      "unavailable_games": 15
+    },
+    {
+      "season": 2016,
+      "input_games": 14,
+      "production_games": 14,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2017,
+      "input_games": 15,
+      "production_games": 15,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2018,
+      "input_games": 16,
+      "production_games": 16,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2019,
+      "input_games": 12,
+      "production_games": 12,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2020,
+      "input_games": 13,
+      "production_games": 13,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2021,
+      "input_games": 11,
+      "production_games": 11,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2022,
+      "input_games": 16,
+      "production_games": 16,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2023,
+      "input_games": 14,
+      "production_games": 14,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2024,
+      "input_games": 16,
+      "production_games": 16,
+      "unavailable_games": 0
+    },
+    {
+      "season": 2025,
+      "input_games": 16,
+      "production_games": 16,
+      "unavailable_games": 0
+    }
+  ],
   "checks": {
-    "exactly_two_starters_per_game": true,
+    "production_games_have_exactly_two_starters": true,
     "starter_actual_outs_nonnegative": true,
     "actual_ip_is_outs_div_3": true,
     "pa_dedupe_one_row_per_game_at_bat_number": true,
-    "pa_state_constant_within_pa": true,
+    "unavailable_source_games_excluded_not_inferred": true,
     "mid_pa_pitcher_changes_detected_and_flagged": true,
-    "all_positive_out_pas_have_pitcher_identity": true,
-    "pitcher_outs_equal_pa_derived_defense_outs": true
+    "rare_boundary_outs_reconstructed_and_audited": true,
+    "pitcher_outs_equal_pa_plus_boundary_defense_outs": true
   },
   "critical_failures": {
-    "games_with_starter_count_ne_2": 0,
-    "pa_state_inconsistent": 0,
-    "pa_out_delta_invalid": 0,
-    "positive_out_pa_missing_pitcher": 0,
-    "defense_outs_mismatch": 0,
+    "production_games_with_starter_count_ne_2": 0,
+    "production_defense_outs_mismatch": 0,
     "starter_outs_negative": 0,
     "actual_ip_not_thirds": 0,
-    "pa_dedupe_failed": 0
+    "pa_dedupe_failed": 0,
+    "no_production_games": 0,
+    "production_starter_count_failed": 0
   },
-  "bad_starter_games": [],
-  "bad_defense_outs": []
+  "unavailable_game_details": [
+    {
+      "season": 2009,
+      "game_pk": "33330929LTOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "33330930LTOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "33331002OBLT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "33331003OBLT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "55551007OBSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "55551008OBSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "55551010SKOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "55551011SKOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "55551014OBSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771016SKHT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771017SKHT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771019HTSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771020HTSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771022SKHT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771023HTSK0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2009,
+      "game_pk": "77771024SKHT0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "33331019LGNC0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "33331022LGNC0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "33331024NCLG0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "33331025NCLG0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "55551027LGWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "55551028LGWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "55551030WOLG0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "55551031WOLG0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771104WOSS0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771105WOSS0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771107SSWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771108SSWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771110WOSS0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2014,
+      "game_pk": "77771111SSWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "33331010WOOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "33331011WOOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "33331013OBWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "33331014OBWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "44441007SKWO0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "55551018OBNC0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "55551019OBNC0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "55551021NCOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "55551022NCOB0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "55551024OBNC0",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "77771026OBSS02015",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "77771027OBSS02015",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "77771029SSOB02015",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "77771030SSOB02015",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    },
+    {
+      "season": 2015,
+      "game_pk": "77771031SSOB02015",
+      "status": "UNAVAILABLE",
+      "reasons": [
+        "HALF_END_OUT_STATE_UNAVAILABLE"
+      ]
+    }
+  ],
+  "bad_production_starter_games": [],
+  "bad_production_defense_outs": []
 }
