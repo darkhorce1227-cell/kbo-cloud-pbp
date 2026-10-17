@@ -1,0 +1,76 @@
+name: Build PS to RS starter delta
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_ps_rs_starter_delta.py'
+      - 'historical_ps/ps_starter_appearances.csv'
+      - 'historical_ps/ps_starter_appearances_validation.json'
+      - 'historical_rs/rs_starter_avg_ip_by_player_season.csv'
+      - 'historical_rs/rs_starter_avg_ip_validation.json'
+      - '.github/workflows/build-ps-rs-starter-delta.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install 'pandas>=2.2,<3'
+      - name: Build Step 3 joined delta artifact
+        run: |
+          python scripts/build_ps_rs_starter_delta.py \
+            --ps-input historical_ps/ps_starter_appearances.csv \
+            --ps-validation historical_ps/ps_starter_appearances_validation.json \
+            --rs-input historical_rs/rs_starter_avg_ip_by_player_season.csv \
+            --rs-validation historical_rs/rs_starter_avg_ip_validation.json \
+            --output-dir research/postseason_expected_ip
+          cat research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json
+      - name: Require exact Step 3 coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          if x['status'] != 'PASS':
+              raise SystemExit(x)
+          c = x['coverage']
+          got = (
+              c['ps_games_2016_2025'],
+              c['ps_starter_appearances_2016_2025'],
+              c['matched_2016_2025'],
+              c['unavailable_2016_2025'],
+              c['ps_games_2017_2025'],
+              c['ps_starter_appearances_2017_2025'],
+              c['matched_2017_2025'],
+              c['unavailable_2017_2025'],
+          )
+          expected = (143, 286, 284, 2, 129, 258, 256, 2)
+          if got != expected:
+              raise SystemExit(f'coverage mismatch: got={got} expected={expected}')
+          if x['policy']['rolling_historical_shift'] != 'NOT_COMPUTED_IN_STEP_3':
+              raise SystemExit('Step 3 unexpectedly computed rolling shift')
+          print({'status': x['status'], 'coverage': got})
+          PY
+      - name: Commit Step 3 artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/postseason_expected_ip/ps_rs_starter_avg_ip.csv \
+            research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json
+          if git diff --cached --quiet; then
+            echo 'No Step 3 artifact changes to commit'
+          else
+            git commit -m 'Publish validated PS to RS starter delta artifact'
+            git push
+          fi
