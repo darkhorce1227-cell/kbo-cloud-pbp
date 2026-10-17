@@ -1,0 +1,89 @@
+name: Build audited PS Expected IP Challenger
+
+on:
+  push:
+    paths:
+      - 'scripts/build_ps_expected_ip_shift.py'
+      - '.github/workflows/build-ps-expected-ip-audited.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis deps
+        run: pip install 'pandas>=2.2,<3' 'numpy>=2,<3'
+
+      - name: Build leakage-free matched-sample Challenger
+        run: |
+          python scripts/build_ps_expected_ip_shift.py \
+            --ps-input historical_ps/ps_starter_appearances.csv \
+            --rs-avg-input historical_rs/rs_starter_avg_ip_by_player_season.csv \
+            --rs-app-input historical_rs/rs_starter_appearances_2016_2025.csv \
+            --output-dir research/postseason \
+            --start-year 2016 \
+            --end-year 2025 \
+            --bootstrap-reps 50000 \
+            --bootstrap-seed 20261017
+          cat research/postseason/ps_expected_ip_simple_shift_validation.json
+
+      - name: Require exact audited coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('research/postseason/ps_expected_ip_simple_shift_validation.json')
+          m = json.loads(p.read_text(encoding='utf-8'))
+          if m['status'] != 'PASS':
+              raise SystemExit(f"validation failed: {m}")
+          expected = (
+              m['ps_starter_appearances_2016_2025'],
+              m['matched_ps_starter_appearances_2016_2025'],
+              m['cold_start_ps_starter_appearances_2016_2025'],
+              m['sequential_games'],
+              m['sequential_matched_starter_appearances'],
+              m['candidate_rmse_seasons_evaluated'],
+          )
+          if expected != (286, 284, 2, 129, 256, 9):
+              raise SystemExit(f'unexpected coverage: {expected}')
+          if m['shift_for_2026'] is None:
+              raise SystemExit('missing 2026 shift')
+          print({
+              'status': m['status'],
+              'coverage': expected,
+              'baseline_rmse': m['baseline_rs_ip_rmse'],
+              'candidate_rmse': m['candidate_rmse'],
+              'candidate_mae': m['candidate_mae'],
+              'season_wins': m['candidate_rmse_season_wins'],
+              'mse_delta': m['candidate_mse_delta_vs_baseline'],
+              'bootstrap': m['bootstrap_game_mse_delta'],
+              'shift_2026': m['shift_for_2026'],
+              'cold_start': m['cold_start'],
+          })
+          PY
+
+      - name: Commit validated research artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/postseason
+          if git diff --cached --quiet; then
+            echo 'No research artifact changes to commit'
+          else
+            git commit -m 'Publish audited postseason Expected IP Challenger artifacts'
+            git push
+          fi
