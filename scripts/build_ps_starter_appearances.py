@@ -2,16 +2,18 @@
 """Build reproducible postseason starter appearances with PA-derived actual IP.
 
 Production rows are emitted only when the pitch-level source has auditable
-half-inning out-state semantics. Games with incomplete coverage, broken out
-state, or missing pitcher identity are kept out of the production table and
-reported as UNAVAILABLE in the validation JSON.
+half-inning out-state semantics. Rare half-inning boundary outs that are not
+stamped onto a PA are reconstructed only when the half otherwise has coherent
+state and ends at one or two outs; the missing out(s) are attributed to the
+pitcher on the final effective row of that half and explicitly audited.
 
-Attribution rule for the rare mid-PA pitching change:
-    every out recorded by a PA is attributed to the pitcher on the PA's final
+Games with incomplete coverage, globally broken out state, or missing pitcher
+identity remain UNAVAILABLE. Manual reconstruction rows without pitcher
+identity are never merged or inferred.
+
+Mid-PA pitching change rule:
+    every PA-stamped out is attributed to the pitcher on the PA's final
     effective row. Such PAs are explicitly flagged for audit.
-
-Manual reconstruction rows without pitcher identity are intentionally not
-merged or inferred.
 """
 from __future__ import annotations
 
@@ -25,20 +27,9 @@ import pandas as pd
 
 
 REQUIRED_COLUMNS = {
-    "season",
-    "game_date",
-    "game_pk",
-    "home_team",
-    "away_team",
-    "inning",
-    "inning_topbot",
-    "at_bat_number",
-    "pitcher",
-    "pitcher_name",
-    "outs_when_up",
-    "post_outs",
-    "post_home_score",
-    "post_away_score",
+    "season", "game_date", "game_pk", "home_team", "away_team",
+    "inning", "inning_topbot", "at_bat_number", "pitcher", "pitcher_name",
+    "outs_when_up", "post_outs", "post_home_score", "post_away_score",
 }
 PA_KEYS = ["season", "game_pk", "at_bat_number"]
 GAME_KEYS = ["season", "game_pk"]
@@ -64,13 +55,8 @@ def _clean_name(value) -> str | None:
 def _half(value) -> str:
     text = str(value).strip().lower()
     aliases = {
-        "top": "top",
-        "t": "top",
-        "초": "top",
-        "bot": "bot",
-        "bottom": "bot",
-        "b": "bot",
-        "말": "bot",
+        "top": "top", "t": "top", "초": "top",
+        "bot": "bot", "bottom": "bot", "b": "bot", "말": "bot",
     }
     if text not in aliases:
         raise ValueError(f"Unknown inning_topbot value: {value!r}")
@@ -105,18 +91,23 @@ def _subset_by_game_keys(frame: pd.DataFrame, keys: set[tuple]) -> pd.DataFrame:
     return frame.loc[mask].copy()
 
 
-def _audit_game_out_state(pa: pd.DataFrame) -> dict[tuple, set[str]]:
-    """Return game-level reasons that make actual IP unavailable.
+def _audit_game_out_state(pa: pd.DataFrame):
+    """Return (unavailable reasons, auditable half-boundary corrections).
 
-    A trustworthy game must have complete inning/half coverage and internally
-    coherent out-state transitions. Every non-final half must end at three outs.
-    A final bottom half may end before three outs only on a walk-off, verified by
-    the stamped post-play score.
+    Every observed half starts at zero outs and PA deltas must add to the last
+    stamped post_outs. A completed half should end at three outs. If an otherwise
+    coherent completed half ends at one or two outs, the missing boundary out(s)
+    are reconstructible from baseball inning semantics and attributed to the
+    final active pitcher. A completed half ending at zero outs is treated as
+    globally broken state and remains UNAVAILABLE.
+
+    A final bottom half may legitimately end below three outs only when the
+    stamped score shows a walk-off home lead.
     """
     reasons: dict[tuple, set[str]] = defaultdict(set)
+    corrections: list[dict] = []
 
-    # PA-local state errors are source failures for the whole game.
-    bad_delta = pa[(pa["actual_outs"] < 0) | (pa["actual_outs"] > 3)]
+    bad_delta = pa[(pa["actual_outs_raw"] < 0) | (pa["actual_outs_raw"] > 3)]
     for season, game_pk in bad_delta[GAME_KEYS].drop_duplicates().itertuples(index=False, name=None):
         reasons[(int(season), game_pk)].add("INVALID_PA_OUT_DELTA")
 
@@ -128,9 +119,6 @@ def _audit_game_out_state(pa: pd.DataFrame) -> dict[tuple, set[str]]:
     for season, game_pk in missing_pitcher[GAME_KEYS].drop_duplicates().itertuples(index=False, name=None):
         reasons[(int(season), game_pk)].add("PA_PITCHER_ID_UNAVAILABLE")
 
-    # Coverage: every inning must have a top half; every inning before the last
-    # must also have a bottom half. The final bottom can be absent when the home
-    # team already leads after the top half.
     for (season, game_pk), g in pa.groupby(GAME_KEYS, sort=False):
         season = int(season)
         game_key = (season, game_pk)
@@ -149,26 +137,25 @@ def _audit_game_out_state(pa: pd.DataFrame) -> dict[tuple, set[str]]:
             if inning < max_inning and "bot" not in halves:
                 reasons[game_key].add("MISSING_BOTTOM_BEFORE_FINAL_INNING")
 
-    # Half-inning semantic audit.
     half_rows = []
     for (season, game_pk, inning, half), h in pa.groupby(HALF_KEYS, sort=False):
-        h = h.sort_values("_source_row")
+        h = h.sort_values("_source_row", kind="stable")
         first = h.iloc[0]
         last = h.iloc[-1]
-        half_rows.append(
-            {
-                "season": int(season),
-                "game_pk": game_pk,
-                "inning": int(inning),
-                "half": half,
-                "first_outs": int(first["outs_when_up"]),
-                "final_outs": int(last["post_outs"]),
-                "sum_delta": int(h["actual_outs"].sum()),
-                "last_source_row": int(last["_source_row"]),
-                "post_home_score": int(last["post_home_score"]),
-                "post_away_score": int(last["post_away_score"]),
-            }
-        )
+        half_rows.append({
+            "season": int(season),
+            "game_pk": game_pk,
+            "inning": int(inning),
+            "half": half,
+            "first_outs": int(first["outs_when_up"]),
+            "final_outs": int(last["post_outs"]),
+            "sum_delta": int(h["actual_outs_raw"].sum()),
+            "last_source_row": int(last["_source_row"]),
+            "post_home_score": int(last["post_home_score"]),
+            "post_away_score": int(last["post_away_score"]),
+            "pitcher_id": last["attributed_pitcher_id"],
+            "pitcher_name": last["attributed_pitcher_name"],
+        })
     halves = pd.DataFrame(half_rows)
 
     if not halves.empty:
@@ -188,19 +175,37 @@ def _audit_game_out_state(pa: pd.DataFrame) -> dict[tuple, set[str]]:
             if r.sum_delta != r.final_outs:
                 reasons[game_key].add("HALF_OUT_DELTA_NOT_FINAL_OUTS")
 
-            if not is_last_half:
-                if r.final_outs != 3:
-                    reasons[game_key].add("NONFINAL_HALF_DID_NOT_END_AT_3_OUTS")
-            elif r.half == "top":
-                if r.final_outs != 3:
-                    reasons[game_key].add("FINAL_TOP_DID_NOT_END_AT_3_OUTS")
-            else:
-                if r.final_outs < 3 and not (r.post_home_score > r.post_away_score):
-                    reasons[game_key].add("FINAL_BOTTOM_LT3_NOT_WALKOFF")
-                if r.final_outs > 3:
-                    reasons[game_key].add("FINAL_BOTTOM_OUTS_GT3")
+            walkoff = bool(
+                is_last_half
+                and r.half == "bot"
+                and r.final_outs < 3
+                and r.post_home_score > r.post_away_score
+            )
+            expected_complete_outs = None if walkoff else 3
 
-    return reasons
+            if expected_complete_outs is None or r.final_outs == 3:
+                continue
+
+            # One/two stamped outs at a completed boundary is the observed rare
+            # non-PA boundary-out pattern. Zero-out halves are not safely
+            # reconstructible because old broken seasons exhibit exactly that.
+            if r.final_outs in (1, 2) and r.sum_delta == r.final_outs and r.pitcher_id is not None:
+                corrections.append({
+                    "season": int(r.season),
+                    "game_pk": r.game_pk,
+                    "inning": int(r.inning),
+                    "half": r.half,
+                    "last_source_row": int(r.last_source_row),
+                    "pitcher_id": r.pitcher_id,
+                    "pitcher_name": r.pitcher_name,
+                    "stamped_final_outs": int(r.final_outs),
+                    "boundary_outs_added": int(3 - r.final_outs),
+                    "reason": "COMPLETED_HALF_BOUNDARY_OUT_NOT_STAMPED_ON_PA",
+                })
+            else:
+                reasons[game_key].add("HALF_END_OUT_STATE_UNAVAILABLE")
+
+    return reasons, corrections
 
 
 def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
@@ -221,29 +226,23 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     df["half"] = df["inning_topbot"].map(_half)
 
     numeric_cols = (
-        "season",
-        "inning",
-        "at_bat_number",
-        "outs_when_up",
-        "post_outs",
-        "post_home_score",
-        "post_away_score",
+        "season", "inning", "at_bat_number", "outs_when_up", "post_outs",
+        "post_home_score", "post_away_score",
     )
     for col in numeric_cols:
         df[col] = pd.to_numeric(df[col], errors="coerce")
-    essential = ["season", "game_pk", "inning", "at_bat_number", "outs_when_up", "post_outs", "post_home_score", "post_away_score"]
+    essential = [
+        "season", "game_pk", "inning", "at_bat_number", "outs_when_up",
+        "post_outs", "post_home_score", "post_away_score",
+    ]
     if df[essential].isna().any().any():
         bad = df[df[essential].isna().any(axis=1)]
         raise ValueError(f"Missing/non-numeric essential state in {len(bad)} pitch rows")
-
     for col in numeric_cols:
         df[col] = df[col].astype(int)
 
     input_game_keys = _key_set(df, GAME_KEYS)
 
-    # A PA is parser-defined by game + at_bat_number. All stamped PA state must
-    # be constant across its pitch rows. Preserve source order and select the
-    # final effective row for pitcher attribution.
     pa_group = df.groupby(PA_KEYS, sort=False, dropna=False)
     state_nunique = pa_group[["inning", "half", "outs_when_up", "post_outs"]].nunique(dropna=False)
     inconsistent_state_mask = (state_nunique > 1).any(axis=1)
@@ -253,7 +252,7 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     mid_pa_keys = set(pitcher_nunique.index[pitcher_nunique > 1].tolist())
 
     pa = pa_group.tail(1).copy().sort_values("_source_row", kind="stable")
-    pa["actual_outs"] = pa["post_outs"] - pa["outs_when_up"]
+    pa["actual_outs_raw"] = pa["post_outs"] - pa["outs_when_up"]
     pa["mid_pa_pitcher_change"] = [
         tuple(row) in mid_pa_keys for row in pa[PA_KEYS].itertuples(index=False, name=None)
     ]
@@ -263,7 +262,6 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     pa["attributed_pitcher_id"] = pa["pitcher_id_clean"]
     pa["attributed_pitcher_name"] = pa["pitcher_name_clean"]
 
-    # TOP = away bats = home fields; BOT = home bats = away fields.
     pa["fielding_team"] = pa.apply(
         lambda r: r["home_team"] if r["half"] == "top" else r["away_team"], axis=1
     )
@@ -277,12 +275,9 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
         lambda r: r["away_team"] if r["half"] == "top" else r["home_team"], axis=1
     )
 
-    unavailable_reasons = _audit_game_out_state(pa)
+    unavailable_reasons, boundary_corrections = _audit_game_out_state(pa)
     candidate_game_keys = input_game_keys - set(unavailable_reasons)
 
-    # Starter = first pitcher to appear while that team is fielding. Do this on
-    # semantic-PASS games, then exclude any game that still cannot identify two
-    # starters exactly.
     candidate_df = _subset_by_game_keys(df, candidate_game_keys)
     candidate_first = (
         candidate_df[candidate_df["pitcher_id_clean"].notna()]
@@ -299,6 +294,20 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     production_game_keys = input_game_keys - set(unavailable_reasons)
     valid_df = _subset_by_game_keys(df, production_game_keys)
     valid_pa = _subset_by_game_keys(pa, production_game_keys)
+
+    valid_pa["boundary_outs_added"] = 0
+    production_corrections = []
+    for correction in boundary_corrections:
+        game_key = (int(correction["season"]), correction["game_pk"])
+        if game_key not in production_game_keys:
+            continue
+        source_row = int(correction["last_source_row"])
+        mask = valid_pa["_source_row"] == source_row
+        if int(mask.sum()) != 1:
+            raise ValueError(f"Boundary correction source row not unique: {correction}")
+        valid_pa.loc[mask, "boundary_outs_added"] += int(correction["boundary_outs_added"])
+        production_corrections.append(correction)
+    valid_pa["actual_outs"] = valid_pa["actual_outs_raw"] + valid_pa["boundary_outs_added"]
 
     first_pitcher_rows = (
         valid_df[valid_df["pitcher_id_clean"].notna()]
@@ -317,11 +326,15 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     all_pitcher_outs = (
         valid_pa[valid_pa["attributed_pitcher_id"].notna()]
         .groupby(["season", "game_pk", "fielding_team", "attributed_pitcher_id"], as_index=False)
-        .agg(actual_outs=("actual_outs", "sum"), batters_faced=("at_bat_number", "count"))
+        .agg(
+            actual_outs=("actual_outs", "sum"),
+            batters_faced=("at_bat_number", "count"),
+            boundary_outs_reconstructed=("boundary_outs_added", "sum"),
+        )
     )
     outs_lookup = {
         (int(r.season), r.game_pk, r.fielding_team, r.attributed_pitcher_id):
-        (int(r.actual_outs), int(r.batters_faced))
+        (int(r.actual_outs), int(r.batters_faced), int(r.boundary_outs_reconstructed))
         for r in all_pitcher_outs.itertuples(index=False)
     }
 
@@ -345,7 +358,7 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
         starter_id = r.pitcher_id_clean
         home_away = "home" if team == r.home_team else "away"
         opponent = r.away_team if home_away == "home" else r.home_team
-        actual_outs, bf = outs_lookup[(season, game_pk, team, starter_id)]
+        actual_outs, bf, boundary_outs = outs_lookup[(season, game_pk, team, starter_id)]
         first_inning, last_inning = appearance_lookup[(season, game_pk, team, starter_id)]
         starter_name = name_lookup.get((season, game_pk, starter_id)) or r.pitcher_name_clean
         game_mask = (valid_df["season"] == season) & (valid_df["game_pk"] == game_pk)
@@ -367,6 +380,8 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
         flags = []
         if starter_mid_pa_involved:
             flags.append("MID_PA_CHANGE_INVOLVED_FINAL_PITCHER_ATTRIBUTION")
+        if boundary_outs > 0:
+            flags.append(f"HALF_BOUNDARY_OUTS_RECONSTRUCTED_{boundary_outs}")
         if first_inning != 1:
             flags.append("STARTER_FIRST_APPEARANCE_NOT_INNING_1")
 
@@ -384,6 +399,7 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
             "starter_first_inning": first_inning,
             "starter_last_inning": last_inning,
             "batters_faced": bf,
+            "boundary_outs_reconstructed": boundary_outs,
             "source_quality": source_quality,
             "source_dataset": source_dataset,
             "out_state_integrity": "PASS",
@@ -399,12 +415,10 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     starters_per_game = starters.groupby(GAME_KEYS).size() if not starters.empty else pd.Series(dtype=int)
     bad_starter_games = starters_per_game[starters_per_game != 2]
 
-    # Compare PA-derived defensive outs with outs successfully attributed to a
-    # pitcher inside production games.
     defense_outs = (
         valid_pa.groupby(["season", "game_pk", "fielding_team"], as_index=False)["actual_outs"]
         .sum()
-        .rename(columns={"actual_outs": "pa_defense_outs"})
+        .rename(columns={"actual_outs": "pa_plus_boundary_defense_outs"})
     )
     pitcher_outs = (
         all_pitcher_outs.groupby(["season", "game_pk", "fielding_team"], as_index=False)["actual_outs"]
@@ -417,7 +431,7 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     if not defense_audit.empty:
         defense_audit["pitcher_attributed_outs"] = defense_audit["pitcher_attributed_outs"].fillna(0).astype(int)
         defense_audit["outs_match"] = (
-            defense_audit["pa_defense_outs"].astype(int)
+            defense_audit["pa_plus_boundary_defense_outs"].astype(int)
             == defense_audit["pitcher_attributed_outs"]
         )
     else:
@@ -454,7 +468,9 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
             "status": "UNAVAILABLE",
             "reasons": sorted(reasons),
         }
-        for (season, game_pk), reasons in sorted(unavailable_reasons.items(), key=lambda x: (int(x[0][0]), str(x[0][1])))
+        for (season, game_pk), reasons in sorted(
+            unavailable_reasons.items(), key=lambda x: (int(x[0][0]), str(x[0][1]))
+        )
     ]
 
     availability_by_season = []
@@ -464,14 +480,12 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
     for season in seasons:
         input_n = int((input_games_df["season"] == season).sum())
         prod_n = int((prod_games_df["season"] == season).sum())
-        availability_by_season.append(
-            {
-                "season": season,
-                "input_games": input_n,
-                "production_games": prod_n,
-                "unavailable_games": input_n - prod_n,
-            }
-        )
+        availability_by_season.append({
+            "season": season,
+            "input_games": input_n,
+            "production_games": prod_n,
+            "unavailable_games": input_n - prod_n,
+        })
 
     def coverage(lo: int, hi: int) -> dict:
         g = prod_games_df[prod_games_df["season"].between(lo, hi)]
@@ -499,10 +513,20 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
         "unavailable_games": int(len(unavailable_reasons)),
         "mid_pa_pitcher_change_pas_input": int(len(mid_pa_keys)),
         "mid_pa_pitcher_change_pas_production": int(len(production_mid_pa_keys)),
-        "attribution_rule": "PA outs -> pitcher on final effective row of PA",
+        "boundary_out_reconstruction": {
+            "halves": int(len(production_corrections)),
+            "outs_added": int(sum(c["boundary_outs_added"] for c in production_corrections)),
+            "details": production_corrections,
+        },
+        "attribution_rule": "PA-stamped outs -> pitcher on final effective row of PA",
+        "boundary_out_rule": (
+            "If an otherwise coherent completed half ends at 1-2 stamped outs, "
+            "add the missing out(s) to the final active pitcher and audit it. "
+            "Completed halves ending at 0 outs remain UNAVAILABLE."
+        ),
         "out_state_policy": (
             "Only games with complete half-inning coverage and coherent out-state semantics "
-            "are emitted; all others remain UNAVAILABLE."
+            "are emitted; globally broken games remain UNAVAILABLE."
         ),
         "manual_reconstruction_policy": (
             "UNAVAILABLE unless pitcher identity exists; never merged by inference"
@@ -523,7 +547,8 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
             "pa_dedupe_one_row_per_game_at_bat_number": pa_dedupe_ok,
             "unavailable_source_games_excluded_not_inferred": True,
             "mid_pa_pitcher_changes_detected_and_flagged": True,
-            "pitcher_outs_equal_pa_derived_defense_outs": int(len(bad_defense)) == 0,
+            "rare_boundary_outs_reconstructed_and_audited": True,
+            "pitcher_outs_equal_pa_plus_boundary_defense_outs": int(len(bad_defense)) == 0,
         },
         "critical_failures": critical_failures,
         "unavailable_game_details": unavailable_rows,
@@ -533,7 +558,7 @@ def build_starter_appearances(data: pd.DataFrame, source_dataset: str):
         ],
         "bad_production_defense_outs": defense_audit.loc[
             ~defense_audit["outs_match"],
-            ["season", "game_pk", "fielding_team", "pa_defense_outs", "pitcher_attributed_outs"],
+            ["season", "game_pk", "fielding_team", "pa_plus_boundary_defense_outs", "pitcher_attributed_outs"],
         ].to_dict("records"),
     }
     return starters, audit, defense_audit
@@ -554,12 +579,12 @@ def main() -> None:
     ap.add_argument(
         "--audit-output",
         default="historical_ps/ps_starter_appearances_validation.json",
-        help="Validation report JSON including UNAVAILABLE game details",
+        help="Validation report JSON including UNAVAILABLE and boundary-out details",
     )
     ap.add_argument(
         "--defense-audit-output",
         default="historical_ps/ps_starter_appearances_defense_outs_audit.csv",
-        help="Production game/team PA-outs vs pitcher-attributed-outs audit CSV",
+        help="Production game/team reconstructed-outs audit CSV",
     )
     ap.add_argument(
         "--allow-audit-fail",
@@ -585,22 +610,17 @@ def main() -> None:
     audit_output.write_text(
         json.dumps(audit, ensure_ascii=False, indent=2, default=str), encoding="utf-8"
     )
-    print(
-        json.dumps(
-            {
-                "status": audit["status"],
-                "input_games": audit["input_games"],
-                "production_games": audit["production_games"],
-                "unavailable_games": audit["unavailable_games"],
-                "starter_appearances": audit["starter_appearances"],
-                "coverage_2017_2025": audit["coverage"]["2017_2025"],
-                "output": str(output),
-                "audit": str(audit_output),
-            },
-            ensure_ascii=False,
-        ),
-        flush=True,
-    )
+    print(json.dumps({
+        "status": audit["status"],
+        "input_games": audit["input_games"],
+        "production_games": audit["production_games"],
+        "unavailable_games": audit["unavailable_games"],
+        "starter_appearances": audit["starter_appearances"],
+        "boundary_outs_added": audit["boundary_out_reconstruction"]["outs_added"],
+        "coverage_2017_2025": audit["coverage"]["2017_2025"],
+        "output": str(output),
+        "audit": str(audit_output),
+    }, ensure_ascii=False), flush=True)
 
     if audit["status"] != "PASS" and not args.allow_audit_fail:
         raise SystemExit(1)
