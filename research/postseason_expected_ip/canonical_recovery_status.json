@@ -1,0 +1,107 @@
+{
+  "status": "CLOSED_CANONICAL_STRICT_REPRODUCTION",
+  "closed_at": "2026-10-17",
+  "scope": "KBO postseason Expected IP simple historical shift challenger",
+  "canonical_definition": "same-season player RS starter-average IP + mean(previous postseason actual IP - same-season player RS starter-average IP)",
+  "canonical_policy": {
+    "same_season_rs_starts_required": true,
+    "zero_same_season_rs_starts": "UNAVAILABLE",
+    "name_match_fallback": "FORBIDDEN",
+    "relief_ip_fallback": "FORBIDDEN",
+    "team_or_league_fallback": "FORBIDDEN",
+    "forensic_backsolved_values_as_live_fallback": "FORBIDDEN",
+    "target_or_future_postseason_leakage": "FORBIDDEN"
+  },
+  "canonical_reproducible_population": {
+    "training_postseasons": "2016-2025",
+    "training_ps_starter_appearances_total": 286,
+    "training_delta_eligible": 284,
+    "training_unavailable": 2,
+    "walk_forward_evaluation_seasons": "2017-2025",
+    "walk_forward_games": 129,
+    "walk_forward_starter_appearances_total": 258,
+    "walk_forward_evaluable": 256,
+    "walk_forward_unavailable": 2
+  },
+  "canonical_2026_shift_ip": -0.7598198773356355,
+  "canonical_walk_forward_metrics": {
+    "baseline_rs_ip_rmse": 1.8491633790207755,
+    "baseline_rs_ip_mae": 1.408079901731732,
+    "candidate_rmse": 1.683392255649752,
+    "candidate_mae": 1.330863143451133,
+    "candidate_rmse_season_wins": "9/9",
+    "mse_delta_candidate_minus_baseline": -0.5855957159299714,
+    "mse_delta_game_cluster_bootstrap_95ci": [-0.8631394361972838, -0.31701880569822055]
+  },
+  "legacy_phase2_reference": {
+    "status": "FORENSIC_REFERENCE_ONLY_NOT_CANONICAL",
+    "claimed_evaluation_starter_appearances": 258,
+    "claimed_residual_appearances": 286,
+    "baseline_rs_ip_rmse": 1.84291,
+    "baseline_rs_ip_mae": 1.40227,
+    "candidate_rmse": 1.67696,
+    "candidate_mae": 1.32339,
+    "mse_delta_candidate_minus_baseline": -0.5841,
+    "candidate_rmse_season_wins": "9/9",
+    "frozen_2026_shift_ip": -0.7588
+  },
+  "unavailable_rows": [
+    {
+      "season": 2018,
+      "game_date": "2018-10-23",
+      "game_pk": "33331023HHWO02018",
+      "team": "HH",
+      "starter_id": "68703",
+      "starter_name": "박주홍",
+      "actual_ps_ip": 3.6666666666666665,
+      "reason": "NO_SAME_SEASON_RS_START_HISTORY"
+    },
+    {
+      "season": 2022,
+      "game_date": "2022-11-05",
+      "game_pk": "77771105SKWO02022",
+      "team": "WO",
+      "starter_id": "67603",
+      "starter_name": "이승호",
+      "actual_ps_ip": 4.0,
+      "reason": "NO_SAME_SEASON_RS_START_HISTORY"
+    }
+  ],
+  "forensic_findings": {
+    "old_reports_named_in_frozen_reference": [
+      "KBO_NEXT_RESEARCH_EXPECTED_IP.md",
+      "KBO_PS_MODEL_RESEARCH_PHASE2.md"
+    ],
+    "old_reports_git_history_hits": 0,
+    "original_286_residual_vector_recovered": false,
+    "original_appearance_table_recovered": false,
+    "historical_actions_full_recovery_run": 38918813034,
+    "historical_actions_full_recovery_result": "FAILED_ON_EXACTLY_2_MISSING_SAME_SEASON_RS_STARTERS",
+    "historical_actions_source_artifacts": "10 yearly source artifacts; all collection jobs succeeded",
+    "historical_smoke_run": 38917829111,
+    "historical_smoke_artifacts": ["ps-eip-smoke-2016", "ps-eip-smoke-2025"],
+    "hidden_residual_or_phase2_artifact_found": false,
+    "two_missing_inverse_solution": {
+      "note": "Aggregate legacy RMSE+MAE imply the two missing baseline error magnitudes up to sign/assignment, but these values are not source-backed and are forbidden as canonical fallback.",
+      "best_fit_park_juhong_2018_baseline_ip": 4.410734634666809,
+      "best_fit_lee_seungho_2022_baseline_ip": 4.573137188676466
+    }
+  },
+  "canonical_artifacts": {
+    "ps_starters": "historical_ps/ps_starter_appearances.csv",
+    "rs_starter_avg_ip": "historical_rs/rs_starter_avg_ip_by_player_season.csv",
+    "joined_delta": "research/postseason_expected_ip/ps_rs_starter_avg_ip.csv",
+    "expanding_shift": "research/postseason_expected_ip/ps_expected_ip_expanding_shift_by_target_season.csv",
+    "walk_forward_predictions": "research/postseason_expected_ip/ps_expected_ip_walk_forward_predictions_2017_2025.csv",
+    "walk_forward_validation": "research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json",
+    "two_missing_forensic": "research/postseason_expected_ip/ps_expected_ip_two_missing_forensic.json",
+    "legacy_frozen_reference": "research/postseason_expected_ip/frozen_2026_prior.json"
+  },
+  "operational_interpretation": {
+    "research_recovery": "CLOSED",
+    "legacy_exact_258_fallback_rule": "UNRECOVERABLE_FROM_GIT_OR_ACTIONS",
+    "canonical_research_model": "STRICT_256_WALK_FORWARD / 284_TRAINING_DELTAS",
+    "live_integration": "NOT_CHANGED_BY_THIS_CLOSURE_ARTIFACT",
+    "usage_note": "Historical shift is a usage/Expected-IP challenger, not a generic postseason pitching-skill bonus. Current role, pitch cap, injury/news, rest/workload, manager leash and Champion Expected IP remain higher priority."
+  }
+}
