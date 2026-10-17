@@ -3,10 +3,11 @@
 
 Inputs are one completed Naver starter pitching line per regular-season game-side,
 collected by collect_rs_starter_lines.py. Stable Naver pcode is the authoritative
-player key; names and team codes are descriptive only.
+player key; names/team codes are descriptive only.
 
-The script also audits join coverage against the validated postseason starter
-artifact and reproduces the Phase-2 baseline RMSE for 2017-2025.
+A postseason starter can legitimately have zero same-season regular-season starts.
+Those rows must remain explicit NO_SAME_SEASON_RS_START_HISTORY rather than being
+filled by name, team average, relief IP, or any other inferred fallback.
 """
 from __future__ import annotations
 
@@ -20,12 +21,24 @@ import pandas as pd
 YEARS = list(range(2016, 2026))
 REFERENCE_2017_2025_PS_ROWS = 258
 REFERENCE_2017_2025_PS_GAMES = 129
-REFERENCE_BASELINE_RS_IP_RMSE = 1.84291
+HISTORICAL_REFERENCE_BASELINE_RS_IP_RMSE = 1.84291
+
+# Reverified against current Naver inning-1 postseason relay using the same
+# seqno=1 starter rule as the saved Phase-2 collector.
+EXPECTED_NO_RS_START_HISTORY = {
+    (2018, "33331023HHWO02018", "68703", "박주홍"),
+    (2022, "77771105SKWO02022", "67603", "이승호"),
+}
 
 
 def _rmse(values) -> float:
-    s = pd.Series(values, dtype=float)
-    return float(math.sqrt((s * s).mean()))
+    s = pd.Series(values, dtype=float).dropna()
+    return float(math.sqrt((s * s).mean())) if len(s) else float("nan")
+
+
+def _mae(values) -> float:
+    s = pd.Series(values, dtype=float).dropna()
+    return float(s.abs().mean()) if len(s) else float("nan")
 
 
 def _norm_id(value) -> str:
@@ -57,19 +70,20 @@ def load_rs_source(source_dir: Path, years: list[int]) -> pd.DataFrame:
         if not path.exists():
             missing.append(str(path))
             continue
-        part = pd.read_csv(
-            path,
-            dtype={
-                "game_id": str,
-                "relay_game_id": str,
-                "starter_pcode": str,
-                "away_team_code": str,
-                "home_team_code": str,
-                "team_code": str,
-                "opponent_code": str,
-            },
+        parts.append(
+            pd.read_csv(
+                path,
+                dtype={
+                    "game_id": str,
+                    "relay_game_id": str,
+                    "starter_pcode": str,
+                    "away_team_code": str,
+                    "home_team_code": str,
+                    "team_code": str,
+                    "opponent_code": str,
+                },
+            )
         )
-        parts.append(part)
     if missing:
         raise FileNotFoundError(f"missing RS source files: {missing}")
     return pd.concat(parts, ignore_index=True)
@@ -84,45 +98,41 @@ def validate_appearances(rs: pd.DataFrame, years: list[int]) -> dict:
     if missing:
         raise ValueError(f"RS source missing columns: {missing}")
 
-    rs = rs.copy()
-    rs["season"] = pd.to_numeric(rs["season"], errors="coerce")
-    rs["actual_outs"] = pd.to_numeric(rs["actual_outs"], errors="coerce")
-    rs["actual_ip"] = pd.to_numeric(rs["actual_ip"], errors="coerce")
-    rs["starter_pcode"] = rs["starter_pcode"].map(_norm_id)
+    x = rs.copy()
+    x["season"] = pd.to_numeric(x["season"], errors="coerce")
+    x["actual_outs"] = pd.to_numeric(x["actual_outs"], errors="coerce")
+    x["actual_ip"] = pd.to_numeric(x["actual_ip"], errors="coerce")
+    x["starter_pcode"] = x["starter_pcode"].map(_norm_id)
 
-    bad_numeric = int(rs[["season", "actual_outs", "actual_ip"]].isna().any(axis=1).sum())
-    empty_ids = int((rs["starter_pcode"] == "").sum())
-    duplicates = int(rs.duplicated(["season", "game_id", "side"], keep=False).sum())
-    bad_sides = int((~rs["side"].isin(["away", "home"])).sum())
-    bad_outs = int(((rs["actual_outs"] < 0) | (rs["actual_outs"] % 1 != 0)).sum())
-    bad_thirds = int(((rs["actual_ip"] * 3 - rs["actual_outs"]).abs() > 1e-9).sum())
+    failures = {
+        "bad_numeric_rows": int(x[["season", "actual_outs", "actual_ip"]].isna().any(axis=1).sum()),
+        "empty_starter_pcode": int((x["starter_pcode"] == "").sum()),
+        "duplicate_game_side_rows": int(x.duplicated(["season", "game_id", "side"], keep=False).sum()),
+        "bad_side_rows": int((~x["side"].isin(["away", "home"])).sum()),
+        "bad_actual_outs_rows": int(((x["actual_outs"] < 0) | (x["actual_outs"] % 1 != 0)).sum()),
+        "bad_ip_thirds_rows": int(((x["actual_ip"] * 3 - x["actual_outs"]).abs() > 1e-9).sum()),
+    }
 
     by_season = []
     for year in years:
-        g = rs[rs["season"] == year]
+        g = x[x["season"] == year]
         games = int(g["game_id"].nunique())
         rows = int(len(g))
-        dup_game_sides = int(g.duplicated(["game_id", "side"], keep=False).sum())
+        two_per_game = bool(
+            rows == 2 * games
+            and int(g.duplicated(["game_id", "side"], keep=False).sum()) == 0
+        )
         by_season.append(
             {
                 "season": year,
                 "games": games,
                 "starter_appearances": rows,
-                "two_starters_per_game": bool(rows == 2 * games and dup_game_sides == 0),
+                "two_starters_per_game": two_per_game,
             }
         )
-
-    failures = {
-        "bad_numeric_rows": bad_numeric,
-        "empty_starter_pcode": empty_ids,
-        "duplicate_game_side_rows": duplicates,
-        "bad_side_rows": bad_sides,
-        "bad_actual_outs_rows": bad_outs,
-        "bad_ip_thirds_rows": bad_thirds,
-        "seasons_not_two_starters_per_game": int(
-            sum(not row["two_starters_per_game"] for row in by_season)
-        ),
-    }
+    failures["seasons_not_two_starters_per_game"] = int(
+        sum(not row["two_starters_per_game"] for row in by_season)
+    )
     return {
         "status": "PASS" if not any(failures.values()) else "FAIL",
         "failures": failures,
@@ -157,7 +167,10 @@ def build_player_season(rs: pd.DataFrame) -> pd.DataFrame:
 
 def audit_ps_join(ps_path: Path, avg: pd.DataFrame):
     ps = pd.read_csv(ps_path, dtype={"starter_id": str, "game_pk": str})
-    required = {"season", "game_pk", "starter_id", "starter_name", "actual_ip"}
+    required = {
+        "season", "game_date", "game_pk", "team", "home_away",
+        "starter_id", "starter_name", "actual_ip",
+    }
     missing = sorted(required - set(ps.columns))
     if missing:
         raise ValueError(f"PS artifact missing columns: {missing}")
@@ -178,28 +191,58 @@ def audit_ps_join(ps_path: Path, avg: pd.DataFrame):
         how="left",
         validate="many_to_one",
     )
-    joined["rs_link_ok"] = joined["rs_starter_avg_ip"].notna()
+    joined["rs_link_status"] = joined["rs_starter_avg_ip"].notna().map(
+        {True: "MATCHED", False: "NO_SAME_SEASON_RS_START_HISTORY"}
+    )
     joined["baseline_rs_ip_error"] = joined["rs_starter_avg_ip"] - joined["actual_ip"]
 
+    all_16_25 = joined[joined["season"].between(2016, 2025)].copy()
     eval_ = joined[joined["season"].between(2017, 2025)].copy()
-    baseline_rmse = _rmse(eval_["baseline_rs_ip_error"]) if len(eval_) else None
+    matched_eval = eval_[eval_["rs_link_status"] == "MATCHED"].copy()
+    missing_rows = eval_[eval_["rs_link_status"] != "MATCHED"].copy()
+
+    observed_missing = {
+        (int(r.season), str(r.game_pk), str(r.starter_id), str(r.starter_name))
+        for r in missing_rows.itertuples(index=False)
+    }
+    missing_details = [
+        {
+            "season": int(r.season),
+            "game_date": str(r.game_date),
+            "game_pk": str(r.game_pk),
+            "team": str(r.team),
+            "starter_id": str(r.starter_id),
+            "starter_name": str(r.starter_name),
+            "ps_actual_ip": float(r.actual_ip),
+            "status": "NO_SAME_SEASON_RS_START_HISTORY",
+        }
+        for r in missing_rows.itertuples(index=False)
+    ]
+
+    baseline_rmse = _rmse(matched_eval["baseline_rs_ip_error"])
+    baseline_mae = _mae(matched_eval["baseline_rs_ip_error"])
     return joined, {
-        "ps_rows_2016_2025": int(len(joined[joined["season"].between(2016, 2025)])),
-        "ps_linked_rows_2016_2025": int(
-            joined.loc[joined["season"].between(2016, 2025), "rs_link_ok"].sum()
-        ),
-        "ps_missing_rs_links_2016_2025": int(
-            (~joined.loc[joined["season"].between(2016, 2025), "rs_link_ok"]).sum()
-        ),
+        "ps_rows_2016_2025": int(len(all_16_25)),
+        "ps_linked_rows_2016_2025": int((all_16_25["rs_link_status"] == "MATCHED").sum()),
+        "ps_no_rs_start_history_2016_2025": int((all_16_25["rs_link_status"] != "MATCHED").sum()),
         "ps_games_2017_2025": int(eval_["game_pk"].nunique()),
         "ps_rows_2017_2025": int(len(eval_)),
-        "ps_linked_rows_2017_2025": int(eval_["rs_link_ok"].sum()),
-        "baseline_rs_ip_rmse_2017_2025": baseline_rmse,
-        "reference_baseline_rs_ip_rmse": REFERENCE_BASELINE_RS_IP_RMSE,
-        "reference_rmse_delta": (
-            baseline_rmse - REFERENCE_BASELINE_RS_IP_RMSE
-            if baseline_rmse is not None
-            else None
+        "ps_linked_rows_2017_2025": int(len(matched_eval)),
+        "ps_no_rs_start_history_2017_2025": int(len(missing_rows)),
+        "no_rs_start_history_details": missing_details,
+        "expected_no_rs_start_history_exact_match": observed_missing == EXPECTED_NO_RS_START_HISTORY,
+        "baseline_rs_ip_rmse_matched_2017_2025": baseline_rmse,
+        "baseline_rs_ip_mae_matched_2017_2025": baseline_mae,
+        "baseline_sample_n": int(len(matched_eval)),
+        "historical_reference_baseline_rs_ip_rmse": HISTORICAL_REFERENCE_BASELINE_RS_IP_RMSE,
+        "historical_reference_rmse_delta_on_current_matched_sample": (
+            baseline_rmse - HISTORICAL_REFERENCE_BASELINE_RS_IP_RMSE
+        ),
+        "historical_reference_status": "NON_REPRODUCIBLE_AS_258_ROW_RS_STARTER_BASELINE",
+        "historical_reference_reason": (
+            "Saved Phase-2 builder requires every PS starter to have same-season RS starter history, "
+            "but raw Naver reconstruction has two verified PS starters with zero same-season RS starts. "
+            "No inference/fallback is applied here."
         ),
     }
 
@@ -228,7 +271,7 @@ def main() -> None:
     linked, join = audit_ps_join(Path(args.ps_input), avg)
 
     expected_games = 720 * len(years) if years == YEARS else None
-    aggregate_checks = {
+    checks = {
         "all_source_seasons_present": sorted(rs["season"].astype(int).unique().tolist()) == years,
         "all_rows_two_per_game": int(len(rs)) == 2 * int(rs["game_id"].nunique()),
         "expected_720_games_per_season_2016_2025": (
@@ -236,15 +279,11 @@ def main() -> None:
         ),
         "ps_2017_2025_expected_129_games": join["ps_games_2017_2025"] == REFERENCE_2017_2025_PS_GAMES,
         "ps_2017_2025_expected_258_rows": join["ps_rows_2017_2025"] == REFERENCE_2017_2025_PS_ROWS,
-        "ps_2017_2025_all_linked_to_rs": join["ps_linked_rows_2017_2025"] == REFERENCE_2017_2025_PS_ROWS,
-        "ps_2016_2025_all_linked_to_rs": join["ps_missing_rs_links_2016_2025"] == 0,
-        "baseline_rmse_matches_phase2_within_0_001": (
-            abs(join["reference_rmse_delta"]) <= 0.001
-            if join["reference_rmse_delta"] is not None
-            else False
-        ),
+        "ps_2017_2025_exactly_256_rs_history_matches": join["ps_linked_rows_2017_2025"] == 256,
+        "ps_2017_2025_exactly_2_no_rs_start_history": join["ps_no_rs_start_history_2017_2025"] == 2,
+        "no_rs_start_history_rows_match_reverified_naver_cases": join["expected_no_rs_start_history_exact_match"],
     }
-    required_checks = [v for v in aggregate_checks.values() if v is not None]
+    required_checks = [v for v in checks.values() if v is not None]
     status = "PASS" if all(required_checks) else "FAIL"
 
     rs_out = out / "rs_starter_appearances_2016_2025.csv"
@@ -271,7 +310,11 @@ def main() -> None:
         "player_season_rows": int(len(avg)),
         "appearance_validation": validation,
         "ps_join_audit": join,
-        "checks": aggregate_checks,
+        "checks": checks,
+        "policy": {
+            "zero_rs_start_history": "UNAVAILABLE; no inferred fallback in Step 2",
+            "historical_phase2_reference": "retained for audit only; not a production parity target",
+        },
         "outputs": {
             "rs_appearances": str(rs_out),
             "player_season_avg": str(avg_out),
