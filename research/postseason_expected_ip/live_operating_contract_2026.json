@@ -1,0 +1,54 @@
+{
+  "status": "ACTIVE_RESEARCH_CHALLENGER_CANONICAL_STRICT",
+  "model_id": "PS_EXPECTED_IP_STRICT_SHIFT_2026_V1",
+  "source_of_truth": "research/postseason_expected_ip/canonical_recovery_status.json",
+  "canonical_shift_ip": -0.7598198773356355,
+  "scope": "Postseason starter usage / Expected IP challenger only; not a postseason pitching-skill bonus.",
+  "eligibility": {
+    "same_season_rs_starts_min": 1,
+    "zero_same_season_rs_starts": "UNAVAILABLE",
+    "name_fallback": "FORBIDDEN",
+    "relief_ip_fallback": "FORBIDDEN",
+    "team_or_league_fallback": "FORBIDDEN",
+    "forensic_backsolved_fallback": "FORBIDDEN"
+  },
+  "formula": "challenger_mean_ip = clamp(rs_starter_avg_ip + canonical_shift_ip, 0, 9)",
+  "historical_support": {
+    "training_postseasons": "2016-2025",
+    "training_delta_eligible": 284,
+    "walk_forward_seasons": "2017-2025",
+    "walk_forward_evaluable": 256,
+    "walk_forward_games": 129,
+    "candidate_rmse": 1.683392255649752,
+    "baseline_rs_ip_rmse": 1.8491633790207755,
+    "candidate_rmse_season_wins": "9/9"
+  },
+  "priority_order": [
+    "current_role",
+    "hard_pitch_cap_or_workload_limit",
+    "injury_or_current_news",
+    "rest_and_recent_workload",
+    "manager_leash_evidence",
+    "Champion_Expected_IP",
+    "historical_PS_Expected_IP_Challenger"
+  ],
+  "special_context": {
+    "roles_requiring_review": ["OPENER", "BULLPEN_GAME", "EMERGENCY_START", "UNKNOWN"],
+    "pitch_cap_present": "CONTEXT_REVIEW_REQUIRED",
+    "injury_news_present": "CONTEXT_REVIEW_REQUIRED",
+    "short_rest_present": "CONTEXT_REVIEW_REQUIRED",
+    "tight_manager_leash": "CONTEXT_REVIEW_REQUIRED"
+  },
+  "output_contract": {
+    "CHALLENGER_ONLY": "Eligible historical reference; never silently replace Champion Expected IP.",
+    "CONTEXT_REVIEW_REQUIRED": "Historical number may be displayed but must not be auto-applied before current-context adjustment.",
+    "UNAVAILABLE": "Do not fabricate a historical challenger value."
+  },
+  "reproducibility": {
+    "mean_forecast": "REPRODUCIBLE_STRICT_284",
+    "walk_forward": "REPRODUCIBLE_STRICT_256",
+    "strict_residual_vector": "REPRODUCIBLE_284",
+    "legacy_exact_258_fallback_rule": "UNRECOVERABLE",
+    "tail_probabilities_live_use": "NOT_ACTIVATED_PENDING_SEPARATE_CALIBRATION"
+  }
+}
