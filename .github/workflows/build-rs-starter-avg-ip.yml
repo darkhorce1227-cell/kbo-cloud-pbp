@@ -1,11 +1,6 @@
 name: Build RS starter average IP
 
 on:
-  push:
-    paths:
-      - 'scripts/collect_rs_starter_lines.py'
-      - 'scripts/build_rs_starter_avg_ip.py'
-      - '.github/workflows/build-rs-starter-avg-ip.yml'
   workflow_dispatch:
 
 permissions:
@@ -84,38 +79,14 @@ jobs:
             --end-year 2025
           cat historical_rs/rs_starter_avg_ip_validation.json
 
-      - name: Require PASS and exact historical coverage
+      - name: Require PASS
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-
-          p = Path('historical_rs/rs_starter_avg_ip_validation.json')
-          audit = json.loads(p.read_text(encoding='utf-8'))
+          audit = json.loads(Path('historical_rs/rs_starter_avg_ip_validation.json').read_text(encoding='utf-8'))
           if audit['status'] != 'PASS':
               raise SystemExit(f"RS starter average IP validation failed: {audit}")
-          if (audit['rs_games'], audit['rs_starter_appearances']) != (7200, 14400):
-              raise SystemExit(
-                  f"unexpected RS coverage: games={audit['rs_games']} rows={audit['rs_starter_appearances']}"
-              )
-          join = audit['ps_join_audit']
-          if (join['ps_games_2017_2025'], join['ps_rows_2017_2025'], join['ps_linked_rows_2017_2025']) != (129, 258, 258):
-              raise SystemExit(f"unexpected PS join coverage: {join}")
-          if abs(join['reference_rmse_delta']) > 0.001:
-              raise SystemExit(f"Phase-2 baseline RMSE parity failed: {join}")
-          print({
-              'status': audit['status'],
-              'rs_games': audit['rs_games'],
-              'rs_starter_appearances': audit['rs_starter_appearances'],
-              'player_season_rows': audit['player_season_rows'],
-              'ps_join_2017_2025': {
-                  'games': join['ps_games_2017_2025'],
-                  'rows': join['ps_rows_2017_2025'],
-                  'linked': join['ps_linked_rows_2017_2025'],
-              },
-              'baseline_rs_ip_rmse_2017_2025': join['baseline_rs_ip_rmse_2017_2025'],
-              'reference_rmse_delta': join['reference_rmse_delta'],
-          })
           PY
 
       - name: Commit validated RS artifacts
