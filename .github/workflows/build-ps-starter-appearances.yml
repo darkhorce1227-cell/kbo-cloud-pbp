@@ -1,0 +1,63 @@
+name: Build PS starter appearances
+
+on:
+  push:
+    paths:
+      - 'scripts/build_ps_starter_appearances.py'
+      - '.github/workflows/build-ps-starter-appearances.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime deps
+        run: pip install pandas pyarrow
+
+      - name: Download historical PS master release asset
+        run: |
+          mkdir -p historical_ps
+          curl -L --fail --retry 3 \
+            -o historical_ps/postseason_all_available.parquet \
+            https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/historical-ps-master/postseason_all_available.parquet
+
+      - name: Build starter appearances and audit
+        run: |
+          python scripts/build_ps_starter_appearances.py --allow-audit-fail
+          cat historical_ps/ps_starter_appearances_validation.json
+
+      - name: Require audit PASS
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('historical_ps/ps_starter_appearances_validation.json')
+          audit = json.loads(p.read_text(encoding='utf-8'))
+          if audit['status'] != 'PASS':
+              raise SystemExit(f"starter appearance audit failed: {audit['critical_failures']}")
+          print({k: audit[k] for k in ('status','games','plate_appearances','starter_appearances','mid_pa_pitcher_change_pas')})
+          PY
+
+      - name: Commit validated outputs
+        run: |
+          rm -f historical_ps/postseason_all_available.parquet
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add historical_ps/ps_starter_appearances.csv \
+                  historical_ps/ps_starter_appearances_validation.json \
+                  historical_ps/ps_starter_appearances_defense_outs_audit.csv
+          if git diff --cached --quiet; then
+            echo 'No output changes to commit'
+          else
+            git commit -m 'Add validated postseason starter appearance artifacts'
+            git push
+          fi
