@@ -35,6 +35,36 @@ jobs:
           python scripts/build_ps_starter_appearances.py --allow-audit-fail
           cat historical_ps/ps_starter_appearances_validation.json
 
+      - name: Diagnose missing-starter games
+        run: |
+          python - <<'PY'
+          import json
+          import pandas as pd
+          from pathlib import Path
+
+          df = pd.read_parquet('historical_ps/postseason_all_available.parquet')
+          audit = json.loads(Path('historical_ps/ps_starter_appearances_validation.json').read_text(encoding='utf-8'))
+          for item in audit['bad_starter_games']:
+              season, game_pk = item['season'], item['game_pk']
+              g = df[(df['season'] == season) & (df['game_pk'].astype(str) == str(game_pk))].copy()
+              print('\nBAD_GAME', season, game_pk, 'rows=', len(g))
+              if g.empty:
+                  continue
+              cols = [c for c in ['data_quality','coverage_status','home_team','away_team'] if c in g.columns]
+              for c in cols:
+                  print(c, sorted(g[c].dropna().astype(str).unique().tolist()))
+              print('halves', g.groupby('inning_topbot').size().to_dict())
+              for half, hg in g.groupby('inning_topbot'):
+                  ids = hg['pitcher'].dropna().astype(str)
+                  names = hg['pitcher_name'].dropna().astype(str)
+                  print('half', half,
+                        'rows', len(hg),
+                        'nonnull_pitcher_rows', len(ids),
+                        'unique_pitchers', ids.nunique(),
+                        'pitcher_ids', ids.drop_duplicates().head(10).tolist(),
+                        'pitcher_names', names.drop_duplicates().head(10).tolist())
+          PY
+
       - name: Require audit PASS
         run: |
           python - <<'PY'
