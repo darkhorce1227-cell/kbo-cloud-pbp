@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "step": 3,
+  "definition": "PS starter appearance joined to same-season player RS starter-average IP",
+  "join_key": [
+    "season",
+    "Naver stable player id"
+  ],
+  "delta_definition": "actual_PS_IP - same-season_RS_starter_avg_IP",
+  "policy": {
+    "name_match_fallback": "FORBIDDEN",
+    "team_or_reliever_fallback": "FORBIDDEN",
+    "zero_same_season_rs_starts": "UNAVAILABLE",
+    "rolling_historical_shift": "NOT_COMPUTED_IN_STEP_3"
+  },
+  "coverage": {
+    "ps_games_2016_2025": 143,
+    "ps_starter_appearances_2016_2025": 286,
+    "matched_2016_2025": 284,
+    "unavailable_2016_2025": 2,
+    "ps_games_2017_2025": 129,
+    "ps_starter_appearances_2017_2025": 258,
+    "matched_2017_2025": 256,
+    "unavailable_2017_2025": 2
+  },
+  "by_season": [
+    {
+      "season": 2016,
+      "games": 14,
+      "ps_starter_appearances": 28,
+      "matched": 28,
+      "unavailable": 0
+    },
+    {
+      "season": 2017,
+      "games": 15,
+      "ps_starter_appearances": 30,
+      "matched": 30,
+      "unavailable": 0
+    },
+    {
+      "season": 2018,
+      "games": 16,
+      "ps_starter_appearances": 32,
+      "matched": 31,
+      "unavailable": 1
+    },
+    {
+      "season": 2019,
+      "games": 12,
+      "ps_starter_appearances": 24,
+      "matched": 24,
+      "unavailable": 0
+    },
+    {
+      "season": 2020,
+      "games": 13,
+      "ps_starter_appearances": 26,
+      "matched": 26,
+      "unavailable": 0
+    },
+    {
+      "season": 2021,
+      "games": 11,
+      "ps_starter_appearances": 22,
+      "matched": 22,
+      "unavailable": 0
+    },
+    {
+      "season": 2022,
+      "games": 16,
+      "ps_starter_appearances": 32,
+      "matched": 31,
+      "unavailable": 1
+    },
+    {
+      "season": 2023,
+      "games": 14,
+      "ps_starter_appearances": 28,
+      "matched": 28,
+      "unavailable": 0
+    },
+    {
+      "season": 2024,
+      "games": 16,
+      "ps_starter_appearances": 32,
+      "matched": 32,
+      "unavailable": 0
+    },
+    {
+      "season": 2025,
+      "games": 16,
+      "ps_starter_appearances": 32,
+      "matched": 32,
+      "unavailable": 0
+    }
+  ],
+  "unavailable_details": [
+    {
+      "season": 2018,
+      "game_date": "2018-10-23",
+      "game_pk": "33331023HHWO02018",
+      "team": "HH",
+      "starter_id": "68703",
+      "starter_name": "박주홍",
+      "actual_ps_ip": 3.6666666666666665,
+      "status": "NO_SAME_SEASON_RS_START_HISTORY"
+    },
+    {
+      "season": 2022,
+      "game_date": "2022-11-05",
+      "game_pk": "77771105SKWO02022",
+      "team": "WO",
+      "starter_id": "67603",
+      "starter_name": "이승호",
+      "actual_ps_ip": 4.0,
+      "status": "NO_SAME_SEASON_RS_START_HISTORY"
+    }
+  ],
+  "failure_counts": {
+    "duplicate_rs_player_season_keys": 0,
+    "bad_ps_ip_rows": 0,
+    "bad_rs_avg_formula_rows": 0,
+    "bad_delta_formula_rows": 0,
+    "unavailable_nonnull_baseline_rows": 0,
+    "unavailable_nonnull_delta_rows": 0
+  },
+  "checks": {
+    "upstream_ps_validation_pass": true,
+    "upstream_rs_validation_pass": true,
+    "ps_rows_2016_2025_exactly_286": true,
+    "ps_games_2016_2025_exactly_143": true,
+    "eval_2017_2025_games_exactly_129": true,
+    "eval_2017_2025_rows_exactly_258": true,
+    "eval_2017_2025_matched_exactly_256": true,
+    "eval_2017_2025_unavailable_exactly_2": true,
+    "unavailable_identities_exact": true,
+    "no_duplicate_rs_player_season_keys": true,
+    "ps_ip_equals_outs_over_3": true,
+    "rs_avg_ip_formula_exact": true,
+    "delta_formula_exact": true,
+    "unavailable_has_no_baseline": true,
+    "unavailable_has_no_delta": true
+  },
+  "inputs": {
+    "ps": "historical_ps/ps_starter_appearances.csv",
+    "ps_validation": "historical_ps/ps_starter_appearances_validation.json",
+    "rs": "historical_rs/rs_starter_avg_ip_by_player_season.csv",
+    "rs_validation": "historical_rs/rs_starter_avg_ip_validation.json"
+  },
+  "output": "research/postseason_expected_ip/ps_rs_starter_avg_ip.csv"
+}
