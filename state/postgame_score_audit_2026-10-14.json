@@ -48,7 +48,7 @@
     "stable_key_duplicates_zero": true,
     "status_validation_pass": true
   },
-  "generated_at_kst": "2026-10-17T17:33:03.182746+09:00",
+  "generated_at_kst": "2026-10-17T18:31:08.547524+09:00",
   "missing_required_columns": [],
   "official_crosscheck_games_found": 1,
   "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
