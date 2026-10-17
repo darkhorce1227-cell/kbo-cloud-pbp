@@ -1,0 +1,114 @@
+{
+  "activation_tests": {
+    "IP_GE_5": {
+      "abs_calibration_in_the_large_le_0_05": true,
+      "ece_5bin_le_0_10": true,
+      "positive_brier_skill_vs_climatology": true
+    },
+    "IP_GE_6": {
+      "abs_calibration_in_the_large_le_0_05": true,
+      "ece_5bin_le_0_10": true,
+      "positive_brier_skill_vs_climatology": true
+    },
+    "IP_LT_4": {
+      "abs_calibration_in_the_large_le_0_05": true,
+      "ece_5bin_le_0_10": true,
+      "positive_brier_skill_vs_climatology": true
+    }
+  },
+  "checks": {
+    "2026_residual_mean_matches_canonical": true,
+    "2026_residual_n_284": true,
+    "all_probabilities_strictly_inside_0_1": true,
+    "eval_matched_rows_256": true,
+    "eval_total_rows_258": true,
+    "eval_unavailable_rows_2": true,
+    "events_exact": true,
+    "first_eval_fold_prior_n_28": true,
+    "no_target_or_future_leakage": true,
+    "prediction_rows_768": true
+  },
+  "counts": {
+    "eval_matched": 256,
+    "eval_total": 258,
+    "eval_unavailable": 2,
+    "prediction_event_rows": 768,
+    "strict_2026_residual_n": 284
+  },
+  "definition": {
+    "benchmarks": [
+      "expanding_prior_postseason_climatology",
+      "Gaussian_prior_residual_distribution"
+    ],
+    "empirical_probability": "Jeffreys-smoothed expanding prior-season residual CDF",
+    "events": {
+      "IP_GE_5": {
+        "operator": ">=",
+        "threshold_ip": 5.0
+      },
+      "IP_GE_6": {
+        "operator": ">=",
+        "threshold_ip": 6.0
+      },
+      "IP_LT_4": {
+        "operator": "<",
+        "threshold_ip": 4.0
+      }
+    },
+    "residual": "actual_ps_ip - same-season_player_rs_starter_avg_ip"
+  },
+  "empirical_model_by_event": {
+    "IP_GE_5": {
+      "brier": 0.2277090643390276,
+      "brier_skill_vs_prior_climatology": 0.08680182322613728,
+      "calibration_in_the_large": -0.02624299384821338,
+      "ece_5bin": 0.04138130431072099,
+      "event_rate": 0.58203125,
+      "log_loss": 0.6475808741267137,
+      "mean_probability": 0.5557882561517866,
+      "n": 256,
+      "season_brier_wins_vs_climatology": 8,
+      "season_count": 9
+    },
+    "IP_GE_6": {
+      "brier": 0.20785724270142497,
+      "brier_skill_vs_prior_climatology": 0.12582403534281095,
+      "calibration_in_the_large": -0.019961218313525375,
+      "ece_5bin": 0.024822273523620483,
+      "event_rate": 0.34375,
+      "log_loss": 0.611673432536829,
+      "mean_probability": 0.3237887816864746,
+      "n": 256,
+      "season_brier_wins_vs_climatology": 8,
+      "season_count": 9
+    },
+    "IP_LT_4": {
+      "brier": 0.18022557922485005,
+      "brier_skill_vs_prior_climatology": 0.0777897484807265,
+      "calibration_in_the_large": -0.005150296828743128,
+      "ece_5bin": 0.016954166331403543,
+      "event_rate": 0.2578125,
+      "log_loss": 0.5405039878731465,
+      "mean_probability": 0.25266220317125687,
+      "n": 256,
+      "season_brier_wins_vs_climatology": 8,
+      "season_count": 9
+    }
+  },
+  "live_tail_activation_recommended": true,
+  "scope": "RESEARCH_ONLY_NO_LIVE_ACTIVATION",
+  "status": "PASS",
+  "strict_2026_residual_distribution": {
+    "mean": -0.7598198773356355,
+    "median": -0.5205254515599345,
+    "q05": -3.93459595959596,
+    "q10": -3.3187100893997448,
+    "q25": -1.8357843137254901,
+    "q75": 0.4444444444444446,
+    "q90": 1.2174603174603176,
+    "q95": 1.704444444444443,
+    "sd": 1.6727803774581482
+  },
+  "study": "PS_EXPECTED_IP_TAIL_PROBABILITY_WALK_FORWARD_V1",
+  "usage_rule": "Do not enable live tail probabilities unless calibration gate passes; current role/pitch cap/injury/rest/manager leash remain higher priority regardless."
+}
