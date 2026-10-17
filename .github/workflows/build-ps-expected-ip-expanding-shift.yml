@@ -1,0 +1,86 @@
+name: Build PS Expected IP expanding shift
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_ps_expected_ip_expanding_shift.py'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip.csv'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json'
+      - 'research/postseason_expected_ip/frozen_2026_prior.json'
+      - '.github/workflows/build-ps-expected-ip-expanding-shift.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install 'pandas>=2.2,<3'
+      - name: Build Step 4 expanding shift artifact
+        run: |
+          python scripts/build_ps_expected_ip_expanding_shift.py \
+            --input research/postseason_expected_ip/ps_rs_starter_avg_ip.csv \
+            --step3-validation research/postseason_expected_ip/ps_rs_starter_avg_ip_validation.json \
+            --frozen-reference research/postseason_expected_ip/frozen_2026_prior.json \
+            --output-dir research/postseason_expected_ip
+          cat research/postseason_expected_ip/ps_expected_ip_expanding_shift_validation.json
+      - name: Require exact Step 4 leakage-free coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/postseason_expected_ip/ps_expected_ip_expanding_shift_validation.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          if x['status'] != 'PASS':
+              raise SystemExit(x)
+          if x['targets'] != list(range(2017, 2027)):
+              raise SystemExit(f"bad target sequence: {x['targets']}")
+          c = x['checks']
+          required = [
+              'step3_validation_pass',
+              'target_seasons_exactly_2017_2026',
+              'source_starts_at_2016_for_every_target',
+              'source_through_is_target_minus_one',
+              'no_target_or_future_season_leakage',
+              'historical_counts_exact',
+              'shift_formula_exact',
+              'eligible_counts_monotone',
+              'target_2026_total_history_exactly_286',
+              'target_2026_eligible_history_exactly_284',
+              'target_2026_unavailable_history_exactly_2',
+              'step4_does_not_emit_prediction_metrics',
+          ]
+          bad = [k for k in required if not c.get(k)]
+          if bad:
+              raise SystemExit(f'failed checks: {bad}')
+          r = x['rebuilt_2026']
+          got = (
+              r['historical_ps_starter_appearances_total'],
+              r['eligible_delta_appearances'],
+              r['unavailable_delta_appearances'],
+          )
+          if got != (286, 284, 2):
+              raise SystemExit(f'bad 2026 history counts: {got}')
+          print({'status': x['status'], 'rebuilt_2026': r, 'reference': x['frozen_2026_reference']})
+          PY
+      - name: Commit Step 4 artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            research/postseason_expected_ip/ps_expected_ip_expanding_shift_by_target_season.csv \
+            research/postseason_expected_ip/ps_expected_ip_expanding_shift_validation.json
+          if git diff --cached --quiet; then
+            echo 'No Step 4 artifact changes to commit'
+          else
+            git commit -m 'Publish leakage-free postseason Expected IP expanding shifts'
+            git push
+          fi
