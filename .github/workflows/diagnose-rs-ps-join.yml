@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  actions: read
 
 jobs:
   diagnose:
@@ -18,94 +17,62 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install 'pandas>=2.2,<3'
+      - name: Install runtime deps
+        run: pip install -r requirements.txt
 
-      - name: Download RS source artifacts from validated collection run
-        uses: actions/download-artifact@v4
-        with:
-          pattern: rs-starters-*
-          path: historical_rs/source
-          merge-multiple: true
-          run-id: 38999236423
-          github-token: ${{ github.token }}
-
-      - name: Diagnose join mismatches and RMSE
+      - name: Verify target postseason starter identities from Naver inning-1 relay
         run: |
           python - <<'PY'
-          import math
-          from pathlib import Path
-          import pandas as pd
+          from kbo_pbp import naver, schedule
 
-          parts=[]
-          for y in range(2016, 2026):
-              p=Path(f'historical_rs/source/{y}_rs_starters.csv')
-              x=pd.read_csv(p, dtype={'starter_pcode':str,'game_id':str})
-              x['starter_pcode']=x['starter_pcode'].astype(str).str.replace(r'\.0$','',regex=True)
-              parts.append(x)
-          rs=pd.concat(parts,ignore_index=True)
-          rs['season']=rs['season'].astype(int)
-          rs['actual_outs']=rs['actual_outs'].astype(int)
+          targets = {
+              2018: '33331023HHWO02018',
+              2022: '77771105SKWO02022',
+          }
 
-          avg=(rs.groupby(['season','starter_pcode'],as_index=False)
-                 .agg(rs_name=('starter_name','first'),
-                      rs_names=('starter_name',lambda s:'|'.join(sorted(set(str(v) for v in s if pd.notna(v))))),
-                      rs_starts=('game_id','size'),
-                      rs_outs=('actual_outs','sum')))
-          avg['rs_avg_ip']=avg['rs_outs']/(3*avg['rs_starts'])
+          for year, target in targets.items():
+              season = schedule.fetch(year)
+              ps = schedule.playable(season, rounds=schedule.POSTSEASON)
+              print('\nYEAR', year, 'PS_GAMES', len(ps), 'TARGET', target)
+              matched_schedule = []
+              for _, row in ps.iterrows():
+                  g = row.to_dict()
+                  gid = str(g.get('gameId') or g.get('id') or '')
+                  candidates = [gid]
+                  if gid and not gid.endswith(str(year)):
+                      candidates.append(gid + str(year))
+                  date = str(g.get('gameDate') or '')[:10].replace('-', '')
+                  away = str(g.get('awayTeamCode') or '').strip()
+                  home = str(g.get('homeTeamCode') or '').strip()
+                  if len(date) == 8 and away and home:
+                      for h in ('0','1','2'):
+                          candidates.append(f'{date}{away}{home}{h}{year}')
+                  if target in candidates:
+                      matched_schedule.append((gid, g.get('gameDate'), away, home, g.get('roundCode')))
+              print('SCHEDULE_MATCH', matched_schedule)
 
-          ps=pd.read_csv('historical_ps/ps_starter_appearances.csv',dtype={'starter_id':str,'game_pk':str})
-          ps['season']=ps['season'].astype(int)
-          ps['starter_id']=ps['starter_id'].astype(str).str.replace(r'\.0$','',regex=True)
-          ps['actual_ip']=ps['actual_ip'].astype(float)
-          j=ps.merge(avg,left_on=['season','starter_id'],right_on=['season','starter_pcode'],how='left')
-          miss=j[j['rs_avg_ip'].isna()].copy()
-          print('MISSING_COUNT',len(miss))
-          print(miss[['season','game_date','game_pk','team','starter_id','starter_name','actual_ip']].to_string(index=False))
-
-          print('\nNAME_CANDIDATES')
-          candidate_rows=[]
-          for r in miss.itertuples(index=False):
-              cand=avg[(avg.season==r.season)&(avg.rs_name.astype(str)==str(r.starter_name))].copy()
-              print('\nPS',r.season,r.game_pk,r.starter_id,r.starter_name,'IP',r.actual_ip)
-              if cand.empty:
-                  print('NO EXACT NAME CANDIDATE')
-              else:
-                  print(cand[['season','starter_pcode','rs_name','rs_names','rs_starts','rs_avg_ip']].to_string(index=False))
-                  for c in cand.itertuples(index=False):
-                      candidate_rows.append((r.season,r.game_pk,r.starter_id,r.starter_name,c.starter_pcode,c.rs_starts,c.rs_avg_ip))
-
-          evalj=j[j.season.between(2017,2025)].copy()
-          matched=evalj[evalj.rs_avg_ip.notna()].copy()
-          rmse_matched=math.sqrt(((matched.rs_avg_ip-matched.actual_ip)**2).mean())
-          print('\nMATCHED_ONLY',{'n':len(matched),'rmse':rmse_matched})
-
-          # Diagnostic only: fill a missing row iff same-season exact name resolves uniquely.
-          filled=evalj.copy()
-          fill_details=[]
-          for idx,r in filled[filled.rs_avg_ip.isna()].iterrows():
-              cand=avg[(avg.season==r.season)&(avg.rs_name.astype(str)==str(r.starter_name))]
-              if len(cand)==1:
-                  c=cand.iloc[0]
-                  filled.loc[idx,'rs_avg_ip']=c.rs_avg_ip
-                  filled.loc[idx,'starter_pcode']=c.starter_pcode
-                  fill_details.append({
-                      'season':int(r.season),'game_pk':r.game_pk,
-                      'ps_id':r.starter_id,'name':r.starter_name,
-                      'rs_id':c.starter_pcode,'rs_starts':int(c.rs_starts),
-                      'rs_avg_ip':float(c.rs_avg_ip),
+              relay = naver.fetch_relay(target, 1)
+              for side in ('away', 'home'):
+                  pitchers = ((relay.get(f'{side}Lineup') or {}).get('pitcher') or [])
+                  pitchers = sorted(pitchers, key=lambda p: int(p.get('seqno') or 999))
+                  print(side.upper(), 'PITCHERS')
+                  for p in pitchers:
+                      print({
+                          'seqno': p.get('seqno'),
+                          'pcode': p.get('pcode'),
+                          'name': p.get('name'),
+                          'inn': p.get('inn'),
+                          'ballCount': p.get('ballCount'),
+                          'run': p.get('run'),
+                          'er': p.get('er'),
+                      })
+                  if not pitchers:
+                      raise SystemExit(f'{year} {side}: no pitcher lineup')
+                  starter = pitchers[0]
+                  print('STARTER', side, {
+                      'seqno': starter.get('seqno'),
+                      'pcode': starter.get('pcode'),
+                      'name': starter.get('name'),
+                      'inn': starter.get('inn'),
                   })
-          print('UNIQUE_NAME_FILL',fill_details)
-          if filled.rs_avg_ip.notna().all():
-              rmse_full=math.sqrt(((filled.rs_avg_ip-filled.actual_ip)**2).mean())
-              print('FULL_AFTER_UNIQUE_NAME_FILL',{'n':len(filled),'rmse':rmse_full,'delta_vs_reference':rmse_full-1.84291})
-          else:
-              print('STILL_MISSING',filled[filled.rs_avg_ip.isna()][['season','game_pk','starter_id','starter_name']].to_dict('records'))
-
-          # Show all same-season RS pcode rows whose normalized Korean/Latin name contains target token.
-          print('\nFUZZY_NAME_SCAN')
-          for r in miss.itertuples(index=False):
-              token=str(r.starter_name).replace(' ','').lower()
-              cand=avg[(avg.season==r.season)&avg.rs_names.astype(str).str.replace(' ','').str.lower().str.contains(token,regex=False)]
-              print(r.season,r.starter_id,r.starter_name)
-              print(cand[['starter_pcode','rs_names','rs_starts','rs_avg_ip']].to_string(index=False) if len(cand) else 'NONE')
           PY
