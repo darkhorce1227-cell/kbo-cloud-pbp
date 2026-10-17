@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "version": "ps-expected-ip-simple-shift-audited-v0.2",
+  "formula": "player same-season RS starter avg IP + expanding mean(previous matched PS actual IP - same-season player RS starter avg IP)",
+  "leakage_rule": "target season Y uses only matched PS starter appearances from seasons < Y",
+  "source_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "ps_starter_appearances_2016_2025": 286,
+  "matched_ps_starter_appearances_2016_2025": 284,
+  "cold_start_ps_starter_appearances_2016_2025": 2,
+  "sequential_eval_seasons": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "sequential_games": 129,
+  "sequential_matched_starter_appearances": 256,
+  "baseline_rs_ip_rmse": 1.8491633790207755,
+  "baseline_rs_ip_mae": 1.408079901731732,
+  "candidate_rmse": 1.683392255649752,
+  "candidate_mae": 1.3308631434511329,
+  "candidate_mse_delta_vs_baseline": -0.5855957159299718,
+  "candidate_rmse_season_wins": 9,
+  "candidate_rmse_seasons_evaluated": 9,
+  "bootstrap_game_mse_delta": {
+    "cluster": "game_pk",
+    "reps": 50000,
+    "seed": 20261017,
+    "point": -0.5855957159299718,
+    "ci_low": -0.8618956124146192,
+    "ci_high": -0.31540053893561365
+  },
+  "shift_for_2026": -0.7598198773356355,
+  "cold_start": {
+    "n": 2,
+    "policy": "not part of matched-sample Challenger; no automatic production fallback",
+    "team_shift_rmse": 0.9062487068632863,
+    "league_shift_rmse": 1.0307255737633207,
+    "interpretation": "n=2 only; sensitivity/descriptive, not validation"
+  },
+  "historical_reference_phase2": {
+    "sequential_seasons": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "games": 129,
+    "starter_appearances": 258,
+    "baseline_rs_ip_rmse": 1.84291,
+    "candidate_rmse": 1.67696,
+    "candidate_mae": 1.32339,
+    "candidate_rmse_season_wins": 9,
+    "mse_improvement_ci": [
+      -0.859,
+      -0.312
+    ]
+  },
+  "historical_reference_status": "AUDIT_ONLY_NON_REPRODUCIBLE_AS_258_ROW_PLAYER_RS_BASELINE",
+  "checks": {
+    "ps_total_286": true,
+    "matched_284": true,
+    "cold_start_2": true,
+    "sequential_eval_2017_2025": true,
+    "sequential_games_129": true,
+    "sequential_matched_rows_256": true,
+    "nine_seasons_evaluated": true,
+    "shift_2026_available": true,
+    "all_prediction_inputs_nonmissing": true
+  }
+}
