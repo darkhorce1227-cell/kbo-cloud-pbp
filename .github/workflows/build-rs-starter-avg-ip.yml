@@ -1,0 +1,131 @@
+name: Build RS starter average IP
+
+on:
+  push:
+    paths:
+      - 'scripts/collect_rs_starter_lines.py'
+      - 'scripts/build_rs_starter_avg_ip.py'
+      - '.github/workflows/build-rs-starter-avg-ip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        year: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime deps
+        run: pip install -r requirements.txt
+
+      - name: Collect regular-season starter lines
+        run: |
+          python scripts/collect_rs_starter_lines.py \
+            --year ${{ matrix.year }} \
+            --output-dir historical_rs/source \
+            --pause 0.05 \
+            --retries 4
+          cat historical_rs/source/${{ matrix.year }}_rs_summary.json
+
+      - name: Upload year source
+        uses: actions/upload-artifact@v4
+        with:
+          name: rs-starters-${{ matrix.year }}
+          path: |
+            historical_rs/source/${{ matrix.year }}_rs_starters.csv
+            historical_rs/source/${{ matrix.year }}_rs_summary.json
+            historical_rs/source/${{ matrix.year }}_rs_errors.json
+          if-no-files-found: error
+          retention-days: 7
+
+  build:
+    needs: collect
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install build deps
+        run: pip install 'pandas>=2.2,<3'
+
+      - name: Download all year sources
+        uses: actions/download-artifact@v4
+        with:
+          pattern: rs-starters-*
+          path: historical_rs/source
+          merge-multiple: true
+
+      - name: Build player-season RS average IP and PS join audit
+        run: |
+          python scripts/build_rs_starter_avg_ip.py \
+            --source-dir historical_rs/source \
+            --ps-input historical_ps/ps_starter_appearances.csv \
+            --output-dir historical_rs \
+            --start-year 2016 \
+            --end-year 2025
+          cat historical_rs/rs_starter_avg_ip_validation.json
+
+      - name: Require PASS and exact historical coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('historical_rs/rs_starter_avg_ip_validation.json')
+          audit = json.loads(p.read_text(encoding='utf-8'))
+          if audit['status'] != 'PASS':
+              raise SystemExit(f"RS starter average IP validation failed: {audit}")
+          if (audit['rs_games'], audit['rs_starter_appearances']) != (7200, 14400):
+              raise SystemExit(
+                  f"unexpected RS coverage: games={audit['rs_games']} rows={audit['rs_starter_appearances']}"
+              )
+          join = audit['ps_join_audit']
+          if (join['ps_games_2017_2025'], join['ps_rows_2017_2025'], join['ps_linked_rows_2017_2025']) != (129, 258, 258):
+              raise SystemExit(f"unexpected PS join coverage: {join}")
+          if abs(join['reference_rmse_delta']) > 0.001:
+              raise SystemExit(f"Phase-2 baseline RMSE parity failed: {join}")
+          print({
+              'status': audit['status'],
+              'rs_games': audit['rs_games'],
+              'rs_starter_appearances': audit['rs_starter_appearances'],
+              'player_season_rows': audit['player_season_rows'],
+              'ps_join_2017_2025': {
+                  'games': join['ps_games_2017_2025'],
+                  'rows': join['ps_rows_2017_2025'],
+                  'linked': join['ps_linked_rows_2017_2025'],
+              },
+              'baseline_rs_ip_rmse_2017_2025': join['baseline_rs_ip_rmse_2017_2025'],
+              'reference_rmse_delta': join['reference_rmse_delta'],
+          })
+          PY
+
+      - name: Commit validated RS artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add historical_rs
+          if git diff --cached --quiet; then
+            echo 'No RS artifact changes to commit'
+          else
+            git commit -m 'Publish audited 2016-2025 RS starter average IP artifacts'
+            git push
+          fi
