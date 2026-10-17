@@ -30,6 +30,24 @@ jobs:
             -o historical_ps/postseason_screen_pass.parquet \
             https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/historical-ps-master/postseason_screen_pass.parquet
 
+      - name: Probe actual out-state semantics
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          p='historical_ps/postseason_screen_pass.parquet'
+          df=pd.read_parquet(p)
+          pa=df.groupby(['season','game_pk','at_bat_number'],sort=False).tail(1).copy()
+          pa['delta']=pd.to_numeric(pa['post_outs'],errors='coerce')-pd.to_numeric(pa['outs_when_up'],errors='coerce')
+          print('GLOBAL outs_when_up', df['outs_when_up'].value_counts(dropna=False).sort_index().to_dict())
+          print('GLOBAL post_outs', df['post_outs'].value_counts(dropna=False).sort_index().to_dict())
+          print('PA delta', pa['delta'].value_counts(dropna=False).sort_index().to_dict())
+          first=pa[['season','game_pk']].drop_duplicates().iloc[0]
+          g=pa[(pa['season']==first['season'])&(pa['game_pk']==first['game_pk'])]
+          cols=[c for c in ['inning','inning_topbot','at_bat_number','pitcher_name','outs_when_up','post_outs','events','_naver_events'] if c in g.columns]
+          print('FIRST_GAME', first.to_dict())
+          print(g[cols].head(35).to_string(index=False))
+          PY
+
       - name: Build starter appearances and audit
         run: |
           python scripts/build_ps_starter_appearances.py \
@@ -37,16 +55,21 @@ jobs:
             --allow-audit-fail
           cat historical_ps/ps_starter_appearances_validation.json
 
-      - name: Require audit PASS
+      - name: Require semantic audit PASS
         run: |
           python - <<'PY'
           import json
+          import pandas as pd
           from pathlib import Path
           p = Path('historical_ps/ps_starter_appearances_validation.json')
           audit = json.loads(p.read_text(encoding='utf-8'))
+          starters = pd.read_csv('historical_ps/ps_starter_appearances.csv')
           if audit['status'] != 'PASS':
               raise SystemExit(f"starter appearance audit failed: {audit['critical_failures']}")
+          if starters['actual_outs'].sum() <= 0:
+              raise SystemExit('semantic audit failed: total starter actual_outs <= 0')
           print({k: audit[k] for k in ('status','games','plate_appearances','starter_appearances','mid_pa_pitcher_change_pas')})
+          print('starter_actual_outs_sum', int(starters['actual_outs'].sum()))
           PY
 
       - name: Commit validated outputs
