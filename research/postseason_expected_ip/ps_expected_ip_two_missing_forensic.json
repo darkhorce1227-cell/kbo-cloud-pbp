@@ -1,0 +1,1272 @@
+{
+  "status": "PASS",
+  "forensic_scope": "two zero-RS-start postseason starters only; no live imputation rule is authorized",
+  "old_phase2_reference": {
+    "candidate_rmse": 1.67696,
+    "candidate_mae": 1.32339,
+    "mse_delta_candidate_minus_baseline": -0.5841,
+    "shift_2026": -0.7588,
+    "season_wins": 9
+  },
+  "baseline_metric_inverse_solution": {
+    "missing_abs_error_sum_implied_by_old_mae": 1.3172051566766072,
+    "missing_sq_error_sum_implied_by_old_rmse": 0.8821233780478224,
+    "two_abs_error_magnitudes_ip": [
+      0.7440679680001417,
+      0.5731371886764655
+    ],
+    "note": "Old aggregate RMSE+MAE determine the two absolute missing baseline errors up to assignment and sign, subject to reported rounding."
+  },
+  "missing_rows": [
+    {
+      "season": 2018,
+      "game_date": "2018-10-23",
+      "game_pk": "33331023HHWO02018",
+      "team": "HH",
+      "starter_id": "68703",
+      "starter_name": "박주홍",
+      "actual_ip": 3.6666666666666665
+    },
+    {
+      "season": 2022,
+      "game_date": "2022-11-05",
+      "game_pk": "77771105SKWO02022",
+      "team": "WO",
+      "starter_id": "67603",
+      "starter_name": "이승호",
+      "actual_ip": 4.0
+    }
+  ],
+  "best_enumerated_solution": {
+    "assignment": [
+      {
+        "season": 2018,
+        "game_date": "2018-10-23",
+        "game_pk": "33331023HHWO02018",
+        "team": "HH",
+        "starter_id": "68703",
+        "starter_name": "박주홍",
+        "actual_ip": 3.6666666666666665,
+        "residual_actual_minus_baseline": -0.7440679680001417,
+        "baseline_ip": 4.410734634666809,
+        "abs_residual": 0.7440679680001417
+      },
+      {
+        "season": 2022,
+        "game_date": "2022-11-05",
+        "game_pk": "77771105SKWO02022",
+        "team": "WO",
+        "starter_id": "67603",
+        "starter_name": "이승호",
+        "actual_ip": 4.0,
+        "residual_actual_minus_baseline": -0.5731371886764655,
+        "baseline_ip": 4.573137188676466,
+        "abs_residual": 0.5731371886764655
+      }
+    ],
+    "metrics": {
+      "baseline_rmse": 1.84291,
+      "baseline_mae": 1.4022700000000001,
+      "candidate_rmse": 1.6768404381767372,
+      "candidate_mae": 1.3225081749964962,
+      "mse_delta_candidate_minus_baseline": -0.5845234129952481,
+      "season_wins": 9,
+      "shift_2026": -0.7591120640559339,
+      "season_metrics": [
+        {
+          "season": 2017,
+          "baseline_rmse": 1.5474558532800664,
+          "candidate_rmse": 1.5432949239055194,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.01092217614391425
+        },
+        {
+          "season": 2018,
+          "baseline_rmse": 1.4041247843636275,
+          "candidate_rmse": 1.3030797773201317,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.3126122864658203
+        },
+        {
+          "season": 2019,
+          "baseline_rmse": 2.412991056929545,
+          "candidate_rmse": 2.176189895672054,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.4126001457428061
+        },
+        {
+          "season": 2020,
+          "baseline_rmse": 1.9027723462716126,
+          "candidate_rmse": 1.7612961554964144,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.646415023105841
+        },
+        {
+          "season": 2021,
+          "baseline_rmse": 1.9469117906424238,
+          "candidate_rmse": 1.7505853943181304,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.6608555350373777
+        },
+        {
+          "season": 2022,
+          "baseline_rmse": 1.7796298609110048,
+          "candidate_rmse": 1.5319553193684057,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.6905686916996893
+        },
+        {
+          "season": 2023,
+          "baseline_rmse": 2.090973576776975,
+          "candidate_rmse": 1.7995478615319125,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.73157003677223
+        },
+        {
+          "season": 2024,
+          "baseline_rmse": 1.9020142620529477,
+          "candidate_rmse": 1.6782101261892834,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.7831710512054205
+        },
+        {
+          "season": 2025,
+          "baseline_rmse": 1.6252278304982548,
+          "candidate_rmse": 1.6009627422703565,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.7982852265140449
+        }
+      ]
+    },
+    "delta_vs_old": {
+      "candidate_rmse": -0.00011956182326278153,
+      "candidate_mae": -0.0008818250035038666,
+      "mse_delta_candidate_minus_baseline": -0.00042341299524817355,
+      "shift_2026": -0.00031206405593386943,
+      "season_wins": 0
+    },
+    "fit_score": 0.0631935509887361
+  },
+  "second_best_enumerated_solution": {
+    "assignment": [
+      {
+        "season": 2018,
+        "game_date": "2018-10-23",
+        "game_pk": "33331023HHWO02018",
+        "team": "HH",
+        "starter_id": "68703",
+        "starter_name": "박주홍",
+        "actual_ip": 3.6666666666666665,
+        "residual_actual_minus_baseline": -0.5731371886764655,
+        "baseline_ip": 4.239803855343132,
+        "abs_residual": 0.5731371886764655
+      },
+      {
+        "season": 2022,
+        "game_date": "2022-11-05",
+        "game_pk": "77771105SKWO02022",
+        "team": "WO",
+        "starter_id": "67603",
+        "starter_name": "이승호",
+        "actual_ip": 4.0,
+        "residual_actual_minus_baseline": -0.7440679680001417,
+        "baseline_ip": 4.744067968000142,
+        "abs_residual": 0.7440679680001417
+      }
+    ],
+    "metrics": {
+      "baseline_rmse": 1.84291,
+      "baseline_mae": 1.4022700000000001,
+      "candidate_rmse": 1.6768487768923839,
+      "candidate_mae": 1.3216145623863762,
+      "mse_delta_candidate_minus_baseline": -0.5844954475345159,
+      "season_wins": 9,
+      "shift_2026": -0.7591120640559339,
+      "season_metrics": [
+        {
+          "season": 2017,
+          "baseline_rmse": 1.5474558532800664,
+          "candidate_rmse": 1.5432949239055194,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.01092217614391425
+        },
+        {
+          "season": 2018,
+          "baseline_rmse": 1.4016170819148348,
+          "candidate_rmse": 1.3016607206455229,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.3126122864658203
+        },
+        {
+          "season": 2019,
+          "baseline_rmse": 2.412991056929545,
+          "candidate_rmse": 2.177159782662128,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.41070091486143195
+        },
+        {
+          "season": 2020,
+          "baseline_rmse": 1.9027723462716126,
+          "candidate_rmse": 1.7613629867025982,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.644915630304756
+        },
+        {
+          "season": 2021,
+          "baseline_rmse": 1.9469117906424238,
+          "candidate_rmse": 1.750738411825835,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.6596346008993516
+        },
+        {
+          "season": 2022,
+          "baseline_rmse": 1.781605570151505,
+          "candidate_rmse": 1.5320191037521746,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.6895135634322591
+        },
+        {
+          "season": 2023,
+          "baseline_rmse": 2.090973576776975,
+          "candidate_rmse": 1.7995478615319125,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.73157003677223
+        },
+        {
+          "season": 2024,
+          "baseline_rmse": 1.9020142620529477,
+          "candidate_rmse": 1.6782101261892834,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.7831710512054205
+        },
+        {
+          "season": 2025,
+          "baseline_rmse": 1.6252278304982548,
+          "candidate_rmse": 1.6009627422703565,
+          "candidate_beats_baseline": true,
+          "forensic_shift": -0.7982852265140449
+        }
+      ]
+    },
+    "delta_vs_old": {
+      "candidate_rmse": -0.00011122310761613186,
+      "candidate_mae": -0.0017754376136238648,
+      "mse_delta_candidate_minus_baseline": -0.00039544753451592474,
+      "shift_2026": -0.00031206405593386943,
+      "season_wins": 0
+    },
+    "fit_score": 0.15718311583519098
+  },
+  "all_enumerated_candidates": [
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": -0.7440679680001417,
+          "baseline_ip": 4.410734634666809,
+          "abs_residual": 0.7440679680001417
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": -0.5731371886764655,
+          "baseline_ip": 4.573137188676466,
+          "abs_residual": 0.5731371886764655
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6768404381767372,
+        "candidate_mae": 1.3225081749964962,
+        "mse_delta_candidate_minus_baseline": -0.5845234129952481,
+        "season_wins": 9,
+        "shift_2026": -0.7591120640559339,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4041247843636275,
+            "candidate_rmse": 1.3030797773201317,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.176189895672054,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.4126001457428061
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7612961554964144,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.646415023105841
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7505853943181304,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6608555350373777
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.7796298609110048,
+            "candidate_rmse": 1.5319553193684057,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6905686916996893
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.7995478615319125,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.73157003677223
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6782101261892834,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7831710512054205
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.6009627422703565,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7982852265140449
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": -0.00011956182326278153,
+        "candidate_mae": -0.0008818250035038666,
+        "mse_delta_candidate_minus_baseline": -0.00042341299524817355,
+        "shift_2026": -0.00031206405593386943,
+        "season_wins": 0
+      },
+      "fit_score": 0.0631935509887361
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": -0.5731371886764655,
+          "baseline_ip": 4.239803855343132,
+          "abs_residual": 0.5731371886764655
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": -0.7440679680001417,
+          "baseline_ip": 4.744067968000142,
+          "abs_residual": 0.7440679680001417
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6768487768923839,
+        "candidate_mae": 1.3216145623863762,
+        "mse_delta_candidate_minus_baseline": -0.5844954475345159,
+        "season_wins": 9,
+        "shift_2026": -0.7591120640559339,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4016170819148348,
+            "candidate_rmse": 1.3016607206455229,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.177159782662128,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.41070091486143195
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7613629867025982,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.644915630304756
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.750738411825835,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6596346008993516
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.781605570151505,
+            "candidate_rmse": 1.5320191037521746,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6895135634322591
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.7995478615319125,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.73157003677223
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6782101261892834,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7831710512054205
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.6009627422703565,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7982852265140449
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": -0.00011122310761613186,
+        "candidate_mae": -0.0017754376136238648,
+        "mse_delta_candidate_minus_baseline": -0.00039544753451592474,
+        "shift_2026": -0.00031206405593386943,
+        "season_wins": 0
+      },
+      "fit_score": 0.15718311583519098
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": 0.5731371886764655,
+          "baseline_ip": 3.093529477990201,
+          "abs_residual": 0.5731371886764655
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": -0.7440679680001417,
+          "baseline_ip": 4.744067968000142,
+          "abs_residual": 0.7440679680001417
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6788342501265041,
+        "candidate_mae": 1.3239047407900333,
+        "mse_delta_candidate_minus_baseline": -0.5778328287021786,
+        "season_wins": 9,
+        "shift_2026": -0.7551041116875671,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4016170819148348,
+            "candidate_rmse": 1.3102354168422423,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.183695466730145,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3979645328908438
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7618440676970506,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6348605919069233
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7517862007081857,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.651446926775402
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.781605570151505,
+            "candidate_rmse": 1.5332125686086169,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6824377956708213
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.8009003646665491,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7256614059611324
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6785871384367785,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7780076531092361
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.599981890633691,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7937723352646239
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.0018742501265041067,
+        "candidate_mae": 0.000514740790033219,
+        "mse_delta_candidate_minus_baseline": 0.0062671712978213945,
+        "shift_2026": 0.003695888312432949,
+        "season_wins": 0
+      },
+      "fit_score": 5.137105912249057
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": -0.7440679680001417,
+          "baseline_ip": 4.410734634666809,
+          "abs_residual": 0.7440679680001417
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": 0.5731371886764655,
+          "baseline_ip": 3.4268628113235344,
+          "abs_residual": 0.5731371886764655
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6787573329101857,
+        "candidate_mae": 1.3266761317363152,
+        "mse_delta_candidate_minus_baseline": -0.57809108530028,
+        "season_wins": 9,
+        "shift_2026": -0.7551041116875671,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4041247843636275,
+            "candidate_rmse": 1.3030797773201317,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.176189895672054,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.4126001457428061
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7612961554964144,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.646415023105841
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7505853943181304,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6608555350373777
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.7796298609110048,
+            "candidate_rmse": 1.548018386634909,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6905686916996893
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.8009003646665491,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7256614059611324
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6785871384367785,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7780076531092361
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.599981890633691,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7937723352646239
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.0017973329101856894,
+        "candidate_mae": 0.00328613173631509,
+        "mse_delta_candidate_minus_baseline": 0.0060089146997199805,
+        "shift_2026": 0.003695888312432949,
+        "season_wins": 0
+      },
+      "fit_score": 5.420342534373203
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": 0.7440679680001417,
+          "baseline_ip": 2.922598698666525,
+          "abs_residual": 0.7440679680001417
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": -0.5731371886764655,
+          "baseline_ip": 4.573137188676466,
+          "abs_residual": 0.5731371886764655
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6794150968659345,
+        "candidate_mae": 1.3246894728045666,
+        "mse_delta_candidate_minus_baseline": -0.5758822005187839,
+        "season_wins": 9,
+        "shift_2026": -0.7539087915524365,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4041247843636275,
+            "candidate_rmse": 1.314188915132066,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.1846747450020643,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.39606530200946966
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7619207109574075,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6333611991058384
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7519456702238623,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6502259926373757
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.7796298609110048,
+            "candidate_rmse": 1.5334726067741593,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6813826674033912
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.8013072867774356,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7238992329784142
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6787026356526857,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7764677361783923
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.599691712521504,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.792426423616406
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.0024550968659344807,
+        "candidate_mae": 0.0012994728045665482,
+        "mse_delta_candidate_minus_baseline": 0.008217799481216037,
+        "shift_2026": 0.004891208447563522,
+        "season_wins": 0
+      },
+      "fit_score": 8.990914359555347
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": -0.5731371886764655,
+          "baseline_ip": 4.239803855343132,
+          "abs_residual": 0.5731371886764655
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": 0.7440679680001417,
+          "baseline_ip": 3.2559320319998584,
+          "abs_residual": 0.7440679680001417
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.67933440997947,
+        "candidate_mae": 1.3266053929348658,
+        "mse_delta_candidate_minus_baseline": -0.576153207558905,
+        "season_wins": 9,
+        "shift_2026": -0.7539087915524365,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4016170819148348,
+            "candidate_rmse": 1.3016607206455229,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.177159782662128,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.41070091486143195
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7613629867025982,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.644915630304756
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.750738411825835,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6596346008993516
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.781605570151505,
+            "candidate_rmse": 1.5528081509858402,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6895135634322591
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.8013072867774356,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7238992329784142
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6787026356526857,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7764677361783923
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.599691712521504,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.792426423616406
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.002374409979470027,
+        "candidate_mae": 0.003215392934865724,
+        "mse_delta_candidate_minus_baseline": 0.007946792441094974,
+        "shift_2026": 0.004891208447563522,
+        "season_wins": 0
+      },
+      "fit_score": 9.146103402500609
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": 0.5731371886764655,
+          "baseline_ip": 3.093529477990201,
+          "abs_residual": 0.5731371886764655
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": 0.7440679680001417,
+          "baseline_ip": 3.2559320319998584,
+          "abs_residual": 0.7440679680001417
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6813001029569794,
+        "candidate_mae": 1.3288498969933853,
+        "mse_delta_candidate_minus_baseline": -0.5695472318968509,
+        "season_wins": 9,
+        "shift_2026": -0.7499008391840696,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4016170819148348,
+            "candidate_rmse": 1.3102354168422423,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.183695466730145,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3979645328908438
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7618440676970506,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6348605919069233
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7517862007081857,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.651446926775402
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.781605570151505,
+            "candidate_rmse": 1.5537738875165663,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6824377956708213
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.802683612507975,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7179906021673166
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6791001507940173,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7713043380822079
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.598726619409516,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.787913532366985
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.004340102956979397,
+        "candidate_mae": 0.005459896993385227,
+        "mse_delta_candidate_minus_baseline": 0.014552768103149094,
+        "shift_2026": 0.008899160815930451,
+        "season_wins": 0
+      },
+      "fit_score": 30.21596693973166
+    },
+    {
+      "assignment": [
+        {
+          "season": 2018,
+          "game_date": "2018-10-23",
+          "game_pk": "33331023HHWO02018",
+          "team": "HH",
+          "starter_id": "68703",
+          "starter_name": "박주홍",
+          "actual_ip": 3.6666666666666665,
+          "residual_actual_minus_baseline": 0.7440679680001417,
+          "baseline_ip": 2.922598698666525,
+          "abs_residual": 0.7440679680001417
+        },
+        {
+          "season": 2022,
+          "game_date": "2022-11-05",
+          "game_pk": "77771105SKWO02022",
+          "team": "WO",
+          "starter_id": "67603",
+          "starter_name": "이승호",
+          "actual_ip": 4.0,
+          "residual_actual_minus_baseline": 0.5731371886764655,
+          "baseline_ip": 3.4268628113235344,
+          "abs_residual": 0.5731371886764655
+        }
+      ],
+      "metrics": {
+        "baseline_rmse": 1.84291,
+        "baseline_mae": 1.4022700000000001,
+        "candidate_rmse": 1.6813122113711958,
+        "candidate_mae": 1.3288666061121275,
+        "mse_delta_candidate_minus_baseline": -0.5695065159940991,
+        "season_wins": 9,
+        "shift_2026": -0.7499008391840696,
+        "season_metrics": [
+          {
+            "season": 2017,
+            "baseline_rmse": 1.5474558532800664,
+            "candidate_rmse": 1.5432949239055194,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.01092217614391425
+          },
+          {
+            "season": 2018,
+            "baseline_rmse": 1.4041247843636275,
+            "candidate_rmse": 1.314188915132066,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.3126122864658203
+          },
+          {
+            "season": 2019,
+            "baseline_rmse": 2.412991056929545,
+            "candidate_rmse": 2.1846747450020643,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.39606530200946966
+          },
+          {
+            "season": 2020,
+            "baseline_rmse": 1.9027723462716126,
+            "candidate_rmse": 1.7619207109574075,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6333611991058384
+          },
+          {
+            "season": 2021,
+            "baseline_rmse": 1.9469117906424238,
+            "candidate_rmse": 1.7519456702238623,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6502259926373757
+          },
+          {
+            "season": 2022,
+            "baseline_rmse": 1.7796298609110048,
+            "candidate_rmse": 1.5493075724425385,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.6813826674033912
+          },
+          {
+            "season": 2023,
+            "baseline_rmse": 2.090973576776975,
+            "candidate_rmse": 1.802683612507975,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7179906021673166
+          },
+          {
+            "season": 2024,
+            "baseline_rmse": 1.9020142620529477,
+            "candidate_rmse": 1.6791001507940173,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.7713043380822079
+          },
+          {
+            "season": 2025,
+            "baseline_rmse": 1.6252278304982548,
+            "candidate_rmse": 1.598726619409516,
+            "candidate_beats_baseline": true,
+            "forensic_shift": -0.787913532366985
+          }
+        ]
+      },
+      "delta_vs_old": {
+        "candidate_rmse": 0.004352211371195791,
+        "candidate_mae": 0.0054766061121274134,
+        "mse_delta_candidate_minus_baseline": 0.01459348400590088,
+        "shift_2026": 0.008899160815930451,
+        "season_wins": 0
+      },
+      "fit_score": 30.274955157245664
+    }
+  ],
+  "natural_fallback_comparison": [
+    {
+      "season": 2018,
+      "game_pk": "33331023HHWO02018",
+      "starter_id": "68703",
+      "starter_name": "박주홍",
+      "actual_ps_ip": 3.6666666666666665,
+      "best_inferred_baseline_ip": 4.410734634666809,
+      "best_inferred_residual": -0.7440679680001417,
+      "fallbacks_ranked_by_distance": [
+        {
+          "fallback": "team_rs_starter_appearance_median_ip",
+          "baseline_ip": 5.0,
+          "distance_to_inferred_baseline_ip": 0.5892653653331914,
+          "implied_residual_actual_minus_baseline": -1.3333333333333335
+        },
+        {
+          "fallback": "team_rs_starter_appearance_mean_ip",
+          "baseline_ip": 5.025462962962963,
+          "distance_to_inferred_baseline_ip": 0.6147283282961542,
+          "implied_residual_actual_minus_baseline": -1.3587962962962963
+        },
+        {
+          "fallback": "league_rs_starter_appearance_mean_ip",
+          "baseline_ip": 5.288888888888889,
+          "distance_to_inferred_baseline_ip": 0.8781542542220802,
+          "implied_residual_actual_minus_baseline": -1.6222222222222222
+        },
+        {
+          "fallback": "ps_team_peer_rs_avg_ip_appearance_weighted",
+          "baseline_ip": 5.414750957854406,
+          "distance_to_inferred_baseline_ip": 1.0040163231875976,
+          "implied_residual_actual_minus_baseline": -1.7480842911877397
+        },
+        {
+          "fallback": "ps_team_peer_rs_avg_ip_unique_pitcher",
+          "baseline_ip": 5.414750957854406,
+          "distance_to_inferred_baseline_ip": 1.0040163231875976,
+          "implied_residual_actual_minus_baseline": -1.7480842911877397
+        },
+        {
+          "fallback": "league_rs_starter_appearance_median_ip",
+          "baseline_ip": 5.666666666666667,
+          "distance_to_inferred_baseline_ip": 1.2559320319998584,
+          "implied_residual_actual_minus_baseline": -2.0000000000000004
+        },
+        {
+          "fallback": "documented_all_appearance_mean_ip",
+          "baseline_ip": 0.8484848484848485,
+          "distance_to_inferred_baseline_ip": 3.56224978618196,
+          "implied_residual_actual_minus_baseline": 2.818181818181818
+        }
+      ],
+      "documented_all_appearance_mean_source": "KBO regular-season line: 22 G, 18 2/3 IP; contemporary report says all 22 were relief"
+    },
+    {
+      "season": 2022,
+      "game_pk": "77771105SKWO02022",
+      "starter_id": "67603",
+      "starter_name": "이승호",
+      "actual_ps_ip": 4.0,
+      "best_inferred_baseline_ip": 4.573137188676466,
+      "best_inferred_residual": -0.5731371886764655,
+      "fallbacks_ranked_by_distance": [
+        {
+          "fallback": "league_rs_starter_appearance_mean_ip",
+          "baseline_ip": 5.330324074074074,
+          "distance_to_inferred_baseline_ip": 0.7571868853976085,
+          "implied_residual_actual_minus_baseline": -1.330324074074074
+        },
+        {
+          "fallback": "team_rs_starter_appearance_mean_ip",
+          "baseline_ip": 5.430555555555555,
+          "distance_to_inferred_baseline_ip": 0.8574183668790898,
+          "implied_residual_actual_minus_baseline": -1.4305555555555554
+        },
+        {
+          "fallback": "ps_team_peer_rs_avg_ip_unique_pitcher",
+          "baseline_ip": 5.556111111111111,
+          "distance_to_inferred_baseline_ip": 0.9829739224346454,
+          "implied_residual_actual_minus_baseline": -1.556111111111111
+        },
+        {
+          "fallback": "league_rs_starter_appearance_median_ip",
+          "baseline_ip": 5.666666666666667,
+          "distance_to_inferred_baseline_ip": 1.0935294779902014,
+          "implied_residual_actual_minus_baseline": -1.666666666666667
+        },
+        {
+          "fallback": "ps_team_peer_rs_avg_ip_appearance_weighted",
+          "baseline_ip": 5.807142857142857,
+          "distance_to_inferred_baseline_ip": 1.2340056684663914,
+          "implied_residual_actual_minus_baseline": -1.807142857142857
+        },
+        {
+          "fallback": "team_rs_starter_appearance_median_ip",
+          "baseline_ip": 6.0,
+          "distance_to_inferred_baseline_ip": 1.4268628113235344,
+          "implied_residual_actual_minus_baseline": -2.0
+        },
+        {
+          "fallback": "documented_all_appearance_mean_ip",
+          "baseline_ip": 0.949685534591195,
+          "distance_to_inferred_baseline_ip": 3.6234516540852706,
+          "implied_residual_actual_minus_baseline": 3.050314465408805
+        }
+      ],
+      "documented_all_appearance_mean_source": "KBO regular-season line: 53 G, 50 1/3 IP; contemporary report says all 53 were relief"
+    }
+  ],
+  "checks": {
+    "known_rows_256": true,
+    "missing_rows_2": true,
+    "best_solution_both_residuals_negative": true,
+    "best_solution_preserves_9_of_9_season_wins": true,
+    "baseline_rmse_reconstructs_old_to_reported_precision": true,
+    "baseline_mae_reconstructs_old_to_reported_precision": true
+  },
+  "interpretation": {
+    "relief_mean_fallback_status": "REJECT_IF_FAR_FROM_INFERRED_BASELINE",
+    "team_or_league_simple_fallback_status": "COMPARE_DISTANCES_ONLY; do not promote without original code evidence",
+    "exact_original_fallback_identified": false,
+    "why_not_exact": "Original Phase-2 code/appearance table is absent at the fixed repository reference commit; aggregate metrics constrain but do not uniquely prove the generating fallback rule."
+  },
+  "inputs": {
+    "joined": "research/postseason_expected_ip/ps_rs_starter_avg_ip.csv",
+    "step5_validation": "research/postseason_expected_ip/ps_expected_ip_walk_forward_validation.json",
+    "rs_appearances": "historical_rs/rs_starter_appearances_2016_2025.csv",
+    "frozen_reference": "research/postseason_expected_ip/frozen_2026_prior.json"
+  }
+}
