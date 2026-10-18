@@ -1,0 +1,76 @@
+name: Lock 2026-10-20 KIA at LG expected starter innings pregame
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/lock-2026-10-20-ps-expected-ip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  lock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned already-known research dependencies
+        run: pip install -r requirements.txt
+      - name: Verify 2026 RS source and freeze 2016-2025 calibrated forecasts
+        run: |
+          python -m py_compile scripts/lock_2026_10_20_ps_expected_ip.py
+          python scripts/lock_2026_10_20_ps_expected_ip.py
+      - name: Verify matchup and first commit eligibility before pushing
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p=Path('research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_20_HT_LG.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          now=datetime.now(timezone.utc)
+          cutoff=datetime.fromisoformat(x['scheduled_first_pitch_kst'])
+          assert now+timedelta(minutes=5)<cutoff,"Too close to kickoff to promise pregame external commit"
+          assert x['game']=='HT@LG' and x['game_date']=='2026-10-20'
+          assert x['training_postseasons']=='2016-2025'
+          assert x['model_status']=='CHALLENGER_ONLY_NOT_CHAMPION'
+          assert x['market_odds_inspected'] is False
+          assert [z['player_id'] for z in x['forecast_rows']]==['54843','56103']
+          assert [z['rs_starts'] for z in x['forecast_rows']]==[17,11]
+          print({'snapshot_created':x['snapshot_created_at_kst'],
+            'starters':[(z['starter_name'],z['forecast']['mean_challenger']['challenger_mean_ip']) for z in x['forecast_rows']]})
+          PY
+      - name: Append only, commit before first pitch and publish immutable lock
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          path=research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_20_HT_LG.json
+          git add "$path"
+          if git diff --cached --quiet; then
+            echo 'Snapshot already recorded; refusing to rewrite'
+            exit 1
+          fi
+          git commit -m 'LOCK 2026-10-20 KIA@LG preseason-market expected IP challenger'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Confirm remote first commit is early and immutable
+        run: |
+          python - <<'PY'
+          import subprocess,json
+          from pathlib import Path
+          from datetime import datetime
+          path='research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_20_HT_LG.json'
+          x=json.loads(Path(path).read_text(encoding='utf-8'))
+          times=subprocess.check_output(['git','log','--diff-filter=A','--format=%cI','--',path],text=True).splitlines()
+          assert len(times)==1, "immutable first-add commit expected"
+          commit=datetime.fromisoformat(times[0])
+          cutoff=datetime.fromisoformat(x['scheduled_first_pitch_kst'])
+          assert commit < cutoff, 'PRE_GAME_COMMIT_GATE_FAILED'
+          print('LOCK_COMMITTED_BEFORE_FIRST_PITCH',commit.isoformat())
+          PY
