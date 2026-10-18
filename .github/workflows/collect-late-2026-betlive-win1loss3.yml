@@ -1,0 +1,48 @@
+name: Collect late 2026 KBO 3way Proto odds archival source
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-late-2026-betlive-win1loss3.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: betlive-early-2026-kbo
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests beautifulsoup4
+      - name: Collect 2026 rounds 105-122 WIN1LOSS 3way (no 2way mixing)
+        run: |
+          python scripts/collect_2026_betlive_win1loss3.py --first 105 --last 122 --pause 0.45
+      - name: Require market shape and confirm source timestamp is unknown
+        run: |
+          python - <<'PY'
+          import json,csv
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          a=json.loads((d/'betlive_2026_r105_r122_win1loss3_source_audit.json').read_text())
+          assert a['status']=='HISTORICAL_3WAY_QUOTES_NO_PREGAME_TIMESTAMP'
+          assert a['rounds_parsed']>=10 and a['distinct_game_markets']>=40,a
+          assert not a['rounds_failed']
+          r=list(csv.DictReader((d/'betlive_2026_r105_r122_win1loss3_archived.csv').open(encoding='utf-8')))
+          assert len(r)==a['distinct_game_markets']
+          assert all(z['market_type']=='FULL_WIN1LOSS_3WAY' and not z['inferred_outcome_from_pbp'] for z in r)
+          print({'rounds':a['rounds_parsed'],'markets':len(r),'issues':a['issues_count']})
+          PY
+      - name: Commit archival odds-source evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_r105_r122_win1loss3_*.csv
+          git add research/market_fair_odds/betlive_2026_r105_r122_win1loss3_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Extend sourced 2026 KBO 3way WIN1LOSS odds archive through round 122'
+          git pull --rebase origin main
+          git push origin HEAD:main
