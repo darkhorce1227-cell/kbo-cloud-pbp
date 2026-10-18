@@ -1,0 +1,102 @@
+[
+  {
+    "game_date": "2026-10-14",
+    "round": "WC",
+    "game_pk": "44441014OBLG02026",
+    "team": "OB",
+    "side": "away",
+    "starter_id": "68220",
+    "starter_name": "곽빈",
+    "actual_outs": 18,
+    "actual_ip": 6.0,
+    "inn_raw": "6.0",
+    "pitch_count": 102,
+    "source": "Naver inning-1 completed pitching line",
+    "rs_starts": 27,
+    "rs_starter_avg_ip": 5.962962962962963,
+    "historical_mean_candidate_ip": 5.2031431,
+    "event_probabilities": {
+      "IP_GE_5": 0.6052631578947368,
+      "IP_GE_6": 0.3280701754385965,
+      "IP_LT_4": 0.22631578947368422
+    },
+    "error_candidate_minus_actual": -0.7968568999999999,
+    "source_type": "POSTGAME_RECONSTRUCTION_NOT_PROSPECTIVE",
+    "count_in_prospective_performance": false
+  },
+  {
+    "game_date": "2026-10-14",
+    "round": "WC",
+    "game_pk": "44441014OBLG02026",
+    "team": "LG",
+    "side": "home",
+    "starter_id": "56103",
+    "starter_name": "카라스코",
+    "actual_outs": 18,
+    "actual_ip": 6.0,
+    "inn_raw": "6.0",
+    "pitch_count": 84,
+    "source": "Naver inning-1 completed pitching line",
+    "rs_starts": 11,
+    "rs_starter_avg_ip": 5.454545454545454,
+    "historical_mean_candidate_ip": 4.6947256,
+    "event_probabilities": {
+      "IP_GE_5": 0.47192982456140353,
+      "IP_GE_6": 0.21578947368421053,
+      "IP_LT_4": 0.2964912280701754
+    },
+    "error_candidate_minus_actual": -1.3052744,
+    "source_type": "POSTGAME_RECONSTRUCTION_NOT_PROSPECTIVE",
+    "count_in_prospective_performance": false
+  },
+  {
+    "game_date": "2026-10-17",
+    "round": "준PO",
+    "game_pk": "33331017LGHT02026",
+    "team": "LG",
+    "side": "away",
+    "starter_id": "55130",
+    "starter_name": "톨허스트",
+    "actual_outs": 15,
+    "actual_ip": 5.0,
+    "inn_raw": "5.0",
+    "pitch_count": 82,
+    "source": "Naver inning-1 completed pitching line",
+    "rs_starts": 30,
+    "rs_starter_avg_ip": 5.444444444444445,
+    "historical_mean_candidate_ip": 4.6846246,
+    "event_probabilities": {
+      "IP_GE_5": 0.46842105263157896,
+      "IP_GE_6": 0.21578947368421053,
+      "IP_LT_4": 0.2964912280701754
+    },
+    "error_candidate_minus_actual": -0.31537539999999975,
+    "source_type": "POSTGAME_RECONSTRUCTION_NOT_PROSPECTIVE",
+    "count_in_prospective_performance": false
+  },
+  {
+    "game_date": "2026-10-17",
+    "round": "준PO",
+    "game_pk": "33331017LGHT02026",
+    "team": "HT",
+    "side": "home",
+    "starter_id": "54640",
+    "starter_name": "네일",
+    "actual_outs": 21,
+    "actual_ip": 7.0,
+    "inn_raw": "7.0",
+    "pitch_count": 92,
+    "source": "Naver inning-1 completed pitching line",
+    "rs_starts": 31,
+    "rs_starter_avg_ip": 5.903225806451613,
+    "historical_mean_candidate_ip": 5.1434059,
+    "event_probabilities": {
+      "IP_GE_5": 0.5947368421052631,
+      "IP_GE_6": 0.32105263157894737,
+      "IP_LT_4": 0.22982456140350876
+    },
+    "error_candidate_minus_actual": -1.8565940999999997,
+    "source_type": "POSTGAME_RECONSTRUCTION_NOT_PROSPECTIVE",
+    "count_in_prospective_performance": false
+  }
+]

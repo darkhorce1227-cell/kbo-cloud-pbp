@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "run_at_kst": "2026-10-18T11:51:32.533884+09:00",
+  "checks": {
+    "rs_upstream_status_pass": true,
+    "rs_upstream_720_games": true,
+    "rs_upstream_1440_starts": true,
+    "rs_validation_pass": true,
+    "rs_720_distinct_games": true,
+    "rs_1440_rows": true,
+    "rs_dates_not_after_2026_10_17": true,
+    "rs_no_double_game_sides": true
+  },
+  "rs_games": 720,
+  "rs_starter_rows": 1440,
+  "rs_player_season_rows": 118,
+  "completed_ps_games_reconstructed": 2,
+  "completed_ps_starter_rows_reconstructed": 4,
+  "completed_ps_prospective_scored": 0,
+  "snapshot_today": "CREATED_NEEDS_COMMIT_TIME_GATE",
+  "prospective_scores": "UNAVAILABLE_UNTIL_PRECOMMITTED_FORECAST_GAME_COMPLETED",
+  "no_betting_actions": true,
+  "canonical_historical_training_fixed_through_2025": true
+}

@@ -1,0 +1,234 @@
+{
+  "status": "PREGAME_GENERATED_PENDING_GITHUB_COMMIT_BEFORE_KICKOFF",
+  "snapshot_created_at_kst": "2026-10-18T11:51:32.533884+09:00",
+  "game_date": "2026-10-18",
+  "first_pitch_kst": "2026-10-18T14:00:00+09:00",
+  "game": "LG@HT",
+  "round": "준PO",
+  "forecast_eligibility": "PRE_GAME_ONLY_IF_GITHUB_COMMIT_BEFORE_FIRST_PITCH",
+  "source_type": "FORECAST_BEFORE_GAME_OUTCOME",
+  "training_postseasons": "2016-2025",
+  "ps_residual_n": 284,
+  "rs_2026_completed_starter_appearances": 1440,
+  "model_shift_ip": -0.7598198773356355,
+  "forecast_rows": [
+    {
+      "side": "away",
+      "player_id": "61101",
+      "starter_name": "임찬규",
+      "team": "LG",
+      "rs_starts": 31,
+      "rs_total_outs": 509,
+      "rs_starter_avg_ip": 5.473118279569892,
+      "baseline_match": "MATCHED",
+      "forecast": {
+        "model": "PS_EXPECTED_IP_EMPIRICAL_TAIL_2026_V1",
+        "status": "CHALLENGER_ONLY",
+        "mean_challenger": {
+          "model": "PS_EXPECTED_IP_STRICT_SHIFT_2026_V1",
+          "status": "CHALLENGER_ONLY",
+          "rs_starter_avg_ip": 5.4731183,
+          "rs_starts": 31,
+          "historical_ps_mean_shift_ip": -0.7598198773356355,
+          "challenger_mean_ip": 4.7132984,
+          "champion_ip": null,
+          "challenger_minus_champion_ip": null,
+          "operational_selected_ip": null,
+          "role": "ESTABLISHED_STARTER",
+          "round": "준PO",
+          "pitch_cap": null,
+          "injury_news": false,
+          "short_rest": false,
+          "manager_leash": "UNKNOWN",
+          "context_flags": [],
+          "warnings": [],
+          "priority_order": [
+            "current_role",
+            "hard_pitch_cap_or_workload_limit",
+            "injury_or_current_news",
+            "rest_and_recent_workload",
+            "manager_leash_evidence",
+            "Champion_Expected_IP",
+            "historical_PS_Expected_IP_Challenger"
+          ],
+          "historical_support": {
+            "training_postseasons": "2016-2025",
+            "training_delta_eligible": 284,
+            "walk_forward_seasons": "2017-2025",
+            "walk_forward_evaluable": 256,
+            "walk_forward_games": 129,
+            "candidate_rmse": 1.683392255649752,
+            "baseline_rs_ip_rmse": 1.8491633790207755,
+            "candidate_rmse_season_wins": "9/9"
+          },
+          "reproducibility": {
+            "mean_forecast": "REPRODUCIBLE_STRICT_284",
+            "walk_forward": "REPRODUCIBLE_STRICT_256",
+            "strict_residual_vector": "REPRODUCIBLE_284",
+            "legacy_exact_258_fallback_rule": "UNRECOVERABLE",
+            "tail_probabilities_live_use": "AVAILABLE_AS_RESEARCH_CHALLENGER_ONLY_NO_AUTOMATED_BETTING"
+          },
+          "usage_rule": "Research challenger only. Display separately from Champion; current role/cap/news/rest/leash evidence has priority."
+        },
+        "historical_residual_n": 284,
+        "event_probabilities": {
+          "IP_GE_5": 0.4824561403508772,
+          "IP_GE_6": 0.21578947368421053,
+          "IP_LT_4": 0.2894736842105263
+        },
+        "historical_calibration": {
+          "IP_GE_5": {
+            "brier": 0.2277090643390276,
+            "brier_skill_vs_prior_climatology": 0.08680182322613728,
+            "calibration_in_the_large": -0.02624299384821338,
+            "ece_5bin": 0.04138130431072099,
+            "event_rate": 0.58203125,
+            "log_loss": 0.6475808741267137,
+            "mean_probability": 0.5557882561517866,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          },
+          "IP_GE_6": {
+            "brier": 0.20785724270142497,
+            "brier_skill_vs_prior_climatology": 0.12582403534281095,
+            "calibration_in_the_large": -0.019961218313525375,
+            "ece_5bin": 0.024822273523620483,
+            "event_rate": 0.34375,
+            "log_loss": 0.611673432536829,
+            "mean_probability": 0.3237887816864746,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          },
+          "IP_LT_4": {
+            "brier": 0.18022557922485005,
+            "brier_skill_vs_prior_climatology": 0.0777897484807265,
+            "calibration_in_the_large": -0.005150296828743128,
+            "ece_5bin": 0.016954166331403543,
+            "event_rate": 0.2578125,
+            "log_loss": 0.5405039878731465,
+            "mean_probability": 0.25266220317125687,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          }
+        },
+        "operational_selected_probabilities": null,
+        "usage_scope": "RESEARCH_CHALLENGER_ONLY",
+        "calibration_scope": "2017-2025 prior-season walk-forward, 256 matched starts",
+        "safety": "Current role, pitch cap, injury, rest, manager leash and Champion Expected IP outrank historical tail probabilities; no automated bet or size."
+      }
+    },
+    {
+      "side": "home",
+      "player_id": "55633",
+      "starter_name": "올러",
+      "team": "HT",
+      "rs_starts": 30,
+      "rs_total_outs": 534,
+      "rs_starter_avg_ip": 5.933333333333334,
+      "baseline_match": "MATCHED",
+      "forecast": {
+        "model": "PS_EXPECTED_IP_EMPIRICAL_TAIL_2026_V1",
+        "status": "CHALLENGER_ONLY",
+        "mean_challenger": {
+          "model": "PS_EXPECTED_IP_STRICT_SHIFT_2026_V1",
+          "status": "CHALLENGER_ONLY",
+          "rs_starter_avg_ip": 5.9333333,
+          "rs_starts": 30,
+          "historical_ps_mean_shift_ip": -0.7598198773356355,
+          "challenger_mean_ip": 5.1735135,
+          "champion_ip": null,
+          "challenger_minus_champion_ip": null,
+          "operational_selected_ip": null,
+          "role": "ESTABLISHED_STARTER",
+          "round": "준PO",
+          "pitch_cap": null,
+          "injury_news": false,
+          "short_rest": false,
+          "manager_leash": "UNKNOWN",
+          "context_flags": [],
+          "warnings": [],
+          "priority_order": [
+            "current_role",
+            "hard_pitch_cap_or_workload_limit",
+            "injury_or_current_news",
+            "rest_and_recent_workload",
+            "manager_leash_evidence",
+            "Champion_Expected_IP",
+            "historical_PS_Expected_IP_Challenger"
+          ],
+          "historical_support": {
+            "training_postseasons": "2016-2025",
+            "training_delta_eligible": 284,
+            "walk_forward_seasons": "2017-2025",
+            "walk_forward_evaluable": 256,
+            "walk_forward_games": 129,
+            "candidate_rmse": 1.683392255649752,
+            "baseline_rs_ip_rmse": 1.8491633790207755,
+            "candidate_rmse_season_wins": "9/9"
+          },
+          "reproducibility": {
+            "mean_forecast": "REPRODUCIBLE_STRICT_284",
+            "walk_forward": "REPRODUCIBLE_STRICT_256",
+            "strict_residual_vector": "REPRODUCIBLE_284",
+            "legacy_exact_258_fallback_rule": "UNRECOVERABLE",
+            "tail_probabilities_live_use": "AVAILABLE_AS_RESEARCH_CHALLENGER_ONLY_NO_AUTOMATED_BETTING"
+          },
+          "usage_rule": "Research challenger only. Display separately from Champion; current role/cap/news/rest/leash evidence has priority."
+        },
+        "historical_residual_n": 284,
+        "event_probabilities": {
+          "IP_GE_5": 0.5982456140350877,
+          "IP_GE_6": 0.32456140350877194,
+          "IP_LT_4": 0.22982456140350876
+        },
+        "historical_calibration": {
+          "IP_GE_5": {
+            "brier": 0.2277090643390276,
+            "brier_skill_vs_prior_climatology": 0.08680182322613728,
+            "calibration_in_the_large": -0.02624299384821338,
+            "ece_5bin": 0.04138130431072099,
+            "event_rate": 0.58203125,
+            "log_loss": 0.6475808741267137,
+            "mean_probability": 0.5557882561517866,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          },
+          "IP_GE_6": {
+            "brier": 0.20785724270142497,
+            "brier_skill_vs_prior_climatology": 0.12582403534281095,
+            "calibration_in_the_large": -0.019961218313525375,
+            "ece_5bin": 0.024822273523620483,
+            "event_rate": 0.34375,
+            "log_loss": 0.611673432536829,
+            "mean_probability": 0.3237887816864746,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          },
+          "IP_LT_4": {
+            "brier": 0.18022557922485005,
+            "brier_skill_vs_prior_climatology": 0.0777897484807265,
+            "calibration_in_the_large": -0.005150296828743128,
+            "ece_5bin": 0.016954166331403543,
+            "event_rate": 0.2578125,
+            "log_loss": 0.5405039878731465,
+            "mean_probability": 0.25266220317125687,
+            "n": 256,
+            "season_brier_wins_vs_climatology": 8,
+            "season_count": 9
+          }
+        },
+        "operational_selected_probabilities": null,
+        "usage_scope": "RESEARCH_CHALLENGER_ONLY",
+        "calibration_scope": "2017-2025 prior-season walk-forward, 256 matched starts",
+        "safety": "Current role, pitch cap, injury, rest, manager leash and Champion Expected IP outrank historical tail probabilities; no automated bet or size."
+      }
+    }
+  ],
+  "prediction_use": "SHADOW_ONLY_NO_BET",
+  "lineup_or_injury_uncertainty": "HUMAN_REVIEW_NOT_RESOLVED_BY_HISTORICAL_IP"
+}
