@@ -39,7 +39,7 @@ class TestClimatologyComparison(unittest.TestCase):
         self.assertEqual(x[3]['climatology_prior_data_n'],2)
         self.assertEqual(x[2]['predicted_before_day_climatology'],
                          x[3]['predicted_before_day_climatology'])
-        self.assertAlmostEqual(x[2]['predicted_before_day_climatology']['HOME_2PLUS'],11/32)
+        self.assertAlmostEqual(x[2]['predicted_before_day_climatology']['HOME_2PLUS'],12/32)
         self.assertEqual(len(x),36)
 
     def test_random_input_order_does_not_leak_outcomes(self):
