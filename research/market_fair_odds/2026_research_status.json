@@ -1,0 +1,130 @@
+{
+  "study": "2026 KBO PROTO historical odds fair-probability backtest",
+  "as_of": "2026-10-18",
+  "status": "SOURCE_VERIFIED_DESCRIPTIVE_MARKET_CALIBRATION_COMPLETE_CLEAN_PRE_MODEL_COMPARISON_WAITING",
+  "sources": [
+    {
+      "provider": "BETLIVE",
+      "round_range": "40-122",
+      "parsed_rounds": 77,
+      "missing_rounds": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "market": "FULL_WIN1LOSS_3WAY",
+      "p_bp_verified_unique_games": 459,
+      "bookmaker_price_timestamp": "UNVERIFIED_RETROSPECTIVE",
+      "final_score_check": "459/459_SHA_VERIFIED_PBP"
+    },
+    {
+      "provider": "SharpPick",
+      "round_range": "105-122",
+      "missing_rounds": [
+        101,
+        102,
+        103,
+        104
+      ],
+      "market_types": [
+        "FULL_ML2",
+        "FULL_HC2",
+        "FULL_OU"
+      ],
+      "p_bp_verified_unique_games": 125,
+      "distinct_markets": 375,
+      "bookmaker_price_timestamp": "UNVERIFIED_RETROSPECTIVE",
+      "final_score_check": "125/125_SHA_VERIFIED_PBP"
+    }
+  ],
+  "three_way_win1loss": {
+    "official_rule_url": "https://www.sportstoto.co.kr/view.php?idx=2402&type=notice",
+    "categories": {
+      "HOME_2PLUS": "Home wins by >=2",
+      "WITHIN_1": "Absolute run difference <=1, including ties",
+      "AWAY_2PLUS": "Away wins by >=2"
+    },
+    "n": 459,
+    "mean_predicted_class_probabilities": {
+      "HOME_2PLUS": 0.36482730194680146,
+      "WITHIN_1": 0.25331994600840196,
+      "AWAY_2PLUS": 0.3818527520447965
+    },
+    "observed_class_frequencies": {
+      "HOME_2PLUS": 0.3616557734204793,
+      "WITHIN_1": 0.2766884531590414,
+      "AWAY_2PLUS": 0.3616557734204793
+    },
+    "favorite_probability": 0.44357981724936774,
+    "favorite_hit_rate": 0.4422657952069717,
+    "favorite_gap_95CI": [
+      -0.0465995528489457,
+      0.04340934412000689
+    ],
+    "mean_overround": 0.15120241358765393,
+    "multiclass_brier": 0.6410417211155482,
+    "posthoc_hypothetical_favorite_only_roi": -0.13762527233115468,
+    "non-executable_hypothetical_roi": true
+  },
+  "market_vs_naive_past_only": {
+    "n": 459,
+    "weeks_for_cluster_bootstrap": 26,
+    "prespecified_baseline": "Dirichlet alpha 10 per WIN1LOSS outcome, only results from prior calendar dates",
+    "uniform_brier": 0.6666666666666667,
+    "past_only_brier": 0.6674291205259789,
+    "market_brier": 0.6410417211155482,
+    "market_relative_brier_skill_vs_past_only": 0.03953588268614294,
+    "paired_brier_improvement": 0.026387399410430716,
+    "paired_brier_improvement_week_cluster_95CI": [
+      0.011323550497551004,
+      0.04072375946500083
+    ],
+    "use": "DESCRIPTIVE_INDICATION_OF_GAME_SPECIFIC_MARKET_INFORMATION_ONLY"
+  },
+  "historical_2way_125_games": {
+    "FULL_ML2": {
+      "favorite_no_vig_mean": 0.5831551658240054,
+      "favorite_hit_rate": 0.64,
+      "brier": 0.4568047662825247,
+      "hypothetical_roi": -0.03576000000000001
+    },
+    "FULL_HC2": {
+      "favorite_no_vig_mean": 0.645666492622269,
+      "favorite_hit_rate": 0.608,
+      "brier": 0.4720138816175218,
+      "hypothetical_roi": -0.17208
+    },
+    "FULL_OU": {
+      "favorite_no_vig_mean": 0.5238443509836108,
+      "favorite_hit_rate": 0.488,
+      "brier": 0.4990618919545456,
+      "hypothetical_roi": -0.18240000000000003
+    }
+  },
+  "safety": {
+    "no_original_pregame_bookmaker_price_timestamp": true,
+    "no_past_game_clean_pre_model_lock_evidence_joined": true,
+    "market_winner_selection_not_original_wager": true,
+    "do_not_compare_raw_brier_across_2way_and_3way": true,
+    "genuine_out_of_sample_model_vs_market_sample_n": 0,
+    "mu_v1_2_prospective_gate_status_path": "research/mu-v1.2/prospective_gate_status.json",
+    "mu_v1_2_official_shadow_allowed": false,
+    "actual_betting_conclusion": "UNAVAILABLE_NO_PRECOMMITTED_PAIRED_MODEL_AND_EXECUTABLE_ODDS"
+  },
+  "verification": {
+    "full_3way_calibration_CI": "https://github.com/darkhorce1227-cell/kbo-cloud-pbp/actions/runs/39099082229",
+    "market_vs_naive_CI": "https://github.com/darkhorce1227-cell/kbo-cloud-pbp/actions/runs/39099299803",
+    "official_settlement_and_schema_CI": "https://github.com/darkhorce1227-cell/kbo-cloud-pbp/actions/runs/39099495104",
+    "two_way_calibration_CI": "https://github.com/darkhorce1227-cell/kbo-cloud-pbp/actions/runs/39098154777"
+  },
+  "next_research_gate": [
+    "Gather market prices with external proof of exact pre-first-pitch quote and clock time; market-posting time cannot be assumed retrospectively",
+    "Capture original CLEAN PRE forecasts pregame with GitHub commit+source hash, respecting market-unseen process integrity",
+    "Compare paired model vs market on same game+specific market outcome; Brier/logloss and calibration by confidence, no hindsight selection",
+    "Only after price proof and preregistered selection, compute real historical EV/ROI with refunds/voids, Kelly sizing and game-day cluster confidence intervals",
+    "Find licensed older historical KBO odds archival data for March-April currently missing instead of filling from model prices"
+  ]
+}
