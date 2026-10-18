@@ -1,5 +1,55 @@
 # KBO market-implied fair odds calibration / betting backtest
 
+## Prospective public-quote capture infrastructure (2026-10-18)
+
+The **live scheduled research-only capture** is deployed:
+
+- `scripts/capture_kbo_proto_pregame_quotes.py` reads only the current
+  published SharpPick round-index links, parses future KBO games and full-game
+  ML2/handicap/totals, rejects partial books, enforces at least 20 minutes
+  of lead time to the **source-scheduled** first pitch, and creates a new
+  file under `state/pregame_market_quotes/YYYY-MM-DD_AWAY_HOME/` whenever
+  the market price/source fingerprint changes.
+- `.github/workflows/capture-live-kbo-proto-quotes.yml` runs at
+  09:17, 11:17, 13:17, 15:17, 17:17, 19:17 and 21:17 KST, and also supports
+  manual GitHub Actions dispatch. It does not invent a missing current
+  round, missing future fixture, market line, player or projected game_pk.
+- After each first ADD commit,
+  `scripts/audit_kbo_pregame_quote_commits.py` verifies the first
+  Git commit timestamp and original HTTP response observation timestamp
+  **precede the scheduled first pitch** and that the price-book
+  fingerprint has not changed. The resulting artifact is
+  `research/market_fair_odds/live_quote_capture_audit.json`.
+- `tests/test_kbo_pregame_quote_lock.py` and
+  `.github/workflows/test-kbo-pregame-market-quote-lock.yml`
+  enforce no late capture, no late commit, incomplete-book refusal,
+  unknown future game-ID, quote-file immutability, and no false
+  'official/executable' label.
+- Initial workflow run on October 18 at approximately 16:05 KST
+  completed successfully, **0 future quote files**. This is a correct
+  safe waiting state: a not-yet-listed future game cannot be fabricated
+  from an earlier round.
+
+**Crucial limits:** the recorded price is independently timestamped as a
+*publicly displayed quote*. It is **NOT** necessarily an officially
+purchasable Betman price; no opening/closing/executability claim is
+verified. The source-scheduled kickoff is also provisional until verified
+against the eventual official KBO actual first pitch. A first ADD Git
+commit is a useful external timestamp, but a stronger production audit
+should additionally confirm the remote push occurred before first pitch.
+No model-versus-market or real ROI may be asserted from these artifacts
+without separate market-unseen CLEAN PRE input & snapshot commits, exact
+market mapping/settlement, and evidence that the displayed price was
+actually available to purchase.
+
+The currently grounded next scheduled test fixture is 2026-10-20
+KIA (away) at LG (home), 18:30 KST, Jamsil (semi-playoff 3).
+Do not create a CLEAN PRE prediction until starters are known and the
+market-unseen declaration can be made truthfully. An absent betting
+quote should remain absent rather than being reconstructed as live.
+
+---
+
 ## Latest: 2026 KBO FULL WIN1LOSS three-outcome prices, 459 games
 
 **Market product:** Proto single-game *승①패* with outcomes
