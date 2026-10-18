@@ -1,0 +1,94 @@
+{
+  "version": "mu-v1.2-bp30-live-discrepancy-bound-v0.1",
+  "status": "DIAGNOSTIC_ONLY_NOT_MODEL_SELECTION",
+  "target_date": "2026-10-20",
+  "active_semantic": "RELIEVER_STINT_PREGAME_CALENDAR36_P25.5",
+  "comparison_semantic": "RELIEVER_STINT_PREGAME_CALENDAR30_P39.25",
+  "discipline": "Comparison exists only to bound practical prediction impact of the unresolved historical 30d-label/calendar36 discrepancy; do not select or retune from prospective outcomes.",
+  "max_abs_numeric_prediction_delta_across_games": 0.027451566502993074,
+  "games": [
+    {
+      "game_pk": "33331020HTLG02026",
+      "away_team": "HT",
+      "home_team": "LG",
+      "away_bp30": {
+        "team": "HT",
+        "opponent": "LG",
+        "active_bp30_calendar36_p25_5": 0.748326941951705,
+        "alt_bp30_calendar30_p39_25": 0.8846294374304049,
+        "feature_delta_alt_minus_active": 0.13630249547869988
+      },
+      "home_bp30": {
+        "team": "LG",
+        "opponent": "HT",
+        "active_bp30_calendar36_p25_5": 0.8751498193121472,
+        "alt_bp30_calendar30_p39_25": 0.9128955840994927,
+        "feature_delta_alt_minus_active": 0.03774576478734548
+      },
+      "active_prediction": {
+        "f5_away": 2.759360478658231,
+        "f5_home": 2.991645187143113,
+        "f5_total": 5.751005665801344,
+        "full_away": 4.809022658798641,
+        "full_home": 5.067868526110347,
+        "full_total": 9.876891184908988
+      },
+      "calendar30_p39_25_prediction": {
+        "f5_away": 2.7821968385308162,
+        "f5_home": 2.9688088272705278,
+        "f5_total": 5.751005665801344,
+        "full_away": 4.836474225301634,
+        "full_home": 5.040416959607354,
+        "full_total": 9.876891184908988
+      },
+      "prediction_delta": {
+        "max_abs_numeric_delta": 0.027451566502993074,
+        "largest_numeric_deltas": [
+          {
+            "field": "full_away",
+            "active": 4.809022658798641,
+            "calendar30_p39_25": 4.836474225301634,
+            "delta_alt_minus_active": 0.027451566502993074,
+            "abs_delta": 0.027451566502993074
+          },
+          {
+            "field": "full_home",
+            "active": 5.067868526110347,
+            "calendar30_p39_25": 5.040416959607354,
+            "delta_alt_minus_active": -0.027451566502993074,
+            "abs_delta": 0.027451566502993074
+          },
+          {
+            "field": "f5_away",
+            "active": 2.759360478658231,
+            "calendar30_p39_25": 2.7821968385308162,
+            "delta_alt_minus_active": 0.022836359872585366,
+            "abs_delta": 0.022836359872585366
+          },
+          {
+            "field": "f5_home",
+            "active": 2.991645187143113,
+            "calendar30_p39_25": 2.9688088272705278,
+            "delta_alt_minus_active": -0.022836359872585366,
+            "abs_delta": 0.022836359872585366
+          },
+          {
+            "field": "f5_total",
+            "active": 5.751005665801344,
+            "calendar30_p39_25": 5.751005665801344,
+            "delta_alt_minus_active": 0.0,
+            "abs_delta": 0.0
+          },
+          {
+            "field": "full_total",
+            "active": 9.876891184908988,
+            "calendar30_p39_25": 9.876891184908988,
+            "delta_alt_minus_active": 0.0,
+            "abs_delta": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "source": "state/prospective_mu_v1_2/2026-10-20_20261018T115023Z.json"
+}

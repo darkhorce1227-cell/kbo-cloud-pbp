@@ -1,0 +1,138 @@
+{
+  "snapshot_schema": "mu-v1.2-prospective-snapshot-v0.2",
+  "capture_type": "PROSPECTIVE_CLEAN_PRE_RESEARCH",
+  "captured_at_utc": "2026-10-18T11:50:23.454966Z",
+  "market_state": {
+    "prices_inspected": false,
+    "declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT",
+    "declaration_source": "INPUT_COMMIT_METADATA",
+    "input_commit_metadata": {
+      "clean_pre_lock": true,
+      "market_prices_inspected": false,
+      "declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT",
+      "prepared_by": "assistant: research-only model input, no 2026-10-20 sportsbook odds queried",
+      "declaration_scope": "ASSISTANT_AND_MODEL_INPUT_ONLY_NOT_USER_BEHAVIOR",
+      "lineup_status": "NOT_ANNOUNCED_EXPECTED_ONLY",
+      "starter_confirmation": "POSTGAME_MANAGER_ANNOUNCEMENTS_2026_10_18",
+      "source_pages": [
+        "https://www.newspim.com/news/view/20261018000126",
+        "https://www.newspim.com/news/view/20261018000121",
+        "https://www.koreabaseball.com/Schedule/Schedule.aspx?date=202610"
+      ],
+      "data_cutoff_note": "2026-10-18 completed game allowed; both teams play 10-20 after 10-19 rest",
+      "subject": "2026-10-20 KIA@LG 준PO 3차전 research Challenger μ",
+      "betting_market_not_queried_for_target_game": true,
+      "do_not_treat_as_champion": true,
+      "do_not_use_to_place_bets": true
+    }
+  },
+  "official_shadow_allowed": false,
+  "git_head": "49f77e9f1c726ac9f8e40597b573780e372c43e2",
+  "input_path": "state/mechanical_mu_input.json",
+  "input_sha256": "815f3511f57d3d53507ff2414b7e5ca7d74489e7d6d90a1446e4cf9e009236ca",
+  "input_payload": {
+    "target_date": "2026-10-20",
+    "games": [
+      {
+        "game_pk": "33331020HTLG02026",
+        "away_team": "HT",
+        "home_team": "LG",
+        "away_starter": "시라카와",
+        "home_starter": "카라스코",
+        "starter_source": "2026-10-18 postgame manager announcements (Newspim reports)",
+        "scheduled_first_pitch_kst": "2026-10-20T18:30:00+09:00",
+        "scheduled_venue": "잠실",
+        "note": "PREMARKET independent research Challenger only, no lineup yet and no game-specific odds used"
+      }
+    ],
+    "prospective_capture": {
+      "clean_pre_lock": true,
+      "market_prices_inspected": false,
+      "declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT",
+      "prepared_by": "assistant: research-only model input, no 2026-10-20 sportsbook odds queried",
+      "declaration_scope": "ASSISTANT_AND_MODEL_INPUT_ONLY_NOT_USER_BEHAVIOR",
+      "lineup_status": "NOT_ANNOUNCED_EXPECTED_ONLY",
+      "starter_confirmation": "POSTGAME_MANAGER_ANNOUNCEMENTS_2026_10_18",
+      "source_pages": [
+        "https://www.newspim.com/news/view/20261018000126",
+        "https://www.newspim.com/news/view/20261018000121",
+        "https://www.koreabaseball.com/Schedule/Schedule.aspx?date=202610"
+      ],
+      "data_cutoff_note": "2026-10-18 completed game allowed; both teams play 10-20 after 10-19 rest",
+      "subject": "2026-10-20 KIA@LG 준PO 3차전 research Challenger μ",
+      "betting_market_not_queried_for_target_game": true,
+      "do_not_treat_as_champion": true,
+      "do_not_use_to_place_bets": true
+    }
+  },
+  "challenger_version": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
+  "challenger_output_sha256": "0f8151f5783ef9089354b07f832022900c388d57e5eac635da3d4fe5e2c5839c",
+  "challenger_output": {
+    "status": "RESEARCH_CHALLENGER_ACTIVE",
+    "model": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
+    "official_shadow_allowed": false,
+    "target_date": "2026-10-20",
+    "known_unresolved": [
+      "The surviving feature label says BP30/30d, while the strongest forensic reconstruction uses a 36-calendar-day reliever window. The original feature-generation code is absent, so this calendar36 semantic cannot be proven by direct source inspection.",
+      "Original v1.2 feature/prediction rows were not preserved, so literal row-to-row parity cannot be demonstrated from surviving artifacts.",
+      "P17 league-environment smoothing is strongly supported by frozen coefficient parity and confirmatory 2026 behavior, but the original training code is absent, so it remains forensic reconstruction rather than direct source-code recovery."
+    ],
+    "games": [
+      {
+        "game_pk": "33331020HTLG02026",
+        "away_team": "HT",
+        "home_team": "LG",
+        "away_features": {
+          "off_f5_long_ratio": 1.0123359109858228,
+          "off_f5_30d_ratio": 0.9588076360898259,
+          "off_late_long_ratio": 1.103103981508638,
+          "off_late_30d_ratio": 1.1372549019607843,
+          "league_f5_30d": 2.9526355012014327,
+          "league_late_30d": 2.0654922473591153,
+          "is_home": 0.0,
+          "sp_kbb_long": 0.10413389671940701,
+          "sp_kbb_recent5": 0.10413389671940701,
+          "sp_hr_long": 0.02366632740133033,
+          "sp_hr_recent5": 0.02366632740133033,
+          "sp_h_long": 0.2376091046479351,
+          "sp_h_recent5": 0.2376091046479351,
+          "sp_ip_long": 5.0685827250608275,
+          "sp_ip_recent5": 5.0685827250608275,
+          "opp_bp_ra9_long_rel": 0.9824041589570742,
+          "opp_bp_ra9_30d_rel": 0.748326941951705,
+          "park_factor": 0.9554314213835289
+        },
+        "home_features": {
+          "off_f5_long_ratio": 1.0875803365499883,
+          "off_f5_30d_ratio": 0.9228158274050309,
+          "off_late_long_ratio": 1.0257065479285488,
+          "off_late_30d_ratio": 0.6294117647058823,
+          "league_f5_30d": 2.9526355012014327,
+          "league_late_30d": 2.0654922473591153,
+          "is_home": 1.0,
+          "sp_kbb_long": 0.10413389671940701,
+          "sp_kbb_recent5": 0.10413389671940701,
+          "sp_hr_long": 0.02366632740133033,
+          "sp_hr_recent5": 0.02366632740133033,
+          "sp_h_long": 0.2376091046479351,
+          "sp_h_recent5": 0.2376091046479351,
+          "sp_ip_long": 5.0685827250608275,
+          "sp_ip_recent5": 5.0685827250608275,
+          "opp_bp_ra9_long_rel": 0.8717612390125848,
+          "opp_bp_ra9_30d_rel": 0.8751498193121472,
+          "park_factor": 0.9554314213835289
+        },
+        "mechanical_mu": {
+          "f5_away": 2.759360478658231,
+          "f5_home": 2.991645187143113,
+          "f5_total": 5.751005665801344,
+          "full_away": 4.809022658798641,
+          "full_home": 5.067868526110347,
+          "full_total": 9.876891184908988
+        }
+      }
+    ]
+  },
+  "note": "AUTO_FROM_DAILY_MECHANICAL_MU_INPUT",
+  "immutability_rule": "Do not overwrite this file. Any correction or later market-aware run must be written as a separate artifact."
+}
