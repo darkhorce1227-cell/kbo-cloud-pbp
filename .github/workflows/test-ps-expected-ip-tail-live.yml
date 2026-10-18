@@ -1,0 +1,43 @@
+name: Test calibrated postseason Expected IP tail challenger
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/forecast_ps_expected_ip_tail.py'
+      - 'scripts/forecast_ps_expected_ip_mean.py'
+      - 'tests/test_ps_expected_ip_tail_live.py'
+      - 'research/postseason_expected_ip/ps_rs_starter_avg_ip.csv'
+      - 'research/postseason_expected_ip/ps_expected_ip_tail_validation.json'
+      - 'research/postseason_expected_ip/canonical_recovery_status.json'
+      - 'research/postseason_expected_ip/live_operating_contract_2026.json'
+      - '.github/workflows/test-ps-expected-ip-tail-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strict-calibrated-tail:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile
+        run: python -m py_compile scripts/forecast_ps_expected_ip_tail.py
+      - name: Run safety and historical calibration tests
+        run: python -m unittest discover -s tests -p test_ps_expected_ip_tail_live.py -v
+      - name: Smoke CLI calibrated probabilities
+        run: |
+          python scripts/forecast_ps_expected_ip_tail.py --rs-ip 6 --rs-starts 30 --role ESTABLISHED_STARTER > /tmp/ps_tail.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/ps_tail.json'))
+          assert x['status'] == 'CHALLENGER_ONLY', x
+          assert x['historical_residual_n'] == 284, x
+          assert abs(x['event_probabilities']['IP_GE_5'] - 0.6192982456140351) < 1e-12, x
+          assert x['operational_selected_probabilities'] is None, x
+          print('PS_EIP_CALIBRATED_TAIL_CHALLENGER_PASS')
+          PY
