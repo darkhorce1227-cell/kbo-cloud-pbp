@@ -1,0 +1,56 @@
+name: Probe earlier 2026 Proto historical-round coverage
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/probe-early-2026-proto-rounds.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install requests beautifulsoup4
+      - name: Inspect bounded sample of older rounds (no bulk scrape)
+        run: |
+          python - <<'PY'
+          import sys,json
+          from pathlib import Path
+          import requests
+          from bs4 import BeautifulSoup
+          sys.path.insert(0,'scripts')
+          from collect_2026_kbo_proto_archive import get_allowed,extract_round,BASE,USER_AGENT
+          r=requests.Session()
+          r.headers['User-Agent']=USER_AGENT
+          m=json.loads(Path('state/validated_game_pks_2026.json').read_text())
+          ids=set(m['game_pks'])
+          samples=[]
+          for round_no in [1,25,50,75,90,100,110,111]:
+            url=f'{BASE}/proto/2026/{round_no}/'
+            try:
+              html=get_allowed(url,r,pause=.5)
+              rows,issues,kbo=extract_round(html,round_no,ids,'2026-10-18T00:00:00Z')
+              samples.append({'round':round_no,'status':200,'html_length':len(html),
+                              'kbo_match_rows':kbo,'joined_kbo_market_rows':len(rows),
+                              'issue_count':len(issues),'title':(BeautifulSoup(html,'html.parser').title or '').get_text(' ',strip=True)[:160]})
+            except Exception as e:
+              samples.append({'round':round_no,'status':'ERROR',
+                              'error':f'{type(e).__name__}: {str(e)[:160]}'})
+            print(samples[-1],flush=True)
+          p=Path('research/market_fair_odds/early_2026_round_probe.json')
+          p.write_text(json.dumps({'purpose':'ARCHIVE_COVERAGE_DISCOVERY_ONLY',
+                                   'sampled_rounds':samples},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Record public source coverage map
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/early_2026_round_probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Probe public 2026 Proto archive availability by older round'
+          git pull --rebase origin main
+          git push origin HEAD:main
