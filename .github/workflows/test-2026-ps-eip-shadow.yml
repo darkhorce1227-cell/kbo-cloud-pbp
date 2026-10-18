@@ -1,0 +1,29 @@
+name: Test 2026 PS Expected IP prospective shadow scoring
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/test_ps_eip_2026_shadow.py'
+      - 'scripts/score_2026_ps_eip_lock.py'
+      - 'research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_18_LG_HT.json'
+      - '.github/workflows/test-2026-ps-eip-shadow.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run strict time, identity, and scoring gates
+        run: python -m unittest discover -s tests -p test_ps_eip_2026_shadow.py -v
