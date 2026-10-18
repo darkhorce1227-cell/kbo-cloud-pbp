@@ -1,0 +1,65 @@
+name: Collect spring-summer 2026 KBO 3way Proto odds archival source
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-2026-betlive-win1loss3.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: betlive-early-2026-kbo
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install source parser dependencies
+        run: python -m pip install requests beautifulsoup4
+      - name: Collect source-backed 2026 KBO WIN1LOSS 3-way markets
+        run: |
+          python -m py_compile scripts/collect_2026_betlive_win1loss3.py
+          python scripts/collect_2026_betlive_win1loss3.py --first 40 --last 104 --pause 0.45
+      - name: Require authentic market coverage and prevent mixing regular ML2
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          p=d/'betlive_2026_r40_r104_win1loss3_source_audit.json'
+          j=json.loads(p.read_text(encoding='utf-8'))
+          assert j['status']=='HISTORICAL_3WAY_QUOTES_NO_PREGAME_TIMESTAMP'
+          assert j['market_id']=='FULL_WIN1LOSS_3WAY'
+          assert j['market_outcomes']['WITHIN_1']=='absolute run diff <=1 including ties'
+          assert j['rounds_parsed']>=30,j['rounds']
+          assert j['distinct_game_markets']>=80,j
+          assert not j['rounds_failed'],j['rounds_failed']
+          rows=list(csv.DictReader((d/'betlive_2026_r40_r104_win1loss3_archived.csv').open(encoding='utf-8')))
+          assert len(rows)==j['distinct_game_markets']
+          assert all(r['inferred_outcome_from_pbp']=='' and
+                      r['source_price_temporality']=='HISTORICAL_ARCHIVED_QUOTES_TIME_UNVERIFIED'
+                      and r['market_type']=='FULL_WIN1LOSS_3WAY' for r in rows)
+          print({'game_market_rows':len(rows),'rounds':j['rounds_parsed'],
+                 'unavailable_rounds':j['rounds_404'],'join_issues':j['issues_count']})
+          PY
+      - name: Preserve audited historical prices and provenance
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_r40_r104_win1loss3_*.csv
+          git add research/market_fair_odds/betlive_2026_r40_r104_win1loss3_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish archived early-2026 KBO 3way WIN1LOSS source book'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Preserve forensic material if source audit fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: betlive-2026-early-3way-forensic
+          path: research/market_fair_odds/betlive_2026_r40_r104_win1loss3_*
+          if-no-files-found: ignore
+          retention-days: 10
