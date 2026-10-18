@@ -33,7 +33,12 @@
     "historical_PS_Expected_IP_Challenger"
   ],
   "special_context": {
-    "roles_requiring_review": ["OPENER", "BULLPEN_GAME", "EMERGENCY_START", "UNKNOWN"],
+    "roles_requiring_review": [
+      "OPENER",
+      "BULLPEN_GAME",
+      "EMERGENCY_START",
+      "UNKNOWN"
+    ],
     "pitch_cap_present": "CONTEXT_REVIEW_REQUIRED",
     "injury_news_present": "CONTEXT_REVIEW_REQUIRED",
     "short_rest_present": "CONTEXT_REVIEW_REQUIRED",
@@ -49,6 +54,25 @@
     "walk_forward": "REPRODUCIBLE_STRICT_256",
     "strict_residual_vector": "REPRODUCIBLE_284",
     "legacy_exact_258_fallback_rule": "UNRECOVERABLE",
-    "tail_probabilities_live_use": "NOT_ACTIVATED_PENDING_SEPARATE_CALIBRATION"
+    "tail_probabilities_live_use": "AVAILABLE_AS_RESEARCH_CHALLENGER_ONLY_NO_AUTOMATED_BETTING"
+  },
+  "tail_probability_challenger": {
+    "status": "AVAILABLE_FOR_RESEARCH_REVIEW_ONLY",
+    "model_id": "PS_EXPECTED_IP_EMPIRICAL_TAIL_2026_V1",
+    "helper": "scripts/forecast_ps_expected_ip_tail.py",
+    "study": "research/postseason_expected_ip/ps_expected_ip_tail_validation.json",
+    "method": "Jeffreys-smoothed empirical CDF of strictly matched historical PS minus RS starter-average IP",
+    "strict_historical_residual_n": 284,
+    "leakage_free_walk_forward_evaluable_starters": 256,
+    "historical_season_brier_wins_vs_climatology": "8/9 for each event",
+    "calibrated_events": [
+      "IP_GE_5",
+      "IP_GE_6",
+      "IP_LT_4"
+    ],
+    "visibility": "CHALLENGER_ONLY; current-context review required for special roles/caps/injuries/short rest/tight leash",
+    "automated_probability_selection": "OFF",
+    "automated_betting_and_position_sizing": "OFF",
+    "future_2026_prospective_validation": "NOT_YET_EVALUATED"
   }
 }
