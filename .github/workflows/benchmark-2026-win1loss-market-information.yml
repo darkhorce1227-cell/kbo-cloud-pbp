@@ -1,0 +1,55 @@
+name: Benchmark KBO Proto 3way market vs past-only season climatology
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/compare_2026_win1loss_market_vs_naive.py
+      - tests/test_2026_win1loss_market_vs_naive.py
+      - .github/workflows/benchmark-2026-win1loss-market-information.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Verify no same-day result leakage
+        run: |
+          python -m py_compile scripts/compare_2026_win1loss_market_vs_naive.py
+          python -m unittest discover -s tests -p test_2026_win1loss_market_vs_naive.py -v
+      - name: Calculate dated online baseline and calendar-week block uncertainty
+        run: |
+          python scripts/compare_2026_win1loss_market_vs_naive.py
+          cat research/market_fair_odds/betlive_2026_r40_r122_win1loss3_information_benchmark.json
+      - name: Require code-fixed prespecified prior and same source coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          r=json.loads((d/'betlive_2026_r40_r122_win1loss3_information_benchmark.json').read_text(encoding='utf-8'))
+          src=json.loads((d/'betlive_2026_r40_r122_win1loss3_calibration.json').read_text(encoding='utf-8'))
+          assert r['status']=='DESCRIPTIVE_MARKET_INFORMATION_BENCHMARK_NON_EXECUTABLE'
+          assert r['game_count']==src['independent_pbp_joined']
+          assert r['no_model_predictions_ever_used'] and r['no_real_betting_roi_inferred']
+          assert 'no target or same-date outcome' in r['baseline_past_only']
+          assert r['weeks_bootstrap_groups']>=15
+          assert abs(r['market_multiclass_brier']-src['multiclass_brier'])<1e-10
+          print({'games':r['game_count'],'market':r['market_multiclass_brier'],
+                 'past_only':r['past_only_climatology_brier'],
+                 'gain':r['paired_brier_improvement_market_over_past_only'],
+                 'CI':r['paired_brier_improvement_market_over_past_only_95CI_week_cluster']})
+          PY
+      - name: Commit paired benchmark
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_r40_r122_win1loss3_information_benchmark.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish leak-free KBO 2026 market vs prespecified pre-date-only frequency benchmark'
+          git pull --rebase origin main
+          git push origin HEAD:main
