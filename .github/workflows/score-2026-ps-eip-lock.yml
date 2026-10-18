@@ -1,0 +1,53 @@
+name: Score 2026 postseason Expected IP strictly precommitted shadow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'state/postgame_score_audit_2026-10-18.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  score:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Naver collector dependencies
+        run: pip install -r requirements.txt
+      - name: Gate on verified completed official score audit and external pregame commit
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          audit=Path('state/postgame_score_audit_2026-10-18.json')
+          lock=Path('research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_18_LG_HT.json')
+          assert audit.exists(), 'No completed 2026-10-18 official score audit'
+          assert lock.exists(), 'No pregame LOCK snapshot'
+          obj=json.loads(audit.read_text(encoding='utf-8'))
+          assert obj.get('validation')=='PASS' and obj.get('target_date')=='2026-10-18', obj
+          PY
+      - name: Score locked 2026 first prospective PS game with completed Naver pitcher lines
+        run: |
+          python scripts/score_2026_ps_eip_lock.py
+          cat research/postseason_expected_ip/2026_shadow/prospective_score_2026_10_18.json
+      - name: Publish reproducible prospective score
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/postseason_expected_ip/2026_shadow/prospective_score_2026_10_18.json
+          if git diff --cached --quiet; then
+            echo 'Prospective scoring unchanged'
+          else
+            git commit -m 'Score first precommitted 2026 PS Expected IP shadow'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
