@@ -1,3 +1,3 @@
 # Manual KBO PBP cloud-update trigger
-# Updating this file triggers the PBP workflow when a validated checkpoint needs repair.
-manual refresh requested for 2026-10-17 postseason rebuild at 2026-10-17 18:43 KST
+# Target selected explicitly for reproducible postseason score audit.
+manual refresh requested for 2026-10-18 postseason G2 at 2026-10-18 18:46 KST
