@@ -1,0 +1,27 @@
+name: Test KBO fair odds calibration audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/backtest_kbo_fair_odds.py'
+      - 'tests/test_kbo_fair_odds_backtest.py'
+      - 'research/market_fair_odds/README.md'
+      - '.github/workflows/test-kbo-fair-odds-calibration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test timestamp, settlement and no-vig rules
+        run: |
+          python -m py_compile scripts/backtest_kbo_fair_odds.py
+          python -m unittest discover -s tests -p test_kbo_fair_odds_backtest.py -v
