@@ -1,0 +1,78 @@
+{
+  "status": "PBP_DERIVED_PROVISIONAL",
+  "interpretation": "Structural checks only; not yet reconciled to official pitcher box-score IP.",
+  "source_release": "historical-ps-master",
+  "source_asset": "postseason_screen_pass.parquet",
+  "source_sha256": "5d04feb0e7ec85072cb9973f7b2e7624abe43075ab0bf97ee1f59b86980bd4bf",
+  "extractor": "scripts/extract_postseason_starter_appearances.py",
+  "total_games": 188,
+  "total_starter_appearances": 376,
+  "zero_out_starters": 90,
+  "by_season": [
+    {
+      "season": 2009,
+      "games": 16,
+      "starters": 32
+    },
+    {
+      "season": 2014,
+      "games": 14,
+      "starters": 28
+    },
+    {
+      "season": 2015,
+      "games": 15,
+      "starters": 30
+    },
+    {
+      "season": 2016,
+      "games": 14,
+      "starters": 28
+    },
+    {
+      "season": 2017,
+      "games": 15,
+      "starters": 30
+    },
+    {
+      "season": 2018,
+      "games": 16,
+      "starters": 32
+    },
+    {
+      "season": 2019,
+      "games": 12,
+      "starters": 24
+    },
+    {
+      "season": 2020,
+      "games": 13,
+      "starters": 26
+    },
+    {
+      "season": 2021,
+      "games": 11,
+      "starters": 22
+    },
+    {
+      "season": 2022,
+      "games": 16,
+      "starters": 32
+    },
+    {
+      "season": 2023,
+      "games": 14,
+      "starters": 28
+    },
+    {
+      "season": 2024,
+      "games": 16,
+      "starters": 32
+    },
+    {
+      "season": 2025,
+      "games": 16,
+      "starters": 32
+    }
+  ]
+}
