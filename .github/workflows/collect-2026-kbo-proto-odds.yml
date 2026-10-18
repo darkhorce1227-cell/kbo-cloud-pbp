@@ -1,0 +1,59 @@
+name: Collect 2026 historical KBO Proto rounds 112-122
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-2026-kbo-proto-odds.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-kbo-proto-rounds
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install public archive parser
+        run: python -m pip install requests beautifulsoup4
+      - name: Reconstruct archived full-game KBO markets and audit game PK join
+        run: |
+          python -m py_compile scripts/collect_2026_kbo_proto_archive.py
+          python scripts/collect_2026_kbo_proto_archive.py --first 112 --last 122
+          cat research/market_fair_odds/sharppick_2026_proto_r112_r122_audit.json
+      - name: Require no cross-round score conflict and verify no retro quote mistaken for pregame lock
+        run: |
+          python - <<'PY'
+          import json,csv
+          from pathlib import Path
+          p=Path('research/market_fair_odds/sharppick_2026_proto_r112_r122_audit.json')
+          a=json.loads(p.read_text(encoding='utf-8'))
+          assert a['status']=='SOURCE_RECONSTRUCTED_UNVERIFIED_PRICE_TIMESTAMP',a['status']
+          assert a['all_rounds_collected'],a
+          assert a['not_validated_as_original_pregame_quote']
+          assert not a['may_be_used_for_clean_pre_performance']
+          assert not a['cross_round_disagreements']
+          rows=list(csv.DictReader(Path('research/market_fair_odds/sharppick_2026_proto_r112_r122_kbo_reconstructed.csv').open(encoding='utf-8')))
+          assert len(rows)==a['deduplicated_markets'] and len(rows)>=8
+          assert len({(x['game_pk'],x['market_type'],x['line']) for x in rows})==len(rows)
+          assert all('HISTORICAL_PAGE_RETROSPECTIVE' in x['source_price_temporality'] for x in rows)
+          print({'markets':len(rows),'games':a['unique_games'],'market_counts':a['market_type_counts']})
+          PY
+      - name: Commit raw-sourced game-market history and audit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/sharppick_2026_proto_r112_r122_*.csv
+          git add research/market_fair_odds/sharppick_2026_proto_r112_r122_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish source-backed KBO Proto round 112-122 retrospective market book'
+          git pull --rebase origin main
+          git push origin HEAD:main
