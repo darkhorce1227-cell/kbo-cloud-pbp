@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "scope": "SINGLE_GAME_FIRST_PROSPECTIVE_SHADOW_ONLY",
+  "first_pitch_kst": "2026-10-18T14:00:00+09:00",
+  "snapshot_created_at_kst": "2026-10-18T11:51:32.533884+09:00",
+  "first_snapshot_git_commit_at": "2026-10-18T02:51:32+00:00",
+  "snapshot_sha256": "f0ba1ffc7bfafa815ac1d2736705482eb70960615035166de47c75652c3e3a8c",
+  "game_pk": "33331018LGHT02026",
+  "official_game_score_audit": "PASS",
+  "completed_game_count": 1,
+  "prospective_starter_rows": 2,
+  "eligible_starter_rows": 2,
+  "baseline_mae": 2.6032258064516127,
+  "candidate_mae": 2.6032257833333334,
+  "baseline_rmse": 3.63468249906401,
+  "candidate_rmse": 3.1517593435970483,
+  "brier_by_event": {
+    "IP_GE_5": 0.1970852570021545,
+    "IP_GE_6": 0.2513911972914743,
+    "IP_LT_4": 0.27883348722683904
+  },
+  "rows": [
+    {
+      "team": "LG",
+      "starter_id": "61101",
+      "starter_name": "임찬규",
+      "actual_ip": 0.3333333333333333,
+      "actual_outs": 1,
+      "pitch_count": 28,
+      "baseline_rs_starter_avg_ip": 5.473118279569892,
+      "candidate_mean_ip": 4.7132984,
+      "baseline_error": 5.139784946236559,
+      "candidate_error": 4.379965066666667,
+      "baseline_abs_error": 5.139784946236559,
+      "candidate_abs_error": 4.379965066666667,
+      "baseline_squared_error": 26.417389293559946,
+      "candidate_squared_error": 19.184093985220343,
+      "events": {
+        "IP_GE_5": {
+          "forecast_probability": 0.4824561403508772,
+          "observed": 0,
+          "brier": 0.2327639273622653
+        },
+        "IP_GE_6": {
+          "forecast_probability": 0.21578947368421053,
+          "observed": 0,
+          "brier": 0.04656509695290859
+        },
+        "IP_LT_4": {
+          "forecast_probability": 0.2894736842105263,
+          "observed": 1,
+          "brier": 0.5048476454293629
+        }
+      },
+      "status": "PROSPECTIVE_SCORED",
+      "included_in_metrics": true
+    },
+    {
+      "team": "HT",
+      "starter_id": "55633",
+      "starter_name": "올러",
+      "actual_ip": 6.0,
+      "actual_outs": 18,
+      "pitch_count": 94,
+      "baseline_rs_starter_avg_ip": 5.933333333333334,
+      "candidate_mean_ip": 5.1735135,
+      "baseline_error": -0.06666666666666643,
+      "candidate_error": -0.8264864999999997,
+      "baseline_abs_error": 0.06666666666666643,
+      "candidate_abs_error": 0.8264864999999997,
+      "baseline_squared_error": 0.004444444444444413,
+      "candidate_squared_error": 0.6830799346822495,
+      "events": {
+        "IP_GE_5": {
+          "forecast_probability": 0.5982456140350877,
+          "observed": 1,
+          "brier": 0.16140658664204371
+        },
+        "IP_GE_6": {
+          "forecast_probability": 0.32456140350877194,
+          "observed": 1,
+          "brier": 0.45621729763004
+        },
+        "IP_LT_4": {
+          "forecast_probability": 0.22982456140350876,
+          "observed": 0,
+          "brier": 0.05281932902431517
+        }
+      },
+      "status": "PROSPECTIVE_SCORED",
+      "included_in_metrics": true
+    }
+  ],
+  "promotion_decision": "NO_MODEL_PROMOTION_FROM_ONE_GAME",
+  "historical_refit": "FORBIDDEN",
+  "betting_action": "NONE"
+}
