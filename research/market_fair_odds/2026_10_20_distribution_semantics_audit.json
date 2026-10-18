@@ -1,0 +1,27 @@
+{
+  "status": "QUALIFIED_LABEL_ONLY_ORIGINAL_FROZEN_PROBABILITIES_UNMODIFIED",
+  "audited_on_kst_date": "2026-10-18",
+  "fixture": "2026-10-20 HT@LG 준PO 3차전",
+  "original_locked_file": "research/market_fair_odds/pregame_mu_grid_2026_10_20_HT_LG.json",
+  "original_first_commit": "fedfd3a2d843a818a6e2bca29271adcc699c589b",
+  "underlying_locked_clean_pre": "state/prospective_mu_v1_2/2026-10-20_20261018T115023Z.json",
+  "source_model": "research/mu-v1.2/model_spec.json",
+  "source_scorecode": "scripts/build_mu_v1_2_features.py:game_tables; scripts/mu_v1_2_recovered_challenger.py:score_input",
+  "nomenclature_corrections": {
+    "F5.three_way_after_nine_innings": "Misnamed GENERIC key; this F5 distribution refers to FIRST FIVE INNINGS and is not nine-inning data.",
+    "full_9_in": "Misleading scope name: mechanical 'full' μ targets REGULAR-SEASON FINAL RUNS, and underlying final totals can include extra innings. It is NOT a separately estimated nine-inning regulatory score process.",
+    "full_9_in.three_way_after_nine_innings": "Derived hypothetical full-score split under independent negative-binomial marginals; not an exact 9-inning tie forecast and not the actual official/extra-inning bookmaker settlement probabilities.",
+    "full_9_in.baseball_win_one_loss_after_nine": "Derived 2+/≤1/2+ margin on model full-run scores, not validated for the final official win-one-loss product."
+  },
+  "approved_usage": [
+    "Use original frozen F5 μ and F5 NB distribution as research-only first-five 3-class probabilities.",
+    "Use original frozen full μ and NB score grid only as provisional research Challenger full-game run-count estimates, explicitly acknowledging the final-score target and unmodeled extra-innings mechanism.",
+    "Compare every forecast on exactly matching settlement horizons; no full-game market EV or staking from this misnamed grid.",
+    "Do not modify the original probability numbers or retrospectively relabel them as independently validated official sportsbook prices."
+  ],
+  "original_model_changed": false,
+  "original_forecast_probability_changed": false,
+  "lineup_adjustment_applied": false,
+  "prospective_confidence": "RESEARCH_CHALLENGER_ONLY",
+  "limitations": "Model is trained on regular-season 2024/25 final score features and 2026 regular-season feature observations; 2026 PS bullpen/workload context and final lineups have not modified the locked μ forecasts."
+}
