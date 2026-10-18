@@ -1,0 +1,35 @@
+{
+  "target_date": "2026-10-20",
+  "games": [
+    {
+      "game_pk": "33331020HTLG02026",
+      "away_team": "HT",
+      "home_team": "LG",
+      "away_starter": "시라카와",
+      "home_starter": "카라스코",
+      "starter_source": "2026-10-18 postgame manager announcements (Newspim reports)",
+      "scheduled_first_pitch_kst": "2026-10-20T18:30:00+09:00",
+      "scheduled_venue": "잠실",
+      "note": "PREMARKET independent research Challenger only, no lineup yet and no game-specific odds used"
+    }
+  ],
+  "prospective_capture": {
+    "clean_pre_lock": true,
+    "market_prices_inspected": false,
+    "declaration": "MARKET_UNSEEN_AT_INPUT_COMMIT",
+    "prepared_by": "assistant: research-only model input, no 2026-10-20 sportsbook odds queried",
+    "declaration_scope": "ASSISTANT_AND_MODEL_INPUT_ONLY_NOT_USER_BEHAVIOR",
+    "lineup_status": "NOT_ANNOUNCED_EXPECTED_ONLY",
+    "starter_confirmation": "POSTGAME_MANAGER_ANNOUNCEMENTS_2026_10_18",
+    "source_pages": [
+      "https://www.newspim.com/news/view/20261018000126",
+      "https://www.newspim.com/news/view/20261018000121",
+      "https://www.koreabaseball.com/Schedule/Schedule.aspx?date=202610"
+    ],
+    "data_cutoff_note": "2026-10-18 completed game allowed; both teams play 10-20 after 10-19 rest",
+    "subject": "2026-10-20 KIA@LG 준PO 3차전 research Challenger μ",
+    "betting_market_not_queried_for_target_game": true,
+    "do_not_treat_as_champion": true,
+    "do_not_use_to_place_bets": true
+  }
+}
