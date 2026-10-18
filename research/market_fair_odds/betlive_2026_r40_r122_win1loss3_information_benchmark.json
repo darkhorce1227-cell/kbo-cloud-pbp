@@ -1,0 +1,39 @@
+{
+  "status": "DESCRIPTIVE_MARKET_INFORMATION_BENCHMARK_NON_EXECUTABLE",
+  "market": "KBO FULL_WIN1LOSS_3WAY",
+  "game_count": 459,
+  "weeks_bootstrap_groups": 26,
+  "source_price_timestamp": "UNVERIFIED",
+  "source_pbp_score": "SHA_VERIFIED_2026_PBP",
+  "baseline_uniform": "Fixed 1/3 for HOME_2PLUS/WITHIN_1/AWAY_2PLUS",
+  "baseline_past_only": "Dirichlet pseudo-count 10 PER class, no target or same-date outcome used",
+  "first_game_date": "2026-04-21",
+  "last_game_date": "2026-10-12",
+  "market_multiclass_brier": 0.6410417211155482,
+  "past_only_climatology_brier": 0.6674291205259789,
+  "uniform_brier": 0.6666666666666667,
+  "market_logloss": 1.062046039839094,
+  "past_only_climatology_logloss": 1.099572918046467,
+  "uniform_logloss": 1.0986122886681098,
+  "paired_brier_improvement_market_over_past_only": 0.026387399410430716,
+  "paired_brier_improvement_market_over_uniform": 0.025624945551118425,
+  "paired_brier_improvement_market_over_past_only_95CI_week_cluster": [
+    0.011323550497551004,
+    0.04072375946500083
+  ],
+  "paired_brier_improvement_market_over_uniform_95CI_week_cluster": [
+    0.009671912913126197,
+    0.04145521588489929
+  ],
+  "market_brier_skill_vs_past_only": 0.03953588268614294,
+  "market_brier_skill_vs_uniform": 0.038437418326677686,
+  "no_model_predictions_ever_used": true,
+  "no_real_betting_roi_inferred": true,
+  "limitations": [
+    "Data are selected 2026 public bookmaker archive games; historical page quoted prices cannot be authenticated as available before first pitch",
+    "Market's descriptive probability information advantage is not proof of trading/portfolio edge after bookmaker margin",
+    "Past-only baseline uses class frequency from earlier game dates only; within-day outcomes are never observed by the baseline",
+    "Fixed Dirichlet smoothing alpha=10 is an arbitrary, prespecified baseline, not optimized on this sample",
+    "Calendar-week cluster bootstrap estimates uncertainty across this selected sample, not full-season generalization"
+  ]
+}
