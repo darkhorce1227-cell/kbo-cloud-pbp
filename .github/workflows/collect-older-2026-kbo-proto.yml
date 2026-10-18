@@ -1,0 +1,49 @@
+name: Recover available older 2026 KBO Proto rounds 101-111
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/collect-older-2026-kbo-proto.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: historical-kbo-proto-rounds
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install requests beautifulsoup4
+      - name: Read known/unknown 101-111 historical odds with explicit coverage gaps
+        run: |
+          python scripts/collect_2026_kbo_proto_archive.py --first 101 --last 111 --dry-run
+      - name: Gate data and source status
+        run: |
+          python - <<'PY'
+          import json,csv
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          j=json.loads((d/'sharppick_2026_proto_r101_r111_audit.json').read_text())
+          print({'rounds':j['rounds'],'markets':j['deduplicated_markets'],'games':j['unique_games']})
+          assert j['status']=='SOURCE_RECONSTRUCTED_UNVERIFIED_PRICE_TIMESTAMP'
+          assert j['completed_rounds']>=2
+          assert j['deduplicated_markets']>=15
+          assert not j['cross_round_disagreements']
+          assert not j['may_be_used_for_clean_pre_performance']
+          r=list(csv.DictReader((d/'sharppick_2026_proto_r101_r111_kbo_reconstructed.csv').open()))
+          assert len(r)==j['deduplicated_markets']
+          PY
+      - name: Publish reconstructible older rounds with explicit missing intervals
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/sharppick_2026_proto_r101_r111_*.csv
+          git add research/market_fair_odds/sharppick_2026_proto_r101_r111_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish extant older Proto rounds with explicit 404 gaps'
+          git pull --rebase origin main
+          git push origin HEAD:main
