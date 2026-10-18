@@ -38,7 +38,7 @@ jobs:
           set -euo pipefail
           python scripts/extract_postseason_starter_appearances.py \
             --input /tmp/ps-shift/postseason_screen_pass.parquet \
-            --output historical_ps/starter_appearances_screen_pass.csv
+            --output historical_ps/starter_appearances_2016_2025.csv
       - name: Audit source and extracted appearances
         run: |
           python - <<'PY'
@@ -46,22 +46,35 @@ jobs:
           from pathlib import Path
           import pandas as pd
           src=Path('/tmp/ps-shift/postseason_screen_pass.parquet')
-          dst=Path('historical_ps/starter_appearances_screen_pass.csv')
+          dst=Path('historical_ps/starter_appearances_2016_2025.csv')
           source=pd.read_parquet(src)
-          out=pd.read_csv(dst, dtype={'game_pk':str,'starter_id':str})
+          extracted=pd.read_csv(dst, dtype={'game_pk':str,'starter_id':str})
+          # Old Naver PS relays have invalid 0-out states in 2009/2014/2015.
+          # Never publish their all-zero derived IP as actual pitcher innings.
+          excluded=extracted.loc[~extracted.season.between(2016,2025)].copy()
+          assert set(excluded.season.astype(int))=={2009,2014,2015}, 'unexpected legacy season coverage'
+          assert excluded.actual_outs.eq(0).all(), 'legacy exclusion needs renewed review'
+          out=extracted.loc[extracted.season.between(2016,2025)].copy()
           assert not source.empty and not out.empty, 'empty source or result'
+          assert set(out.season.astype(int))==set(range(2016,2026)), '2016-2025 seasons incomplete'
+          assert out.actual_outs.gt(0).all(), 'nonpositive starter IP within research window'
+          out.to_csv(dst,index=False,encoding='utf-8')
           assert not out.duplicated(['game_pk','defending_team']).any(), 'duplicate game/team'
           assert not out[['game_pk','defending_team','starter_id','starter_name','actual_ip']].isna().any().any(), 'missing starter field'
           assert len(out)==2*out.game_pk.nunique(), 'not exactly two starters per game'
           assert out.actual_outs.between(0,45).all(), 'implausible starter outs'
           assert ((out.actual_ip*3-out.actual_outs).abs()<1e-8).all(), 'IP-to-outs mismatch'
-          assert set(out.game_pk)==set(source.game_pk.astype(str)), 'game coverage mismatch'
-          assert set(out.season.astype(int))==set(source.season.dropna().astype(int)), 'season coverage mismatch'
+          assert set(out.game_pk)==set(source.loc[source.season.between(2016,2025),'game_pk'].astype(str)), '2016-2025 game coverage mismatch'
+          assert set(out.season.astype(int))==set(source.loc[source.season.between(2016,2025),'season'].dropna().astype(int)), 'season coverage mismatch'
           by_year=[{'season':int(year),'games':int(group.game_pk.nunique()),'starters':int(len(group))} for year,group in out.groupby('season')]
           result={
             'status':'PBP_DERIVED_PROVISIONAL',
             'interpretation':'Structural checks only; not yet reconciled to official pitcher box-score IP.',
             'source_release':'historical-ps-master',
+            'research_window':'2016-2025',
+            'excluded_legacy_seasons_due_invalid_zero_outs':[2009,2014,2015],
+            'excluded_legacy_starter_rows':int(len(excluded)),
+            'raw_extracted_starter_rows':int(len(extracted)),
             'source_asset':'postseason_screen_pass.parquet',
             'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),
             'extractor':'scripts/extract_postseason_starter_appearances.py',
@@ -70,7 +83,7 @@ jobs:
             'zero_out_starters':int(out.actual_outs.eq(0).sum()),
             'by_season':by_year,
           }
-          target=Path('historical_ps/starter_appearances_screen_pass_audit.json')
+          target=Path('historical_ps/starter_appearances_2016_2025_audit.json')
           target.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
           print(json.dumps(result,indent=2,ensure_ascii=False))
           PY
@@ -79,7 +92,8 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add historical_ps/starter_appearances_screen_pass.csv historical_ps/starter_appearances_screen_pass_audit.json
+          git add historical_ps/starter_appearances_2016_2025.csv historical_ps/starter_appearances_2016_2025_audit.json
+          git rm -f --ignore-unmatch historical_ps/starter_appearances_screen_pass.csv historical_ps/starter_appearances_screen_pass_audit.json
           if git diff --cached --quiet; then
             echo 'No changes to publish'
           else
