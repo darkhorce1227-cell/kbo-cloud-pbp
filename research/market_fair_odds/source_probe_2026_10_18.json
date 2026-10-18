@@ -1,0 +1,689 @@
+{
+  "status": "SOURCE_DISCOVERY_ONLY_NOT_ODDS_DATA",
+  "probed_at_utc": "2026-10-18T04:32:39.636706+00:00",
+  "pages": [
+    {
+      "url": "https://spogod.com/round/proto/",
+      "robots_url": "https://spogod.com/robots.txt",
+      "attempt_at_utc": "2026-10-18T04:32:31.277336+00:00",
+      "robots_http_status": 200,
+      "robots_allow": true,
+      "http_status": 200,
+      "content_type": "text/html",
+      "html_bytes": 36013,
+      "status": "ACCESSIBLE",
+      "title": "íë¡í  ì¹ë¶ì 123íì°¨ â ì¤í¬ì¸ í í  ì¹ë¶ì ëì ê²½ê¸°Â·ë°°ë¹Â·êµ¬ë§¤ì¨Â·ê²°ê³¼ | ì¤í¬ê°",
+      "headings": [
+        "íë¡í  ì¹ë¶ì (ì¤í¬ì¸ í í  ì¹ë¶ì) â ëì ê²½ê¸°Â·ë°°ë¹Â·êµ¬ë§¤ì¨Â·ê²°ê³¼",
+        "ì¤í¬ì¸ í í  ì¹ë¶ì 123íì°¨ íëì â ì¢ëª©ë³ ê²½ê¸°Â·í­ëª© ì",
+        "ì§ë íì°¨ ê²°ê³¼ â íë¡í  ì¹ë¶ì 122íì°¨",
+        "ð íë¡í  ëì ë¦¬ê·¸ë³ ê²½ê¸° ë¶ì",
+        "íë¡í  ì¹ë¶ì ìµê·¼ íì°¨",
+        "íë¡í  ì¹ë¶ì ìë´",
+        "ë¡ê·¸ì¸",
+        "ð ê³µì§Â·ì´ë²¤í¸",
+        "ð¬ ì¤ìê° ì±í",
+        "ð ì´ë² ì£¼ í½ ë­í¹",
+        "â ìµê·¼ ê²°ê³¼",
+        "ì¤í¬ê° ì´ì ìì¹"
+      ],
+      "relevant_links": [
+        {
+          "text": "íë¡í  ì¹ë¶ì",
+          "url": "https://spogod.com/round/proto/"
+        },
+        {
+          "text": "KBOë¶ì",
+          "url": "https://spogod.com/board/kbo/"
+        },
+        {
+          "text": "123íì°¨ ì ì²´ ëì ê²½ê¸° ë³´ê¸° âº",
+          "url": "https://spogod.com/round/proto/2026-123/"
+        },
+        {
+          "text": "íë¡í  ì¹ë¶ì íë ë² âº",
+          "url": "https://spogod.com/guide/proto/"
+        },
+        {
+          "text": "ìì¸í âº",
+          "url": "https://spogod.com/round/proto/2026-122/"
+        },
+        {
+          "text": "2026ë 123íì°¨",
+          "url": "https://spogod.com/round/proto/2026-123/"
+        },
+        {
+          "text": "2026ë 122íì°¨",
+          "url": "https://spogod.com/round/proto/2026-122/"
+        },
+        {
+          "text": "2026ë 121íì°¨",
+          "url": "https://spogod.com/round/proto/2026-121/"
+        },
+        {
+          "text": "2026ë 120íì°¨",
+          "url": "https://spogod.com/round/proto/2026-120/"
+        },
+        {
+          "text": "2026ë 119íì°¨",
+          "url": "https://spogod.com/round/proto/2026-119/"
+        },
+        {
+          "text": "2026ë 118íì°¨",
+          "url": "https://spogod.com/round/proto/2026-118/"
+        },
+        {
+          "text": "2026ë 117íì°¨",
+          "url": "https://spogod.com/round/proto/2026-117/"
+        },
+        {
+          "text": "2026ë 116íì°¨",
+          "url": "https://spogod.com/round/proto/2026-116/"
+        },
+        {
+          "text": "2026ë 115íì°¨",
+          "url": "https://spogod.com/round/proto/2026-115/"
+        },
+        {
+          "text": "2026ë 114íì°¨",
+          "url": "https://spogod.com/round/proto/2026-114/"
+        },
+        {
+          "text": "2026ë 113íì°¨",
+          "url": "https://spogod.com/round/proto/2026-113/"
+        },
+        {
+          "text": "2026ë 112íì°¨",
+          "url": "https://spogod.com/round/proto/2026-112/"
+        },
+        {
+          "text": "íë¡í  ì¹ë¶ì íë ë² âº",
+          "url": "https://spogod.com/guide/proto/"
+        },
+        {
+          "text": "â½ ì¤í¬í ìºìì¤ìí° 1:3 ë ì ìí¸ë ì´í¬ ì¹ 2.10",
+          "url": "https://spogod.com/match/2181/"
+        },
+        {
+          "text": "â½ í´ì¤í´ ë¤ì´ëëª¨FC 2:2 FCëë¬ì¤ ë¬´ 3.20",
+          "url": "https://spogod.com/match/2180/"
+        },
+        {
+          "text": "â½ ì¤ì¤í´FC 1:2 ë°´ì¿ ë² íì´í¸ìº¡ì¤FC ì¹ 1.45",
+          "url": "https://spogod.com/match/2179/"
+        },
+        {
+          "text": "â¾ í´ë¦¬ë¸ëë ê°ëì¸ì¤ 3:7 í¬íë² ì´ ë ì´ì¤ ì¹ 1.66",
+          "url": "https://spogod.com/match/2237/"
+        },
+        {
+          "text": "â½ ì¬ëë ìí°SC 4:1 DCì ëì´í°ë ì¹ 1.59",
+          "url": "https://spogod.com/match/2178/"
+        }
+      ],
+      "kbo_html_text_examples": [
+        "ð¥ ì¤í¬ê° â í¥ì¤í ì ì ì ê¸°ë í½, ê²°ê³¼ë¡ ì¦ëªíë ê° ë­í¹ Â· íë¡í Â·ì¹ë¬´í¨Â·í´ì¸ì¶êµ¬Â·MLBÂ·KBOÂ·NPB ë¶ì ê´ê³ ë¬¸ì ì¶ìì²´í¬ ë¡ê·¸ì¸ íìê°ì",
+        "ð¥ ì¤í¬ê° â í¥ì¤í ì ì ì ê¸°ë í½, ê²°ê³¼ë¡ ì¦ëªíë ê° ë­í¹ Â· íë¡í Â·ì¹ë¬´í¨Â·í´ì¸ì¶êµ¬Â·MLBÂ·KBOÂ·NPB ë¶ì ê´ê³ ë¬¸ì ì¶ìì²´í¬ ë¡ê·¸ì¸ íìê°ì",
+        "ê²½ê¸°Â·ì ë³´ â¾ ì¤ëì í½ ë¼ì´ë¸ì¤ì½ì´ ì¤í¬ì¸ í í  ê²°ê³¼ ì¤í¬ì¸  ì¤ê³ ì¶êµ¬í í  ì¹ë¬´í¨ íë¡í  ì¹ë¶ì ì¶êµ¬ ë¶ì ì¼êµ¬ ë¶ì ëêµ¬ ë¶ì KBOë¶ì MLBë¶ì í´ì¸ì¶êµ¬ë¶ì ì¹ë¬´í¨ ê³ì°ê¸° í í  ê°ì´ë",
+        "ì¤ëì í½ ë¼ì´ë¸ì¤ì½ì´ ì¤í¬ì¸ í í  ê²°ê³¼ ì¤í¬ì¸  ì¤ê³ ì¶êµ¬í í  ì¹ë¬´í¨ íë¡í  ì¹ë¶ì ì¶êµ¬ ë¶ì ì¼êµ¬ ë¶ì ëêµ¬ ë¶ì KBOë¶ì MLBë¶ì í´ì¸ì¶êµ¬ë¶ì ì¹ë¬´í¨ ê³ì°ê¸° í í  ê°ì´ë"
+      ],
+      "tables": [
+        {
+          "heads": [
+            "ì¢ëª©",
+            "ê²½ê¸°",
+            "ì¼ë°",
+            "í¸ëìº¡",
+            "ì¸ëì¤ë²"
+          ],
+          "first_rows": [
+            "ì¢ëª© ê²½ê¸° ì¼ë° í¸ëìº¡ ì¸ëì¤ë²",
+            "â½ ì¶êµ¬ 128 128 173 128",
+            "â¾ ì¼êµ¬ 9 9 9 9"
+          ]
+        },
+        {
+          "heads": [
+            "íì°¨",
+            "ìí",
+            "ë§ê°",
+            "ê²½ê¸°",
+            "í­ëª©",
+            "íë§¤ì¡"
+          ],
+          "first_rows": [
+            "íì°¨ ìí ë§ê° ê²½ê¸° í­ëª© íë§¤ì¡",
+            "2026ë 123íì°¨ ë°ë§¤ ì¤ 10/18(ì¼) 23:00 152 501 447.3ìµ ì",
+            "2026ë 122íì°¨ ê²°ê³¼ íì  10/15(ëª©) 23:00 108 372 345.5ìµ ì"
+          ]
+        }
+      ],
+      "jsonld_count": 2,
+      "next_data_present": false,
+      "script_paths": [
+        "https://spogod.com/_astro/site.pPKNTR0L.js",
+        "https://spogod.com/_astro/slip.CAuh7NBs.js",
+        "https://spogod.com/_astro/community.CyCBHVgn.js",
+        "data:text/javascript;base64,Lyog7Iuk7Iuc6rCEIOyxhO2MhSjsmbzsqr0g7Lm4IFtkYXRhLWNoYXRdKSDigJQg7IOB7J6Q6rCAIO2ZlOuptOyXkCDrs7TsnbTqs6Ag7YOt7J20IOyVnuyXkCDsnojsnYQg65WM66eMIDTstIjrp4jri6Qg7IOIIOykhOydhCDqsIDsoLjsmKjri6QuIOuztOuCtOq4sOuKlCAvYXBpL2NoYXQuIDIwMjYtMTAtMDMgKi8KKGZ1bmN0aW9uICgpIHsKICB2YXIgYm94ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdF0nKQogIGlmICghYm94KSByZXR1cm4KICB2YXIgbGlzdCA9IGJveC5xdWVyeVNlbGVjdG9yKCdbZGF0YS1jaGF0LWxpc3RdJyksIGZvcm0gPSBib3gucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdC1mb3JtXScpCiAgdmFyIGxhc3QgPSAwLCB0aW1lciA9IDAsIHNlZW4gPSBmYWxzZSwgYnVzeSA9IGZhbHNlCiAgdmFyIGhtID0gZnVuY3Rpb24gKG1zKSB7IHJldHVybiBuZXcgRGF0ZShtcyArIDkgKiAzNjAwZTMpLnRvSVNPU3RyaW5nKCkuc2xpY2UoMTEsIDE2KSB9CiAgZnVuY3Rpb24gYWRkKHIpIHsKICAgIHZhciByb3cgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsgcm93LmNsYXNzTmFtZSA9ICdjaGwnCiAgICB2YXIgd2hvID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYicpOyB3aG8udGV4dENvbnRlbnQgPSByLm5pY2s7IGlmIChyLmFkbWluKSB3aG8uY2xhc3NOYW1lID0gJ2FkbScKICAgIHZhciBsdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3NwYW4nKTsgbHYuY2xhc3NOYW1lID0gJ211dGUnOyBsdi50ZXh0Q29udGVudCA9ICcgTHYnICsgci5sdiArICcgJwogICAgdmFyIHR4ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnc3BhbicpOyB0eC50ZXh0Q29udGVudCA9IHIuYm9keQogICAgdmFyIGF0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnaScpOyBhdC50ZXh0Q29udGVudCA9IGhtKHIuYXQpCiAgICByb3cuYXBwZW5kKHdobywgbHYsIHR4LCBhdCk7IGxpc3QuYXBwZW5kKHJvdykKICB9CiAgZnVuY3Rpb24gcHVsbCgpIHsKICAgIGlmIChidXN5IHx8IGRvY3VtZW50LmhpZGRlbiB8fCAhc2VlbikgcmV0dXJuCiAgICBidXN5ID0gdHJ1ZQogICAgZmV0Y2goJy9hcGkvY2hhdD9hZnRlcj0nICsgbGFzdCwgeyBjcmVkZW50aWFsczogJ3NhbWUtb3JpZ2luJyB9KS50aGVuKGZ1bmN0aW9uICh4KSB7IHJldHVybiB4Lmpzb24oKSB9KS50aGVuKGZ1bmN0aW9uIChkKSB7CiAgICAgIHZhciBzdGljayA9IGxpc3Quc2Nyb2xsVG9wICsgbGlzdC5jbGllbnRIZWlnaHQgPj0gbGlzdC5zY3JvbGxIZWlnaHQgLSAzMAogICAgICA7KGQucm93cyB8fCBbXSkuZm9yRWFjaChmdW5jdGlvbiAocikgeyBhZGQocik7IGxhc3QgPSBNYXRoLm1heChsYXN0LCByLmlkKSB9KQogICAgICBpZiAobGlzdC5jaGlsZHJlbi5sZW5ndGggPiAxMjApIHdoaWxlIChsaXN0LmNoaWxkcmVuLmxlbmd0aCA+IDgwKSBsaXN0LmZpcnN0Q2hpbGQucmVtb3ZlKCkKICAgICAgaWYgKHN0aWNrIHx8ICFsYXN0KSBsaXN0LnNjcm9sbFRvcCA9IGxpc3Quc2Nyb2xsSGVpZ2h0CiAgICB9KS5jYXRjaChmdW5jdGlvbiAoKSB7fSkuZmluYWxseShmdW5jdGlvbiAoKSB7IGJ1c3kgPSBmYWxzZSB9KQogIH0KICBuZXcgSW50ZXJzZWN0aW9uT2JzZXJ2ZXIoZnVuY3Rpb24gKGVzKSB7IHNlZW4gPSBlc1swXS5pc0ludGVyc2VjdGluZzsgaWYgKHNlZW4pIHB1bGwoKSB9KS5vYnNlcnZlKGJveCkKICB0aW1lciA9IHNldEludGVydmFsKHB1bGwsIDQwMDApCiAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigndmlzaWJpbGl0eWNoYW5nZScsIHB1bGwpCiAgaWYgKGZvcm0pIGZvcm0uYWRkRXZlbnRMaXN0ZW5lcignc3VibWl0JywgZnVuY3Rpb24gKGUpIHsKICAgIGUucHJldmVudERlZmF1bHQoKQogICAgdmFyIGlucCA9IGZvcm0ucXVlcnlTZWxlY3RvcignaW5wdXQnKSwgdiA9IGlucC52YWx1ZS50cmltKCk7IGlmICghdikgcmV0dXJuCiAgICBpbnAuZGlzYWJsZWQgPSB0cnVlCiAgICBmZXRjaCgnL2FwaS9jaGF0JywgeyBtZXRob2Q6ICdQT1NUJywgY3JlZGVudGlhbHM6ICdzYW1lLW9yaWdpbicsIGhlYWRlcnM6IHsgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJyB9LCBib2R5OiBKU09OLnN0cmluZ2lmeSh7IGJvZHk6IHYgfSkgfSkKICAgICAgLnRoZW4oZnVuY3Rpb24gKHgpIHsgcmV0dXJuIHguanNvbigpIH0pLnRoZW4oZnVuY3Rpb24gKHIpIHsKICAgICAgICBpZiAoIXIub2spIHsgYm94LnF1ZXJ5U2VsZWN0b3IoJ1tkYXRhLWNoYXQtZXJyXScpLnRleHRDb250ZW50ID0gci5lcnJvcjsgcmV0dXJuIH0KICAgICAgICBib3gucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdC1lcnJdJykudGV4dENvbnRlbnQgPSAnJzsgaW5wLnZhbHVlID0gJyc7IHB1bGwoKQogICAgICB9KS5jYXRjaChmdW5jdGlvbiAoKSB7fSkuZmluYWxseShmdW5jdGlvbiAoKSB7IGlucC5kaXNhYmxlZCA9IGZhbHNlOyBpbnAuZm9jdXMoKSB9KQogIH0pCn0pKCkK"
+      ]
+    },
+    {
+      "url": "https://spogod.com/today/?d=2026-10-01",
+      "robots_url": "https://spogod.com/robots.txt",
+      "attempt_at_utc": "2026-10-18T04:32:33.916837+00:00",
+      "robots_http_status": 200,
+      "robots_allow": true,
+      "http_status": 200,
+      "content_type": "text/html",
+      "html_bytes": 57908,
+      "status": "ACCESSIBLE",
+      "title": "10ì 1ì¼(ëª©) ì¤ëì í½ â ì¼êµ¬Â·ì¶êµ¬Â·ë°°êµ¬ 29ê²½ê¸° ë°°ë¹Â·êµ¬ë§¤ì¨ Â· ì¹ë¶ìì¸¡ | ì¤í¬ê°",
+      "headings": [
+        "10ì 1ì¼(ëª©) ì¤ëì í½ Â· ì¹ë¶ìì¸¡",
+        "ð 10ì 1ì¼(ëª©) ë¦¬ê·¸ë³ ê²½ê¸° ë¶ì",
+        "ë¡ê·¸ì¸",
+        "ð ê³µì§Â·ì´ë²¤í¸",
+        "ð¬ ì¤ìê° ì±í",
+        "ð ì´ë² ì£¼ í½ ë­í¹",
+        "â ìµê·¼ ê²°ê³¼",
+        "ì¤í¬ê° ì´ì ìì¹"
+      ],
+      "relevant_links": [
+        {
+          "text": "íë¡í  ì¹ë¶ì",
+          "url": "https://spogod.com/round/proto/"
+        },
+        {
+          "text": "KBOë¶ì",
+          "url": "https://spogod.com/board/kbo/"
+        },
+        {
+          "text": "íë¡í  ì¹ë¶ì íë ë²",
+          "url": "https://spogod.com/guide/proto/"
+        },
+        {
+          "text": "â¾ KBO 4ê²½ê¸° ë¶ì âº",
+          "url": "https://spogod.com/analysis/kbo/2026-10-01/"
+        },
+        {
+          "text": "01:00 ë¨ìì¶êµ¬ êµ­ì ì¹ì ê²½ê¸° ë¦¬í¬ìëì vs ìëë¼ 3:0 í ì¹ ì¹ 1.54 ë¬",
+          "url": "https://spogod.com/match/14/"
+        },
+        {
+          "text": "09:00 ë¨ìì¶êµ¬ êµ­ì ì¹ì ê²½ê¸° ìë¥´í¨í°ë vs ë³¼ë¦¬ë¹ì 4:0 í ì¹ ì¹ 1.03",
+          "url": "https://spogod.com/match/21/"
+        },
+        {
+          "text": "15:10 ë¨ìì¶êµ¬ êµ­ì ì¹ì ê²½ê¸° íëë§ vs ë´ì§ëë 1:1 ë¬´ ì¹ 2.35 ë¬´ 2.95 ",
+          "url": "https://spogod.com/match/27/"
+        },
+        {
+          "text": "19:10 ë¨ìì¶êµ¬ êµ­ì ì¹ì ê²½ê¸° ì¼ë³¸ vs ìì½°ëë¥´ 0:0 ë¬´ ì¹ 1.40 ë¬´ 3.90 í¨",
+          "url": "https://spogod.com/match/39/"
+        },
+        {
+          "text": "02:30 ìë¼ë¹ì ê±¸íì»µ ìëìë¯¸ë¦¬í¸ vs ì¹´íë¥´ 1:1 ë¬´ ì¹ 1.71 ë¬´ 3.10 í¨",
+          "url": "https://spogod.com/match/15/"
+        },
+        {
+          "text": "02:30 ìë¼ë¹ì ê±¸íì»µ ë°ë ì¸ vs ìë© 2:5 ìì  ì¹ ì¹ 1.61 ë¬´ 3.20 í¨ 4.65",
+          "url": "https://spogod.com/match/16/"
+        },
+        {
+          "text": "03:00 MLB ì íëí ë¸ë ì´ë¸ì¤ vs íë¼ë¸í¼ì íë¦¬ì¤ 3:4 ìì  ì¹ ì¹ 1.8",
+          "url": "https://spogod.com/match/17/"
+        },
+        {
+          "text": "06:00 MLB í´ì¤í´ ì ì¤í¸ë¡ì¤ vs ìì¹´ê³  íì´í¸ì­ì¤ 3:7 ìì  ì¹ ì¹ 1.48 í",
+          "url": "https://spogod.com/match/18/"
+        },
+        {
+          "text": "09:00 MLB ë´ì ìí¤ì¤ vs ë³´ì¤í´ ë ëì­ì¤ 9:2 í ì¹ ì¹ 1.56 í¨ 2.02",
+          "url": "https://spogod.com/match/20/"
+        },
+        {
+          "text": "11:00 MLB ìëìì´ê³  íëë¦¬ì¤ vs ìì¹´ê³  ì»µì¤ 4:1 í ì¹ ì¹ 1.57 í¨ 2.00",
+          "url": "https://spogod.com/match/24/"
+        },
+        {
+          "text": "08:30 ë¯¸êµ­ ë©ì´ì ë¦¬ê·¸ì¬ì»¤ ë´ì ë ëë¶ì¤ vs ì¸ì¸í¸ë£¨ì´ì¤ ìí°SC 0:3 ",
+          "url": "https://spogod.com/match/19/"
+        },
+        {
+          "text": "10:00 ìììê²ì ë¨ìë°°êµ¬ ì¸ë ë¨ì vs íí¤ì¤í ë¨ì 0:3 ìì  ì¹ ì¹",
+          "url": "https://spogod.com/match/22/"
+        },
+        {
+          "text": "10:00 ìììê²ì ë¨ìë°°êµ¬ ì¹´ìíì¤í ë¨ì vs íì½© ë¨ì 3:2 í ì¹ ì¹",
+          "url": "https://spogod.com/match/23/"
+        },
+        {
+          "text": "13:00 ìììê²ì ë¨ìë°°êµ¬ íêµ­ ë¨ì vs ì´ë ë¨ì 2:3 ìì  ì¹ ì¹ 4.75 ",
+          "url": "https://spogod.com/match/25/"
+        },
+        {
+          "text": "13:00 ìììê²ì ë¨ìë°°êµ¬ í¤ë¥´ê¸°ì¤ì¤í ë¨ì vs ëë§ ë¨ì ì·¨ìÂ·í¹ë",
+          "url": "https://spogod.com/match/26/"
+        },
+        {
+          "text": "16:00 ìììê²ì ë¨ìë°°êµ¬ íêµ­ ë¨ì vs ì¤êµ­ ë¨ì 0:3 ìì  ì¹ ì¹ 4.11 ",
+          "url": "https://spogod.com/match/28/"
+        },
+        {
+          "text": "16:00 ìììê²ì ë¨ìë°°êµ¬ ë² í¸ë¨ ë¨ì vs ì°ì¦ë² í¤ì¤í ë¨ì 3:0 í ì",
+          "url": "https://spogod.com/match/29/"
+        },
+        {
+          "text": "19:00 ìììê²ì ë¨ìë°°êµ¬ íë¦¬í ë¨ì vs ì¸ëë¤ìì ë¨ì 1:3 ìì  ì",
+          "url": "https://spogod.com/match/38/"
+        },
+        {
+          "text": "19:20 ìììê²ì ë¨ìë°°êµ¬ ì¼ë³¸ ë¨ì vs ì¹´íë¥´ ë¨ì ì·¨ìÂ·í¹ë¡ ì¹ 1.",
+          "url": "https://spogod.com/match/40/"
+        },
+        {
+          "text": "18:00 NPB íì  íì´ê±°ì¦ vs ìë¯¸ì°ë¦¬ ìì´ì¸ì¸ ì·¨ìÂ·í¹ë¡ ì¹ 1.45 í¨ 2.24",
+          "url": "https://spogod.com/match/30/"
+        },
+        {
+          "text": "18:00 NPB íë¡ìë§ ëìì¹´í vs ì£¼ëì¹ ëëê±´ì¤ 5:1 í ì¹ ì¹ 1.79 í¨ 1.7",
+          "url": "https://spogod.com/match/31/"
+        },
+        {
+          "text": "18:00 NPB ë¼ì¿ í ê³¨ë ì´ê¸ì¤ vs ìíí¸ë±í¬ í¸í¬ì¤ 2:8 ìì  ì¹ ì¹ 2.53 í",
+          "url": "https://spogod.com/match/32/"
+        },
+        {
+          "text": "18:00 NPB ì§ë°ë¡¯ë° ë§ë¦°ì¤ vs ëí°í íì´í°ì¤ 1:3 ìì  ì¹ ì¹ 2.11 í¨ 1.5",
+          "url": "https://spogod.com/match/33/"
+        },
+        {
+          "text": "18:30 KBO ëì° ë² ì´ì¤ vs NC ë¤ì´ë¸ì¤ 9:7 í ì¹ ì¹ 1.44 í¨ 2.26",
+          "url": "https://spogod.com/match/34/"
+        },
+        {
+          "text": "18:30 KBO ì¼ì± ë¼ì´ì¨ì¦ vs íí ì´ê¸ì¤ 3:2 í ì¹ ì¹ 1.30 í¨ 2.72",
+          "url": "https://spogod.com/match/35/"
+        },
+        {
+          "text": "18:30 KBO SSG ëëì¤ vs LG í¸ìì¤ 6:5 í ì¹ ì¹ 2.19 í¨ 1.47",
+          "url": "https://spogod.com/match/36/"
+        },
+        {
+          "text": "18:30 KBO KIA íì´ê±°ì¦ vs KT ìì¦ 5:7 ìì  ì¹ ì¹ 1.87 í¨ 1.66",
+          "url": "https://spogod.com/match/37/"
+        },
+        {
+          "text": "21:30 FIFA ìì¸ìì»µ ì¸ëë¤ìì vs ë°©ê¸ë¼ë°ì 9:2 í ì¹ ì¹ 1.01 ë¬´ 8.30 í",
+          "url": "https://spogod.com/match/41/"
+        },
+        {
+          "text": "21:30 FIFA ìì¸ìì»µ ë§ë ì´ìì vs ì±ê°í¬ë¥´ 6:0 í ì¹ ì¹ 1.39 ë¬´ 3.90 í¨ ",
+          "url": "https://spogod.com/match/42/"
+        },
+        {
+          "text": "â½ ì¤í¬í ìºìì¤ìí° 1:3 ë ì ìí¸ë ì´í¬ ì¹ 2.10",
+          "url": "https://spogod.com/match/2181/"
+        },
+        {
+          "text": "â½ í´ì¤í´ ë¤ì´ëëª¨FC 2:2 FCëë¬ì¤ ë¬´ 3.20",
+          "url": "https://spogod.com/match/2180/"
+        },
+        {
+          "text": "â½ ì¤ì¤í´FC 1:2 ë°´ì¿ ë² íì´í¸ìº¡ì¤FC ì¹ 1.45",
+          "url": "https://spogod.com/match/2179/"
+        },
+        {
+          "text": "â¾ í´ë¦¬ë¸ëë ê°ëì¸ì¤ 3:7 í¬íë² ì´ ë ì´ì¤ ì¹ 1.66",
+          "url": "https://spogod.com/match/2237/"
+        },
+        {
+          "text": "â½ ì¬ëë ìí°SC 4:1 DCì ëì´í°ë ì¹ 1.59",
+          "url": "https://spogod.com/match/2178/"
+        }
+      ],
+      "kbo_html_text_examples": [
+        "ð¥ ì¤í¬ê° â í¥ì¤í ì ì ì ê¸°ë í½, ê²°ê³¼ë¡ ì¦ëªíë ê° ë­í¹ Â· íë¡í Â·ì¹ë¬´í¨Â·í´ì¸ì¶êµ¬Â·MLBÂ·KBOÂ·NPB ë¶ì ê´ê³ ë¬¸ì ì¶ìì²´í¬ ë¡ê·¸ì¸ íìê°ì",
+        "ð¥ ì¤í¬ê° â í¥ì¤í ì ì ì ê¸°ë í½, ê²°ê³¼ë¡ ì¦ëªíë ê° ë­í¹ Â· íë¡í Â·ì¹ë¬´í¨Â·í´ì¸ì¶êµ¬Â·MLBÂ·KBOÂ·NPB ë¶ì ê´ê³ ë¬¸ì ì¶ìì²´í¬ ë¡ê·¸ì¸ íìê°ì",
+        "ê²½ê¸°Â·ì ë³´ â¾ ì¤ëì í½ ë¼ì´ë¸ì¤ì½ì´ ì¤í¬ì¸ í í  ê²°ê³¼ ì¤í¬ì¸  ì¤ê³ ì¶êµ¬í í  ì¹ë¬´í¨ íë¡í  ì¹ë¶ì ì¶êµ¬ ë¶ì ì¼êµ¬ ë¶ì ëêµ¬ ë¶ì KBOë¶ì MLBë¶ì í´ì¸ì¶êµ¬ë¶ì ì¹ë¬´í¨ ê³ì°ê¸° í í  ê°ì´ë",
+        "ì¤ëì í½ ë¼ì´ë¸ì¤ì½ì´ ì¤í¬ì¸ í í  ê²°ê³¼ ì¤í¬ì¸  ì¤ê³ ì¶êµ¬í í  ì¹ë¬´í¨ íë¡í  ì¹ë¶ì ì¶êµ¬ ë¶ì ì¼êµ¬ ë¶ì ëêµ¬ ë¶ì KBOë¶ì MLBë¶ì í´ì¸ì¶êµ¬ë¶ì ì¹ë¬´í¨ ê³ì°ê¸° í í  ê°ì´ë",
+        "ð 10ì 1ì¼(ëª©) ë¦¬ê·¸ë³ ê²½ê¸° ë¶ì ì ì²´ âº â¾ KBO 4ê²½ê¸° ë¶ì âº â¾ MLB 4ê²½ê¸° ë¶ì âº â¾ NPB 4ê²½ê¸° ë¶ì âº â½ Aë§¤ì¹ ì¹ì  4ê²½ê¸° ë¶ì âº",
+        "â¾ KBO 4ê²½ê¸° ë¶ì âº â¾ MLB 4ê²½ê¸° ë¶ì âº â¾ NPB 4ê²½ê¸° ë¶ì âº â½ Aë§¤ì¹ ì¹ì  4ê²½ê¸° ë¶ì âº",
+        "â¾ KBO 4ê²½ê¸° ë¶ì âº",
+        "â¾ KBO 10/1(ëª©) Â· 4ê²½ê¸°",
+        "18:30 KBO ëì° ë² ì´ì¤ vs NC ë¤ì´ë¸ì¤ 9:7 í ì¹ ì¹ 1.44 í¨ 2.26",
+        "18:30 KBO ì¼ì± ë¼ì´ì¨ì¦ vs íí ì´ê¸ì¤ 3:2 í ì¹ ì¹ 1.30 í¨ 2.72",
+        "18:30 KBO SSG ëëì¤ vs LG í¸ìì¤ 6:5 í ì¹ ì¹ 2.19 í¨ 1.47",
+        "18:30 KBO KIA íì´ê±°ì¦ vs KT ìì¦ 5:7 ìì  ì¹ ì¹ 1.87 í¨ 1.66"
+      ],
+      "tables": [],
+      "jsonld_count": 2,
+      "next_data_present": false,
+      "script_paths": [
+        "https://spogod.com/_astro/site.pPKNTR0L.js",
+        "https://spogod.com/_astro/slip.CAuh7NBs.js",
+        "https://spogod.com/_astro/community.CyCBHVgn.js",
+        "data:text/javascript;base64,Lyog7Iuk7Iuc6rCEIOyxhO2MhSjsmbzsqr0g7Lm4IFtkYXRhLWNoYXRdKSDigJQg7IOB7J6Q6rCAIO2ZlOuptOyXkCDrs7TsnbTqs6Ag7YOt7J20IOyVnuyXkCDsnojsnYQg65WM66eMIDTstIjrp4jri6Qg7IOIIOykhOydhCDqsIDsoLjsmKjri6QuIOuztOuCtOq4sOuKlCAvYXBpL2NoYXQuIDIwMjYtMTAtMDMgKi8KKGZ1bmN0aW9uICgpIHsKICB2YXIgYm94ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdF0nKQogIGlmICghYm94KSByZXR1cm4KICB2YXIgbGlzdCA9IGJveC5xdWVyeVNlbGVjdG9yKCdbZGF0YS1jaGF0LWxpc3RdJyksIGZvcm0gPSBib3gucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdC1mb3JtXScpCiAgdmFyIGxhc3QgPSAwLCB0aW1lciA9IDAsIHNlZW4gPSBmYWxzZSwgYnVzeSA9IGZhbHNlCiAgdmFyIGhtID0gZnVuY3Rpb24gKG1zKSB7IHJldHVybiBuZXcgRGF0ZShtcyArIDkgKiAzNjAwZTMpLnRvSVNPU3RyaW5nKCkuc2xpY2UoMTEsIDE2KSB9CiAgZnVuY3Rpb24gYWRkKHIpIHsKICAgIHZhciByb3cgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsgcm93LmNsYXNzTmFtZSA9ICdjaGwnCiAgICB2YXIgd2hvID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYicpOyB3aG8udGV4dENvbnRlbnQgPSByLm5pY2s7IGlmIChyLmFkbWluKSB3aG8uY2xhc3NOYW1lID0gJ2FkbScKICAgIHZhciBsdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3NwYW4nKTsgbHYuY2xhc3NOYW1lID0gJ211dGUnOyBsdi50ZXh0Q29udGVudCA9ICcgTHYnICsgci5sdiArICcgJwogICAgdmFyIHR4ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnc3BhbicpOyB0eC50ZXh0Q29udGVudCA9IHIuYm9keQogICAgdmFyIGF0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnaScpOyBhdC50ZXh0Q29udGVudCA9IGhtKHIuYXQpCiAgICByb3cuYXBwZW5kKHdobywgbHYsIHR4LCBhdCk7IGxpc3QuYXBwZW5kKHJvdykKICB9CiAgZnVuY3Rpb24gcHVsbCgpIHsKICAgIGlmIChidXN5IHx8IGRvY3VtZW50LmhpZGRlbiB8fCAhc2VlbikgcmV0dXJuCiAgICBidXN5ID0gdHJ1ZQogICAgZmV0Y2goJy9hcGkvY2hhdD9hZnRlcj0nICsgbGFzdCwgeyBjcmVkZW50aWFsczogJ3NhbWUtb3JpZ2luJyB9KS50aGVuKGZ1bmN0aW9uICh4KSB7IHJldHVybiB4Lmpzb24oKSB9KS50aGVuKGZ1bmN0aW9uIChkKSB7CiAgICAgIHZhciBzdGljayA9IGxpc3Quc2Nyb2xsVG9wICsgbGlzdC5jbGllbnRIZWlnaHQgPj0gbGlzdC5zY3JvbGxIZWlnaHQgLSAzMAogICAgICA7KGQucm93cyB8fCBbXSkuZm9yRWFjaChmdW5jdGlvbiAocikgeyBhZGQocik7IGxhc3QgPSBNYXRoLm1heChsYXN0LCByLmlkKSB9KQogICAgICBpZiAobGlzdC5jaGlsZHJlbi5sZW5ndGggPiAxMjApIHdoaWxlIChsaXN0LmNoaWxkcmVuLmxlbmd0aCA+IDgwKSBsaXN0LmZpcnN0Q2hpbGQucmVtb3ZlKCkKICAgICAgaWYgKHN0aWNrIHx8ICFsYXN0KSBsaXN0LnNjcm9sbFRvcCA9IGxpc3Quc2Nyb2xsSGVpZ2h0CiAgICB9KS5jYXRjaChmdW5jdGlvbiAoKSB7fSkuZmluYWxseShmdW5jdGlvbiAoKSB7IGJ1c3kgPSBmYWxzZSB9KQogIH0KICBuZXcgSW50ZXJzZWN0aW9uT2JzZXJ2ZXIoZnVuY3Rpb24gKGVzKSB7IHNlZW4gPSBlc1swXS5pc0ludGVyc2VjdGluZzsgaWYgKHNlZW4pIHB1bGwoKSB9KS5vYnNlcnZlKGJveCkKICB0aW1lciA9IHNldEludGVydmFsKHB1bGwsIDQwMDApCiAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigndmlzaWJpbGl0eWNoYW5nZScsIHB1bGwpCiAgaWYgKGZvcm0pIGZvcm0uYWRkRXZlbnRMaXN0ZW5lcignc3VibWl0JywgZnVuY3Rpb24gKGUpIHsKICAgIGUucHJldmVudERlZmF1bHQoKQogICAgdmFyIGlucCA9IGZvcm0ucXVlcnlTZWxlY3RvcignaW5wdXQnKSwgdiA9IGlucC52YWx1ZS50cmltKCk7IGlmICghdikgcmV0dXJuCiAgICBpbnAuZGlzYWJsZWQgPSB0cnVlCiAgICBmZXRjaCgnL2FwaS9jaGF0JywgeyBtZXRob2Q6ICdQT1NUJywgY3JlZGVudGlhbHM6ICdzYW1lLW9yaWdpbicsIGhlYWRlcnM6IHsgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJyB9LCBib2R5OiBKU09OLnN0cmluZ2lmeSh7IGJvZHk6IHYgfSkgfSkKICAgICAgLnRoZW4oZnVuY3Rpb24gKHgpIHsgcmV0dXJuIHguanNvbigpIH0pLnRoZW4oZnVuY3Rpb24gKHIpIHsKICAgICAgICBpZiAoIXIub2spIHsgYm94LnF1ZXJ5U2VsZWN0b3IoJ1tkYXRhLWNoYXQtZXJyXScpLnRleHRDb250ZW50ID0gci5lcnJvcjsgcmV0dXJuIH0KICAgICAgICBib3gucXVlcnlTZWxlY3RvcignW2RhdGEtY2hhdC1lcnJdJykudGV4dENvbnRlbnQgPSAnJzsgaW5wLnZhbHVlID0gJyc7IHB1bGwoKQogICAgICB9KS5jYXRjaChmdW5jdGlvbiAoKSB7fSkuZmluYWxseShmdW5jdGlvbiAoKSB7IGlucC5kaXNhYmxlZCA9IGZhbHNlOyBpbnAuZm9jdXMoKSB9KQogIH0pCn0pKCkK"
+      ]
+    },
+    {
+      "url": "https://sharppick.app/proto/",
+      "robots_url": "https://sharppick.app/robots.txt",
+      "attempt_at_utc": "2026-10-18T04:32:35.721558+00:00",
+      "robots_http_status": 200,
+      "robots_allow": true,
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "html_bytes": 28103,
+      "status": "ACCESSIBLE",
+      "title": "프로토 승부식 — 이번 회차 분석·배당·구매율·결과 | 샤프픽",
+      "headings": [
+        "프로토 승부식",
+        "이번 회차",
+        "최근 회차",
+        "프로토 승부식 최근 11회차 결과 실측",
+        "게임 규칙 한눈에",
+        "맞히는 것",
+        "구매 단위",
+        "적중금",
+        "적용 시간",
+        "자주 묻는 질문",
+        "배당이 움직이는 순간 알림"
+      ],
+      "relevant_links": [
+        {
+          "text": "✓ 샤프픽 토토·프로토 분석 · 토계부",
+          "url": "https://sharppick.app/"
+        },
+        {
+          "text": "프로토",
+          "url": "https://sharppick.app/proto/"
+        },
+        {
+          "text": "발매 중 2026년 123회차 경기 10/16~10/19 · 152경기 · 501개 항목 축구 128 · 야구 9 · 농구 8 · 배구 7 마감 10/18(일) ",
+          "url": "https://sharppick.app/proto/2026/123/"
+        },
+        {
+          "text": "2026년 123회차",
+          "url": "https://sharppick.app/proto/2026/123/"
+        },
+        {
+          "text": "2026년 122회차",
+          "url": "https://sharppick.app/proto/2026/122/"
+        },
+        {
+          "text": "2026년 121회차",
+          "url": "https://sharppick.app/proto/2026/121/"
+        },
+        {
+          "text": "2026년 120회차",
+          "url": "https://sharppick.app/proto/2026/120/"
+        },
+        {
+          "text": "2026년 119회차",
+          "url": "https://sharppick.app/proto/2026/119/"
+        },
+        {
+          "text": "2026년 118회차",
+          "url": "https://sharppick.app/proto/2026/118/"
+        },
+        {
+          "text": "2026년 117회차",
+          "url": "https://sharppick.app/proto/2026/117/"
+        },
+        {
+          "text": "2026년 116회차",
+          "url": "https://sharppick.app/proto/2026/116/"
+        },
+        {
+          "text": "2026년 115회차",
+          "url": "https://sharppick.app/proto/2026/115/"
+        },
+        {
+          "text": "2026년 114회차",
+          "url": "https://sharppick.app/proto/2026/114/"
+        },
+        {
+          "text": "2026년 113회차",
+          "url": "https://sharppick.app/proto/2026/113/"
+        },
+        {
+          "text": "2026년 112회차",
+          "url": "https://sharppick.app/proto/2026/112/"
+        },
+        {
+          "text": "122회차 결과",
+          "url": "https://sharppick.app/proto/2026/122/"
+        },
+        {
+          "text": "121회차 결과",
+          "url": "https://sharppick.app/proto/2026/121/"
+        },
+        {
+          "text": "120회차 결과",
+          "url": "https://sharppick.app/proto/2026/120/"
+        },
+        {
+          "text": "119회차 결과",
+          "url": "https://sharppick.app/proto/2026/119/"
+        },
+        {
+          "text": "118회차 결과",
+          "url": "https://sharppick.app/proto/2026/118/"
+        },
+        {
+          "text": "117회차 결과",
+          "url": "https://sharppick.app/proto/2026/117/"
+        },
+        {
+          "text": "116회차 결과",
+          "url": "https://sharppick.app/proto/2026/116/"
+        },
+        {
+          "text": "115회차 결과",
+          "url": "https://sharppick.app/proto/2026/115/"
+        },
+        {
+          "text": "114회차 결과",
+          "url": "https://sharppick.app/proto/2026/114/"
+        },
+        {
+          "text": "113회차 결과",
+          "url": "https://sharppick.app/proto/2026/113/"
+        },
+        {
+          "text": "112회차 결과",
+          "url": "https://sharppick.app/proto/2026/112/"
+        },
+        {
+          "text": "프로토 조합 계산기",
+          "url": "https://sharppick.app/calculator/proto/"
+        },
+        {
+          "text": "프로토 승부식 하는 법",
+          "url": "https://sharppick.app/blog/proto-seungbusik/"
+        },
+        {
+          "text": "앱 설치",
+          "url": "https://play.google.com/store/apps/details?id=com.sharppick.app&referrer=utm_source%3Dweb_ko%26utm_medium%3Dsite%26utm_campaign%3Dproto_hub"
+        },
+        {
+          "text": "스포츠토토 공식 게임 안내",
+          "url": "https://www.sportstoto.co.kr/proto_intro.php"
+        },
+        {
+          "text": "프로토",
+          "url": "https://sharppick.app/proto/"
+        }
+      ],
+      "kbo_html_text_examples": [],
+      "tables": [
+        {
+          "heads": [
+            "회차",
+            "상태",
+            "경기",
+            "마감",
+            "결과 확정 항목",
+            "총 판매액"
+          ],
+          "first_rows": [
+            "회차 상태 경기 마감 결과 확정 항목 총 판매액",
+            "2026년 123회차 발매 중 152경기 · 10/16~10/19 10/18(일) 23:00 322 / 501 443억 원",
+            "2026년 122회차 결과 확정 108경기 · 10/14~10/16 10/15(목) 23:00 372 / 372 345.5억 원"
+          ]
+        },
+        {
+          "heads": [
+            "종목",
+            "일반 항목",
+            "정배 적중",
+            "구매율 1순위 적중",
+            "언더오버 중 오버"
+          ],
+          "first_rows": [
+            "종목 일반 항목 정배 적중 구매율 1순위 적중 언더오버 중 오버",
+            "축구 583 340/583 (58.3%) 316/583 (54.2%) 287/594 (48.3%)",
+            "야구 287 173/287 (60.3%) 174/287 (60.6%) 141/290 (48.6%)"
+          ]
+        },
+        {
+          "heads": [
+            "회차",
+            "일반 항목",
+            "정배 적중",
+            "구매율 1순위 적중"
+          ],
+          "first_rows": [
+            "회차 일반 항목 정배 적중 구매율 1순위 적중",
+            "122회차 결과 104 62/104 (59.6%) 57/104 (54.8%)",
+            "121회차 결과 53 29/53 (54.7%) 24/53 (45.3%)"
+          ]
+        }
+      ],
+      "jsonld_count": 2,
+      "next_data_present": false,
+      "script_paths": [
+        "https://sharppick.app/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+      ]
+    },
+    {
+      "url": "https://todaylotto.kr/toto/proto",
+      "robots_url": "https://todaylotto.kr/robots.txt",
+      "attempt_at_utc": "2026-10-18T04:32:37.017899+00:00",
+      "robots_http_status": 200,
+      "robots_allow": true,
+      "http_status": 200,
+      "content_type": "text/html",
+      "html_bytes": 619607,
+      "status": "ACCESSIBLE",
+      "title": "íë¡í  ì¹ë¶ì ë°°ë¹ Â· ì¡°í© ê³ì°ê¸° â 2026 123íì°¨ | í¬ë°ì´í í",
+      "headings": [
+        "íë¡í  ì¹ë¶ì ë°°ë¹"
+      ],
+      "relevant_links": [
+        {
+          "text": "ë¡ê·¸ì¸",
+          "url": "https://todaylotto.kr/login?next=%2Ftoto%2Fproto"
+        },
+        {
+          "text": "123í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=123"
+        },
+        {
+          "text": "122í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=122"
+        },
+        {
+          "text": "121í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=121"
+        },
+        {
+          "text": "120í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=120"
+        },
+        {
+          "text": "119í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=119"
+        },
+        {
+          "text": "118í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=118"
+        },
+        {
+          "text": "117í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=117"
+        },
+        {
+          "text": "116í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=116"
+        },
+        {
+          "text": "115í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=115"
+        },
+        {
+          "text": "114í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=114"
+        },
+        {
+          "text": "113í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=113"
+        },
+        {
+          "text": "112í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=112"
+        },
+        {
+          "text": "111í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=111"
+        },
+        {
+          "text": "110í",
+          "url": "https://todaylotto.kr/toto/proto?year=2026&round=110"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuxj5yoq091rzpthaqesovmh"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmvat1grt001me2tory08xg85"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuyym3ev02kq739t148scwus"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuyyl78j02gt739to8gd9zsp"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuyyl2dt02g9739tyb8x9f8z"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuyylcwg02hd739tpy5zbbh2"
+        },
+        {
+          "text": "ë¶ì ë³´ê¸° â",
+          "url": "https://todaylotto.kr/toto/match/cmuyykx3o02fn739thdiukc4r"
+        },
+        {
+          "text": "íë¡í",
+          "url": "https://todaylotto.kr/toto/proto"
+        },
+        {
+          "text": "ë¡ê·¸ì¸",
+          "url": "https://todaylotto.kr/login?next=%2Ftoto%2Fproto"
+        }
+      ],
+      "kbo_html_text_examples": [],
+      "tables": [],
+      "jsonld_count": 1,
+      "next_data_present": false,
+      "script_paths": []
+    }
+  ]
+}
