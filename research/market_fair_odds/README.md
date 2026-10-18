@@ -1,5 +1,80 @@
 # KBO market-implied fair odds calibration / betting backtest
 
+## Latest: 2026 KBO FULL WIN1LOSS three-outcome prices, 459 games
+
+**Market product:** Proto single-game *승①패* with outcomes
+`HOME_2PLUS` (home wins 2+), `WITHIN_1` (absolute final difference 0
+or 1), `AWAY_2PLUS` (away wins 2+). The original archive calls the
+middle column `무`; it means **NOT** ordinary 9-inning tie. The
+official Sports Toto rule confirms the middle **includes exact ties**:
+https://www.sportstoto.co.kr/view.php?idx=2402&type=notice
+
+**Source** https://betlive.kr/proto/260050 and related round pages;
+40–122 scanned; rounds 40–45 returned 404, 77 pages parsed.
+459/459 distinct game records resolved to the SHA-authenticated 2026
+Naver PBP final game scores, 2026-04-21 through 2026-10-12. Sources
+had 34 other KBO rows not assignable to a unique validated game PK;
+these were **quarantined**, never guessed from dates/names.
+Round snapshots are **retrospective**, with no proof of original
+pre-first-pitch executable price/timestamp. Do not call this a real
+market-beating bet or CLEAN PRE out-of-sample betting result.
+
+### Descriptive 459-game no-vig calibration
+
+| Result | Average no-vig probability | Observed 2026 KBO frequency |
+| --- | ---: | ---: |
+| Home wins by 2+ | 36.48% | 36.17% |
+| Difference ≤1 run, including ties | 25.33% | 27.67% |
+| Away wins by 2+ | 38.19% | 36.17% |
+
+- Favorite: forecast **44.36%**, observed **44.23%**; deviation
+  **-0.13 pp**; game bootstrap 95% interval **[-4.66,+4.34] pp**.
+- Three-class Brier **0.64104**; log loss **1.06205**.
+- Average offered three-way book overround **15.12%**.
+- Flat 1u favorite-only hypothetical return at retrospective displayed
+  odds **-13.76%**. This is **NOT** a certified executable betting ROI.
+
+### Prespecified naive market-information benchmark
+
+Compared on identical 459 games:
+
+| Forecast rule | Three-class multiclass Brier |
+| --- | ---: |
+| Uniform, each outcome = 1/3 | 0.66667 |
+| Date-by-date past-only 2026 WIN1LOSS frequencies (Dirichlet pseudo-count α=10 per outcome, update after all games on a date) | 0.66743 |
+| No-vig retrospective market probabilities | **0.64104** |
+
+Market Brier improvement versus *strictly past-date only* climatology
+= **0.02639 / 3.95% relative**, with prespecified **calendar-week
+cluster bootstrap 95% CI [0.01132,0.04072]** over 26 ISO-week
+clusters. This is evidence that bookmaker probabilities contain
+useful game-specific information *relative to a naive base-rate
+model*, not evidence of exploitable return or an advantage over
+our independent KBO CLEAN PRE model.
+
+**Do not compare** these three-way Brier scores directly to prior
+2026 ordinary two-way moneyline, handicap or total markets (125
+independently PBP-verified games ×3 markets). Outcomes and random
+baseline scores differ by product. No genuine model-vs-market skill
+numbers are available until original timestamped model CLEAN PRE
+probabilities and contemporaneous executable prices are joined.
+
+Reproducibility:
+
+```
+research/market_fair_odds/betlive_2026_r40_r122_win1loss3_archived.csv
+research/market_fair_odds/betlive_2026_r40_r122_win1loss3_source_audit.json
+research/market_fair_odds/betlive_2026_r40_r122_win1loss3_pbp_joined.csv
+research/market_fair_odds/betlive_2026_r40_r122_win1loss3_calibration.json
+research/market_fair_odds/betlive_2026_r40_r122_win1loss3_information_benchmark.json
+scripts/collect_2026_betlive_win1loss3.py
+scripts/merge_2026_betlive_win1loss3.py
+scripts/audit_2026_betlive_win1loss3_vs_pbp.py
+scripts/compare_2026_win1loss_market_vs_naive.py
+```
+
+---
+
 ## Current empirical results — archived 2026 Proto KBO (2026-10-18)
 
 **Measured, NOT a genuine betting-edge or CLEAN PRE test.** Source: 2026
