@@ -1,0 +1,87 @@
+name: Consolidate 2026 KBO Proto archive and run expanded calibration
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/run-2026-kbo-proto-expanded-calibration.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proto-kbo-archival-calibration
+  cancel-in-progress: false
+
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install verified PBP audit dependencies
+        run: pip install 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Merge 2026 archived bookmaker markets across rounds 105-122
+        run: |
+          python scripts/merge_2026_kbo_proto_archives.py
+      - name: Download SHA-authenticated KBO PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-proto
+          gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-proto --clobber
+          test -s /tmp/kbo-proto/kbo_pbp_2026_latest.parquet
+      - name: Independently audit all odds-source final scores
+        run: |
+          python scripts/audit_2026_proto_market_vs_pbp.py \
+            --quotes research/market_fair_odds/sharppick_2026_proto_r105_r122_combined_kbo.csv \
+            --pbp /tmp/kbo-proto/kbo_pbp_2026_latest.parquet \
+            --output research/market_fair_odds/sharppick_2026_proto_r105_r122_pbp_result_audit.json
+      - name: Expanded observed-market fair-odds calibration
+        run: |
+          python scripts/analyze_2026_kbo_proto_archive.py \
+            --book research/market_fair_odds/sharppick_2026_proto_r105_r122_combined_kbo.csv \
+            --result-audit research/market_fair_odds/sharppick_2026_proto_r105_r122_pbp_result_audit.json \
+            --output research/market_fair_odds/sharppick_2026_proto_r105_r122_calibration.json
+      - name: Require PASS on all source and PBP evidence
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          a=json.loads((d/'sharppick_2026_proto_r105_r122_combined_audit.json').read_text())
+          b=json.loads((d/'sharppick_2026_proto_r105_r122_pbp_result_audit.json').read_text())
+          c=json.loads((d/'sharppick_2026_proto_r105_r122_calibration.json').read_text())
+          assert a['status']=='PASS_RECONSTRUCTED_ARCHIVE_NO_PREMATCH_TIMESTAMP'
+          assert b['status']=='PASS' and b['exact_score_matches']==a['unique_games']
+          assert c['number_of_unique_games']==a['unique_games']
+          assert c['distinct_game_markets']==a['distinct_game_markets']
+          assert c['timestamp_certainty']=='UNVERIFIED_PRICE_TIME'
+          print({'games':a['unique_games'],'market_types':a['by_market_type'],
+                 'PBP_match':b['exact_score_matches'],
+                 'CAL':{k:{'prob':round(v['displayed_quote']['mean_fair_favorite_probability'],4),
+                            'hit':round(v['displayed_quote']['actual_favorite_hit_rate'],4),
+                            'brier':round(v['displayed_quote']['multiclass_brier'],4)}
+                        for k,v in c['markets'].items()}})
+          PY
+      - name: Save verified 2026 market study
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/sharppick_2026_proto_r105_r122_*.csv
+          git add research/market_fair_odds/sharppick_2026_proto_r105_r122_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish SHA-crosschecked 2026 KBO Proto expanded calibration'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Keep forensic audit evidence on fail
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proto-expanded-calibration-forensic
+          path: research/market_fair_odds/sharppick_2026_proto_r105_r122_*
+          if-no-files-found: ignore
+          retention-days: 7
