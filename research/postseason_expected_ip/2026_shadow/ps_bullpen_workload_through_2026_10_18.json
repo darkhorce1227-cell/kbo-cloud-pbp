@@ -1,0 +1,727 @@
+{
+  "status": "OFFICIAL_NAVER_POSTSEASON_BOX_PITCH_COUNTS_VERIFIED",
+  "cutoff_date": "2026-10-18",
+  "next_game": "2026-10-20 HT@LG, 18:30 KST",
+  "official_10_18_final_audit": "PASS",
+  "games": [
+    {
+      "date": "2026-10-14",
+      "game_pk": "44441014OBLG02026",
+      "away": "OB",
+      "home": "LG",
+      "round": "WC",
+      "sides": {
+        "OB": {
+          "team": "OB",
+          "side": "away",
+          "summary": {
+            "all_pitchers": 5,
+            "starter_outs": 18,
+            "starter_pitches": 102,
+            "relief_outs": 6,
+            "relief_pitches": 52,
+            "reliever_appearances": 4
+          },
+          "pitchers": [
+            {
+              "id": "68220",
+              "name": "곽빈",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 6.0,
+              "outs": 18,
+              "pitch_count": 102,
+              "inn_raw": "6.0"
+            },
+            {
+              "id": "56212",
+              "name": "타카다",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 16,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "54263",
+              "name": "김택연",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 14,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "55239",
+              "name": "잭로그",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 2,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "66291",
+              "name": "이영하",
+              "seqno": 5,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 20,
+              "inn_raw": "1.0"
+            }
+          ]
+        },
+        "LG": {
+          "team": "LG",
+          "side": "home",
+          "summary": {
+            "all_pitchers": 5,
+            "starter_outs": 18,
+            "starter_pitches": 84,
+            "relief_outs": 9,
+            "relief_pitches": 60,
+            "reliever_appearances": 4
+          },
+          "pitchers": [
+            {
+              "id": "56103",
+              "name": "카라스코",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 6.0,
+              "outs": 18,
+              "pitch_count": 84,
+              "inn_raw": "6.0"
+            },
+            {
+              "id": "56168",
+              "name": "케네디",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 22,
+              "inn_raw": "1.0"
+            },
+            {
+              "id": "51154",
+              "name": "김진수",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 9,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "61145",
+              "name": "이우찬",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 0.6666666666666666,
+              "outs": 2,
+              "pitch_count": 16,
+              "inn_raw": "0.2"
+            },
+            {
+              "id": "77263",
+              "name": "김강률",
+              "seqno": 5,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 13,
+              "inn_raw": "1.0"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "date": "2026-10-17",
+      "game_pk": "33331017LGHT02026",
+      "away": "LG",
+      "home": "HT",
+      "round": "준PO1",
+      "sides": {
+        "LG": {
+          "team": "LG",
+          "side": "away",
+          "summary": {
+            "all_pitchers": 6,
+            "starter_outs": 15,
+            "starter_pitches": 82,
+            "relief_outs": 9,
+            "relief_pitches": 46,
+            "reliever_appearances": 5
+          },
+          "pitchers": [
+            {
+              "id": "55130",
+              "name": "톨허스트",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 5.0,
+              "outs": 15,
+              "pitch_count": 82,
+              "inn_raw": "5.0"
+            },
+            {
+              "id": "51526",
+              "name": "우강훈",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 2,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "56168",
+              "name": "케네디",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 15,
+              "inn_raw": "1.0"
+            },
+            {
+              "id": "61145",
+              "name": "이우찬",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 0.6666666666666666,
+              "outs": 2,
+              "pitch_count": 5,
+              "inn_raw": "0.2"
+            },
+            {
+              "id": "63950",
+              "name": "장현식",
+              "seqno": 5,
+              "role": "RELIEF",
+              "innings_pitch": 0.6666666666666666,
+              "outs": 2,
+              "pitch_count": 18,
+              "inn_raw": "0.2"
+            },
+            {
+              "id": "50157",
+              "name": "김윤식",
+              "seqno": 6,
+              "role": "RELIEF",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 6,
+              "inn_raw": "0.1"
+            }
+          ]
+        },
+        "HT": {
+          "team": "HT",
+          "side": "home",
+          "summary": {
+            "all_pitchers": 4,
+            "starter_outs": 21,
+            "starter_pitches": 92,
+            "relief_outs": 6,
+            "relief_pitches": 47,
+            "reliever_appearances": 3
+          },
+          "pitchers": [
+            {
+              "id": "54640",
+              "name": "네일",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 7.0,
+              "outs": 21,
+              "pitch_count": 92,
+              "inn_raw": "7.0"
+            },
+            {
+              "id": "54610",
+              "name": "성영탁",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 0.6666666666666666,
+              "outs": 2,
+              "pitch_count": 13,
+              "inn_raw": "0.2"
+            },
+            {
+              "id": "53609",
+              "name": "곽도규",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 0.0,
+              "outs": 0,
+              "pitch_count": 8,
+              "inn_raw": "0.0"
+            },
+            {
+              "id": "66609",
+              "name": "전상현",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 1.3333333333333333,
+              "outs": 4,
+              "pitch_count": 26,
+              "inn_raw": "1.1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "game_pk": "33331018LGHT02026",
+      "away": "LG",
+      "home": "HT",
+      "round": "준PO2",
+      "sides": {
+        "LG": {
+          "team": "LG",
+          "side": "away",
+          "summary": {
+            "all_pitchers": 7,
+            "starter_outs": 1,
+            "starter_pitches": 28,
+            "relief_outs": 23,
+            "relief_pitches": 122,
+            "reliever_appearances": 6
+          },
+          "pitchers": [
+            {
+              "id": "61101",
+              "name": "임찬규",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 0.3333333333333333,
+              "outs": 1,
+              "pitch_count": 28,
+              "inn_raw": "0.1"
+            },
+            {
+              "id": "56168",
+              "name": "케네디",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 1.6666666666666667,
+              "outs": 5,
+              "pitch_count": 24,
+              "inn_raw": "1.2"
+            },
+            {
+              "id": "61145",
+              "name": "이우찬",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 1.6666666666666667,
+              "outs": 5,
+              "pitch_count": 25,
+              "inn_raw": "1.2"
+            },
+            {
+              "id": "51526",
+              "name": "우강훈",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 1.3333333333333333,
+              "outs": 4,
+              "pitch_count": 21,
+              "inn_raw": "1.1"
+            },
+            {
+              "id": "67143",
+              "name": "손주영",
+              "seqno": 5,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 15,
+              "inn_raw": "1.0"
+            },
+            {
+              "id": "77263",
+              "name": "김강률",
+              "seqno": 6,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 21,
+              "inn_raw": "1.0"
+            },
+            {
+              "id": "51154",
+              "name": "김진수",
+              "seqno": 7,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 16,
+              "inn_raw": "1.0"
+            }
+          ]
+        },
+        "HT": {
+          "team": "HT",
+          "side": "home",
+          "summary": {
+            "all_pitchers": 5,
+            "starter_outs": 18,
+            "starter_pitches": 94,
+            "relief_outs": 9,
+            "relief_pitches": 54,
+            "reliever_appearances": 4
+          },
+          "pitchers": [
+            {
+              "id": "55633",
+              "name": "올러",
+              "seqno": 1,
+              "role": "STARTER",
+              "innings_pitch": 6.0,
+              "outs": 18,
+              "pitch_count": 94,
+              "inn_raw": "6.0"
+            },
+            {
+              "id": "53609",
+              "name": "곽도규",
+              "seqno": 2,
+              "role": "RELIEF",
+              "innings_pitch": 0.0,
+              "outs": 0,
+              "pitch_count": 7,
+              "inn_raw": "0.0"
+            },
+            {
+              "id": "54610",
+              "name": "성영탁",
+              "seqno": 3,
+              "role": "RELIEF",
+              "innings_pitch": 1.0,
+              "outs": 3,
+              "pitch_count": 8,
+              "inn_raw": "1.0"
+            },
+            {
+              "id": "63342",
+              "name": "조상우",
+              "seqno": 4,
+              "role": "RELIEF",
+              "innings_pitch": 0.6666666666666666,
+              "outs": 2,
+              "pitch_count": 22,
+              "inn_raw": "0.2"
+            },
+            {
+              "id": "66609",
+              "name": "전상현",
+              "seqno": 5,
+              "role": "RELIEF",
+              "innings_pitch": 1.3333333333333333,
+              "outs": 4,
+              "pitch_count": 17,
+              "inn_raw": "1.1"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "team_summaries": {
+    "HT": {
+      "relief_appearances": 7,
+      "relief_pitch_count_total": 101,
+      "relief_outs_total": 15,
+      "all_relievers": [
+        {
+          "player_id": "66609",
+          "name": "전상현",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 43,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 26,
+              "outs": 4
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 17,
+              "outs": 4
+            }
+          ]
+        },
+        {
+          "player_id": "63342",
+          "name": "조상우",
+          "appearance_count": 1,
+          "game_dates": [
+            "2026-10-18"
+          ],
+          "pitch_count_total": 22,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-18",
+              "pitches": 22,
+              "outs": 2
+            }
+          ]
+        },
+        {
+          "player_id": "54610",
+          "name": "성영탁",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 21,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 13,
+              "outs": 2
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 8,
+              "outs": 3
+            }
+          ]
+        },
+        {
+          "player_id": "53609",
+          "name": "곽도규",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 15,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 8,
+              "outs": 0
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 7,
+              "outs": 0
+            }
+          ]
+        }
+      ]
+    },
+    "LG": {
+      "relief_appearances": 15,
+      "relief_pitch_count_total": 228,
+      "relief_outs_total": 41,
+      "all_relievers": [
+        {
+          "player_id": "56168",
+          "name": "케네디",
+          "appearance_count": 3,
+          "game_dates": [
+            "2026-10-14",
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 61,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-14",
+              "pitches": 22,
+              "outs": 3
+            },
+            {
+              "date": "2026-10-17",
+              "pitches": 15,
+              "outs": 3
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 24,
+              "outs": 5
+            }
+          ]
+        },
+        {
+          "player_id": "61145",
+          "name": "이우찬",
+          "appearance_count": 3,
+          "game_dates": [
+            "2026-10-14",
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 46,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-14",
+              "pitches": 16,
+              "outs": 2
+            },
+            {
+              "date": "2026-10-17",
+              "pitches": 5,
+              "outs": 2
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 25,
+              "outs": 5
+            }
+          ]
+        },
+        {
+          "player_id": "77263",
+          "name": "김강률",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-14",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 34,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-14",
+              "pitches": 13,
+              "outs": 3
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 21,
+              "outs": 3
+            }
+          ]
+        },
+        {
+          "player_id": "51154",
+          "name": "김진수",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-14",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 25,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-14",
+              "pitches": 9,
+              "outs": 1
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 16,
+              "outs": 3
+            }
+          ]
+        },
+        {
+          "player_id": "51526",
+          "name": "우강훈",
+          "appearance_count": 2,
+          "game_dates": [
+            "2026-10-17",
+            "2026-10-18"
+          ],
+          "pitch_count_total": 23,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 2,
+              "outs": 1
+            },
+            {
+              "date": "2026-10-18",
+              "pitches": 21,
+              "outs": 4
+            }
+          ]
+        },
+        {
+          "player_id": "63950",
+          "name": "장현식",
+          "appearance_count": 1,
+          "game_dates": [
+            "2026-10-17"
+          ],
+          "pitch_count_total": 18,
+          "last_appearance_date": "2026-10-17",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 18,
+              "outs": 2
+            }
+          ]
+        },
+        {
+          "player_id": "67143",
+          "name": "손주영",
+          "appearance_count": 1,
+          "game_dates": [
+            "2026-10-18"
+          ],
+          "pitch_count_total": 15,
+          "last_appearance_date": "2026-10-18",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-18",
+              "pitches": 15,
+              "outs": 3
+            }
+          ]
+        },
+        {
+          "player_id": "50157",
+          "name": "김윤식",
+          "appearance_count": 1,
+          "game_dates": [
+            "2026-10-17"
+          ],
+          "pitch_count_total": 6,
+          "last_appearance_date": "2026-10-17",
+          "pitch_counts_by_game": [
+            {
+              "date": "2026-10-17",
+              "pitches": 6,
+              "outs": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Pitcher box totals are not a full pitch-tracking workload or measure of fatigue",
+    "Rest day 10/19 does not imply unrestricted relief availability on 10/20",
+    "Prior 10/14 LG WC relief appearances included; prior KIA games 10/14 not played",
+    "Next game's activated relievers and bullpen role plans are not confirmed",
+    "Source is postgame pitching box score, not inferred result from prior betting prices",
+    "No changes to precommitted CLEAN PRE μ or expected IP forecast"
+  ]
+}
