@@ -1,0 +1,74 @@
+name: Independently score early 2026 KBO Proto win-1-loss 3way archive
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/audit-2026-betlive-win1loss3.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: betlive-2026-3way-pbp-calibration
+  cancel-in-progress: false
+jobs:
+  study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install validated baseball PBP dependencies
+        run: python -m pip install 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Fetch 2026 SHA-verified released PBP binary
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-3way
+          gh release download latest-pbp \
+            --pattern kbo_pbp_2026_latest.parquet \
+            --dir /tmp/kbo-3way --clobber
+          test -s /tmp/kbo-3way/kbo_pbp_2026_latest.parquet
+      - name: Audit all completed KBO games and classify margins 2+, within 1, 2+ against PBP
+        run: |
+          python -m py_compile scripts/audit_2026_betlive_win1loss3_vs_pbp.py
+          python scripts/audit_2026_betlive_win1loss3_vs_pbp.py \
+            --pbp /tmp/kbo-3way/kbo_pbp_2026_latest.parquet
+      - name: Require no mismatched scores, correct triple market and provenance
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          d=Path('research/market_fair_odds')
+          source=json.loads((d/'betlive_2026_r40_r104_win1loss3_source_audit.json').read_text())
+          result=json.loads((d/'betlive_2026_r40_r104_win1loss3_calibration.json').read_text())
+          assert result['status']=='HISTORICAL_3WAY_NO_VIG_CALIBRATION_DESCRIPTIVE_ONLY'
+          assert result['all_source_rows_checked_against_pbp'],result['nonmatched_details']
+          assert result['independent_pbp_joined']==source['distinct_game_markets']
+          assert result['market']=='KBO FULL_WIN1LOSS_3WAY (HOME 2+, <=1 margin, AWAY 2+)'
+          assert result['no_CLEAN_PRE_model_compared'] and result['not_identical_to_TWO_WAY_FULL_ML2']
+          assert not result['nonmatched_or_conflicted_rows']
+          joined=list(csv.DictReader((d/'betlive_2026_r40_r104_win1loss3_pbp_joined.csv').open(encoding='utf-8')))
+          assert len(joined)==result['independent_pbp_joined']
+          print({'n':len(joined),'brier':result['multiclass_brier'],
+                 'favorite_pred':result['favorite_mean_no_vig_probability'],
+                 'favorite_hit':result['favorite_actual_hit_rate'],
+                 'overround':result['mean_overround']})
+          PY
+      - name: Publish strictly source-matched audited 2026 3way metrics
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_r40_r104_win1loss3_pbp_joined.csv
+          git add research/market_fair_odds/betlive_2026_r40_r104_win1loss3_calibration.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish PBP-verified 2026 WIN1LOSS 3way market calibration'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Retain score/PBP audit evidence if failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: win1loss-2026-pbp-audit-forensic
+          path: research/market_fair_odds/betlive_2026_r40_r104_win1loss3_*
+          retention-days: 7
+          if-no-files-found: ignore
