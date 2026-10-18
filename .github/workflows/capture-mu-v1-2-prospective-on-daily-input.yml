@@ -5,6 +5,7 @@ on:
     paths:
       - "state/mechanical_mu_input.json"
       - ".github/workflows/capture-mu-v1-2-prospective-on-daily-input.yml"
+      - ".github/workflows/capture-mu-v1-2-prospective-on-daily-input.yml"
 
 permissions:
   contents: write
@@ -57,10 +58,15 @@ jobs:
         id: capture
         shell: bash
         run: |
-          snapshot_path=$(python scripts/capture_mu_v1_2_prospective_snapshot.py \
+          # kbo_pbp.download() prints season progress to stdout before the path.
+          # Preserve logs but expose only the final snapshot path to GITHUB_OUTPUT.
+          capture_log=$(mktemp)
+          python scripts/capture_mu_v1_2_prospective_snapshot.py \
             --input state/mechanical_mu_input.json \
             --require-input-declaration \
-            --note "AUTO_FROM_DAILY_MECHANICAL_MU_INPUT")
+            --note "AUTO_FROM_DAILY_MECHANICAL_MU_INPUT" | tee "$capture_log"
+          snapshot_path=$(grep -E '^state/prospective_mu_v1_2/[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{8}T[0-9]{6}Z\.json$' "$capture_log" | tail -n 1)
+          test -n "$snapshot_path" && test -s "$snapshot_path"
           echo "snapshot_path=$snapshot_path" >> "$GITHUB_OUTPUT"
           echo "Captured: $snapshot_path"
 
