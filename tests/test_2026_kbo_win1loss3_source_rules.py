@@ -6,7 +6,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
 from collect_2026_betlive_win1loss3 import parse_round
-from audit_2026_betlive_win1loss3_vs_pbp import actual_event, fair, prob_score
+from audit_2026_betlive_win1loss3_vs_pbp import actual_event, fair
+from compare_2026_win1loss_market_vs_naive import prob_score
 
 
 class TestKboWin1LossSemantics(unittest.TestCase):
