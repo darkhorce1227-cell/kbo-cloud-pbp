@@ -1,0 +1,70 @@
+name: Probe BETLIVE historical 2026 KBO 3-way market rows
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/probe-betlive-2026-kbo-markets.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install requests beautifulsoup4
+      - name: Probe bounded pre-September pages, robots and market semantics
+        run: |
+          python - <<'PY'
+          import json,re,time,requests
+          from urllib.robotparser import RobotFileParser
+          from bs4 import BeautifulSoup
+          from pathlib import Path
+          base='https://betlive.kr'
+          user_agent='KBOResearchAudit/1.0 (public historical market research)'
+          session=requests.Session();session.headers.update({'User-Agent':user_agent})
+          robots=session.get(base+'/robots.txt',timeout=15)
+          print('robots http',robots.status_code)
+          if robots.status_code!=200:raise SystemExit('Robots restrictions cannot be verified')
+          parser=RobotFileParser();parser.parse(robots.text.splitlines())
+          summaries=[]
+          for n in [35,50,70,90,100,105,110]:
+              url=f'{base}/proto/260{n:03d}'
+              if not parser.can_fetch(user_agent,url):
+                  summaries.append({'round':n,'robots':'DISALLOW'});continue
+              try:
+                  r=session.get(url,timeout=22)
+                  soup=BeautifulSoup(r.content.decode('utf-8','replace'),'html.parser')
+                  rows=[]
+                  for tr in soup.select('tr'):
+                      text=tr.get_text(' ',strip=True)
+                      if 'KBO' in text:
+                          cells=[x.get_text(' ',strip=True)[:130] for x in tr.find_all(['th','td'],recursive=False)]
+                          rows.append({'cells':cells,'html':str(tr)[:2300]})
+                      if len(rows)>=3:break
+                  summaries.append({'round':n,'url':url,'http':r.status_code,
+                     'title':soup.title.get_text(' ',strip=True) if soup.title else '',
+                     'tables':len(soup.select('table')),'kbo_example_rows':rows,
+                     'kbo_text_total':soup.get_text(' ',strip=True).count('KBO'),
+                     'outcome_header_examples':[h.get_text(' ',strip=True) for h in soup.select('th')][:18],
+                     'links':[{'text':a.get_text(' ',strip=True)[:50],'url':a['href']} for a in soup.select('a[href]') if 'proto' in a['href']][:12]})
+              except Exception as e:
+                  summaries.append({'round':n,'url':url,'status':f'ERROR: {type(e).__name__}: {str(e)[:130]}'})
+              print({'round':n,'http':summaries[-1].get('http'),'samples':len(summaries[-1].get('kbo_example_rows',[]))},flush=True)
+              time.sleep(.6)
+          out=Path('research/market_fair_odds/betlive_2026_schema_probe.json')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps({'status':'SOURCE_STRUCTURE_ONLY_NOT_VALIDATED_ODDS','samples':summaries},
+                                   ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit source evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_schema_probe.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Audit BETLIVE historical 2026 KBO 3way source structures'
+          git pull --rebase origin main
+          git push origin HEAD:main
