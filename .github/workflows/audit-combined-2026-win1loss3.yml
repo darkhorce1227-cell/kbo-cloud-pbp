@@ -1,0 +1,84 @@
+name: Audit full available 2026 KBO 3way Proto archival calibration
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/audit-combined-2026-win1loss3.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: betlive-2026-3way-pbp-calibration
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install SHA-authenticated PBP reader
+        run: pip install 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Consolidate all accessible 2026 3way odds source rows
+        run: |
+          python -m py_compile scripts/merge_2026_betlive_win1loss3.py
+          python scripts/merge_2026_betlive_win1loss3.py
+      - name: Retrieve authenticated 2026 PBP release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-3way-all
+          gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-3way-all --clobber
+          test -s /tmp/kbo-3way-all/kbo_pbp_2026_latest.parquet
+      - name: Recompute complete 3way WIN1LOSS calibration with independent official outcomes
+        run: |
+          python scripts/audit_2026_betlive_win1loss3_vs_pbp.py \
+            --book research/market_fair_odds/betlive_2026_r40_r122_win1loss3_archived.csv \
+            --source-audit research/market_fair_odds/betlive_2026_r40_r122_win1loss3_source_audit.json \
+            --pbp /tmp/kbo-3way-all/kbo_pbp_2026_latest.parquet \
+            --joined research/market_fair_odds/betlive_2026_r40_r122_win1loss3_pbp_joined.csv \
+            --output research/market_fair_odds/betlive_2026_r40_r122_win1loss3_calibration.json
+      - name: Verify no data fabrication, product-mixing or postgame-leakage claims
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,csv
+          d=Path('research/market_fair_odds')
+          pre='betlive_2026_r40_r122_win1loss3'
+          a=json.loads((d/(pre+'_source_audit.json')).read_text(encoding='utf-8'))
+          b=json.loads((d/(pre+'_calibration.json')).read_text(encoding='utf-8'))
+          rows=list(csv.DictReader((d/(pre+'_pbp_joined.csv')).open(encoding='utf-8')))
+          assert a['status']=='HISTORICAL_3WAY_QUOTES_NO_PREGAME_TIMESTAMP'
+          assert b['status']=='HISTORICAL_3WAY_NO_VIG_CALIBRATION_DESCRIPTIVE_ONLY'
+          assert not a['rounds_failed'] and a['rounds_parsed']>=75
+          assert len(rows)==a['distinct_game_markets']==b['independent_pbp_joined']
+          assert b['all_source_rows_checked_against_pbp']
+          assert not b['no_CLEAN_PRE_model_compared']==False
+          assert b['not_identical_to_TWO_WAY_FULL_ML2']
+          assert all(x['market_type']=='FULL_WIN1LOSS_3WAY' and
+                     x['source_price_temporality']=='HISTORICAL_ARCHIVED_QUOTES_TIME_UNVERIFIED'
+                     for x in rows)
+          print({'markets':len(rows),'mean_overround':b['mean_overround'],
+                 'favorite_no_vig':b['favorite_mean_no_vig_probability'],
+                 'favorite_actual':b['favorite_actual_hit_rate'],
+                 'threeway_brier':b['multiclass_brier'],
+                 'fav95':b['favorite_calibration_gap_bootstrap95_game']})
+          PY
+      - name: Commit full published 2026 3way calibration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/betlive_2026_r40_r122_win1loss3_*.csv
+          git add research/market_fair_odds/betlive_2026_r40_r122_win1loss3_*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publish 2026 multi-month KBO WIN1LOSS no-vig audit and PBP verified outcomes'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Archive forensic outputs on fail
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-2026-win1loss-audit-errors
+          path: research/market_fair_odds/betlive_2026_r40_r122_win1loss3_*
+          retention-days: 7
+          if-no-files-found: ignore
