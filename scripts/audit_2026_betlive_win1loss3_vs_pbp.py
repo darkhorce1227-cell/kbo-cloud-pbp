@@ -256,7 +256,8 @@ def main():
         "favorite_actual_hit_rate","favorite_calibration_gap",
         "hypothetical_favorite_roi_if_archived_price_executable"
     )},ensure_ascii=False))
-    if issues or n_missing:=len(rows)-len(joined):
+    n_missing = len(rows) - len(joined)
+    if issues or n_missing:
         raise SystemExit(f"INCOMPLETE_EXACT_PBP_SCORE_COVERAGE: missing={n_missing}, conflicts={len(issues)}")
 
 
