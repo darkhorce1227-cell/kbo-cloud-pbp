@@ -1,0 +1,195 @@
+{
+  "status": "HISTORICAL_3WAY_QUOTES_NO_PREGAME_TIMESTAMP",
+  "probed_at_utc": "2026-10-18T04:59:38.985509+00:00",
+  "first_round": 105,
+  "last_round": 122,
+  "rounds": [
+    {
+      "round": 105,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 106,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 107,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 108,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 109,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 110,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 111,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 112,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 113,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 114,
+      "status": "PARSED",
+      "kbo_rows": 3,
+      "strict_game_id_market_rows": 1,
+      "issues": 2
+    },
+    {
+      "round": 115,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 116,
+      "status": "PARSED",
+      "kbo_rows": 9,
+      "strict_game_id_market_rows": 9,
+      "issues": 0
+    },
+    {
+      "round": 117,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 118,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 119,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 120,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 121,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 3,
+      "issues": 1
+    },
+    {
+      "round": 122,
+      "status": "PARSED",
+      "kbo_rows": 1,
+      "strict_game_id_market_rows": 0,
+      "issues": 1
+    }
+  ],
+  "rounds_parsed": 18,
+  "rounds_404": [],
+  "rounds_failed": [],
+  "kbo_rows_in_pages": 100,
+  "source_rows_strict_game_pk_join": 96,
+  "distinct_game_markets": 93,
+  "cross_round_duplicates": 3,
+  "cross_round_quote_disagreements": [
+    {
+      "game_pk": "20261009HTNC02026",
+      "reason": "CROSS_ROUND_QUOTES_DIFFER_NO_SINGLE_PREGAME_TIMESTAMP",
+      "round_a": 119,
+      "round_b": 120
+    },
+    {
+      "game_pk": "20261009LGLT02026",
+      "reason": "CROSS_ROUND_QUOTES_DIFFER_NO_SINGLE_PREGAME_TIMESTAMP",
+      "round_a": 119,
+      "round_b": 120
+    },
+    {
+      "game_pk": "20261009SSSK02026",
+      "reason": "CROSS_ROUND_QUOTES_DIFFER_NO_SINGLE_PREGAME_TIMESTAMP",
+      "round_a": 119,
+      "round_b": 120
+    }
+  ],
+  "issues_count": 4,
+  "issues": [
+    {
+      "round": 114,
+      "row": "09/25 17:00 KBO 두산 vs 롯데 2.60 3.15 2.24",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 114,
+      "row": "09/25 17:00 KBO SSG vs 삼성 3.25 3.60 1.77",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 121,
+      "row": "10/14 18:30 KBO LG vs 두산 2.65 3.05 2.25",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 122,
+      "row": "10/14 18:30 KBO LG vs 두산 3.35 3.05 1.91",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    }
+  ],
+  "market_id": "FULL_WIN1LOSS_3WAY",
+  "market_outcomes": {
+    "HOME_2PLUS": "home run diff >= 2",
+    "WITHIN_1": "absolute run diff <=1 including ties",
+    "AWAY_2PLUS": "away run diff >= 2"
+  },
+  "three_way_middle_official_rule_url": "https://www.sportstoto.co.kr/view.php?idx=2402&type=notice",
+  "must_independently_verify_scores_with_pbp": true,
+  "historical_odds_executable_at_first_pitch_unverified": true,
+  "never_join_as_regular_ml2": true,
+  "not_genuine_prospective_bet_roi": true
+}
