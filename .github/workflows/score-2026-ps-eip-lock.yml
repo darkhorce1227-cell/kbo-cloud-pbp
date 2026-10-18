@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'state/postgame_score_audit_2026-10-18.json'
+      - '.github/workflows/score-2026-ps-eip-lock.yml'
   workflow_dispatch:
 
 permissions:
