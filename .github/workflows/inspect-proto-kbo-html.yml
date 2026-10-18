@@ -1,0 +1,73 @@
+name: Inspect 2026 historical Proto KBO HTML market structure
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/inspect-proto-kbo-html.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install requests beautifulsoup4
+      - name: Discover KBO HTML DOM, without bulk crawling
+        run: |
+          python - <<'PY'
+          import requests, json, re, time
+          from bs4 import BeautifulSoup
+          from pathlib import Path
+          from urllib.robotparser import RobotFileParser
+          from urllib.parse import urlsplit
+          urls=[
+            'https://spogod.com/round/proto/2026-116/',
+            'https://sharppick.app/proto/2026/116/',
+            'https://todaylotto.kr/toto/proto?year=2026&round=116',
+            'https://spogod.com/match/34/',
+          ]
+          out=[]
+          for url in urls:
+            u=urlsplit(url)
+            rob=requests.get(u.scheme+'://'+u.netloc+'/robots.txt',timeout=15)
+            if rob.status_code!=200:
+              out.append({'url':url,'status':'ROBOTS_NOT_CONFIRMED'});continue
+            rp=RobotFileParser();rp.parse(rob.content.decode('utf-8','replace').splitlines())
+            if not rp.can_fetch('KBOResearchAudit/1.0',url):
+              out.append({'url':url,'status':'ROBOTS_DISALLOW'});continue
+            r=requests.get(url,headers={'User-Agent':'KBOResearchAudit/1.0'},timeout=25)
+            html=r.content.decode('utf-8','replace')
+            soup=BeautifulSoup(html,'html.parser')
+            title=soup.title.get_text(' ',strip=True) if soup.title else ''
+            item={'url':url,'http':r.status_code,'bytes':len(r.content),'title':title}
+            # Compact table, special KBO-bearing data nodes, no full HTML dump.
+            matches=[]
+            for tag in soup.find_all(['tr','article','section','div','li','a','h2','h3']):
+              txt=tag.get_text(' ',strip=True)
+              if ('KBO' in txt or '두산 베어스' in txt or 'NC 다이노스' in txt) and 15<=len(txt)<=550:
+                if len(str(tag))<=12000:
+                  attrs={k:str(v)[:170] for k,v in tag.attrs.items()}
+                  matches.append({'tag':tag.name,'attrs':attrs,'text':txt[:360],'html':str(tag)[:2200]})
+              if len(matches)>=9:break
+            item['sample_nodes']=matches
+            item['table_headers']=[[h.get_text(' ',strip=True) for h in tab.find_all('th')[:20]] for tab in soup.find_all('table')[:10]]
+            item['script_ids']=[{'id':s.get('id'),'type':s.get('type'),'size':len(s.text)} for s in soup.find_all('script') if len(s.text)>5000][:8]
+            item['links_to_match']=[{'text':a.get_text(' ',strip=True)[:70],'href':a.get('href')} for a in soup.find_all('a',href=True) if '/match/' in a.get('href','')][:8]
+            out.append(item)
+            time.sleep(.5)
+          p=Path('research/market_fair_odds/html_schema_probe_116.json')
+          p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps([{'url':x['url'],'status':x.get('http'),'sample_count':len(x.get('sample_nodes',[]))} for x in out],ensure_ascii=False))
+          PY
+      - name: Publish page-shape probe
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/html_schema_probe_116.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Capture minimal public HTML schema of 2026 proto round 116'
+          git pull --rebase origin main
+          git push origin HEAD:main
