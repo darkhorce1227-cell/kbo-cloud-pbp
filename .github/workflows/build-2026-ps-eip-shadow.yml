@@ -1,0 +1,85 @@
+name: Build 2026 postseason Expected IP prospective shadow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/build_2026_ps_eip_shadow.py
+      - .github/workflows/build-2026-ps-eip-shadow.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ps-eip-2026-shadow
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install collector and study dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install 'numpy>=2,<3' 'scipy>=1.13'
+      - name: Collect completed 2026 RS game-side starter lines (no relief fallback)
+        run: |
+          python scripts/collect_rs_starter_lines.py \
+            --year 2026 \
+            --output-dir research/postseason_expected_ip/2026_shadow/source \
+            --pause 0.0 \
+            --retries 3
+          cat research/postseason_expected_ip/2026_shadow/source/2026_rs_summary.json
+      - name: Evaluate completed games and mint strictly pregame snapshot
+        run: |
+          python scripts/build_2026_ps_eip_shadow.py
+          cat research/postseason_expected_ip/2026_shadow/2026_shadow_audit.json
+      - name: Require exact provenance and forbid late pregame label
+        run: |
+          python - <<'PY'
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+          import json
+          d=Path('research/postseason_expected_ip/2026_shadow')
+          audit=json.loads((d/'2026_shadow_audit.json').read_text(encoding='utf-8'))
+          assert audit['status']=='PASS' and all(audit['checks'].values()), audit
+          assert audit['rs_games']==720 and audit['rs_starter_rows']==1440, audit
+          assert audit['completed_ps_starter_rows_reconstructed']==4, audit
+          assert audit['completed_ps_prospective_scored']==0, audit
+          snapshot=d/'pregame_lock_2026_10_18_LG_HT.json'
+          if snapshot.exists():
+              frozen=json.loads(snapshot.read_text(encoding='utf-8'))
+              assert frozen['source_type']=='FORECAST_BEFORE_GAME_OUTCOME'
+              assert frozen['prediction_use']=='SHADOW_ONLY_NO_BET'
+              assert len(frozen['forecast_rows'])==2
+              t=datetime.fromisoformat(frozen['snapshot_created_at_kst'])
+              kickoff=datetime.fromisoformat(frozen['first_pitch_kst'])
+              assert t<kickoff
+              # If the GitHub commit would occur at or after first pitch, fail
+              # rather than presenting this as externally timestamped prospective.
+              if datetime.now(ZoneInfo('Asia/Seoul'))>=kickoff:
+                  raise SystemExit('NO_PRE_GAME_LOCK: now at/after first pitch; no late GitHub commit allowed')
+          print('PS_EIP_2026_SHADOW_QUALITY_PASS')
+          PY
+      - name: Commit immutable pregame lock and provenance
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/postseason_expected_ip/2026_shadow
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'Publish 2026 PS Expected IP shadow and pregame lock'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
