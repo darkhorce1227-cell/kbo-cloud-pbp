@@ -1,0 +1,10 @@
+{
+  "status": "AUDITED_MARKET_QUOTE_GIT_PROVENANCE_ONLY",
+  "total_quote_files": 0,
+  "public_pre_scheduled_start_git_provenance_pass": 0,
+  "not_an_executable_sportsbook_quote": true,
+  "cannot_be_scored_as_clean_pre_model": true,
+  "actual_kbo_first_pitch_must_be_verified_independently": true,
+  "completed_model_vs_market_pairs": 0,
+  "quote_audits": []
+}
