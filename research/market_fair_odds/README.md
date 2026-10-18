@@ -1,5 +1,65 @@
 # KBO market-implied fair odds calibration / betting backtest
 
+## Current empirical results — archived 2026 Proto KBO (2026-10-18)
+
+**Measured, NOT a genuine betting-edge or CLEAN PRE test.** Source: 2026
+Proto rounds 105–122, game dates starting 2026-09-04. The earlier 2026
+rounds 101–104 returned HTTP 404, while sampled rounds 1,25,50,75,90,100
+also returned 404. No claims of full-season market coverage are allowed.
+
+- **125 distinct KBO games**, **375 distinct historical markets**:
+  125 ordinary 2-way, 125 handicap 2-way, 125 over/under.
+- Source final scores independently verified **125/125** against
+  SHA-validated Naver KBO pitch-by-pitch release through 2026-10-17.
+  Score/source reconciliation PASS.
+- Mean posted bookmaker overround ~**13.6%** for all three markets;
+  no-vig favorite predicted vs observed hit:
+  - Full 2-way: 58.32% vs 64.00%, Brier 0.4568. Game-bootstrap
+    95% interval for observed-minus-predicted: **-2.60 to +13.83 pp**.
+  - Handicap 2-way: 64.57% vs 60.80%, Brier 0.4720.
+    95% gap interval **-12.53 to +4.54 pp**.
+  - O/U: 52.38% vs 48.80%, Brier 0.4991.
+    95% gap interval **-12.43 to +5.25 pp**.
+- The hypothetical fixed 1u-per-market **favorite-only** return at
+  the archived displayed prices (NOT verified pregame executable odds):
+  **-3.58%** full win/loss, **-17.21%** handicap, **-18.24%** totals.
+  This is descriptive, not a genuine historical portfolio ROI.
+- Historical **opening** ML2 Brier 0.4603 vs latest archived displayed
+  0.4568, but quote timestamps are unverified; no claim of CLV or
+  exploitable information.
+- All 95% favorite calibration-gap intervals **include zero**;
+  no demonstrated systematic mispricing on this limited dataset.
+- In particular, no contemporary model probabilities with validated
+  independent CLEAN PRE locks are joined to this archive. **Model
+  calibration, model-vs-market skill and +EV claims remain unavailable.**
+
+Artifacts:
+
+```
+research/market_fair_odds/sharppick_2026_proto_r105_r122_combined_kbo.csv
+research/market_fair_odds/sharppick_2026_proto_r105_r122_combined_audit.json
+research/market_fair_odds/sharppick_2026_proto_r105_r122_pbp_result_audit.json
+research/market_fair_odds/sharppick_2026_proto_r105_r122_calibration.json
+```
+
+Executable audit/workflow:
+
+```
+scripts/collect_2026_kbo_proto_archive.py
+scripts/merge_2026_kbo_proto_archives.py
+scripts/audit_2026_proto_market_vs_pbp.py
+scripts/analyze_2026_kbo_proto_archive.py
+.github/workflows/run-2026-kbo-proto-expanded-calibration.yml
+```
+
+All retrospective prices must retain
+`HISTORICAL_PAGE_RETROSPECTIVE_PREMATCH_PRICE_TIME_UNVERIFIED`.
+Only externally evidenced pregame quotes may be used for real ROI or
+a CLEAN PRE model comparison. Synthetic fair odds are **not** executable
+payout prices.
+
+---
+
 **Status: ingestion + calibration code present; no historical full-season odds
 has been certified as loaded.** Do not report the synthetic unit tests as
 historical betting performance.
