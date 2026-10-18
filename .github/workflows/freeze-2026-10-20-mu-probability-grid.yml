@@ -1,0 +1,77 @@
+name: Freeze 2026-10-20 KIA-LG CLEAN PRE 5-inning and 9-inning market-neutral probabilities
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/freeze-2026-10-20-mu-probability-grid.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Derive probabilities only from externally precommitted market-unseen forecast
+        run: |
+          python -m py_compile scripts/freeze_2026_10_20_mu_probability_grid.py
+          python scripts/freeze_2026_10_20_mu_probability_grid.py
+      - name: Verify original model snapshot and distinct outcome probabilities
+        run: |
+          python - <<'PY'
+          import json,math
+          from pathlib import Path
+          x=json.loads(Path('research/market_fair_odds/pregame_mu_grid_2026_10_20_HT_LG.json').read_text(encoding='utf-8'))
+          assert x['status']=='PREGAME_GENERATED_NEEDS_GITHUB_COMMIT_BEFORE_KICKOFF'
+          assert x['market_state']=='NO_TARGET_GAME_BOOK_PRICES_USED'
+          assert x['no_baseball_extra_innings_model']
+          assert not x['lineup_adjustments'] and not x['champion_model']
+          for typ in ['F5','full_9_in']:
+              section=x[typ]
+              assert math.isclose(sum(section['three_way_after_nine_innings'].values()),1,abs_tol=1e-9)
+              assert math.isclose(sum(section['baseball_win_one_loss_after_nine'].values()),1,abs_tol=1e-9)
+              totals=section['total_run_half_line_grid']
+              assert len(totals)>=10
+              for line,p in totals.items():
+                  assert math.isclose(p['OVER']+p['UNDER'],1,abs_tol=1e-9)
+              lines=sorted(totals,key=float)
+              assert all(totals[lines[i]]['OVER']>=totals[lines[i+1]]['OVER'] for i in range(len(lines)-1))
+          print('F5:',x['F5']['three_way_after_nine_innings'])
+          print('Full 9IN:',x['full_9_in']['three_way_after_nine_innings'])
+          print('Win 1 Loss 9IN:',x['full_9_in']['baseball_win_one_loss_after_nine'])
+          PY
+      - name: Commit prospective probability grid to GitHub before first pitch
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          path=research/market_fair_odds/pregame_mu_grid_2026_10_20_HT_LG.json
+          git add "$path"
+          if git diff --cached --quiet; then
+            echo 'No new first LOCK. Refusing overwrite'
+            exit 1
+          fi
+          git commit -m 'LOCK 2026-10-20 KIA-LG market-unseen NB F5/full score and total distributions'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Gate earliest Git ADD timestamp on the result
+        run: |
+          python - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          from datetime import datetime
+          f='research/market_fair_odds/pregame_mu_grid_2026_10_20_HT_LG.json'
+          x=json.loads(Path(f).read_text(encoding='utf-8'))
+          time=subprocess.check_output(['git','log','--diff-filter=A','--format=%cI','--',f],text=True).splitlines()
+          assert len(time)==1
+          assert datetime.fromisoformat(time[0])<datetime.fromisoformat('2026-10-20T18:30:00+09:00')
+          print('PREGAME_LOCK_FIRST_COMMIT_KST:',time[0])
+          PY
