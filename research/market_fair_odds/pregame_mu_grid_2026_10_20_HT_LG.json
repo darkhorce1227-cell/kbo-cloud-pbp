@@ -1,0 +1,195 @@
+{
+  "status": "PREGAME_GENERATED_NEEDS_GITHUB_COMMIT_BEFORE_KICKOFF",
+  "date": "2026-10-20",
+  "game": "HT@LG",
+  "game_pk": "33331020HTLG02026",
+  "created_at_kst": "2026-10-18T20:55:33.078781+09:00",
+  "model_type": "MU_V1_2_RECOVERED_CHALLENGER_FIXED_9IN_NEGATIVE_BINOMIAL_INDEPENDENCE",
+  "model_version": "mu-v1.2-recovered-challenger-v0.9-bp30-cal36-p25.5",
+  "model_input_snapshot": "state/prospective_mu_v1_2/2026-10-20_20261018T115023Z.json",
+  "model_input_snapshot_sha256": "baf2f679c86baca36d6f2b0ed6fad4af8ccb947742a13d46401bbabd1338ab6d",
+  "original_snapshot_created_utc": "2026-10-18T11:50:23.454966+00:00",
+  "original_snapshot_first_git_add_utc": "2026-10-18T11:54:22+00:00",
+  "market_state": "NO_TARGET_GAME_BOOK_PRICES_USED",
+  "fixed_nb_model_spec": "research/mu-v1.2/model_spec.json",
+  "F5": {
+    "three_way_after_nine_innings": {
+      "AWAY_WIN_9IN": 0.4089207431106034,
+      "DRAW_AFTER_9IN": 0.13747389242744654,
+      "HOME_WIN_9IN": 0.45360536446195004
+    },
+    "baseball_win_one_loss_after_nine": {
+      "AWAY_2PLUS": 0.2916837754321458,
+      "WITHIN_1": 0.37572115058199557,
+      "HOME_2PLUS": 0.3325950739858586
+    },
+    "total_run_half_line_grid": {
+      "2.5": {
+        "OVER": 0.7985794569831038,
+        "UNDER": 0.20142054301689616,
+        "PUSH": 0.0
+      },
+      "3.5": {
+        "OVER": 0.682710986139972,
+        "UNDER": 0.31728901386002795,
+        "PUSH": 0.0
+      },
+      "4.5": {
+        "OVER": 0.5646201443371309,
+        "UNDER": 0.4353798556628691,
+        "PUSH": 0.0
+      },
+      "5.5": {
+        "OVER": 0.453966670314819,
+        "UNDER": 0.5460333296851809,
+        "PUSH": 0.0
+      },
+      "6.5": {
+        "OVER": 0.3563418365457611,
+        "UNDER": 0.6436581634542389,
+        "PUSH": 0.0
+      },
+      "7.5": {
+        "OVER": 0.27402942406384656,
+        "UNDER": 0.7259705759361534,
+        "PUSH": 0.0
+      },
+      "8.5": {
+        "OVER": 0.20704125947957897,
+        "UNDER": 0.792958740520421,
+        "PUSH": 0.0
+      },
+      "9.5": {
+        "OVER": 0.1540516578644128,
+        "UNDER": 0.8459483421355872,
+        "PUSH": 0.0
+      },
+      "10.5": {
+        "OVER": 0.11310147213365279,
+        "UNDER": 0.8868985278663473,
+        "PUSH": 0.0
+      },
+      "11.5": {
+        "OVER": 0.08206594669587844,
+        "UNDER": 0.9179340533041216,
+        "PUSH": 0.0
+      },
+      "12.5": {
+        "OVER": 0.058930087972032925,
+        "UNDER": 0.9410699120279671,
+        "PUSH": 0.0
+      },
+      "13.5": {
+        "OVER": 0.041926191719309565,
+        "UNDER": 0.9580738082806904,
+        "PUSH": 0.0
+      },
+      "14.5": {
+        "OVER": 0.02958206664075055,
+        "UNDER": 0.9704179333592494,
+        "PUSH": 0.0
+      },
+      "15.5": {
+        "OVER": 0.02071697278984035,
+        "UNDER": 0.9792830272101597,
+        "PUSH": 0.0
+      }
+    },
+    "mean_away_runs": 2.759360478658231,
+    "mean_home_runs": 2.991645187143113,
+    "nb_alpha": 0.54
+  },
+  "full_9_in": {
+    "three_way_after_nine_innings": {
+      "AWAY_WIN_9IN": 0.43491864722287094,
+      "DRAW_AFTER_9IN": 0.09117749365730325,
+      "HOME_WIN_9IN": 0.4739038591198258
+    },
+    "baseball_win_one_loss_after_nine": {
+      "AWAY_2PLUS": 0.34826915977906,
+      "WITHIN_1": 0.26624857036640204,
+      "HOME_2PLUS": 0.385482269854538
+    },
+    "total_run_half_line_grid": {
+      "2.5": {
+        "OVER": 0.9640810746647184,
+        "UNDER": 0.035918925335281626,
+        "PUSH": 0.0
+      },
+      "3.5": {
+        "OVER": 0.925650844645113,
+        "UNDER": 0.07434915535488695,
+        "PUSH": 0.0
+      },
+      "4.5": {
+        "OVER": 0.8713267694215598,
+        "UNDER": 0.12867323057844016,
+        "PUSH": 0.0
+      },
+      "5.5": {
+        "OVER": 0.8032234126254765,
+        "UNDER": 0.19677658737452353,
+        "PUSH": 0.0
+      },
+      "6.5": {
+        "OVER": 0.7251065106017937,
+        "UNDER": 0.27489348939820635,
+        "PUSH": 0.0
+      },
+      "7.5": {
+        "OVER": 0.6414524183760119,
+        "UNDER": 0.35854758162398814,
+        "PUSH": 0.0
+      },
+      "8.5": {
+        "OVER": 0.5566462254455388,
+        "UNDER": 0.44335377455446123,
+        "PUSH": 0.0
+      },
+      "9.5": {
+        "OVER": 0.47443897560520343,
+        "UNDER": 0.5255610243947966,
+        "PUSH": 0.0
+      },
+      "10.5": {
+        "OVER": 0.3976720562351916,
+        "UNDER": 0.6023279437648084,
+        "PUSH": 0.0
+      },
+      "11.5": {
+        "OVER": 0.32821708922835263,
+        "UNDER": 0.6717829107716473,
+        "PUSH": 0.0
+      },
+      "12.5": {
+        "OVER": 0.2670600955120213,
+        "UNDER": 0.7329399044879787,
+        "PUSH": 0.0
+      },
+      "13.5": {
+        "OVER": 0.21446315936683735,
+        "UNDER": 0.7855368406331626,
+        "PUSH": 0.0
+      },
+      "14.5": {
+        "OVER": 0.17015209330615502,
+        "UNDER": 0.829847906693845,
+        "PUSH": 0.0
+      },
+      "15.5": {
+        "OVER": 0.13349613999618584,
+        "UNDER": 0.8665038600038142,
+        "PUSH": 0.0
+      }
+    },
+    "mean_away_runs": 4.809022658798641,
+    "mean_home_runs": 5.067868526110347,
+    "nb_alpha": 0.322
+  },
+  "no_baseball_extra_innings_model": true,
+  "lineup_adjustments": false,
+  "retrospective_betting_roi_certified": false,
+  "champion_model": false,
+  "no_betting_action": true,
+  "warning": "Expected scores use regular-season 2024-26 research rebuild; no 2026 postseason PBP context in mechanical features. Full game includes 9-inning assumptions; actual extras/settlement needs separate validation."
+}
