@@ -1,0 +1,226 @@
+{
+  "status": "HISTORICAL_3WAY_NO_VIG_CALIBRATION_DESCRIPTIVE_ONLY",
+  "training_data_not_used": "NO_FORECAST_FITTING_PERFORMED",
+  "market": "KBO FULL_WIN1LOSS_3WAY (HOME 2+, <=1 margin, AWAY 2+)",
+  "official_rules": "https://www.sportstoto.co.kr/view.php?idx=2402&type=notice",
+  "market_label_warning": "BETLIVE columns 승/무/패; KBO middle is 1-run-or-less INCLUDING 0, not tie-only",
+  "source": "https://betlive.kr/proto/260NNN archive",
+  "source_quote_time": "HISTORICAL_POSTGAME_PAGE_NO_SOURCE_PRE_START_TIMESTAMP",
+  "source_coverage_rounds": [
+    40,
+    122
+  ],
+  "total_archived_rows": 459,
+  "independent_pbp_joined": 459,
+  "nonmatched_or_conflicted_rows": 0,
+  "nonmatched_details": [],
+  "cross_round_duplicates": 0,
+  "source_robots_compliance": "CHECKED_BY_COLLECTOR",
+  "source_result_PBP_sha256": "13f53152db0cbd7c3e6dab7161a929928209d0d2e908e6719fdccb343ce4e01f",
+  "source_result_PBP_through": "2026-10-17",
+  "all_source_rows_checked_against_pbp": true,
+  "mean_overround": 0.15120241358765393,
+  "observed_class_counts": {
+    "HOME_2PLUS": 166,
+    "WITHIN_1": 127,
+    "AWAY_2PLUS": 166
+  },
+  "mean_no_vig_class_probabilities": {
+    "HOME_2PLUS": 0.36482730194680146,
+    "WITHIN_1": 0.25331994600840196,
+    "AWAY_2PLUS": 0.3818527520447965
+  },
+  "observed_class_rates": {
+    "HOME_2PLUS": 0.3616557734204793,
+    "WITHIN_1": 0.2766884531590414,
+    "AWAY_2PLUS": 0.3616557734204793
+  },
+  "class_calibration": {
+    "HOME_2PLUS": {
+      "mean_no_vig": 0.36482730194680146,
+      "observed_rate": 0.3616557734204793,
+      "observed_minus_expected": -0.003171528526322187,
+      "ece": 0.020638554057381183,
+      "reliability": [
+        {
+          "bin": "0.1-0.2",
+          "n": 7,
+          "mean_probability": 0.1890507549986197,
+          "observed_frequency": 0.14285714285714285,
+          "calibration_error": -0.04619361214147685
+        },
+        {
+          "bin": "0.2-0.3",
+          "n": 110,
+          "mean_probability": 0.26059708309754853,
+          "observed_frequency": 0.21818181818181817,
+          "calibration_error": -0.04241526491573036
+        },
+        {
+          "bin": "0.3-0.4",
+          "n": 186,
+          "mean_probability": 0.35146333314946643,
+          "observed_frequency": 0.3655913978494624,
+          "calibration_error": 0.014128064699995946
+        },
+        {
+          "bin": "0.4-0.5",
+          "n": 127,
+          "mean_probability": 0.4446880277735374,
+          "observed_frequency": 0.4409448818897638,
+          "calibration_error": -0.003743145883773613
+        },
+        {
+          "bin": "0.5-0.6",
+          "n": 28,
+          "mean_probability": 0.5356295443874792,
+          "observed_frequency": 0.5714285714285714,
+          "calibration_error": 0.03579902704109217
+        },
+        {
+          "bin": "0.6-0.7",
+          "n": 1,
+          "mean_probability": 0.6215104319717896,
+          "observed_frequency": 1.0,
+          "calibration_error": 0.37848956802821043
+        }
+      ]
+    },
+    "WITHIN_1": {
+      "mean_no_vig": 0.25331994600840196,
+      "observed_rate": 0.2766884531590414,
+      "observed_minus_expected": 0.023368507150639428,
+      "ece": 0.02421102915960626,
+      "reliability": [
+        {
+          "bin": "0.1-0.2",
+          "n": 1,
+          "mean_probability": 0.19335880105789008,
+          "observed_frequency": 0.0,
+          "calibration_error": -0.19335880105789008
+        },
+        {
+          "bin": "0.2-0.3",
+          "n": 458,
+          "mean_probability": 0.2534508655388616,
+          "observed_frequency": 0.27729257641921395,
+          "calibration_error": 0.023841710880352363
+        }
+      ]
+    },
+    "AWAY_2PLUS": {
+      "mean_no_vig": 0.3818527520447965,
+      "observed_rate": 0.3616557734204793,
+      "observed_minus_expected": -0.02019697862431724,
+      "ece": 0.03803239978246694,
+      "reliability": [
+        {
+          "bin": "0.1-0.2",
+          "n": 3,
+          "mean_probability": 0.19279301091640874,
+          "observed_frequency": 0.0,
+          "calibration_error": -0.19279301091640874
+        },
+        {
+          "bin": "0.2-0.3",
+          "n": 73,
+          "mean_probability": 0.2671532708354846,
+          "observed_frequency": 0.1917808219178082,
+          "calibration_error": -0.07537244891767642
+        },
+        {
+          "bin": "0.3-0.4",
+          "n": 196,
+          "mean_probability": 0.3482624813606831,
+          "observed_frequency": 0.33163265306122447,
+          "calibration_error": -0.016629828299458638
+        },
+        {
+          "bin": "0.4-0.5",
+          "n": 140,
+          "mean_probability": 0.4421912203157475,
+          "observed_frequency": 0.4714285714285714,
+          "calibration_error": 0.02923735111282394
+        },
+        {
+          "bin": "0.5-0.6",
+          "n": 47,
+          "mean_probability": 0.532417621147308,
+          "observed_frequency": 0.44680851063829785,
+          "calibration_error": -0.0856091105090101
+        }
+      ]
+    }
+  },
+  "favorite_mean_no_vig_probability": 0.44357981724936774,
+  "favorite_actual_hit_rate": 0.4422657952069717,
+  "favorite_calibration_gap": -0.0013140220423960803,
+  "favorite_calibration_gap_bootstrap95_game": [
+    -0.0465995528489457,
+    0.04340934412000689
+  ],
+  "multiclass_brier": 0.6410417211155482,
+  "multiclass_logloss": 1.062046039839094,
+  "hypothetical_favorite_roi_if_archived_price_executable": -0.13762527233115468,
+  "by_game_month": [
+    {
+      "month": "2026-04",
+      "n": 26,
+      "mean_favorite_probability": 0.4394874535610388,
+      "observed_favorite_frequency": 0.2692307692307692,
+      "brier": 0.7040983400765902
+    },
+    {
+      "month": "2026-05",
+      "n": 95,
+      "mean_favorite_probability": 0.43489781364994295,
+      "observed_favorite_frequency": 0.4105263157894737,
+      "brier": 0.6420866652250521
+    },
+    {
+      "month": "2026-06",
+      "n": 94,
+      "mean_favorite_probability": 0.4450031980626133,
+      "observed_favorite_frequency": 0.425531914893617,
+      "brier": 0.6621964716557915
+    },
+    {
+      "month": "2026-07",
+      "n": 80,
+      "mean_favorite_probability": 0.4476293438006006,
+      "observed_favorite_frequency": 0.45,
+      "brier": 0.6265842777292657
+    },
+    {
+      "month": "2026-08",
+      "n": 58,
+      "mean_favorite_probability": 0.4381583892544905,
+      "observed_favorite_frequency": 0.39655172413793105,
+      "brier": 0.6589498141106289
+    },
+    {
+      "month": "2026-09",
+      "n": 73,
+      "mean_favorite_probability": 0.44628649243364304,
+      "observed_favorite_frequency": 0.5068493150684932,
+      "brier": 0.6205831529487451
+    },
+    {
+      "month": "2026-10",
+      "n": 33,
+      "mean_favorite_probability": 0.46146731459933726,
+      "observed_favorite_frequency": 0.6363636363636364,
+      "brier": 0.576923939878935
+    }
+  ],
+  "never_conclude_positive_EV_from_archival_quote": true,
+  "no_CLEAN_PRE_model_compared": true,
+  "not_identical_to_TWO_WAY_FULL_ML2": true,
+  "limitations": [
+    "BETLIVE does not show the time each posted price was executable; return is entirely hypothetical",
+    "3-way WIN1LOSS not 2-way moneyline; do not merge probability bins across markets",
+    "Source selection and season/date coverage are nonrandom; no full-season claims without exhaustive verification",
+    "Missing PBP games excluded, never assigned prices or labels",
+    "Without verified pregame model LOCK, one cannot claim a model beat the market"
+  ]
+}

@@ -1,0 +1,784 @@
+{
+  "status": "HISTORICAL_3WAY_QUOTES_NO_PREGAME_TIMESTAMP",
+  "first_round": 40,
+  "last_round": 122,
+  "source_components": [
+    [
+      40,
+      104
+    ],
+    [
+      105,
+      122
+    ]
+  ],
+  "rounds": [
+    {
+      "round": 40,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 41,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 42,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 43,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 44,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 45,
+      "status": "NOT_FOUND_404",
+      "kbo_rows": 0
+    },
+    {
+      "round": 46,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 47,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 48,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 49,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 50,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 51,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 52,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 53,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 54,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 55,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 56,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 57,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 58,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 59,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 6,
+      "issues": 4
+    },
+    {
+      "round": 60,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 61,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 3,
+      "issues": 2
+    },
+    {
+      "round": 62,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 63,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 64,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 65,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 66,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 67,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 68,
+      "status": "PARSED",
+      "kbo_rows": 9,
+      "strict_game_id_market_rows": 9,
+      "issues": 0
+    },
+    {
+      "round": 69,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 70,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 71,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 72,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 73,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 74,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 75,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 76,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 4,
+      "issues": 1
+    },
+    {
+      "round": 77,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 78,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 79,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 80,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 8,
+      "issues": 2
+    },
+    {
+      "round": 81,
+      "status": "PARSED",
+      "kbo_rows": 0,
+      "strict_game_id_market_rows": 0,
+      "issues": 0
+    },
+    {
+      "round": 82,
+      "status": "PARSED",
+      "kbo_rows": 0,
+      "strict_game_id_market_rows": 0,
+      "issues": 0
+    },
+    {
+      "round": 83,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 84,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 9,
+      "issues": 1
+    },
+    {
+      "round": 85,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 86,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 3,
+      "issues": 2
+    },
+    {
+      "round": 87,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 88,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 89,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 90,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 8,
+      "issues": 2
+    },
+    {
+      "round": 91,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 3,
+      "issues": 2
+    },
+    {
+      "round": 92,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 0,
+      "issues": 5
+    },
+    {
+      "round": 93,
+      "status": "PARSED",
+      "kbo_rows": 0,
+      "strict_game_id_market_rows": 0,
+      "issues": 0
+    },
+    {
+      "round": 94,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 95,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 96,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 97,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 98,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 99,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 7,
+      "issues": 3
+    },
+    {
+      "round": 100,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 101,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 102,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 0,
+      "issues": 5
+    },
+    {
+      "round": 103,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 104,
+      "status": "PARSED",
+      "kbo_rows": 9,
+      "strict_game_id_market_rows": 8,
+      "issues": 1
+    },
+    {
+      "round": 105,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 106,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 107,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 108,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 109,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 110,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 111,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 112,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 4,
+      "issues": 0
+    },
+    {
+      "round": 113,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 114,
+      "status": "PARSED",
+      "kbo_rows": 3,
+      "strict_game_id_market_rows": 1,
+      "issues": 2
+    },
+    {
+      "round": 115,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 116,
+      "status": "PARSED",
+      "kbo_rows": 9,
+      "strict_game_id_market_rows": 9,
+      "issues": 0
+    },
+    {
+      "round": 117,
+      "status": "PARSED",
+      "kbo_rows": 5,
+      "strict_game_id_market_rows": 5,
+      "issues": 0
+    },
+    {
+      "round": 118,
+      "status": "PARSED",
+      "kbo_rows": 10,
+      "strict_game_id_market_rows": 10,
+      "issues": 0
+    },
+    {
+      "round": 119,
+      "status": "PARSED",
+      "kbo_rows": 8,
+      "strict_game_id_market_rows": 8,
+      "issues": 0
+    },
+    {
+      "round": 120,
+      "status": "PARSED",
+      "kbo_rows": 6,
+      "strict_game_id_market_rows": 6,
+      "issues": 0
+    },
+    {
+      "round": 121,
+      "status": "PARSED",
+      "kbo_rows": 4,
+      "strict_game_id_market_rows": 3,
+      "issues": 1
+    },
+    {
+      "round": 122,
+      "status": "PARSED",
+      "kbo_rows": 1,
+      "strict_game_id_market_rows": 0,
+      "issues": 1
+    }
+  ],
+  "rounds_parsed": 77,
+  "rounds_404": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "rounds_failed": [],
+  "source_rows_strict_game_pk_join": 459,
+  "distinct_game_markets": 459,
+  "cross_round_duplicates": 0,
+  "cross_round_quote_disagreements": [],
+  "issues_count": 34,
+  "issues_from_component_audits_sample": [
+    {
+      "round": 59,
+      "row": "05/20 18:30 KBO 두산 vs NC 2.08 3.20 2.80",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 59,
+      "row": "05/20 18:30 KBO KIA vs LG 2.65 3.35 2.11",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 59,
+      "row": "05/20 18:30 KBO 한화 vs 롯데 2.28 3.40 2.40",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 59,
+      "row": "05/20 18:30 KBO 삼성 vs KT 2.75 3.50 2.00",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 61,
+      "row": "05/26 18:30 KBO SSG vs 삼성 3.10 3.35 1.89",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 61,
+      "row": "05/26 18:30 KBO NC vs 한화 2.90 3.35 1.98",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 76,
+      "row": "06/30 18:30 KBO 한화 vs KT 2.40 3.35 2.30",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 80,
+      "row": "07/08 18:30 KBO 한화 vs NC 2.30 3.45 2.35",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 80,
+      "row": "07/09 18:30 KBO KT vs 키움 1.95 3.65 2.75",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 84,
+      "row": "07/17 18:00 KBO 삼성 vs 롯데 1.77 3.60 3.25",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 86,
+      "row": "07/22 18:30 KBO LG vs NC 2.40 3.25 2.35",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 86,
+      "row": "07/22 18:30 KBO KT vs 두산 2.60 3.45 2.10",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 90,
+      "row": "08/01 18:00 KBO 롯데 vs 삼성 3.25 3.50 1.80",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 90,
+      "row": "08/01 18:00 KBO NC vs KIA 2.08 3.35 2.70",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 91,
+      "row": "08/04 18:30 KBO 두산 vs NC 3.00 3.55 1.87",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 91,
+      "row": "08/04 18:30 KBO KIA vs KT 2.26 3.35 2.45",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 92,
+      "row": "08/05 18:30 KBO 두산 vs NC 3.15 3.15 1.94",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 92,
+      "row": "08/05 18:30 KBO 삼성 vs 한화 1.91 3.65 2.85",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 92,
+      "row": "08/05 18:30 KBO 롯데 vs 키움 2.50 3.35 2.22",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 92,
+      "row": "08/05 18:30 KBO SSG vs LG 2.95 3.40 1.94",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 92,
+      "row": "08/05 18:30 KBO KIA vs KT 2.40 3.20 2.38",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 99,
+      "row": "08/22 19:00 KBO 두산 vs 롯데 2.03 3.10 3.00",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 99,
+      "row": "08/22 19:00 KBO SSG vs KT 2.70 3.35 2.08",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 99,
+      "row": "08/22 19:00 KBO 한화 vs LG 3.10 3.50 1.85",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 102,
+      "row": "08/28 18:30 KBO 두산 vs 키움 2.40 3.20 2.38",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 102,
+      "row": "08/28 18:30 KBO 삼성 vs KT 2.40 3.55 2.22",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 102,
+      "row": "08/28 18:30 KBO 롯데 vs LG 3.30 3.55 1.77",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 102,
+      "row": "08/28 18:30 KBO KIA vs SSG 1.66 3.65 3.65",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 102,
+      "row": "08/28 18:30 KBO 한화 vs NC 2.45 3.45 2.22",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 104,
+      "row": "09/03 18:30 KBO NC vs KIA 2.85 3.55 1.93",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 114,
+      "row": "09/25 17:00 KBO 두산 vs 롯데 2.60 3.15 2.24",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 114,
+      "row": "09/25 17:00 KBO SSG vs 삼성 3.25 3.60 1.77",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 121,
+      "row": "10/14 18:30 KBO LG vs 두산 2.65 3.05 2.25",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    },
+    {
+      "round": 122,
+      "row": "10/14 18:30 KBO LG vs 두산 3.35 3.05 1.91",
+      "reason": "Game PK not unique in validated KBO schedule: 0"
+    }
+  ],
+  "market_id": "FULL_WIN1LOSS_3WAY",
+  "market_outcomes": {
+    "HOME_2PLUS": "home run diff >= 2",
+    "WITHIN_1": "absolute run diff <=1 including ties",
+    "AWAY_2PLUS": "away run diff >= 2"
+  },
+  "three_way_middle_official_rule_url": "https://www.sportstoto.co.kr/view.php?idx=2402&type=notice",
+  "must_independently_verify_scores_with_pbp": true,
+  "historical_odds_executable_at_first_pitch_unverified": true,
+  "never_join_as_regular_ml2": true,
+  "not_genuine_prospective_bet_roi": true
+}
