@@ -1,0 +1,63 @@
+name: Audit KIA-LG postseason bullpen pitching workload through 2026-10-18
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/audit-ps-2026-bullpen-through-1018.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Naver relay parser dependencies
+        run: pip install -r requirements.txt
+      - name: Extract exact reliever/pitch counts for confirmed 2026 PS games
+        run: |
+          python -m py_compile scripts/audit_2026_ps_bullpen_through_1018.py
+          python scripts/audit_2026_ps_bullpen_through_1018.py
+      - name: Require complete starter/reliever counts and official game confirmation
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/postseason_expected_ip/2026_shadow/ps_bullpen_workload_through_2026_10_18.json')
+          j=json.loads(p.read_text(encoding='utf-8'))
+          assert j['status']=='OFFICIAL_NAVER_POSTSEASON_BOX_PITCH_COUNTS_VERIFIED'
+          assert j['official_10_18_final_audit']=='PASS'
+          assert len(j['games'])==3
+          for g in j['games']:
+              for t,data in g['sides'].items():
+                  assert data['summary']['starter_pitches']>0
+                  assert data['summary']['relief_pitches']>0
+                  assert data['summary']['starter_outs']>0
+              if g['date']=='2026-10-18':
+                  assert g['sides']['LG']['summary']['relief_outs']==23
+                  assert g['sides']['HT']['summary']['starter_outs']==18
+          print({t:{'pitches':v['relief_pitch_count_total'],
+                    'top_relief':v['all_relievers'][:3]} for t,v in j['team_summaries'].items()})
+          PY
+      - name: Publish audited pre-10/20 postseason relief availability context
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/postseason_expected_ip/2026_shadow/ps_bullpen_workload_through_2026_10_18.json
+          if git diff --cached --quiet; then exit 1; fi
+          git commit -m 'Audit verified 2026-10-14/17/18 postseason bullpen workload before game 3'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Retain partial forensic bullpen counts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026-ps-bullpen-workload-forensic
+          path: research/postseason_expected_ip/2026_shadow/ps_bullpen_workload_through_2026_10_18.json
+          if-no-files-found: ignore
+          retention-days: 7
