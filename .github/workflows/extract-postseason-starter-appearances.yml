@@ -1,0 +1,89 @@
+name: Extract Historical PS Starter Appearances
+on:
+  push:
+    paths:
+      - '.github/workflows/extract-postseason-starter-appearances.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ps-starter-appearance-publish
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install parquet dependencies
+        run: python -m pip install 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Download frozen historical PS screened master
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ps-shift
+          gh release download historical-ps-master --pattern 'postseason_screen_pass.parquet' --dir /tmp/ps-shift --clobber
+          test -s /tmp/ps-shift/postseason_screen_pass.parquet
+      - name: Extract starter appearances from actual PBP
+        run: |
+          set -euo pipefail
+          python scripts/extract_postseason_starter_appearances.py \
+            --input /tmp/ps-shift/postseason_screen_pass.parquet \
+            --output historical_ps/starter_appearances_screen_pass.csv
+      - name: Audit source and extracted appearances
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          import pandas as pd
+          src=Path('/tmp/ps-shift/postseason_screen_pass.parquet')
+          dst=Path('historical_ps/starter_appearances_screen_pass.csv')
+          source=pd.read_parquet(src)
+          out=pd.read_csv(dst, dtype={'game_pk':str,'starter_id':str})
+          assert not source.empty and not out.empty, 'empty source or result'
+          assert not out.duplicated(['game_pk','defending_team']).any(), 'duplicate game/team'
+          assert not out[['game_pk','defending_team','starter_id','starter_name','actual_ip']].isna().any().any(), 'missing starter field'
+          assert len(out)==2*out.game_pk.nunique(), 'not exactly two starters per game'
+          assert out.actual_outs.between(0,45).all(), 'implausible starter outs'
+          assert ((out.actual_ip*3-out.actual_outs).abs()<1e-8).all(), 'IP-to-outs mismatch'
+          assert set(out.game_pk)==set(source.game_pk.astype(str)), 'game coverage mismatch'
+          assert set(out.season.astype(int))==set(source.season.dropna().astype(int)), 'season coverage mismatch'
+          by_year=[{'season':int(year),'games':int(group.game_pk.nunique()),'starters':int(len(group))} for year,group in out.groupby('season')]
+          result={
+            'status':'PBP_DERIVED_PROVISIONAL',
+            'interpretation':'Structural checks only; not yet reconciled to official pitcher box-score IP.',
+            'source_release':'historical-ps-master',
+            'source_asset':'postseason_screen_pass.parquet',
+            'source_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),
+            'extractor':'scripts/extract_postseason_starter_appearances.py',
+            'total_games':int(out.game_pk.nunique()),
+            'total_starter_appearances':int(len(out)),
+            'zero_out_starters':int(out.actual_outs.eq(0).sum()),
+            'by_season':by_year,
+          }
+          target=Path('historical_ps/starter_appearances_screen_pass_audit.json')
+          target.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+          print(json.dumps(result,indent=2,ensure_ascii=False))
+          PY
+      - name: Commit validated derived outputs
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add historical_ps/starter_appearances_screen_pass.csv historical_ps/starter_appearances_screen_pass_audit.json
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+          else
+            git commit -m 'data: publish provisional PS starter appearance extraction'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
