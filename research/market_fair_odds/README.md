@@ -4,6 +4,19 @@
 has been certified as loaded.** Do not report the synthetic unit tests as
 historical betting performance.
 
+## Important product distinction
+
+The auditing script targets **Proto fixed-decimal-odds markets** only.
+"야구토토 승1패" is a separate **14-game, three-way, fixed payout-ratio
+(pool/parimutuel)** game: HOME by 2+ runs / within one run including ties /
+AWAY by 2+ runs. A 14-game ticket payout is determined by the winning
+pool and tier, not by a fixed per-game decimal quote. It requires historical
+ticket shares, official round outcome and payout (and possibly rollovers)
+for an actual profit backtest, plus a separate combinatorial calibration
+framework. Do not repurpose Proto decimal odds as if those were fixed
+야구토토 승1패 prices. Official source:
+https://www.sportstoto.co.kr/base_victory.php
+
 ## Two distinct research tracks
 
 1. **Market calibration**: KBO Proto/Betman decimal odds, normalized to
