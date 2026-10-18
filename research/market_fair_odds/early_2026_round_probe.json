@@ -1,0 +1,53 @@
+{
+  "purpose": "ARCHIVE_COVERAGE_DISCOVERY_ONLY",
+  "sampled_rounds": [
+    {
+      "round": 1,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/1/"
+    },
+    {
+      "round": 25,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/25/"
+    },
+    {
+      "round": 50,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/50/"
+    },
+    {
+      "round": 75,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/75/"
+    },
+    {
+      "round": 90,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/90/"
+    },
+    {
+      "round": 100,
+      "status": "ERROR",
+      "error": "HTTPError: 404 Client Error: Not Found for url: https://sharppick.app/proto/2026/100/"
+    },
+    {
+      "round": 110,
+      "status": 200,
+      "html_length": 136443,
+      "kbo_match_rows": 10,
+      "joined_kbo_market_rows": 15,
+      "issue_count": 5,
+      "title": "프로토 승부식 2026년도 110회차 결과·구매율·적중 배당 | 샤프픽"
+    },
+    {
+      "round": 111,
+      "status": 200,
+      "html_length": 226615,
+      "kbo_match_rows": 13,
+      "joined_kbo_market_rows": 36,
+      "issue_count": 1,
+      "title": "프로토 승부식 2026년도 111회차 결과·구매율·적중 배당 | 샤프픽"
+    }
+  ]
+}
