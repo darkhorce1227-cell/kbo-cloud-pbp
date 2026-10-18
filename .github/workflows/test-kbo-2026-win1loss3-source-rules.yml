@@ -1,0 +1,23 @@
+name: Test KBO 2026 WIN1LOSS bookmaker categories and nonfabrication
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/collect_2026_betlive_win1loss3.py
+      - scripts/audit_2026_betlive_win1loss3_vs_pbp.py
+      - tests/test_2026_kbo_win1loss3_source_rules.py
+      - .github/workflows/test-kbo-2026-win1loss3-source-rules.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install requests beautifulsoup4 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Test 3way settlement 0/1/2-run thresholds, schema, source and nonfabrication
+        run: |
+          python -m unittest discover -s tests -p test_2026_kbo_win1loss3_source_rules.py -v
