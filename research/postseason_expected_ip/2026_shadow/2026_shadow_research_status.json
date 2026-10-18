@@ -1,0 +1,89 @@
+{
+  "status": "FIRST_2026_PROSPECTIVE_LOCK_COMMITTED_PENDING_GAME",
+  "project": "KBO_POSTSEASON_EXPECTED_IP_2026_SHADOW",
+  "as_of_kst": "2026-10-18T11:53:00+09:00",
+  "strict_training": {
+    "postseason_seasons": "2016-2025",
+    "historical_residual_n": 284,
+    "shift_ip": -0.7598198773356355,
+    "regular_season": "2026 only, 720 completed games / 1440 starts / Naver seqno=1; stable player pcode"
+  },
+  "external_pregame_lock": {
+    "game_date": "2026-10-18",
+    "game": "LG@HT",
+    "first_pitch_kst": "2026-10-18T14:00:00+09:00",
+    "snapshot_created_at_kst": "2026-10-18T11:51:32.533884+09:00",
+    "github_commit": "bcf6cdfbb88c18fbde80310d63c61946af90c1d5",
+    "github_commit_at_kst": "2026-10-18T11:51:32+09:00",
+    "file": "research/postseason_expected_ip/2026_shadow/pregame_lock_2026_10_18_LG_HT.json",
+    "starter_predictions": [
+      {
+        "name": "임찬규",
+        "team": "LG",
+        "pcode": "61101",
+        "rs_starts": 31,
+        "rs_outs": 509,
+        "rs_starter_avg_ip": 5.473118279569892,
+        "candidate_ip": 4.7132984,
+        "p_ge_5": 0.4824561403508772,
+        "p_ge_6": 0.21578947368421053,
+        "p_lt_4": 0.2894736842105263
+      },
+      {
+        "name": "올러",
+        "team": "HT",
+        "pcode": "55633",
+        "rs_starts": 30,
+        "rs_outs": 534,
+        "rs_starter_avg_ip": 5.933333333333334,
+        "candidate_ip": 5.1735135,
+        "p_ge_5": 0.5982456140350877,
+        "p_ge_6": 0.32456140350877194,
+        "p_lt_4": 0.22982456140350876
+      }
+    ],
+    "market_observed": "NO",
+    "champion_replaced": "NO",
+    "bet_placed": "NO",
+    "prospective_result": "PENDING_KBO_FINAL_AND_STARTER_CONFIRMATION"
+  },
+  "retrospective_2026_ps_through_2026_10_17": {
+    "source_type": "POSTGAME_RECONSTRUCTION_NOT_PROSPECTIVE",
+    "games": 2,
+    "starter_appearances": 4,
+    "actual_ip": [
+      6,
+      6,
+      5,
+      7
+    ],
+    "mean_actual_ip": 6,
+    "rs_baseline_mae": 0.5309275551211037,
+    "challenger_mae": 1.0685251999999998,
+    "rs_baseline_rmse": 0.651793084325991,
+    "challenger_rmse": 1.2129638776003326,
+    "challenger_lower_absolute_error_starters": 1,
+    "interpretation": "Four small postgame-only examples show downward historical PS shift underpredicting innings; not prospective evidence and cannot refit the frozen 2026 mean.",
+    "detail_file": "research/postseason_expected_ip/2026_shadow/retro_2026_ps_starters_through_1017.json"
+  },
+  "official_postgame_scorer": {
+    "file": "scripts/score_2026_ps_eip_lock.py",
+    "workflow": ".github/workflows/score-2026-ps-eip-lock.yml",
+    "required_event": "state/postgame_score_audit_2026-10-18.json PASS",
+    "gates": [
+      "original_git_lock_commit_before_first_pitch",
+      "audit_PASS",
+      "same_game",
+      "same_pitcher_id",
+      "completed_starter_IP_reconstructed"
+    ],
+    "auto_betting": "OFF",
+    "model_promotion": "OFF_ONE_GAME"
+  },
+  "caveats": [
+    "Expected IP usage-only Challenger; does not adjust pitching skill",
+    "Current role, manager leash, physical and other significant personal/news contexts outrank historical shift",
+    "A pitcher may be changed after pregame lock; exclude such predictions, never treat as hits or misses",
+    "Do not mix 10/14 and 10/17 retrospective rows with prospective performance."
+  ]
+}
