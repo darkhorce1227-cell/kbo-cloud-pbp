@@ -57,7 +57,7 @@ class TestMarketFairOdds(unittest.TestCase):
             res["model_comparison"]["locked_model_brier"],
             (0.6-1)**2+(0.4-0)**2
         )
-        self.assertIsNone(res["model_comparison"]["ROI_status"] if False else None)
+        self.assertIn("NOT_COMPUTED", res["model_comparison"]["ROI_status"])
 
     def test_three_way_draw_is_scored(self):
         ev=self.data(make(typ="F5_1X2",win="DRAW",model=False))[0]
