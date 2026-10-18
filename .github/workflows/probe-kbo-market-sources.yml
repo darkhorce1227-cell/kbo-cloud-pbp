@@ -1,0 +1,36 @@
+name: Probe public 2026 KBO historical Proto odds sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-kbo-market-sources.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install small public HTML reader
+        run: python -m pip install requests beautifulsoup4
+      - name: Probe robots compliance and historical odds page structure
+        run: |
+          python scripts/probe_kbo_market_sources.py
+          cat research/market_fair_odds/source_probe_2026_10_18.json
+      - name: Store source diagnostics
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/market_fair_odds/source_probe_2026_10_18.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Audit publicly accessible 2026 KBO odds source shapes'
+          git pull --rebase origin main
+          git push origin HEAD:main
