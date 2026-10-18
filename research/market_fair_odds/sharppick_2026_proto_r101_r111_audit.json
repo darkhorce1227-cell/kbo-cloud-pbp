@@ -1,0 +1,261 @@
+{
+  "status": "SOURCE_RECONSTRUCTED_UNVERIFIED_PRICE_TIMESTAMP",
+  "source": "https://sharppick.app",
+  "year": 2026,
+  "first_round": 101,
+  "last_round": 111,
+  "capture_utc": "2026-10-18T04:43:13.276584+00:00",
+  "rounds": [
+    {
+      "round": 101,
+      "http": "FETCH_ERROR",
+      "error": "404 Client Error: Not Found for url: https://sharppick.app/proto/2026/101/"
+    },
+    {
+      "round": 102,
+      "http": "FETCH_ERROR",
+      "error": "404 Client Error: Not Found for url: https://sharppick.app/proto/2026/102/"
+    },
+    {
+      "round": 103,
+      "http": "FETCH_ERROR",
+      "error": "404 Client Error: Not Found for url: https://sharppick.app/proto/2026/103/"
+    },
+    {
+      "round": 104,
+      "http": "FETCH_ERROR",
+      "error": "404 Client Error: Not Found for url: https://sharppick.app/proto/2026/104/"
+    },
+    {
+      "round": 105,
+      "http": "OK",
+      "kbo_match_rows": 15,
+      "market_rows": 45,
+      "problems": 0
+    },
+    {
+      "round": 106,
+      "http": "OK",
+      "kbo_match_rows": 9,
+      "market_rows": 15,
+      "problems": 4
+    },
+    {
+      "round": 107,
+      "http": "OK",
+      "kbo_match_rows": 12,
+      "market_rows": 24,
+      "problems": 4
+    },
+    {
+      "round": 108,
+      "http": "OK",
+      "kbo_match_rows": 12,
+      "market_rows": 36,
+      "problems": 0
+    },
+    {
+      "round": 109,
+      "http": "OK",
+      "kbo_match_rows": 8,
+      "market_rows": 12,
+      "problems": 4
+    },
+    {
+      "round": 110,
+      "http": "OK",
+      "kbo_match_rows": 10,
+      "market_rows": 15,
+      "problems": 5
+    },
+    {
+      "round": 111,
+      "http": "OK",
+      "kbo_match_rows": 13,
+      "market_rows": 36,
+      "problems": 1
+    }
+  ],
+  "rows_including_multi_round": 183,
+  "deduplicated_markets": 183,
+  "unique_games": 61,
+  "kbo_match_rows_in_source": 79,
+  "duplicate_round_market_observations": 0,
+  "issues": [
+    {
+      "round": 106,
+      "date": "2026-09-09",
+      "pair": [
+        "두산 베어스",
+        "SSG 랜더스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 106,
+      "date": "2026-09-09",
+      "pair": [
+        "삼성 라이온즈",
+        "KT 위즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 106,
+      "date": "2026-09-09",
+      "pair": [
+        "KIA 타이거즈",
+        "NC 다이노스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 106,
+      "date": "2026-09-09",
+      "pair": [
+        "한화 이글스",
+        "LG 트윈스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 107,
+      "date": "2026-09-11",
+      "pair": [
+        "삼성 라이온즈",
+        "키움 히어로즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 107,
+      "date": "2026-09-11",
+      "pair": [
+        "롯데 자이언츠",
+        "KT 위즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 107,
+      "date": "2026-09-11",
+      "pair": [
+        "KIA 타이거즈",
+        "SSG 랜더스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 107,
+      "date": "2026-09-11",
+      "pair": [
+        "한화 이글스",
+        "NC 다이노스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 109,
+      "date": "2026-09-16",
+      "pair": [
+        "두산 베어스",
+        "삼성 라이온즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 109,
+      "date": "2026-09-16",
+      "pair": [
+        "롯데 자이언츠",
+        "SSG 랜더스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 109,
+      "date": "2026-09-16",
+      "pair": [
+        "NC 다이노스",
+        "LG 트윈스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 109,
+      "date": "2026-09-16",
+      "pair": [
+        "한화 이글스",
+        "KT 위즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 110,
+      "date": "2026-09-16",
+      "pair": [
+        "한화 이글스",
+        "KT 위즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 110,
+      "date": "2026-09-18",
+      "pair": [
+        "두산 베어스",
+        "키움 히어로즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 110,
+      "date": "2026-09-18",
+      "pair": [
+        "롯데 자이언츠",
+        "NC 다이노스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 110,
+      "date": "2026-09-18",
+      "pair": [
+        "KT 위즈",
+        "LG 트윈스"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 110,
+      "date": "2026-09-18",
+      "pair": [
+        "한화 이글스",
+        "삼성 라이온즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    },
+    {
+      "round": 111,
+      "date": "2026-09-18",
+      "pair": [
+        "두산 베어스",
+        "키움 히어로즈"
+      ],
+      "reason": "NOT_FINAL_OR_INVALID_SCORE"
+    }
+  ],
+  "issue_count": 18,
+  "cross_round_disagreements": [],
+  "duplicate_game_market_ids": false,
+  "market_type_counts": {
+    "FULL_ML2": 61,
+    "FULL_HC2": 61,
+    "FULL_OU": 61
+  },
+  "completed_rounds": 7,
+  "all_rounds_collected": false,
+  "not_validated_as_original_pregame_quote": true,
+  "may_be_used_for_clean_pre_performance": false,
+  "source_warning": "Postgame historical odds pages may not prove exact pre-first-pitch availability or price time."
+}
