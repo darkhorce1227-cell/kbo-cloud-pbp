@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "market_unique_games": 125,
+  "pbp_found_games": 125,
+  "exact_score_matches": 125,
+  "missing_pbp_games": [],
+  "score_disagreements": [],
+  "pbp_sha256": "13f53152db0cbd7c3e6dab7161a929928209d0d2e908e6719fdccb343ce4e01f",
+  "pbp_status_validation": "PASS",
+  "pbp_status_through_date": "2026-10-17",
+  "market_source_retrospective_only": true,
+  "pre_first_pitch_price_timestamp_verified": false,
+  "limitation": "Independent Naver PBP result verification is not proof that book's displayed price was executable at first pitch."
+}

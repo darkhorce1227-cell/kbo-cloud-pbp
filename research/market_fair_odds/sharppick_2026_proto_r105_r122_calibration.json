@@ -1,0 +1,245 @@
+{
+  "status": "DESCRIPTIVE_HISTORICAL_MARKET_CALIBRATION_NOT_CLEAN_PRE",
+  "source": "sharpPick retrospective 2026 Proto page archive",
+  "timestamp_certainty": "UNVERIFIED_PRICE_TIME",
+  "independent_result_audit": "PASS",
+  "number_of_unique_games": 125,
+  "distinct_game_markets": 375,
+  "markets": {
+    "FULL_ML2": {
+      "offered_markets": 125,
+      "settled": 125,
+      "push": 0,
+      "void": 0,
+      "opening_proxy": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.5759213332742082,
+        "actual_favorite_hit_rate": 0.64,
+        "favorite_calibration_gap": 0.06407866672579178,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.01929039098719973,
+          0.14406783060498776
+        ],
+        "multiclass_brier": 0.46030037857915224,
+        "log_loss": 0.652802192342534,
+        "average_overround": 0.13652920630875826,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.02320000000000001,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 87,
+            "mean_fair_probability": 0.5450795612944418,
+            "observed_favorite_hit_rate": 0.5977011494252874,
+            "observed_minus_predicted": 0.05262158813084561
+          },
+          {
+            "range": "0.6-0.7",
+            "n": 35,
+            "mean_fair_probability": 0.640261766535902,
+            "observed_favorite_hit_rate": 0.7714285714285715,
+            "observed_minus_predicted": 0.1311668048926694
+          },
+          {
+            "range": "0.7-0.8",
+            "n": 3,
+            "mean_fair_probability": 0.719694332634342,
+            "observed_favorite_hit_rate": 0.3333333333333333,
+            "observed_minus_predicted": -0.3863609993010087
+          }
+        ],
+        "ece_favorite_10bins": 0.08262399469224019
+      },
+      "displayed_quote": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.5831551658240054,
+        "actual_favorite_hit_rate": 0.64,
+        "favorite_calibration_gap": 0.05684483417599456,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.026046137923352437,
+          0.1383155892682098
+        ],
+        "multiclass_brier": 0.4568047662825247,
+        "log_loss": 0.6490872049108528,
+        "average_overround": 0.1364408797990358,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.03576000000000001,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 82,
+            "mean_fair_probability": 0.5485813520092861,
+            "observed_favorite_hit_rate": 0.5609756097560976,
+            "observed_minus_predicted": 0.012394257746811466
+          },
+          {
+            "range": "0.6-0.7",
+            "n": 40,
+            "mean_fair_probability": 0.6431977601384788,
+            "observed_favorite_hit_rate": 0.825,
+            "observed_minus_predicted": 0.1818022398615211
+          },
+          {
+            "range": "0.7-0.8",
+            "n": 3,
+            "mean_fair_probability": 0.7276048192333532,
+            "observed_favorite_hit_rate": 0.3333333333333333,
+            "observed_minus_predicted": -0.39427148590001987
+          }
+        ],
+        "ece_favorite_10bins": 0.07576986549919557
+      },
+      "opening_equals_display_assumed_count": 58
+    },
+    "FULL_HC2": {
+      "offered_markets": 125,
+      "settled": 125,
+      "push": 0,
+      "void": 0,
+      "opening_proxy": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.645666492622269,
+        "actual_favorite_hit_rate": 0.608,
+        "favorite_calibration_gap": -0.03766649262226907,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.12533891660439755,
+          0.04542369041124471
+        ],
+        "multiclass_brier": 0.4720138816175218,
+        "log_loss": 0.6646046279859879,
+        "average_overround": 0.13633133696550892,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.17208,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 27,
+            "mean_fair_probability": 0.5633693396475478,
+            "observed_favorite_hit_rate": 0.5555555555555556,
+            "observed_minus_predicted": -0.007813784091992182
+          },
+          {
+            "range": "0.6-0.7",
+            "n": 77,
+            "mean_fair_probability": 0.6531246064199849,
+            "observed_favorite_hit_rate": 0.6103896103896104,
+            "observed_minus_predicted": -0.04273499603037456
+          },
+          {
+            "range": "0.7-0.8",
+            "n": 21,
+            "mean_fair_probability": 0.7241307006171905,
+            "observed_favorite_hit_rate": 0.6666666666666666,
+            "observed_minus_predicted": -0.05746403395052391
+          }
+        ],
+        "ece_favorite_10bins": 0.03766649262226905
+      },
+      "displayed_quote": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.645666492622269,
+        "actual_favorite_hit_rate": 0.608,
+        "favorite_calibration_gap": -0.03766649262226907,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.12533891660439755,
+          0.04542369041124471
+        ],
+        "multiclass_brier": 0.4720138816175218,
+        "log_loss": 0.6646046279859879,
+        "average_overround": 0.13633133696550892,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.17208,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 27,
+            "mean_fair_probability": 0.5633693396475478,
+            "observed_favorite_hit_rate": 0.5555555555555556,
+            "observed_minus_predicted": -0.007813784091992182
+          },
+          {
+            "range": "0.6-0.7",
+            "n": 77,
+            "mean_fair_probability": 0.6531246064199849,
+            "observed_favorite_hit_rate": 0.6103896103896104,
+            "observed_minus_predicted": -0.04273499603037456
+          },
+          {
+            "range": "0.7-0.8",
+            "n": 21,
+            "mean_fair_probability": 0.7241307006171905,
+            "observed_favorite_hit_rate": 0.6666666666666666,
+            "observed_minus_predicted": -0.05746403395052391
+          }
+        ],
+        "ece_favorite_10bins": 0.03766649262226905
+      },
+      "opening_equals_display_assumed_count": 125
+    },
+    "FULL_OU": {
+      "offered_markets": 125,
+      "settled": 125,
+      "push": 0,
+      "void": 0,
+      "opening_proxy": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.5238443509836108,
+        "actual_favorite_hit_rate": 0.488,
+        "favorite_calibration_gap": -0.03584435098361092,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.12432919462148889,
+          0.052468731123133
+        ],
+        "multiclass_brier": 0.4990618919545456,
+        "log_loss": 0.6921998266446656,
+        "average_overround": 0.13640306681749995,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.18240000000000003,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 125,
+            "mean_fair_probability": 0.5238443509836108,
+            "observed_favorite_hit_rate": 0.488,
+            "observed_minus_predicted": -0.03584435098361083
+          }
+        ],
+        "ece_favorite_10bins": 0.03584435098361083
+      },
+      "displayed_quote": {
+        "n": 125,
+        "independent_games": 125,
+        "mean_fair_favorite_probability": 0.5238443509836108,
+        "actual_favorite_hit_rate": 0.488,
+        "favorite_calibration_gap": -0.03584435098361092,
+        "favorite_gap_game_cluster_bootstrap_95": [
+          -0.12432919462148889,
+          0.052468731123133
+        ],
+        "multiclass_brier": 0.4990618919545456,
+        "log_loss": 0.6921998266446656,
+        "average_overround": 0.13640306681749995,
+        "favorite_hypothetical_unit_roi_at_archived_displayed_odds": -0.18240000000000003,
+        "favorite_reliability_bins": [
+          {
+            "range": "0.5-0.6",
+            "n": 125,
+            "mean_fair_probability": 0.5238443509836108,
+            "observed_favorite_hit_rate": 0.488,
+            "observed_minus_predicted": -0.03584435098361083
+          }
+        ],
+        "ece_favorite_10bins": 0.03584435098361083
+      },
+      "opening_equals_display_assumed_count": 125
+    }
+  },
+  "limitations": [
+    "No original pregame odds quote timestamp; displayed-price ROI is hypothetical and may not have been executable",
+    "Historical opening prices inferred equal to displayed prices when source shows no movement",
+    "Markets conditioned on settled non-refunded outcomes; model comparisons not possible without CLEAN PRE locks",
+    "Clustering by baseball game and multiple outcomes/markets matters; marginal 95% gaps not evidence of long-term profits",
+    "Outcomes checked against independently SHA-validated KBO PBP; this proves only results, not bettable odds",
+    "No betting advice and no automated wagering"
+  ]
+}

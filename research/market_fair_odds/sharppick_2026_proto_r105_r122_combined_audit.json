@@ -1,0 +1,65 @@
+{
+  "status": "PASS_RECONSTRUCTED_ARCHIVE_NO_PREMATCH_TIMESTAMP",
+  "year": 2026,
+  "source_coverage": [
+    {
+      "first": 101,
+      "last": 111,
+      "source_markets": 183,
+      "source_games": 61,
+      "http_404_or_errors": [
+        101,
+        102,
+        103,
+        104
+      ],
+      "successful_rounds": [
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111
+      ]
+    },
+    {
+      "first": 112,
+      "last": 122,
+      "source_markets": 192,
+      "source_games": 64,
+      "http_404_or_errors": [],
+      "successful_rounds": [
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122
+      ]
+    }
+  ],
+  "all_rows_before_cross_range_dedup": 375,
+  "duplicate_market_lines_across_ranges": 0,
+  "unique_games": 125,
+  "distinct_game_markets": 375,
+  "by_market_type": {
+    "FULL_HC2": 125,
+    "FULL_ML2": 125,
+    "FULL_OU": 125
+  },
+  "game_score_conflicts": 0,
+  "quote_timestamp_verified": false,
+  "market_book_is_prospective": false,
+  "limitations": [
+    "Original quote timestamp unverified; no CLEAN PRE model comparisons",
+    "Some earlier 2026 rounds absent from public archive; do not label full season",
+    "Extra source round observations of the same game are not independent trials",
+    "Book outcomes require separate Naver/PBP final score audit"
+  ]
+}
