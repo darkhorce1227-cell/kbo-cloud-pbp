@@ -1,5 +1,5 @@
 {
-  "checked_at_kst": "2026-10-18T18:51:25.702588+09:00",
+  "checked_at_kst": "2026-10-18T19:30:52.029083+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
@@ -8,22 +8,22 @@
   ],
   "expected_games": 1,
   "final_games": 1,
-  "first_check_kst": "17:00",
+  "first_check_kst": null,
   "found_game_ids": [
     "33331018LGHT02026"
   ],
-  "has_1400_game": true,
+  "has_1400_game": null,
   "last_success_date": "2026-10-18",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "reason": "[DIRECT_RELAY_GAME_END_FALLBACK] Schedule status was stale; missing expected games were fetched directly by game ID. Explicit Naver GAME_END(type=99) was accepted as authoritative terminal proof for direct-fetched games, with parsed terminal state retained as QA; dataset validation passed.",
+  "reason": "[GAME_PK_CONTINUITY_REPAIR] Recovered all missing prior/checkpoint games. missing_before=['20261003HTLG02026', '20261003LTKT02026', '20261003OBSS02026', '20261003SKNC02026', '20261003WOHH02026', '20261004HTLG02026', '20261004LTKT02026', '20261004OBSS02026', '20261004SKNC02026', '20261004WOHH02026', '20261005HTLG02026', '20261005LTKT02026', '20261005OBSS02026', '20261005SKNC02026', '20261005WOHH02026', '20261006KTWO02026', '20261006NCLG02026', '20261006OBLT02026', '20261006SKHH02026', '20261006SSHT02026', '20261007HHWO02026', '20261007HTLT02026', '20261007NCSK02026', '20261007OBLG02026', '20261007SSKT02026', '20261009HTNC02026', '20261009LGLT02026', '20261009SSSK02026', '20261010LGLT02026', '20261010NCHH02026', '20261010SKHT02026', '20261011KTSS02026', '20261011LTHT02026', '20261012KTSS02026', '20261012LGHT02026', '20261012LTOB02026', '33331017LGHT02026', '33331018LGHT02026', '44441014OBLG02026']; required prior+checkpoint game_pk=723; candidate game_pk=723.",
   "retry_next_hour": false,
   "rows": 222467,
-  "sha256_csv_gz": "09b9eb6186057909fbe5333aa5be6ecf5de6b576d41cfd90f875037d1da7c547",
+  "sha256_csv_gz": "1fea52fc53e5395f2dcbcf9611887e53eb1231fa23528a003402119400013002",
   "sha256_parquet": "f09fcacbe148150659187f0da1699492d83a669d7437752dc265b86e7ffafe57",
   "should_publish": true,
-  "state": "UPDATED",
+  "state": "CONTINUITY_REPAIRED",
   "target_date": "2026-10-18",
   "validation": "PASS",
-  "version": "0.2.3"
+  "version": "0.3.1"
 }
