@@ -1,0 +1,116 @@
+name: Capture immutable KBO Proto public pregame price snapshots
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/capture-live-kbo-proto-quotes.yml'
+  workflow_dispatch:
+  schedule:
+    # KST 09:17,11:17,13:17,15:17,17:17,19:17,21:17.
+    # Collect independent public-price evidence throughout postseason.
+    - cron: '17 0,2,4,6,8,10,12 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-public-proto-pregame-quotes
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stop gracefully after 2026 postseason season
+        id: season
+        shell: bash
+        run: |
+          local_day=$(TZ=Asia/Seoul date +%Y-%m-%d)
+          if [[ "$local_day" > "2026-11-20" ]]; then
+            echo 'active=false' >> "$GITHUB_OUTPUT"
+            echo 'KBO 2026 quote collection season ended'
+          else
+            echo 'active=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install HTML capture dependencies
+        if: steps.season.outputs.active == 'true'
+        run: pip install requests beautifulsoup4
+      - name: Capture only genuinely future public KBO prices from current round index
+        if: steps.season.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/capture_kbo_proto_pregame_quotes.py --source-rounds 3 > /tmp/kbo_quote_capture.json
+          cat /tmp/kbo_quote_capture.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          j=json.loads(Path('/tmp/kbo_quote_capture.json').read_text())
+          assert j['status']=='PUBLIC_MARKET_CAPTURE_NOT_BETTABLE_PRICE_CERTIFICATION'
+          assert j['executability']=='NOT_VERIFIED'
+          print({'new_price_files':len(j['new_quote_files']),
+                 'source_market_quotes':j['markets_seen_before_start'],
+                 'parse_issues':len(j['parse_issues'])})
+          PY
+      - name: First Git ADD commit must finish comfortably before scheduled first pitch
+        if: steps.season.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p state/pregame_market_quotes
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add state/pregame_market_quotes
+          if git diff --cached --quiet; then
+            echo 'No new public quote fingerprint this run'
+            exit 0
+          fi
+          python - <<'PY'
+          import json,subprocess
+          from datetime import datetime,timezone,timedelta
+          from pathlib import Path
+          files=subprocess.check_output(
+              ['git','diff','--cached','--name-only','--diff-filter=A'],
+              text=True).splitlines()
+          if not files:raise SystemExit('No newly staged quote file')
+          now=datetime.now(timezone.utc)
+          for name in files:
+              if not name.startswith('state/pregame_market_quotes/') or not name.endswith('.json'):
+                  raise SystemExit('Unexpected file staged for quote commit: '+name)
+              obj=json.loads(Path(name).read_text(encoding='utf-8'))
+              observed=datetime.fromisoformat(obj['first_observed_at_utc'])
+              kickoff=datetime.fromisoformat(obj['scheduled_first_pitch_kst'])
+              if not (observed<=now and now+timedelta(minutes=3)<kickoff):
+                  raise SystemExit('Too late to commit quote as pregame: '+name)
+              if obj['displayed_price_is_executable_at_betman'] is not False:
+                  raise SystemExit('False sportsbook executable claim: '+name)
+          print('All freshly staged market quote files eligible for external prestart commit')
+          PY
+          git commit -m 'Archive public KBO Proto quote observed before scheduled first pitch'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Verify first Git ADD commit and report evidence; never certify executable odds
+        if: steps.season.outputs.active == 'true'
+        shell: bash
+        run: |
+          python scripts/audit_kbo_pregame_quote_commits.py --strict
+          cat research/market_fair_odds/live_quote_capture_audit.json
+      - name: Commit market quote provenance audit separately
+        if: steps.season.outputs.active == 'true'
+        shell: bash
+        run: |
+          git add research/market_fair_odds/live_quote_capture_audit.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'Refresh public KBO pregame quote Git provenance audit'
+          git pull --rebase origin main
+          git push origin HEAD:main
