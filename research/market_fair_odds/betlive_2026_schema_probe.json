@@ -1,0 +1,387 @@
+{
+  "status": "SOURCE_STRUCTURE_ONLY_NOT_VALIDATED_ODDS",
+  "samples": [
+    {
+      "round": 35,
+      "url": "https://betlive.kr/proto/260035",
+      "http": 404,
+      "title": "회차를 찾을 수 없습니다 — BETLIVE",
+      "tables": 0,
+      "kbo_example_rows": [],
+      "kbo_text_total": 0,
+      "outcome_header_examples": [],
+      "links": [
+        {
+          "text": "프로토 메인으로",
+          "url": "https://betlive.kr/proto"
+        }
+      ]
+    },
+    {
+      "round": 50,
+      "url": "https://betlive.kr/proto/260050",
+      "http": 200,
+      "title": "프로토 승부식 2026년 50회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "04/29 18:30",
+            "KBO",
+            "두산 vs 삼성",
+            "2.50",
+            "3.10",
+            "2.27"
+          ],
+          "html": "<tr>\n<td>04/29 18:30</td>\n<td>KBO</td>\n<td><strong>두산</strong> vs <strong>삼성</strong></td>\n<td class=\"num\">2.50</td>\n<td class=\"num\">3.10</td>\n<td class=\"num\">2.27</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "04/29 18:30",
+            "KBO",
+            "롯데 vs 키움",
+            "1.94",
+            "3.45",
+            "2.80"
+          ],
+          "html": "<tr>\n<td>04/29 18:30</td>\n<td>KBO</td>\n<td><strong>롯데</strong> vs <strong>키움</strong></td>\n<td class=\"num\">1.94</td>\n<td class=\"num\">3.45</td>\n<td class=\"num\">2.80</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "04/29 18:30",
+            "KBO",
+            "NC vs KIA",
+            "1.76",
+            "3.55",
+            "3.20"
+          ],
+          "html": "<tr>\n<td>04/29 18:30</td>\n<td>KBO</td>\n<td><strong>NC</strong> vs <strong>KIA</strong></td>\n<td class=\"num\">1.76</td>\n<td class=\"num\">3.55</td>\n<td class=\"num\">3.20</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 5,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260050"
+        }
+      ]
+    },
+    {
+      "round": 70,
+      "url": "https://betlive.kr/proto/260070",
+      "http": 200,
+      "title": "프로토 승부식 2026년 70회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "06/16 18:30",
+            "KBO",
+            "두산 vs KT",
+            "3.10",
+            "3.40",
+            "1.88"
+          ],
+          "html": "<tr>\n<td>06/16 18:30</td>\n<td>KBO</td>\n<td><strong>두산</strong> vs <strong>KT</strong></td>\n<td class=\"num\">3.10</td>\n<td class=\"num\">3.40</td>\n<td class=\"num\">1.88</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "06/16 18:30",
+            "KBO",
+            "삼성 vs 키움",
+            "1.60",
+            "3.80",
+            "3.80"
+          ],
+          "html": "<tr>\n<td>06/16 18:30</td>\n<td>KBO</td>\n<td><strong>삼성</strong> vs <strong>키움</strong></td>\n<td class=\"num\">1.60</td>\n<td class=\"num\">3.80</td>\n<td class=\"num\">3.80</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "06/16 18:30",
+            "KBO",
+            "SSG vs 롯데",
+            "2.65",
+            "3.50",
+            "2.06"
+          ],
+          "html": "<tr>\n<td>06/16 18:30</td>\n<td>KBO</td>\n<td><strong>SSG</strong> vs <strong>롯데</strong></td>\n<td class=\"num\">2.65</td>\n<td class=\"num\">3.50</td>\n<td class=\"num\">2.06</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 5,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260070"
+        }
+      ]
+    },
+    {
+      "round": 90,
+      "url": "https://betlive.kr/proto/260090",
+      "http": 200,
+      "title": "프로토 승부식 2026년 90회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "07/31 18:30",
+            "KBO",
+            "두산 vs LG",
+            "2.55",
+            "3.20",
+            "2.25"
+          ],
+          "html": "<tr>\n<td>07/31 18:30</td>\n<td>KBO</td>\n<td><strong>두산</strong> vs <strong>LG</strong></td>\n<td class=\"num\">2.55</td>\n<td class=\"num\">3.20</td>\n<td class=\"num\">2.25</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "07/31 18:30",
+            "KBO",
+            "롯데 vs 삼성",
+            "3.75",
+            "3.90",
+            "1.60"
+          ],
+          "html": "<tr>\n<td>07/31 18:30</td>\n<td>KBO</td>\n<td><strong>롯데</strong> vs <strong>삼성</strong></td>\n<td class=\"num\">3.75</td>\n<td class=\"num\">3.90</td>\n<td class=\"num\">1.60</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "07/31 18:30",
+            "KBO",
+            "KT vs 한화",
+            "2.45",
+            "3.55",
+            "2.17"
+          ],
+          "html": "<tr>\n<td>07/31 18:30</td>\n<td>KBO</td>\n<td><strong>KT</strong> vs <strong>한화</strong></td>\n<td class=\"num\">2.45</td>\n<td class=\"num\">3.55</td>\n<td class=\"num\">2.17</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 10,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260090"
+        }
+      ]
+    },
+    {
+      "round": 100,
+      "url": "https://betlive.kr/proto/260100",
+      "http": 200,
+      "title": "프로토 승부식 2026년 100회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "08/25 18:30",
+            "KBO",
+            "LG vs NC",
+            "2.03",
+            "3.40",
+            "2.75"
+          ],
+          "html": "<tr>\n<td>08/25 18:30</td>\n<td>KBO</td>\n<td><strong>LG</strong> vs <strong>NC</strong></td>\n<td class=\"num\">2.03</td>\n<td class=\"num\">3.40</td>\n<td class=\"num\">2.75</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "08/25 18:30",
+            "KBO",
+            "SSG vs 한화",
+            "2.95",
+            "3.50",
+            "1.91"
+          ],
+          "html": "<tr>\n<td>08/25 18:30</td>\n<td>KBO</td>\n<td><strong>SSG</strong> vs <strong>한화</strong></td>\n<td class=\"num\">2.95</td>\n<td class=\"num\">3.50</td>\n<td class=\"num\">1.91</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "08/25 18:30",
+            "KBO",
+            "KIA vs 롯데",
+            "2.35",
+            "3.35",
+            "2.35"
+          ],
+          "html": "<tr>\n<td>08/25 18:30</td>\n<td>KBO</td>\n<td><strong>KIA</strong> vs <strong>롯데</strong></td>\n<td class=\"num\">2.35</td>\n<td class=\"num\">3.35</td>\n<td class=\"num\">2.35</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 5,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260100"
+        }
+      ]
+    },
+    {
+      "round": 105,
+      "url": "https://betlive.kr/proto/260105",
+      "http": 200,
+      "title": "프로토 승부식 2026년 105회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "09/04 18:30",
+            "KBO",
+            "LG vs 삼성",
+            "2.60",
+            "3.30",
+            "2.17"
+          ],
+          "html": "<tr>\n<td>09/04 18:30</td>\n<td>KBO</td>\n<td><strong>LG</strong> vs <strong>삼성</strong></td>\n<td class=\"num\">2.60</td>\n<td class=\"num\">3.30</td>\n<td class=\"num\">2.17</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "09/04 18:30",
+            "KBO",
+            "롯데 vs 한화",
+            "2.18",
+            "3.45",
+            "2.50"
+          ],
+          "html": "<tr>\n<td>09/04 18:30</td>\n<td>KBO</td>\n<td><strong>롯데</strong> vs <strong>한화</strong></td>\n<td class=\"num\">2.18</td>\n<td class=\"num\">3.45</td>\n<td class=\"num\">2.50</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "09/04 18:30",
+            "KBO",
+            "SSG vs 두산",
+            "1.97",
+            "3.60",
+            "2.75"
+          ],
+          "html": "<tr>\n<td>09/04 18:30</td>\n<td>KBO</td>\n<td><strong>SSG</strong> vs <strong>두산</strong></td>\n<td class=\"num\">1.97</td>\n<td class=\"num\">3.60</td>\n<td class=\"num\">2.75</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 10,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260105"
+        }
+      ]
+    },
+    {
+      "round": 110,
+      "url": "https://betlive.kr/proto/260110",
+      "http": 200,
+      "title": "프로토 승부식 2026년 110회차 경기 일정·배당률 — BETLIVE",
+      "tables": 1,
+      "kbo_example_rows": [
+        {
+          "cells": [
+            "09/16 18:30",
+            "KBO",
+            "두산 vs 삼성",
+            "2.95",
+            "3.30",
+            "1.97"
+          ],
+          "html": "<tr>\n<td>09/16 18:30</td>\n<td>KBO</td>\n<td><strong>두산</strong> vs <strong>삼성</strong></td>\n<td class=\"num\">2.95</td>\n<td class=\"num\">3.30</td>\n<td class=\"num\">1.97</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "09/16 18:30",
+            "KBO",
+            "롯데 vs SSG",
+            "3.20",
+            "3.30",
+            "1.87"
+          ],
+          "html": "<tr>\n<td>09/16 18:30</td>\n<td>KBO</td>\n<td><strong>롯데</strong> vs <strong>SSG</strong></td>\n<td class=\"num\">3.20</td>\n<td class=\"num\">3.30</td>\n<td class=\"num\">1.87</td>\n</tr>"
+        },
+        {
+          "cells": [
+            "09/16 18:30",
+            "KBO",
+            "NC vs LG",
+            "2.50",
+            "3.35",
+            "2.22"
+          ],
+          "html": "<tr>\n<td>09/16 18:30</td>\n<td>KBO</td>\n<td><strong>NC</strong> vs <strong>LG</strong></td>\n<td class=\"num\">2.50</td>\n<td class=\"num\">3.35</td>\n<td class=\"num\">2.22</td>\n</tr>"
+        }
+      ],
+      "kbo_text_total": 4,
+      "outcome_header_examples": [
+        "시각(KST)",
+        "리그",
+        "경기",
+        "승",
+        "무",
+        "패"
+      ],
+      "links": [
+        {
+          "text": "프로토",
+          "url": "https://betlive.kr/proto"
+        },
+        {
+          "text": "회차 자세히 보기 →",
+          "url": "https://betlive.kr/proto/260110"
+        }
+      ]
+    }
+  ]
+}
