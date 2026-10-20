@@ -1,0 +1,33 @@
+{
+  "capture_type": "PUBLIC_DISPLAYED_PRICE_OBSERVED_PRE_SCHEDULED_START",
+  "market_id": "2026-10-20|HT>LG|FULL_OU|8.5",
+  "event_date_kst": "2026-10-20",
+  "home_team": "LG",
+  "away_team": "HT",
+  "home_name": "LG 트윈스",
+  "away_name": "KIA 타이거즈",
+  "scheduled_first_pitch_kst": "2026-10-20T18:30:00+09:00",
+  "market_type": "FULL_OU",
+  "market_line": "8.5",
+  "decimal_odds": {
+    "UNDER": 1.72,
+    "OVER": 1.8
+  },
+  "outcomes": [
+    "UNDER",
+    "OVER"
+  ],
+  "source_round_url": "https://sharppick.app/proto/2026/124/",
+  "source_match_url": "https://sharppick.app/match/1638385601/",
+  "source_row_status": "—",
+  "first_observed_at_utc": "2026-10-20T04:43:11.043286+00:00",
+  "displayed_price_is_executable_at_betman": false,
+  "time_verified": "OBSERVATION_TIME_ONLY_NOT_BOOK_OPENING_TIME",
+  "future_game_pk": null,
+  "is_clean_pre_model_prediction": false,
+  "roi_backtest_eligibility": "WAIT_OFFICIAL_BETTING_AVAILABILITY_AND_ACTUAL_START",
+  "source_round_response_sha256": "ccb082e565d7a2273194c21e1501153122004a66102f6d986080b69ec75a8677",
+  "source_server_date_header": "Tue, 20 Oct 2026 04:43:11 GMT",
+  "snapshot_fingerprint_sha256": "7279ac696842c592f90c69d259bd8eb0d68e0663efcdcd3b5c2649f342ce333d",
+  "original_prospective_label": "PUBLIC_PRICE_CAPTURE_REQUIRES_FIRST_COMMIT_TIME_GATE"
+}
