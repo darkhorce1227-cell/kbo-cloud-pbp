@@ -1,5 +1,5 @@
 {
-  "checked_at_kst": "2026-10-23T17:36:29.009111+09:00",
+  "checked_at_kst": "2026-10-24T17:31:53.855932+09:00",
   "columns": null,
   "csv_gz": null,
   "duplicate_stable_keys": null,
@@ -19,7 +19,7 @@
   "sha256_parquet": null,
   "should_publish": false,
   "state": "NO_GAMES",
-  "target_date": "2026-10-23",
+  "target_date": "2026-10-24",
   "validation": "PASS",
   "version": "0.2.0"
 }
