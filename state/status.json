@@ -1,5 +1,5 @@
 {
-  "checked_at_kst": "2026-10-24T17:31:53.855932+09:00",
+  "checked_at_kst": "2026-10-25T17:31:32.234502+09:00",
   "columns": null,
   "csv_gz": null,
   "duplicate_stable_keys": null,
@@ -12,14 +12,14 @@
   "last_success_date": "2026-10-18",
   "missing_columns": null,
   "parquet": null,
-  "reason": "[UPSTREAM_SEASON_SCHEDULE] No eligible KBO regular/postseason games on target date.",
+  "reason": "[NAVER_DATE_STATUS] No eligible KBO regular/postseason games on target date.",
   "retry_next_hour": false,
   "rows": null,
   "sha256_csv_gz": null,
   "sha256_parquet": null,
   "should_publish": false,
   "state": "NO_GAMES",
-  "target_date": "2026-10-24",
+  "target_date": "2026-10-25",
   "validation": "PASS",
   "version": "0.2.0"
 }
