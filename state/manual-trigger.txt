@@ -1,3 +1,3 @@
 # Manual KBO PBP cloud-update trigger
-# Target selected explicitly for reproducible postseason score audit.
-manual refresh requested for 2026-10-18 postseason G2 at 2026-10-18 18:46 KST
+# Explicit target for verified postseason review.
+manual refresh requested for 2026-10-20 PS G3 at 2026-10-25 23:23 KST
