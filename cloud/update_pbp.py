@@ -380,6 +380,29 @@ def run(target: date, force: bool = False) -> Result:
     )
 
     if not expected_ids:
+        # Externally confirmed historical postseason game days may disappear
+        # from stale Naver schedule responses after a postponement. They cannot
+        # be silently classed as NO_GAMES while a dated recovery ticket is open.
+        try:
+            recovery = json.loads((STATE_DIR / "pbp_recovery_targets.json").read_text(encoding="utf-8"))
+            pending = recovery.get("status") == "BACKFILL_QUEUE_NOT_PBP_AND_NOT_OFFICIAL_SCORE_AUDIT" and any(
+                item.get("target_date") == target.isoformat() and
+                item.get("data_ingested") is False
+                for item in recovery.get("targets", [])
+            )
+        except (OSError, ValueError, TypeError, json.JSONDecodeError):
+            pending = False
+        if pending:
+            return Result(
+                state="HISTORICAL_GAME_MISSING_FROM_UPSTREAM_SCHEDULE",
+                validation="FAIL", final_games=0,
+                reason=(
+                    f"[{schedule_source}] Schedule has no eligible games for {target}, "
+                    "but a separately evidenced historical postseason game "
+                    "is awaiting PBP reconstruction. Refuse NO_GAMES."
+                ),
+                retry_next_hour=True, **base,
+            )
         return Result(
             state="NO_GAMES", validation="PASS", final_games=0,
             reason=f"[{schedule_source}] No eligible KBO regular/postseason games on target date.",
