@@ -27,6 +27,17 @@ RUN_RESULT_PATH = STATE_DIR / "run_result.json"
 ROUNDS = {schedule.REGULAR, *schedule.POSTSEASON}
 
 NAVER_SCHEDULE_URL = "https://api-gw.sports.naver.com/schedule/games"
+# Naver date schedule also returns promotional/editorial objects such as
+# 20261026KBO1; only an actual regular/postseason game has a full KBO PK.
+KBO_GAME_ID_RE = re.compile(r"^\\d{8}[A-Z]{4}0\\d{4}$")
+
+
+def is_real_kbo_game_id(value: object, year: int | None = None) -> bool:
+    gid = str(value)
+    return (
+        bool(KBO_GAME_ID_RE.fullmatch(gid))
+        and (year is None or gid.endswith(str(year)))
+    )
 
 def _walk_game_dicts(obj: Any) -> list[dict[str, Any]]:
     """Recursively find schedule-like dicts containing gameId."""
@@ -70,6 +81,12 @@ def fetch_live_daily_schedule(target: date) -> pd.DataFrame:
             unique.append(g)
 
     df = pd.json_normalize(unique, sep=".")
+    # Fail closed against non-game date widgets (e.g. SCBASEBALL1, KBO1,
+    # CHITCHIT1). A postseason PK starts with a series code, not YYYYMMDD;
+    # its last four digits still carry the season year.
+    if "gameId" not in df.columns:
+        raise ValueError("Naver date endpoint contains no gameId column")
+    df = df[df["gameId"].map(lambda v: is_real_kbo_game_id(v, target.year))].copy()
     for c in ("categoryName", "category.name"):
         if c in df.columns:
             s = df[c].astype(str)
@@ -163,7 +180,11 @@ def daily_schedule(df: pd.DataFrame, target: date) -> pd.DataFrame:
                 break
     daily = df[mask].copy()
     if "roundCode" in daily.columns:
-        daily = daily[daily["roundCode"].isin(ROUNDS)].copy()
+        # Date-scoped 'basic' responses can omit roundCode even for a genuine
+        # postseason PK. Missing/blank is not proof of a non-KBO game; explicit
+        # other competitions are excluded.
+        rounds = daily["roundCode"].astype("string").str.strip()
+        daily = daily[rounds.isin(ROUNDS) | rounds.isna() | rounds.eq("")].copy()
     if "statusInfo" in daily.columns:
         cancelled = daily["statusInfo"].astype(str).str.contains("경기취소|취소", na=False)
         daily = daily[~cancelled].copy()
@@ -205,7 +226,11 @@ def final_mask(daily: pd.DataFrame) -> pd.Series:
     if "statusNum" in daily.columns:
         n = pd.to_numeric(daily["statusNum"], errors="coerce")
         if n.notna().any():
-            return n.eq(3)
+            # Observed 2026-10-26 postponed PO game 55551026HTSS02026:
+            # statusNum=4 with completed 9-inning statusInfo. Preserve the
+            # previously accepted 3 pending a full status-enum audit; final
+            # PBP still requires independent GAME_END + binary score gates.
+            return n.isin((3, 4))
 
     for c in ("gameStatusCode", "statusCode", "status", "gameStatus"):
         if c in daily.columns:
