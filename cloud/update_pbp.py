@@ -29,7 +29,7 @@ ROUNDS = {schedule.REGULAR, *schedule.POSTSEASON}
 NAVER_SCHEDULE_URL = "https://api-gw.sports.naver.com/schedule/games"
 # Naver date schedule also returns promotional/editorial objects such as
 # 20261026KBO1; only an actual regular/postseason game has a full KBO PK.
-KBO_GAME_ID_RE = re.compile(r"^\\d{8}[A-Z]{4}0\\d{4}$")
+KBO_GAME_ID_RE = re.compile(r"^[0-9]{8}[A-Z]{4}0[0-9]{4}$")
 
 
 def is_real_kbo_game_id(value: object, year: int | None = None) -> bool:
