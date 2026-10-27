@@ -35,6 +35,7 @@ RAW_PATTERN="kbo_20261026_HTSS_raw_*.zip"
 BASE=ROOT/"out/baseline/kbo_pbp_2026_latest.parquet"
 ID="55551026HTSS02026"
 DAY=date(2026,10,26)
+PINNED_ARCHIVE_SHA256="abb9ba6656cd23ea80f18b8817d5da49f775cf317367608a345c2fe86ab7aec2"
 
 
 def _sha(data: bytes) -> str:
@@ -124,6 +125,8 @@ def run(raw=None,baseline=BASE):
         raw=found[0]
     if not raw.is_file() or not baseline.is_file():
         raise FileNotFoundError("Missing user ZIP or validated rolling release baseline")
+    if _sha(raw.read_bytes()) != PINNED_ARCHIVE_SHA256:
+        raise RuntimeError("Uploaded ZIP SHA-256 differs from independently verified chat original")
     relays,game,manifest=_extract(raw)
     new=statcast.game_frame(relays,statcast.meta_from_schedule(game))
     if new.empty or set(new["game_pk"].astype(str))!={ID}:
