@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "status": "BACKFILL_QUEUE_NOT_PBP_AND_NOT_OFFICIAL_SCORE_AUDIT",
+  "priority": "complete older confirmed KBO games before later dates",
+  "targets": [
+    {
+      "target_date": "2026-10-26",
+      "game": "KIA (away) at Samsung (home), playoff first game",
+      "externally_verified_final": "KIA 5 - 1 Samsung",
+      "public_evidence_url": "https://files.newsis.com/view/NISX20261026_0003841837",
+      "possible_naver_game_id": "55551026HTSS02026",
+      "id_provenance": "THIRD_PARTY_NAVER_BACKED_SITE_NOT_YET_INDEPENDENTLY_CONFIRMED_BY_NAVER_API",
+      "failed_action_runs": [
+        40396896689,
+        40309225951
+      ],
+      "failure": "NAVER_SPORTS_API_READ_TIMEOUT_SEASON_SCHEDULE_AND_DATE_SCHEDULE_AND_INNING_RELAY",
+      "data_ingested": false,
+      "instruction": "This record is a recovery target only; never synthesize PBP rows, pretend final audit PASS, or publish incomplete binaries."
+    }
+  ]
+}
