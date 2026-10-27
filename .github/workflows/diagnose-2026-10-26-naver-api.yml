@@ -1,0 +1,86 @@
+name: Diagnose 2026-10-26 Naver KBO schedule and relay reachability
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-2026-10-26-naver-api.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install requests
+      - name: Distinguish large seasonal page timeout from date/relay outage
+        run: |
+          python - <<'PY'
+          import json,requests,time
+          from pathlib import Path
+          base="https://api-gw.sports.naver.com"
+          headers={
+            "accept":"application/json, text/plain, */*",
+            "origin":"https://m.sports.naver.com",
+            "referer":"https://m.sports.naver.com/",
+            "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+          }
+          targets=[
+           ("daily",base+"/schedule/games",{"fields":"basic,categoryName,statusNum","upperCategoryId":"kbaseball","fromDate":"2026-10-26","toDate":"2026-10-26"}),
+           ("season_page_500",base+"/schedule/games",{"fields":"basic,schedule,baseball","upperCategoryId":"kbaseball","categoryId":"kbo","fromDate":"2026-01-01","toDate":"2026-12-31","roundCodes":"","size":500,"page":1}),
+           ("season_page_100",base+"/schedule/games",{"fields":"basic,schedule,baseball","upperCategoryId":"kbaseball","categoryId":"kbo","fromDate":"2026-01-01","toDate":"2026-12-31","roundCodes":"","size":100,"page":1}),
+           ("playoff_relay",base+"/schedule/games/55551026HTSS02026/relay",{"inning":1}),
+          ]
+          results=[]
+          for label,url,params in targets:
+            begin=time.monotonic()
+            try:
+              r=requests.get(url,params=params,headers=headers,timeout=(5,10))
+              content_type=r.headers.get("content-type","")
+              info={"check":label,"http":r.status_code,
+                    "content_type":content_type,"bytes":len(r.content),
+                    "elapsed_seconds":round(time.monotonic()-begin,2)}
+              if r.ok and "json" in content_type:
+                payload=r.json()
+                root=payload.get("result") if isinstance(payload,dict) else None
+                if label=="daily":
+                  info["game_id_matches_20261026"]=[]
+                  def walk(z):
+                    if isinstance(z,dict):
+                      g=z.get("gameId")
+                      if g and ("1026" in str(g) or str(g).startswith("20261026")):
+                        info["game_id_matches_20261026"].append(str(g))
+                      for v in z.values(): walk(v)
+                    elif isinstance(z,list):
+                      for v in z:walk(v)
+                  walk(root)
+                elif label.startswith("season"):
+                  info["total"]=root.get("gameTotalCount") if isinstance(root,dict) else None
+                  info["returned"]=len(root.get("games") or []) if isinstance(root,dict) else None
+                else:
+                  info["has_text_relay"]=bool(isinstance(root,dict) and root.get("textRelayData"))
+              results.append(info)
+            except Exception as err:
+              results.append({"check":label,"error_type":type(err).__name__,
+                 "error":str(err)[:200],
+                 "elapsed_seconds":round(time.monotonic()-begin,2)})
+            print(results[-1],flush=True)
+          p=Path('state/diagnostic_naver_api_2026_10_26.json')
+          p.write_text(json.dumps({"source":"github_actions_network_probe",
+            "diagnostic_only":True,"target_date":"2026-10-26",
+            "probe_results":results},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit reproducible network diagnostic (not PBP data)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add state/diagnostic_naver_api_2026_10_26.json
+          git commit -m 'Diagnose official Naver KBO API reachability after 10-26 PBP timeouts'
+          git pull --rebase origin main
+          git push origin HEAD:main
