@@ -13,6 +13,39 @@ AUDIT = STATE_DIR / "postgame_score_audit.json"
 MANUAL_TRIGGER = STATE_DIR / "manual-trigger.txt"
 OUT = Path(os.environ["GITHUB_OUTPUT"])
 RECOVERY_LOOKBACK_DAYS = 7
+RECOVERY_TARGETS = STATE_DIR / "pbp_recovery_targets.json"
+
+
+def pending_explicit_recovery(current_target: date) -> date | None:
+    """Only historical missing real game days, never invented PBP or score audit.
+
+    An audited PASS for that exact day clears the queue without mutating the
+    underlying declaration; a stale NO_GAMES/pass status never clears it.
+    """
+    if not RECOVERY_TARGETS.exists():
+        return None
+    try:
+        record = json.loads(RECOVERY_TARGETS.read_text(encoding="utf-8"))
+        if record.get("status") != "BACKFILL_QUEUE_NOT_PBP_AND_NOT_OFFICIAL_SCORE_AUDIT":
+            return None
+        candidates = []
+        for item in record.get("targets", []):
+            target = date.fromisoformat(item["target_date"])
+            if not (current_target - timedelta(days=RECOVERY_LOOKBACK_DAYS) <= target <= current_target):
+                continue
+            if not item.get("data_ingested") is False:
+                continue
+            audit_path = STATE_DIR / f"postgame_score_audit_{target.isoformat()}.json"
+            try:
+                audit = json.loads(audit_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError, json.JSONDecodeError):
+                audit = {}
+            if audit.get("validation") == "PASS" and int(audit.get("expected_games") or 0) > 0:
+                continue
+            candidates.append(target)
+        return min(candidates) if candidates else None
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError):
+        return None
 
 
 def auto_target(now: datetime) -> date:
@@ -113,7 +146,7 @@ else:
         target = manual_target
         recovery_target = None
     else:
-        recovery_target = pending_prior_target(automatic)
+        recovery_target = pending_explicit_recovery(automatic) or pending_prior_target(automatic)
         target = recovery_target or automatic
 
 skip = False
