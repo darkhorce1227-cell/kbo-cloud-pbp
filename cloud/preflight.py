@@ -40,7 +40,10 @@ def pending_explicit_recovery(current_target: date) -> date | None:
                 audit = json.loads(audit_path.read_text(encoding="utf-8"))
             except (OSError, ValueError, json.JSONDecodeError):
                 audit = {}
-            if audit.get("validation") == "PASS" and int(audit.get("expected_games") or 0) > 0:
+            if (audit.get("target_date") == target.isoformat()
+                and audit.get("validation") == "PASS"
+                and int(audit.get("expected_games") or 0) > 0
+                and audit.get("source") == "validated_parquet_binary"):
                 continue
             candidates.append(target)
         return min(candidates) if candidates else None
