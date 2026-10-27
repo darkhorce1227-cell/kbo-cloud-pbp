@@ -1,0 +1,36 @@
+{
+  "schema": "kbo_user_supplied_raw_capture_offline_integrity_verified_v1",
+  "inspected_at_kst_date": "2026-10-27",
+  "original_user_uploaded_name": "kbo_20261026_HTSS_raw_20261027_152005.zip",
+  "original_sha256": "abb9ba6656cd23ea80f18b8817d5da49f775cf317367608a345c2fe86ab7aec2",
+  "original_zip_bytes": 89997,
+  "original_capture_utc": "2026-10-27T06:20:07.4839597Z",
+  "game_pk": "55551026HTSS02026",
+  "game_date": "2026-10-26",
+  "teams": {
+    "away": "HT",
+    "home": "SS"
+  },
+  "final_score": {
+    "away": 5,
+    "home": 1
+  },
+  "innings_checked": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "number_of_inning_hashes_verified": 9,
+  "manifest_schedule_sha256_verified": true,
+  "game_end_type_99_at_inning_9_verified": true,
+  "zip_integrity_test": "PASS",
+  "status": "ORIGINAL_RELAY_ARCHIVE_VALIDATED_NOT_YET_PBP_RELEASE_MERGED",
+  "game_pk_in_prior_release": "NOT_YET_PRESENT_BY_PREVIOUS_STATUS",
+  "caution": "This certificate does not certify a release merge or 725-game dataset. Raw ZIP must first exist in state/manual_pbp_raw and pass the offline importer."
+}
