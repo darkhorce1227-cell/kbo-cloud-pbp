@@ -30,7 +30,8 @@ import update_pbp_guarded as guarded
 import update_pbp_integrity as integrity
 import build_postgame_score_audit as score_audit
 
-RAW=ROOT/"state/manual_pbp_raw/2026-10-26_HTSS.zip"
+RAW_DIR=ROOT/"state/manual_pbp_raw"
+RAW_PATTERN="kbo_20261026_HTSS_raw_*.zip"
 BASE=ROOT/"out/baseline/kbo_pbp_2026_latest.parquet"
 ID="55551026HTSS02026"
 DAY=date(2026,10,26)
@@ -115,7 +116,12 @@ def _extract(raw: Path):
         return relays,game,manifest
 
 
-def run(raw=RAW,baseline=BASE):
+def run(raw=None,baseline=BASE):
+    if raw is None:
+        found=sorted(RAW_DIR.glob(RAW_PATTERN))
+        if len(found)!=1:
+            raise RuntimeError(f"Require exactly one original named capture ZIP, got {len(found)}")
+        raw=found[0]
     if not raw.is_file() or not baseline.is_file():
         raise FileNotFoundError("Missing user ZIP or validated rolling release baseline")
     relays,game,manifest=_extract(raw)
