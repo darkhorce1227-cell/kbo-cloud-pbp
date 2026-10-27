@@ -1,0 +1,42 @@
+name: Test user-captured KBO postseason ZIP offline importer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cloud/import_manual_pbp_20261026.py'
+      - 'tests/test_manual_2026_10_26_pbp_archive.py'
+      - '.github/workflows/test-manual-2026-10-26-pbp-import.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned exact season PBP parser dependencies
+        run: pip install -r requirements.txt
+      - name: Compile importer and run four no-network archive safety tests
+        run: |
+          python -m py_compile cloud/import_manual_pbp_20261026.py tests/test_manual_2026_10_26_pbp_archive.py
+          python -m unittest discover -s tests -p test_manual_2026_10_26_pbp_archive.py -v
+      - name: Verify recorded real 10/26 ZIP SHA claim is not a false release assertion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('research/pbp_recovery/2026_10_26_HTSS_original_zip_certificate.json').read_text())
+          assert c['status']=='ORIGINAL_RELAY_ARCHIVE_VALIDATED_NOT_YET_PBP_RELEASE_MERGED'
+          assert c['number_of_inning_hashes_verified']==9
+          assert c['game_end_type_99_at_inning_9_verified']
+          assert c['game_pk']=='55551026HTSS02026'
+          assert c['original_sha256']=='abb9ba6656cd23ea80f18b8817d5da49f775cf317367608a345c2fe86ab7aec2'
+          print('SAFE_OFFLINE_ARCHIVE_CONTRACT_PASS')
+          PY
