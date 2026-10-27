@@ -172,12 +172,11 @@ def daily_schedule(df: pd.DataFrame, target: date) -> pd.DataFrame:
     gid = game_id_col(df)
     prefix = target.strftime("%Y%m%d")
     mask = df[gid].astype(str).str.startswith(prefix)
-    if not mask.any():
-        for c in ("gameDate", "game_date", "date"):
-            if c in df.columns:
-                vals = pd.to_datetime(df[c], errors="coerce").dt.date
-                mask = vals == target
-                break
+    for c in ("gameDate", "game_date", "date"):
+        if c in df.columns:
+            vals = pd.to_datetime(df[c], errors="coerce").dt.date
+            mask = mask | vals.eq(target)
+            break
     daily = df[mask].copy()
     if "roundCode" in daily.columns:
         # Date-scoped 'basic' responses can omit roundCode even for a genuine
