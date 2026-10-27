@@ -336,10 +336,33 @@ def run(target: date, force: bool = False) -> Result:
         live_daily = fetch_live_daily_schedule(target)
         daily = daily_schedule(live_daily, target)
         schedule_source = "NAVER_DATE_STATUS"
-    except Exception:
-        season_schedule = schedule.fetch(target.year)
-        daily = daily_schedule(season_schedule, target)
-        schedule_source = "UPSTREAM_SEASON_SCHEDULE"
+    except Exception as date_error:
+        try:
+            season_schedule = schedule.fetch(target.year)
+            daily = daily_schedule(season_schedule, target)
+            schedule_source = "UPSTREAM_SEASON_SCHEDULE"
+        except Exception as season_error:
+            # Both independent queries to Naver Sports failed. Never mark the
+            # day NO_GAMES or invent a postseason game from a guessed ID.
+            # Returning a FAIL result lets the orchestrator preserve a useful
+            # forensic artifact without modifying any validated PBP dataset.
+            return Result(
+                version="0.2.1",
+                state="UPSTREAM_SCHEDULE_UNAVAILABLE",
+                validation="FAIL",
+                target_date=target.isoformat(),
+                checked_at_kst=checked,
+                expected_games=0,
+                expected_game_ids=[],
+                last_success_date=prev.get("last_success_date"),
+                reason=(
+                    "[NAVER_UPSTREAM_UNAVAILABLE] "
+                    f"date_schedule={type(date_error).__name__}: {date_error}; "
+                    f"season_schedule={type(season_error).__name__}: {season_error}"
+                ),
+                should_publish=False,
+                retry_next_hour=True,
+            )
 
     expected_ids = get_expected_game_ids(daily)
     early = has_1400_game(daily)
