@@ -199,7 +199,9 @@ def main() -> int:
     result = run(target, force=args.force)
     core.save_result(result)
     print(json.dumps(asdict(result), ensure_ascii=False, indent=2))
-    return 0
+    # A failed upstream fetch is NOT a successful daily PBP update.
+    # Retain the run_result for workflow forensic artifact, return nonzero.
+    return 0 if result.validation != "FAIL" else 2
 
 
 if __name__ == "__main__":
