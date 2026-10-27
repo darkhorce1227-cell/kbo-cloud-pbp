@@ -1,0 +1,110 @@
+name: Import validated user-collected KBO 2026-10-26 PBP (Naver offline ZIP)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'state/manual_pbp_raw/2026-10-26_HTSS.zip'
+      - '.github/workflows/import-manual-2026-10-26-pbp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-pbp-cloud-update
+  cancel-in-progress: false
+
+jobs:
+  offline-import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install identical PBP parser and season package
+        run: pip install -r requirements.txt
+      - name: Restore current validated PBP ONLY from GitHub release (no Naver API)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p out/baseline
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir out/baseline
+          test -s out/baseline/kbo_pbp_2026_latest.parquet
+      - name: Validate complete nine-inning user archive and append strictly one game
+        run: |
+          test -s state/manual_pbp_raw/2026-10-26_HTSS.zip
+          python -m py_compile cloud/import_manual_pbp_20261026.py
+          python cloud/import_manual_pbp_20261026.py
+      - name: Assert exact PBP-derived results, 724+1 continuity and independently calculated release hashes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          audit=json.loads(Path('state/manual_pbp_raw/2026-10-26_HTSS_import_audit.json').read_text())
+          status=json.loads(Path('state/status.json').read_text())
+          pa=json.loads(Path('state/postgame_score_audit_2026-10-26.json').read_text())
+          index=json.loads(Path('state/validated_game_pks_2026.json').read_text())
+          assert audit['status']=='OFFLINE_PBP_MERGE_VALIDATED'
+          assert audit['previous_game_count']==724, 'Stop unexpected base size rather than silently overwrite'
+          assert audit['new_game_count']==725
+          assert audit['new_pitch_rows']>100
+          assert audit['upstream_naver_api_used_by_importer'] is False
+          assert status['validation']=='PASS' and status['target_date']=='2026-10-26'
+          assert pa['validation']=='PASS' and pa['source']=='validated_parquet_binary'
+          assert pa['sha256_parquet']==status['sha256_parquet']
+          assert index['game_count']==725
+          assert index['game_pks'].count('55551026HTSS02026')==1
+          assert pa['games'][0]['final']['away']==5 and pa['games'][0]['final']['home']==1
+          print('OFFLINE_PBP_IMPORT_PASS: 724->725; KIA5-Samsung1; Naver GAME_END=9')
+          PY
+      - name: Commit dated score audit, immutable original hash and recovered game PK continuity
+        run: |
+          set -euo pipefail
+          git config user.name 'kbo-pbp-bot'
+          git config user.email 'kbo-pbp-bot@users.noreply.github.com'
+          git add state/status.json state/validated_game_pks_2026.json \
+            state/postgame_score_audit.json state/postgame_score_audit_2026-10-26.json \
+            state/manual_pbp_raw/2026-10-26_HTSS_import_audit.json
+          git commit -m 'data: verify and integrate 2026-10-26 KIA-Samsung original Naver PBP (725 games)'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Archive full validated season binary and CSV before release upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pbp-2026-10-26-offline-validated
+          path: |
+            out/kbo_pbp_2026_latest.parquet
+            out/kbo_pbp_2026_latest.csv.gz
+            out/manifest.json
+            state/status.json
+            state/validated_game_pks_2026.json
+            state/postgame_score_audit_2026-10-26.json
+            state/manual_pbp_raw/2026-10-26_HTSS_import_audit.json
+          if-no-files-found: error
+          retention-days: 60
+          compression-level: 0
+      - name: Publish newly verified rolling PBP files to latest-pbp release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload latest-pbp \
+            out/kbo_pbp_2026_latest.csv.gz \
+            out/kbo_pbp_2026_latest.parquet \
+            out/manifest.json state/status.json \
+            state/validated_game_pks_2026.json \
+            state/postgame_score_audit.json --clobber
+      - name: Retain forensic failure evidence if any strict gate rejects import
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-2026-10-26-manual-recovery-failure-${{ github.run_number }}
+          path: |
+            state/manual_pbp_raw/2026-10-26_HTSS_import_audit.json
+            state/run_result.json
+          if-no-files-found: ignore
+          retention-days: 14
