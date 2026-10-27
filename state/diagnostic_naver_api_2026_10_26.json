@@ -1,0 +1,31 @@
+{
+  "source": "github_actions_network_probe",
+  "diagnostic_only": true,
+  "target_date": "2026-10-26",
+  "probe_results": [
+    {
+      "check": "daily",
+      "error_type": "ReadTimeout",
+      "error": "HTTPSConnectionPool(host='api-gw.sports.naver.com', port=443): Read timed out. (read timeout=10)",
+      "elapsed_seconds": 11.06
+    },
+    {
+      "check": "season_page_500",
+      "error_type": "ReadTimeout",
+      "error": "HTTPSConnectionPool(host='api-gw.sports.naver.com', port=443): Read timed out. (read timeout=10)",
+      "elapsed_seconds": 10.59
+    },
+    {
+      "check": "season_page_100",
+      "error_type": "ReadTimeout",
+      "error": "HTTPSConnectionPool(host='api-gw.sports.naver.com', port=443): Read timed out. (read timeout=10)",
+      "elapsed_seconds": 10.58
+    },
+    {
+      "check": "playoff_relay",
+      "error_type": "ReadTimeout",
+      "error": "HTTPSConnectionPool(host='api-gw.sports.naver.com', port=443): Read timed out. (read timeout=10)",
+      "elapsed_seconds": 10.6
+    }
+  ]
+}
