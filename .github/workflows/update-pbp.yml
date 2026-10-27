@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "cloud/preflight.py"
+      - "cloud/update_pbp.py"
+      - "state/pbp_recovery_targets.json"
       - "cloud/build_postgame_score_audit.py"
       - "cloud/update_pbp_forward.py"
       - "cloud/update_pbp_integrity.py"
@@ -87,8 +89,19 @@ jobs:
           fi
           python cloud/update_pbp_integrity.py "${ARGS[@]}"
 
+      - name: Preserve upstream network/validation failure diagnostics
+        if: failure() && steps.gate.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pbp-failure-${{ steps.gate.outputs.target_date }}-${{ github.run_number }}
+          path: |
+            state/run_result.json
+            state/status.json
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Build binary-derived postgame score audit
-        if: steps.gate.outputs.skip != 'true'
+        if: success() && steps.gate.outputs.skip != 'true'
         run: python cloud/build_postgame_score_audit.py
 
       - name: Save Naver raw cache
