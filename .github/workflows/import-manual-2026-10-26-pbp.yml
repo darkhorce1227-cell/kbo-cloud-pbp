@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'state/manual_pbp_raw/2026-10-26_HTSS.zip'
+      - 'state/manual_pbp_raw/kbo_20261026_HTSS_raw_*.zip'
       - '.github/workflows/import-manual-2026-10-26-pbp.yml'
   workflow_dispatch:
 
@@ -37,7 +37,7 @@ jobs:
           test -s out/baseline/kbo_pbp_2026_latest.parquet
       - name: Validate complete nine-inning user archive and append strictly one game
         run: |
-          test -s state/manual_pbp_raw/2026-10-26_HTSS.zip
+          test "$(find state/manual_pbp_raw -maxdepth 1 -name 'kbo_20261026_HTSS_raw_*.zip' -type f | wc -l)" -eq 1
           python -m py_compile cloud/import_manual_pbp_20261026.py
           python cloud/import_manual_pbp_20261026.py
       - name: Assert exact PBP-derived results, 724+1 continuity and independently calculated release hashes
