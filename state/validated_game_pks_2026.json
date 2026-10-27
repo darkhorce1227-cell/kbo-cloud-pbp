@@ -1,10 +1,10 @@
 {
   "version": "1.0",
   "year": 2026,
-  "through_date": "2026-10-20",
+  "through_date": "2026-10-26",
   "bootstrap_minimum": false,
-  "game_count": 724,
-  "game_pk_sha256": "42181b7070acd3708d68e6574682467cb78153633eb5d75468c7b3a935a5b238",
+  "game_count": 725,
+  "game_pk_sha256": "b653d1d0ff5380ea1aad8dbf043d5d836c46d4e0dbb503eeb7f4ee5d2c94edb9",
   "game_pks": [
     "20260328HTSK02026",
     "20260328KTLG02026",
@@ -729,6 +729,7 @@
     "33331017LGHT02026",
     "33331018LGHT02026",
     "33331020HTLG02026",
-    "44441014OBLG02026"
+    "44441014OBLG02026",
+    "55551026HTSS02026"
   ]
 }

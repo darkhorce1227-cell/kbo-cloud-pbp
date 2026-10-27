@@ -1,0 +1,66 @@
+{
+  "dataset_columns": 50,
+  "dataset_rows": 223121,
+  "duplicate_stable_keys": 0,
+  "expected_game_ids": [
+    "55551026HTSS02026"
+  ],
+  "expected_games": 1,
+  "final_games": 1,
+  "found_game_ids": [
+    "55551026HTSS02026"
+  ],
+  "games": [
+    {
+      "away_team": "HT",
+      "deduplicated_pa_rows": 67,
+      "f5": {
+        "away": 5,
+        "home": 1,
+        "last_at_bat_number": 40
+      },
+      "final": {
+        "away": 5,
+        "half": "bot",
+        "home": 1,
+        "inning": 9,
+        "last_at_bat_number": 67
+      },
+      "game": "HT@SS",
+      "game_pk": "55551026HTSS02026",
+      "home_team": "SS",
+      "official_final": {
+        "away": 5,
+        "home": 1
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 293,
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "all_expected_game_ids_present": true,
+    "dataset_sha256_matches_status": true,
+    "expected_equals_final": true,
+    "expected_ids_count_match": true,
+    "required_columns_present": true,
+    "stable_key_duplicates_zero": true,
+    "status_validation_pass": true
+  },
+  "generated_at_kst": "2026-10-27T15:54:30.990256+09:00",
+  "missing_required_columns": [],
+  "official_crosscheck_games_found": 1,
+  "official_final_crosscheck_provenance": "NAVER_SCHEDULE_JSON_FROM_SAME_USER_ARCHIVE_NOT_AN_INDEPENDENT_SECOND_FETCH",
+  "offline_source_provenance": "USER_UPLOADED_NAVER_ORIGINAL_RELAY_ZIP",
+  "original_capture_utc": "2026-10-27T06:20:07.4839597Z",
+  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "sha256_parquet": "d88ce07bf6ab58ee109f0f7a4f4368f6773b6d24ce3edaddd0ffe4a9ad71e24c",
+  "source": "validated_parquet_binary",
+  "source_raw_zip_sha256": "abb9ba6656cd23ea80f18b8817d5da49f775cf317367608a345c2fe86ab7aec2",
+  "status_sha256_parquet": "d88ce07bf6ab58ee109f0f7a4f4368f6773b6d24ce3edaddd0ffe4a9ad71e24c",
+  "target_date": "2026-10-26",
+  "validation": "PASS",
+  "version": "1.0.0"
+}
