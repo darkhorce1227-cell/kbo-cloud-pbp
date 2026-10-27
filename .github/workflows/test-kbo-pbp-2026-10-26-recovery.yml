@@ -1,0 +1,36 @@
+name: Test missing 2026-10-26 KBO PBP recovery without fake data
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-kbo-pbp-2026-10-26-recovery.yml'
+      - 'cloud/update_pbp.py'
+      - 'cloud/preflight.py'
+      - 'tests/test_kbo_pbp_upstream_recovery.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install pandas pyarrow requests
+      - name: Compile corrected KBO network and queue logic
+        run: |
+          python -m py_compile cloud/update_pbp.py cloud/update_pbp_integrity.py cloud/preflight.py
+          python -m unittest discover -s tests -p test_kbo_pbp_upstream_recovery.py -v
+      - name: Ensure recovery ticket never implies published data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('state/pbp_recovery_targets.json').read_text())
+          assert x['status']=='BACKFILL_QUEUE_NOT_PBP_AND_NOT_OFFICIAL_SCORE_AUDIT'
+          assert len(x['targets'])==1 and x['targets'][0]['target_date']=='2026-10-26'
+          assert x['targets'][0]['data_ingested'] is False
+          print('FAIL_CLOSED_RECOVERY_QUEUE_PASS')
+          PY
