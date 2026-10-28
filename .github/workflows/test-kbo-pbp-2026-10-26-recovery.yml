@@ -30,7 +30,15 @@ jobs:
           from pathlib import Path
           x=json.loads(Path('state/pbp_recovery_targets.json').read_text())
           assert x['status']=='BACKFILL_QUEUE_NOT_PBP_AND_NOT_OFFICIAL_SCORE_AUDIT'
-          assert len(x['targets'])==1 and x['targets'][0]['target_date']=='2026-10-26'
-          assert x['targets'][0]['data_ingested'] is False
-          print('FAIL_CLOSED_RECOVERY_QUEUE_PASS')
+          dates=[i['target_date'] for i in x.get('targets',[])]
+          assert '2026-10-26' in dates
+          assert len(dates)==len(set(dates)), 'duplicate recovery date'
+          for item in x['targets']:
+              assert isinstance(item.get('data_ingested'),bool), 'explicit ingestion state required'
+              if item['data_ingested']:
+                  day=item['target_date']
+                  f=Path('state')/f'postgame_score_audit_{day}.json'
+                  a=json.loads(f.read_text())
+                  assert a['validation']=='PASS' and a['source']=='validated_parquet_binary'
+          print('FAIL_CLOSED_RECOVERY_QUEUE_PASS',dates)
           PY
