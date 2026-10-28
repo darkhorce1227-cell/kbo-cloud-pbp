@@ -101,7 +101,9 @@ class TestRecovery(unittest.TestCase):
         self.assertEqual(r.validation,"PASS")
         self.assertFalse(r.should_publish)
 
-    def test_live_preflight_chooses_pending_10_26_before_newer_dates(self):
+    def test_live_preflight_prioritizes_unresolved_recovery_only(self):
+        # Previously hardcoded 10/26 forever, even after the 10/26 binary
+        # audit legitimately PASSED. Check the *currently unresolved* tickets.
         with tempfile.TemporaryDirectory() as d:
             outfile=Path(d)/"output"
             env={**os.environ,
@@ -112,9 +114,30 @@ class TestRecovery(unittest.TestCase):
             proc=subprocess.run([sys.executable,"cloud/preflight.py"],
                 cwd=ROOT,env=env,text=True,capture_output=True)
             self.assertEqual(proc.returncode,0,proc.stderr)
-            text=outfile.read_text()
-            self.assertIn("target_date=2026-10-26",text)
-            self.assertIn("skip=false",text)
+            output=outfile.read_text()
+            self.assertIn("target_date=",output)
+            record=json.loads((ROOT/"state"/"pbp_recovery_targets.json").read_text())
+            unverified=[]
+            for item in record.get("targets",[]):
+                day=str(item["target_date"])
+                if item.get("data_ingested") is not False:
+                    continue
+                audit_path=ROOT/"state"/f"postgame_score_audit_{day}.json"
+                try:
+                    audit=json.loads(audit_path.read_text())
+                except (OSError,ValueError):
+                    audit={}
+                audited=(audit.get("validation")=="PASS"
+                         and audit.get("target_date")==day
+                         and int(audit.get("expected_games") or 0)>0
+                         and audit.get("source")=="validated_parquet_binary")
+                if not audited:
+                    unverified.append(day)
+            if unverified:
+                self.assertIn("target_date="+min(unverified),output)
+                self.assertIn("skip=false",output)
+            if "2026-10-26" not in unverified:
+                self.assertNotIn("target_date=2026-10-26\\n",output)
 
 
 if __name__=="__main__":
