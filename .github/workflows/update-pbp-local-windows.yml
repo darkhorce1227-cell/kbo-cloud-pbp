@@ -1,0 +1,178 @@
+name: KBO PBP Auto Update via Local Windows Naver Runner
+
+on:
+  schedule:
+    # 09:20 and 00:20 KST (previous finished game-day; handles historical catch-up).
+    - cron: "20 0,15 * * *"
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: "KST target date YYYY-MM-DD, blank = pending recovery then yesterday"
+        required: false
+        type: string
+      force:
+        description: "Force validated rebuild"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kbo-pbp-cloud-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: [self-hosted, Windows, X64, kbo-naver]
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check Windows collector prerequisites
+        run: |
+          command -v git || { echo 'Git for Windows is required'; exit 1; }
+          command -v gh || { echo 'GitHub CLI is required; run winget install GitHub.cli'; exit 1; }
+          command -v curl.exe || { echo 'curl.exe is required'; exit 1; }
+      - name: Preflight — prioritize missing dates then yesterday
+        id: gate
+        env:
+          INPUT_TARGET_DATE: ${{ inputs.target_date }}
+          INPUT_FORCE: ${{ inputs.force }}
+          KBO_AUTO_TARGET_YESTERDAY: "true"
+        run: python cloud/preflight.py
+
+      - name: Skip completed slate
+        if: steps.gate.outputs.skip == 'true'
+        run: echo "${{ steps.gate.outputs.reason }}"
+
+      - name: Set up Python
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Restore Naver raw cache (Windows runner)
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: kbo-raw-local-${{ runner.os }}-${{ github.run_number }}
+          restore-keys: |
+            kbo-raw-local-${{ runner.os }}-
+
+      - name: Install dependencies
+        if: steps.gate.outputs.skip != 'true'
+        run: pip install -r requirements.txt
+
+      - name: Run updater
+        if: steps.gate.outputs.skip != 'true'
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          ARGS=(--date "${{ steps.gate.outputs.target_date }}")
+          if [ "${{ inputs.force }}" = "true" ] || [ "${{ steps.gate.outputs.audit_backfill }}" = "true" ]; then
+            ARGS+=(--force)
+          fi
+          python cloud/update_pbp_integrity.py "${ARGS[@]}"
+
+      - name: Preserve upstream network/validation failure diagnostics
+        if: failure() && steps.gate.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pbp-failure-${{ steps.gate.outputs.target_date }}-${{ github.run_number }}
+          path: |
+            state/run_result.json
+            state/status.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Build binary-derived postgame score audit
+        if: success() && steps.gate.outputs.skip != 'true'
+        run: python cloud/build_postgame_score_audit.py
+
+      - name: Save Naver raw cache
+        if: steps.gate.outputs.skip != 'true' && always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: kbo-raw-${{ runner.os }}-${{ github.run_number }}
+
+      - name: Read run result
+        if: steps.gate.outputs.skip != 'true'
+        id: result
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          d=json.load(open("state/run_result.json", encoding="utf-8"))
+          print("publish=" + ("true" if d.get("should_publish") else "false"))
+          print("validation=" + str(d.get("validation","")))
+          print("state=" + str(d.get("state","")))
+          print("target_date=" + str(d.get("target_date","")))
+          PY
+
+      - name: Commit status, continuity index, and score audit
+        if: steps.gate.outputs.skip != 'true'
+        shell: bash
+        run: |
+          git config user.name "kbo-pbp-bot"
+          git config user.email "kbo-pbp-bot@users.noreply.github.com"
+          git add state/status.json state/validated_game_pks_*.json state/postgame_score_audit*.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): PBP 상태·점수감사 갱신 ${{ steps.result.outputs.target_date }}"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Upload validated dataset artifact
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-pbp-${{ steps.result.outputs.target_date }}
+          path: |
+            out/kbo_pbp_*_latest.csv.gz
+            out/kbo_pbp_*_latest.parquet
+            out/manifest.json
+            state/status.json
+            state/validated_game_pks_*.json
+            state/postgame_score_audit.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+
+      - name: Ensure rolling release exists
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if ! gh release view latest-pbp >/dev/null 2>&1; then
+            gh release create latest-pbp \
+              --title "Latest validated KBO PBP" \
+              --notes "Rolling release for the latest validated KBO play-by-play dataset."
+          fi
+
+      - name: Publish validated dataset
+        if: steps.gate.outputs.skip != 'true' && steps.result.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release upload latest-pbp \
+            out/kbo_pbp_*_latest.csv.gz \
+            out/kbo_pbp_*_latest.parquet \
+            out/manifest.json \
+            state/status.json \
+            state/validated_game_pks_*.json \
+            state/postgame_score_audit.json \
+            --clobber
