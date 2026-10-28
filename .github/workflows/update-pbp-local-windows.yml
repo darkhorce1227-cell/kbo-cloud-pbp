@@ -37,6 +37,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
       - name: Check Windows collector prerequisites
         run: |
           command -v git || { echo 'Git for Windows is required'; exit 1; }
@@ -53,13 +59,6 @@ jobs:
       - name: Skip completed slate
         if: steps.gate.outputs.skip == 'true'
         run: echo "${{ steps.gate.outputs.reason }}"
-
-      - name: Set up Python
-        if: steps.gate.outputs.skip != 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
 
       - name: Restore Naver raw cache (Windows runner)
         if: steps.gate.outputs.skip != 'true'
