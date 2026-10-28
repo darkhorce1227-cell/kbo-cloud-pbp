@@ -1,0 +1,45 @@
+name: Probe Naver PBP connectivity across GitHub runner networks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-kbo-naver-runner-networks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, macos-15, windows-2025]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 4
+    steps:
+      - name: Probe known completed Naver game on this runner egress
+        shell: bash
+        run: |
+          set +e
+          echo "RUNNER_OS=$RUNNER_OS RUNNER_NAME=$RUNNER_NAME"
+          for variant in default ipv4; do
+            if [ "$variant" = ipv4 ]; then flags="--ipv4"; else flags=""; fi
+            for endpoint in schedule relay; do
+              if [ "$endpoint" = schedule ]; then
+                URL='https://api-gw.sports.naver.com/schedule/games?fields=basic%2CcategoryName%2CstatusNum&upperCategoryId=kbaseball&fromDate=2026-10-26&toDate=2026-10-26'
+              else
+                URL='https://api-gw.sports.naver.com/schedule/games/55551026HTSS02026/relay?inning=1'
+              fi
+              echo "TEST os=$RUNNER_OS variant=$variant endpoint=$endpoint"
+              curl --silent --show-error --location $flags --max-time 12 --connect-timeout 4 \
+                --header 'User-Agent: Mozilla/5.0' \
+                --header 'Origin: https://m.sports.naver.com' \
+                --output /tmp/known-kbo-response.json \
+                --write-out 'RESULT http=%{http_code} bytes=%{size_download} time=%{time_total} remote_ip=%{remote_ip}\n' \
+                "$URL"
+              echo "CURL_EXIT=$?"
+            done
+          done
+          echo "Probe only. Never treat HTTP success as validated PBP."
