@@ -138,7 +138,7 @@ def manual_trigger_target_from_push() -> date | None:
 
 target_raw = os.getenv("INPUT_TARGET_DATE", "").strip()
 force = os.getenv("INPUT_FORCE", "false").lower() == "true"
-automatic = auto_target(datetime.now(KST))
+automatic = (datetime.now(KST).date() - timedelta(days=1)) if os.getenv('KBO_AUTO_TARGET_YESTERDAY') == 'true' else auto_target(datetime.now(KST))
 manual_target = None
 if target_raw:
     target = date.fromisoformat(target_raw)
