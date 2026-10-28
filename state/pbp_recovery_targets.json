@@ -17,6 +17,21 @@
       "failure": "NAVER_SPORTS_API_READ_TIMEOUT_SEASON_SCHEDULE_AND_DATE_SCHEDULE_AND_INNING_RELAY",
       "data_ingested": false,
       "instruction": "This record is a recovery target only; never synthesize PBP rows, pretend final audit PASS, or publish incomplete binaries."
+    },
+    {
+      "target_date": "2026-10-27",
+      "game": "KIA (away) at Samsung (home), postseason playoff game 2",
+      "externally_verified_final": "KIA 3 - 8 Samsung",
+      "public_evidence_url": "https://www.yagoonara.com/schedule/129488",
+      "possible_naver_game_id": null,
+      "id_provenance": "NOT_YET_CONFIRMED_BY_NAVER_API",
+      "failed_action_runs": [
+        40579758300,
+        40571238144
+      ],
+      "failure": "NAVER_SPORTS_API_READ_TIMEOUT_DATE_AND_SEASON_FROM_GITHUB_ACTIONS",
+      "data_ingested": false,
+      "instruction": "This is a backfill target only; do not create scores or PBP rows in the validated season dataset without original completed relay and hash/continuity audit."
     }
   ]
 }
