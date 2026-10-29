@@ -39,7 +39,7 @@ jobs:
           test "$(find state/manual_pbp_raw -maxdepth 1 -name 'kbo_20261027_HTSS_raw_*.zip' -type f | wc -l)" -eq 1
           python -m py_compile cloud/import_manual_pbp_20261027.py
           python cloud/import_manual_pbp_20261027.py
-      - name: Assert exact PBP-derived results, 726+1 continuity and independently calculated release hashes
+      - name: Assert exact PBP-derived results, 725+1 continuity and independently calculated release hashes
         run: |
           python - <<'PY'
           import json
@@ -49,7 +49,7 @@ jobs:
           pa=json.loads(Path('state/postgame_score_audit_2026-10-27.json').read_text())
           index=json.loads(Path('state/validated_game_pks_2026.json').read_text())
           assert audit['status']=='OFFLINE_PBP_MERGE_VALIDATED'
-          assert audit['previous_game_count']==724, 'Stop unexpected base size rather than silently overwrite'
+          assert audit['previous_game_count']==725, 'Stop unexpected base size rather than silently overwrite'
           assert audit['new_game_count']==726
           assert audit['new_pitch_rows']>100
           assert audit['upstream_naver_api_used_by_importer'] is False
