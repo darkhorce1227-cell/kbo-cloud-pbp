@@ -1,0 +1,36 @@
+{
+  "schema": "kbo_user_supplied_raw_capture_offline_integrity_verified_v1",
+  "inspected_at_kst_date": "2026-10-29",
+  "original_user_uploaded_name": "kbo_20261027_HTSS_raw_20261029_095724.zip",
+  "original_sha256": "e122e245b09b1d346b31b1c8cc7573347e97d6115893e53f254b39131e74b8dd",
+  "original_zip_bytes": 91868,
+  "original_capture_utc": "2026-10-29T00:57:27.2181009Z",
+  "game_pk": "55551027HTSS02026",
+  "game_date": "2026-10-27",
+  "teams": {
+    "away": "HT",
+    "home": "SS"
+  },
+  "final_score": {
+    "away": 3,
+    "home": 8
+  },
+  "innings_checked": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "number_of_inning_hashes_verified": 9,
+  "manifest_schedule_sha256_verified": true,
+  "game_end_type_99_at_inning_9_verified": true,
+  "game_end_frame": "9회초, 삼성 홈팀 9회말 미진행",
+  "zip_integrity_test": "PASS",
+  "status": "ORIGINAL_RELAY_ARCHIVE_VALIDATED_NOT_YET_PBP_RELEASE_MERGED",
+  "caution": "ZIP SHA and inning/event verification is not 726-game release validation. Original ZIP must be uploaded to GitHub and pass binary-derived PBP import audit."
+}
