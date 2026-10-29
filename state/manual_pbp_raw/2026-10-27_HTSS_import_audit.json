@@ -1,0 +1,46 @@
+{
+  "status": "OFFLINE_PBP_MERGE_VALIDATED",
+  "target_date": "2026-10-27",
+  "game_pk": "55551027HTSS02026",
+  "previous_game_count": 725,
+  "new_game_count": 726,
+  "new_pitch_rows": 324,
+  "total_pitch_rows": 223445,
+  "original_raw_zip_sha256": "e122e245b09b1d346b31b1c8cc7573347e97d6115893e53f254b39131e74b8dd",
+  "original_naver_capture_utc": "2026-10-29T00:57:27.2181009Z",
+  "game_end_inning": 9,
+  "final_away": 3,
+  "final_home": 8,
+  "binary_derived_f5_and_final": {
+    "game_pk": "55551027HTSS02026",
+    "status": "PASS",
+    "away_team": "HT",
+    "home_team": "SS",
+    "game": "HT@SS",
+    "raw_rows": 324,
+    "deduplicated_pa_rows": 74,
+    "f5": {
+      "away": 1,
+      "home": 5,
+      "last_at_bat_number": 43
+    },
+    "final": {
+      "away": 3,
+      "home": 8,
+      "inning": 9,
+      "half": "top",
+      "last_at_bat_number": 74
+    },
+    "official_final_crosscheck": "PASS",
+    "official_final": {
+      "away": 3,
+      "home": 8
+    },
+    "problems": []
+  },
+  "sha256_parquet": "7364f5489b47de8372b756b3402eefcf19d66233f197a73a06dcd4548c7d113e",
+  "validated_release_file": "kbo_pbp_2026_latest.parquet",
+  "upstream_naver_api_used_by_importer": false,
+  "legacy_game_pk_continuity": "PASS",
+  "audited_score_source": "Naver schedule inside same raw capture; not independent external check"
+}
