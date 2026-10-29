@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: kbo-pbp-cloud-update
+  group: kbo-pbp-cloud-validated-publish
   cancel-in-progress: false
 
 jobs:
