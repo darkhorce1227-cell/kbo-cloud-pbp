@@ -1,9 +1,6 @@
 name: KBO PBP Auto Update via Local Windows Naver Runner
 
 on:
-  schedule:
-    # 09:20 and 00:20 KST (previous finished game-day; handles historical catch-up).
-    - cron: "20 0,15 * * *"
   workflow_dispatch:
     inputs:
       target_date:
@@ -20,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: kbo-pbp-cloud-update
+  group: kbo-pbp-local-dormant
   cancel-in-progress: false
 
 jobs:
