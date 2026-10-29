@@ -23,23 +23,28 @@ jobs:
         shell: bash
         run: |
           set +e
+          ok=0
           echo "RUNNER_OS=$RUNNER_OS RUNNER_NAME=$RUNNER_NAME"
           for variant in default ipv4; do
             if [ "$variant" = ipv4 ]; then flags="--ipv4"; else flags=""; fi
             for endpoint in schedule relay; do
               if [ "$endpoint" = schedule ]; then
-                URL='https://api-gw.sports.naver.com/schedule/games?fields=basic%2CcategoryName%2CstatusNum&upperCategoryId=kbaseball&fromDate=2026-10-26&toDate=2026-10-26'
+                URL='https://api-gw.sports.naver.com/schedule/games?fields=basic%2CcategoryName%2CstatusNum&upperCategoryId=kbaseball&fromDate=2026-10-27&toDate=2026-10-27'
               else
-                URL='https://api-gw.sports.naver.com/schedule/games/55551026HTSS02026/relay?inning=1'
+                URL='https://api-gw.sports.naver.com/schedule/games/55551027HTSS02026/relay?inning=1'
               fi
               echo "TEST os=$RUNNER_OS variant=$variant endpoint=$endpoint"
-              curl --silent --show-error --location $flags --max-time 12 --connect-timeout 4 \
+              curl --fail --silent --show-error --location $flags --max-time 12 --connect-timeout 4 \
                 --header 'User-Agent: Mozilla/5.0' \
                 --header 'Origin: https://m.sports.naver.com' \
                 --output /tmp/known-kbo-response.json \
                 --write-out 'RESULT http=%{http_code} bytes=%{size_download} time=%{time_total} remote_ip=%{remote_ip}\n' \
                 "$URL"
-              echo "CURL_EXIT=$?"
+              code=$?
+              echo "CURL_EXIT=$code"
+              if [ "$code" -eq 0 ]; then ok=$((ok+1)); fi
             done
           done
+          echo "PROBE_HTTP_SUCCESS_COUNT=$ok out_of_4"
           echo "Probe only. Never treat HTTP success as validated PBP."
+          if [ "$ok" -eq 0 ]; then echo "NAVER_API_UNREACHABLE_FROM_THIS_RUNNER"; exit 1; fi
