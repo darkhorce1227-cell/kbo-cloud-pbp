@@ -34,7 +34,7 @@ RAW_DIR=ROOT/"state/manual_pbp_raw"
 RAW_PATTERN="kbo_20261027_HTSS_raw_*.zip"
 BASE=ROOT/"out/baseline/kbo_pbp_2026_latest.parquet"
 ID="55551027HTSS02026"
-DAY=date(2026,10,26)
+DAY=date(2026,10,27)
 PINNED_ARCHIVE_SHA256="e122e245b09b1d346b31b1c8cc7573347e97d6115893e53f254b39131e74b8dd"
 
 
