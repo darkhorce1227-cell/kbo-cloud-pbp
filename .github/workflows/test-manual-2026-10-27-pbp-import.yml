@@ -1,0 +1,38 @@
+name: Test 2026-10-27 KBO postseason offline ZIP importer
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-manual-2026-10-27-pbp-import.yml'
+      - 'cloud/import_manual_pbp_20261027.py'
+      - 'tests/test_manual_2026_10_27_pbp_archive.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install same statcast parser required for offline merge
+        run: pip install -r requirements.txt
+      - name: Test offline original archive verification without Naver network
+        run: |
+          python -m py_compile cloud/import_manual_pbp_20261027.py tests/test_manual_2026_10_27_pbp_archive.py
+          python -m unittest discover -s tests -p test_manual_2026_10_27_pbp_archive.py -v
+      - name: Check independently recorded original ZIP and source truth
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cert=json.loads(Path('research/pbp_recovery/2026_10_27_HTSS_original_zip_certificate.json').read_text())
+          assert cert['original_sha256']=='e122e245b09b1d346b31b1c8cc7573347e97d6115893e53f254b39131e74b8dd'
+          assert cert['status']=='ORIGINAL_RELAY_ARCHIVE_VALIDATED_NOT_YET_PBP_RELEASE_MERGED'
+          assert cert['number_of_inning_hashes_verified']==9 and cert['game_end_type_99_at_inning_9_verified']
+          assert cert['final_score']=={'away':3,'home':8}
+          print('ORIGINAL_2026_10_27_INTEGRITY_CHECK_PASS_NOT_RELEASE_MERGE')
+          PY
