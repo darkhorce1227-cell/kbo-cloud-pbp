@@ -1,0 +1,33 @@
+{
+  "capture_type": "PUBLIC_DISPLAYED_PRICE_OBSERVED_PRE_SCHEDULED_START",
+  "market_id": "2026-10-30|SS>HT|FULL_OU|7.5",
+  "event_date_kst": "2026-10-30",
+  "home_team": "HT",
+  "away_team": "SS",
+  "home_name": "KIA 타이거즈",
+  "away_name": "삼성 라이온즈",
+  "scheduled_first_pitch_kst": "2026-10-30T18:30:00+09:00",
+  "market_type": "FULL_OU",
+  "market_line": "7.5",
+  "decimal_odds": {
+    "UNDER": 1.85,
+    "OVER": 1.64
+  },
+  "outcomes": [
+    "UNDER",
+    "OVER"
+  ],
+  "source_round_url": "https://sharppick.app/proto/2026/129/",
+  "source_match_url": "https://sharppick.app/match/1639353321/",
+  "source_row_status": "—",
+  "first_observed_at_utc": "2026-10-30T07:08:45.999386+00:00",
+  "displayed_price_is_executable_at_betman": false,
+  "time_verified": "OBSERVATION_TIME_ONLY_NOT_BOOK_OPENING_TIME",
+  "future_game_pk": null,
+  "is_clean_pre_model_prediction": false,
+  "roi_backtest_eligibility": "WAIT_OFFICIAL_BETTING_AVAILABILITY_AND_ACTUAL_START",
+  "source_round_response_sha256": "1f49c4516b173430a2a9836b821b2ce797f7f5ec0d2a28f88b6386f815ebf6c1",
+  "source_server_date_header": "Fri, 30 Oct 2026 07:08:45 GMT",
+  "snapshot_fingerprint_sha256": "b8d8415e5a11b51e9d36c4f2965d16744d02b72236d43d4ea086ab76324b37f7",
+  "original_prospective_label": "PUBLIC_PRICE_CAPTURE_REQUIRES_FIRST_COMMIT_TIME_GATE"
+}
