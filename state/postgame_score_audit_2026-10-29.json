@@ -1,0 +1,66 @@
+{
+  "dataset_columns": 50,
+  "dataset_rows": 223775,
+  "duplicate_stable_keys": 0,
+  "expected_game_ids": [
+    "55551029SSHT02026"
+  ],
+  "expected_games": 1,
+  "final_games": 1,
+  "found_game_ids": [
+    "55551029SSHT02026"
+  ],
+  "games": [
+    {
+      "away_team": "SS",
+      "deduplicated_pa_rows": 81,
+      "f5": {
+        "away": 4,
+        "home": 3,
+        "last_at_bat_number": 44
+      },
+      "final": {
+        "away": 6,
+        "half": "bot",
+        "home": 4,
+        "inning": 9,
+        "last_at_bat_number": 81
+      },
+      "game": "SS@HT",
+      "game_pk": "55551029SSHT02026",
+      "home_team": "HT",
+      "official_final": {
+        "away": 6,
+        "home": 4
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 330,
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "all_expected_game_ids_present": true,
+    "dataset_sha256_matches_status": true,
+    "expected_equals_final": true,
+    "expected_ids_count_match": true,
+    "required_columns_present": true,
+    "stable_key_duplicates_zero": true,
+    "status_validation_pass": true
+  },
+  "generated_at_kst": "2026-10-30T15:04:32.837133+09:00",
+  "missing_required_columns": [],
+  "official_crosscheck_games_found": 1,
+  "official_final_crosscheck_provenance": "NAVER_SCHEDULE_JSON_FROM_SAME_USER_ARCHIVE_NOT_AN_INDEPENDENT_SECOND_FETCH",
+  "offline_source_provenance": "USER_UPLOADED_NAVER_ORIGINAL_RELAY_ZIP",
+  "original_capture_utc": "2026-10-30T05:53:53Z",
+  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "sha256_parquet": "3a75b09437eaa929965c26a6fd5f2bfd1bf8097398535e63665820e9a17aadd4",
+  "source": "validated_parquet_binary",
+  "source_raw_zip_sha256": "89657c00721c9588577ddd8ce07b9f2564039dbe90923401b64571084a1d21af",
+  "status_sha256_parquet": "3a75b09437eaa929965c26a6fd5f2bfd1bf8097398535e63665820e9a17aadd4",
+  "target_date": "2026-10-29",
+  "validation": "PASS",
+  "version": "1.0.0"
+}
