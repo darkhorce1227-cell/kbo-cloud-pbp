@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'state/manual_pbp_raw/kbo_20261029_SSHT_raw_*.zip'
+      - 'cloud/import_manual_pbp_20261029.py'
+      - '.github/workflows/import-manual-2026-10-29-pbp.yml'
   workflow_dispatch:
 
 permissions:
