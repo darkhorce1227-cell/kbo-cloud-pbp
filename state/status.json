@@ -1,29 +1,29 @@
 {
-  "checked_at_kst": "2026-10-30T15:04:32.713958+09:00",
+  "checked_at_kst": "2026-11-01T01:40:21.050687+09:00",
   "columns": 50,
   "csv_gz": "kbo_pbp_2026_latest.csv.gz",
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "55551029SSHT02026"
+    "55551030SSHT02026"
   ],
   "expected_games": 1,
   "final_games": 1,
   "first_check_kst": "OFFLINE_CAPTURE_AFTER_FINISH",
   "found_game_ids": [
-    "55551029SSHT02026"
+    "55551030SSHT02026"
   ],
   "has_1400_game": null,
-  "last_success_date": "2026-10-29",
+  "last_success_date": "2026-10-30",
   "missing_columns": [],
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "reason": "[USER_ARCHIVE_OFFLINE_RECOVERY] Naver 9-inning relay ZIP SHA-256, explicit terminal GAME_END, 2026-10-29 schedule 6:4 and all cumulative integrity gates PASS.",
+  "reason": "[USER_ARCHIVE_OFFLINE_RECOVERY] Naver 9-inning relay ZIP SHA-256, explicit terminal GAME_END, 2026-10-30 schedule 2:4 and all cumulative integrity gates PASS.",
   "retry_next_hour": false,
-  "rows": 223775,
-  "sha256_csv_gz": "fdf01a9c1306316eb2db8c74314604b60cdbd5a889d371eb363a44a360f5819a",
-  "sha256_parquet": "3a75b09437eaa929965c26a6fd5f2bfd1bf8097398535e63665820e9a17aadd4",
+  "rows": 224047,
+  "sha256_csv_gz": "da1f4c9aef1f72f2aae587b6c49d18b13f9e08e2ac2e3efb0490754643dc1232",
+  "sha256_parquet": "18251a3a5b16d3b82c6fef094493ed72460c256de6af490be1433b1578276e49",
   "should_publish": true,
   "state": "UPDATED",
-  "target_date": "2026-10-29",
+  "target_date": "2026-10-30",
   "validation": "PASS",
   "version": "0.6.0-OFFLINE_ARCHIVE"
 }
