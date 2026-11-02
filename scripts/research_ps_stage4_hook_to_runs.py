@@ -104,18 +104,36 @@ for z in test.itertuples():
  rates[(z.game_pk,z.def_team)]={'branch_weights':w.tolist(),'full':rate_full,'f5':rate_f5}
 
 # Evaluate game-level totals and home-win, conditional on only pregame pitcher RS average IP.
-actual=[]; pred_flat=[];pred_branch=[]
+# Direct, non-branch RS-IP scoring baseline to test whether branching adds value.
+from scipy.optimize import minimize
+
+def fit_direct(col):
+ x=(train.rs_starter_avg_ip.to_numpy(float)-5.5)
+ y=train[col].to_numpy(float)
+ def objective(t):
+  eta=np.clip(t[0]+t[1]*x,-5,5)
+  mu=np.exp(eta)
+  return float(np.sum(mu-y*eta)+10*t[1]**2)
+ result=minimize(objective,np.array([np.log(max(y.mean(),.01)),0.]),method='BFGS')
+ return result.x
+fit_f5=fit_direct('f5');fit_full=fit_direct('runs')
+def direct_mu(z,fit):
+ return float(np.exp(np.clip(fit[0]+fit[1]*(z.rs_starter_avg_ip-5.5),-5,5)))
+
+actual=[]; pred_flat=[];pred_branch=[];pred_direct=[]
 for g,t in test.groupby('game_pk'):
  if len(t)!=2:continue
  away=t[t.home_away=='away'].iloc[0];home=t[t.home_away=='home'].iloc[0]
  # Forecast scoring: home offense faces away defensive starter and vice versa.
  score_home=int(away.runs);score_away=int(home.runs)
  f5_home=int(away.f5);f5_away=int(home.f5)
- target={'game':g,'home_runs':score_home,'away_runs':score_away,'home_f5':f5_home,'away_f5':f5_away}
+ target={'game':g,'season':int(away.season),'home_runs':score_home,'away_runs':score_away,'home_f5':f5_home,'away_f5':f5_away}
  actual.append(target)
  pred_flat.append({'game':g,'home':float(train.runs.mean()),'away':float(train.runs.mean()),'home_f5':float(train.f5.mean()),'away_f5':float(train.f5.mean())})
  pred_branch.append({'game':g,'home':rates[(g,away.def_team)]['full'],'away':rates[(g,home.def_team)]['full'],
               'home_f5':rates[(g,away.def_team)]['f5'],'away_f5':rates[(g,home.def_team)]['f5']})
+ pred_direct.append({'game':g,'home':direct_mu(away,fit_full),'away':direct_mu(home,fit_full),
+              'home_f5':direct_mu(away,fit_f5),'away_f5':direct_mu(home,fit_f5)})
 
 def test_metrics(pred):
  mm={};n=len(actual)
@@ -134,13 +152,41 @@ def test_metrics(pred):
     'over_'+str(threshold+0.5)+'_brier':round(float(np.mean((p_over-y_over)**2)),6),
     'total_mean_pred':round(float((mu_h+mu_a).mean()),3),'total_mean_actual':round(float(total.mean()),3)}
  return mm
+def game_loss_arrays(pred):
+ out={}
+ for scope in ['full','f5']:
+  a,b=('home','away') if scope=='full' else ('home_f5','away_f5')
+  y_h=np.asarray([z['home_runs' if scope=='full' else 'home_f5'] for z in actual]);y_a=np.asarray([z['away_runs' if scope=='full' else 'away_f5'] for z in actual]);
+  mu_h=np.asarray([z[a] for z in pred]);mu_a=np.asarray([z[b] for z in pred]);
+  p_home=skellam.sf(0,mu_h,mu_a)
+  p_over=poisson.sf(8 if scope=='full' else 4,mu_h+mu_a)
+  out[scope+'_score_nll']=-(poisson.logpmf(y_h,mu_h)+poisson.logpmf(y_a,mu_a))
+  out[scope+'_win_brier']=(p_home-(y_h>y_a))**2
+  out[scope+'_over_brier']=(p_over-((y_h+y_a)>(8 if scope=='full' else 4)))**2
+ return out
+
+flat_loss=game_loss_arrays(pred_flat)
+branch_loss=game_loss_arrays(pred_branch)
+direct_loss=game_loss_arrays(pred_direct)
+rng=np.random.default_rng(20261102)
+bootidx=rng.integers(0,len(actual),size=(12000,len(actual)))
+bootstrap={}
+for metric in flat_loss:
+ bootstrap[metric]={}
+ for ref_name,ref in [('vs_pooled',flat_loss),('vs_direct_rsip',direct_loss)]:
+  delta=branch_loss[metric]-ref[metric]
+  means=delta[bootidx].mean(axis=1)
+  bootstrap[metric][ref_name]={'delta':round(float(delta.mean()),6),
+     'ci95':[round(float(x),6) for x in np.quantile(means,[.025,.975])]}
+
 result={'status':'PBP_PATH_PASSES_SCORE_AUDIT','source':'historical-ps-master/postseason_screen_pass.parquet','sample_games':143,
  'pitch_rows':len(raw),'pa_rows':len(pa),'team_game_rows':len(panel),'by_actual_starter_hook':summary,
  'validation':{'all_games_two_starters':len(panel)==286,'score_partition':True,'f5_late_partition':True,'game_final_crosscheck':True},
  'temporal_test':{'train_team_starts':len(train),'test_team_starts':len(test),'test_complete_games':len(actual),
     'feature':'pregame same-year RS starter avg IP only, historical PS residual mixture (LT3 / 3to5 / GE5)',
     'baseline':'2016-2020 pooled PS runs/team','branch_train':means,
-    'baseline_metrics':test_metrics(pred_flat),'branch_mixture_metrics':test_metrics(pred_branch)},
+    'baseline_metrics':test_metrics(pred_flat),'direct_rsip_metrics':test_metrics(pred_direct),'branch_mixture_metrics':test_metrics(pred_branch),
+    'paired_game_bootstrap12000':bootstrap,'test_seasons':{str(y):len([z for z in actual if z['season']==y]) for y in range(2021,2026)}},
  'limitations':['Runs are scoreboard events while active pitcher was on watch, not official R/ER or causal pitching quality.',
    'Starter hook occurs after runs and score-state; descriptive conditionings are selected on outcomes.',
    'Historical pooled scorer forecasts omit batter, park, weather and bullpen quality, so are not Champion and do not establish Champion gain.',
