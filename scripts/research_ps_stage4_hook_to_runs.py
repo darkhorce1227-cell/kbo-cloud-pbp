@@ -175,9 +175,9 @@ for metric in flat_loss:
  bootstrap[metric]={}
  for ref_name,ref in [('vs_pooled',flat_loss),('vs_direct_rsip',direct_loss)]:
   delta=branch_loss[metric]-ref[metric]
-  means=delta[bootidx].mean(axis=1)
+  bootmeans=delta[bootidx].mean(axis=1)
   bootstrap[metric][ref_name]={'delta':round(float(delta.mean()),6),
-     'ci95':[round(float(x),6) for x in np.quantile(means,[.025,.975])]}
+     'ci95':[round(float(x),6) for x in np.quantile(bootmeans,[.025,.975])]}
 
 result={'status':'PBP_PATH_PASSES_SCORE_AUDIT','source':'historical-ps-master/postseason_screen_pass.parquet','sample_games':143,
  'pitch_rows':len(raw),'pa_rows':len(pa),'team_game_rows':len(panel),'by_actual_starter_hook':summary,
