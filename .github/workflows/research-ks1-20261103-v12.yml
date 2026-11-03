@@ -1,0 +1,31 @@
+name: KS1 2026-11-03 PRE v1.2 cross-check
+on:
+  push:
+    branches: [research/ps-follower-runs-20261102]
+    paths:
+      - '.github/workflows/research-ks1-20261103-v12.yml'
+      - 'scripts/research_ks1_20261103_v12_crosscheck.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  crosscheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install -r requirements.txt
+          python -m pip install 'scipy>=1.11' 'numpy>=1.26,<3'
+      - name: Download frozen 2026 PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ks1
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/ks1 --clobber
+      - name: V1.2 frozen model premarket independent comparison
+        run: python scripts/research_ks1_20261103_v12_crosscheck.py
