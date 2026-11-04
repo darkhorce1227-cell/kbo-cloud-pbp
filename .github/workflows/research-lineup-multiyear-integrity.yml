@@ -1,0 +1,44 @@
+name: KBO 2024-25 RS lineup source integrity inspection
+on:
+  push:
+    branches: [research/lineup-multiyear-20261104]
+    paths:
+      - '.github/workflows/research-lineup-multiyear-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch preserved 2024-25 KBO training PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/rs-pbp
+          gh run download 37073907739 --repo darkhorce1227-cell/kbo-cloud-pbp --name kbo-mu-training-pbp-2024-2025 --dir /tmp/rs-pbp
+          ls -lh /tmp/rs-pbp
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'numpy>=1.26,<3'
+      - name: Validate original SHA and schema from manifest
+        run: |
+          python - <<'PY'
+          import json,hashlib,pandas as pd
+          from pathlib import Path
+          d=Path('/tmp/rs-pbp');m=json.loads((d/'manifest_mu_training.json').read_text())
+          out={}
+          for yr in [2024,2025]:
+           v=m['seasons'][str(yr)];p=d/v['file'];h=hashlib.sha256(p.read_bytes()).hexdigest()
+           assert h==v['sha256'],(yr,h,v['sha256'])
+           x=pd.read_csv(p)
+           assert len(x)==v['rows'],(yr,len(x),v['rows'])
+           assert x.game_pk.nunique()==v['games']
+           assert not x.duplicated(['game_pk','at_bat_number','pitch_number']).any()
+           out[str(yr)]={'rows':len(x),'games':int(x.game_pk.nunique()),'sha256':h,'date_min':str(x.game_date.min()),'date_max':str(x.game_date.max()),'columns':x.columns.tolist(),'num_unique_batters':int(x.batter.nunique())}
+          print('HISTORICAL_RS_PBP_INTEGRITY='+json.dumps(out,ensure_ascii=False))
+          PY
