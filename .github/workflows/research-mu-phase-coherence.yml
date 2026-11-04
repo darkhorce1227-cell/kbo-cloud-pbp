@@ -28,6 +28,8 @@ jobs:
           mkdir -p /tmp/kbo-coherence
           gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-coherence --clobber
           echo '32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1  /tmp/kbo-coherence/kbo_pbp_2026_latest.parquet' | sha256sum -c -
+      - name: Validate F5-Full invariant helper
+        run: python -m unittest discover -s tests -p test_mu_phase_invariants.py -v
       - run: python scripts/research_mu_phase_coherence_2026.py
       - uses: actions/upload-artifact@v4
         if: always()
