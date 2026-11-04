@@ -26,6 +26,13 @@ jobs:
           mkdir -p /tmp/ks1post
           gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/ks1post --clobber
           test -s /tmp/ks1post/kbo_pbp_2026_latest.parquet
+      - name: Fetch target-date validated status and score audit from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/darkhorce1227-cell/kbo-cloud-pbp/contents/state/status.json -f ref=main --jq .content | base64 -d > state/status.json
+          gh api repos/darkhorce1227-cell/kbo-cloud-pbp/contents/state/postgame_score_audit_2026-11-03.json -f ref=main --jq .content | base64 -d > state/postgame_score_audit_2026-11-03.json
       - name: Audit pitch-specific score and starter path
         run: python scripts/research_ks1_20261103_postgame_pitcher_path.py
       - uses: actions/upload-artifact@v4
