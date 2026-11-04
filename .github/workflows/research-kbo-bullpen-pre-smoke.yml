@@ -28,8 +28,9 @@ jobs:
           echo '32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1  /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet' | sha256sum -c -
       - name: KT clean prior-date candidate audit, KS1
         run: |
-          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet --team KT --date 2026-11-03 --expect-sha 32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1 --output /tmp/kt-bridge-verify/KT_pregame_20261103.json
-          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet --team SS --date 2026-11-03 --expect-sha 32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1 --output /tmp/kt-bridge-verify/SS_pregame_20261103.json
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet --team KT --date 2026-11-03 --current-starter-id 56002 --expect-sha 32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1 --output /tmp/kt-bridge-verify/KT_pregame_20261103.json
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet --team SS --date 2026-11-03 --current-starter-id 65320 --expect-sha 32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1 --output /tmp/kt-bridge-verify/SS_pregame_20261103.json
+          python -c "import json; p=json.load(open('/tmp/kt-bridge-verify/KT_pregame_20261103.json')); assert any(z['pitcher_id']=='55912' for z in p['starter_to_reliever_shadow_candidates']), 'Logan ex-starter missing from long-relief shadow'; assert p['projected_starter_id_excluded']=='56002'; print('ROLE_SWITCH_POSITIVE_CONTROL=PASS')"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
