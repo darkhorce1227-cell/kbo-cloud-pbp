@@ -1,0 +1,39 @@
+name: KS2 lineup pregame descriptive as-of audit
+on:
+  push:
+    branches: [research/lineup-skill-20261104]
+    paths:
+      - '.github/workflows/research-lineup-20261104-audit.yml'
+      - 'scripts/kbo_lineup_pregame_audit.py'
+      - 'research/lineup_2026/ks2_confirmed_20261104.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  asof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Deps
+        run: python -m pip install 'numpy>=1.26,<3' 'pandas>=2.2,<3' 'pyarrow>=15'
+      - name: Validated historical source as-of KS2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kbo-lineup
+          gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-lineup --clobber
+          echo '32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1  /tmp/kbo-lineup/kbo_pbp_2026_latest.parquet' | sha256sum -c -
+      - name: Strict prior-date lineup player snapshot
+        run: |
+          python scripts/kbo_lineup_pregame_audit.py --source /tmp/kbo-lineup/kbo_pbp_2026_latest.parquet --lineup research/lineup_2026/ks2_confirmed_20261104.json --output /tmp/kbo-lineup/ks2_lineup_asof.json --sha 32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ks2-confirmed-lineup-prior-date-scouting
+          path: /tmp/kbo-lineup/ks2_lineup_asof.json
+          if-no-files-found: warn
