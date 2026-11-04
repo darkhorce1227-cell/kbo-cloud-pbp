@@ -1,0 +1,36 @@
+name: KS2 2026-11-04 secondary price audit of frozen PRE
+on:
+  push:
+    branches: [research/ks2-20261104-market-blind]
+    paths:
+      - '.github/workflows/research-ks2-20261104-price.yml'
+      - 'scripts/research_ks2_20261104_price_audit.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  price-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download earlier PRE run artifact by immutable run ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ks2price
+          gh run download 41798174203 --repo darkhorce1227-cell/kbo-cloud-pbp --name KS2-20261104-market-blind-research-pre --dir /tmp/ks2price
+          test -s /tmp/ks2price/ks2_premarket_20261104.json
+      - name: Evaluate quoted outcomes - no model calculation
+        run: python scripts/research_ks2_20261104_price_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS2-20261104-research-secondary-price-audit
+          path: /tmp/ks2price/ks2_price_audit_20261104.json
+          if-no-files-found: warn
