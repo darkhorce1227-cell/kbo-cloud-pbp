@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 
-def audit(path:Path,team:str,day:str,expect_sha:str|None=None)->dict:
+def audit(path:Path,team:str,day:str,expect_sha:str|None=None,current_starter_id:str|None=None)->dict:
     d=pd.Timestamp(day).normalize()
     if expect_sha:
         sha=hashlib.sha256(path.read_bytes()).hexdigest()
@@ -57,21 +57,39 @@ def audit(path:Path,team:str,day:str,expect_sha:str|None=None)->dict:
           'workload_watch_2d_40plus':bool(n2>=40),
           'quality_sample':'THIN' if bf<100 else 'DESCRIPTIVE_ONLY'})
     cand.sort(key=lambda z:(-z['last35_late68_PA'],z['pitcher_id']))
+    # Pitcher role conversion is common in postseason: a prior starter may become
+    # the first follower. Do not let a regular-season 6-8 inning-only proxy hide him.
+    # These are ONLY shadows; role change and active roster must be announced.
+    sp=x[x.pitcher.eq(x.starter_id)].drop_duplicates(['game_pk','pitcher'],keep='first')
+    recent_sp=sp[sp.date.ge(d-pd.Timedelta(days=45))]
+    shadows=[]
+    for pid,z in recent_sp.groupby('pitcher'):
+        pid=str(pid)
+        if pid==str(current_starter_id) or pid in ids:continue
+        history=sp[sp.pitcher.eq(pid)]
+        shadows.append({'pitcher_id':pid,'pitcher_name':str(z.pitcher_name.iloc[-1]),
+             'last_start_date':str(z.date.max().date()),
+             'prior_starts':int(len(history)),
+             'reason':'STARTER_TO_RELIEVER_TANDEM_SHADOW',
+             'currently_active':'UNVERIFIED','predicted_first_follower_probability':'UNAVAILABLE'})
+    shadows.sort(key=lambda a:(a['last_start_date'],a['prior_starts']),reverse=True)
     return {'status':'PREGAME_ROLE_AUDIT_NO_RUN_COEFFICIENT','date_cutoff_exclusive':str(d.date()),
             'team':team,'season':d.year,'source_sha256':sha,
             'prior_team_games':int(x.game_pk.nunique()),'candidate_count':len(cand),
-            'candidates':cand,
+            'candidates':cand,'projected_starter_id_excluded':str(current_starter_id) if current_starter_id else None,
+            'starter_to_reliever_shadow_candidates':shadows[:10],
             'caution':['Candidates are proxies based on prior 35 calendar days in relief during innings 6-8, NOT the actual activated roster.',
                        'No future game (date>=target) is included; same-day other games are also excluded.',
                        'Raw pitch rows need not equal official pitch count; cannot infer confirmed availability from these alone.',
+                       'Prior starters are listed as possible tandem shadows, not verified bullpen options; confirm roster and manager plan.',
                        'No Park / closer probability or bullpen ability coefficient is produced.',
                        'K-BB and HR rates are raw descriptive; thin samples and deployment quality require shrinkage before model use.']}
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--source',required=True);ap.add_argument('--team',required=True)
-    ap.add_argument('--date',required=True);ap.add_argument('--expect-sha');ap.add_argument('--output')
+    ap.add_argument('--date',required=True);ap.add_argument('--expect-sha');ap.add_argument('--output');ap.add_argument('--current-starter-id')
     args=ap.parse_args()
-    out=audit(Path(args.source),args.team,args.date,args.expect_sha)
+    out=audit(Path(args.source),args.team,args.date,args.expect_sha,args.current_starter_id)
     if args.output:Path(args.output).write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
     print('KBO_PRE_BULLPEN_AUDIT='+json.dumps(out,ensure_ascii=False))
 if __name__=='__main__':main()
