@@ -1,0 +1,30 @@
+name: KT live bridge Park conditional replay
+on:
+  push:
+    branches: [research/kt-bridge-pregame-20261104]
+    paths:
+      - '.github/workflows/research-kt-live-park.yml'
+      - 'scripts/research_kt_live_park_2026.py'
+      - 'research/kt_bridge_2026/kt_144_game_bridge.csv'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'scipy>=1.11' 'numpy>=1.26,<3'
+      - name: Reproduce conditional live usage, no pregame leakage
+        env:
+          KT_BRIDGE_CSV: research/kt_bridge_2026/kt_144_game_bridge.csv
+          KT_PARK_RESULT: /tmp/kt-live-park.json
+        run: python scripts/research_kt_live_park_2026.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kt-live-park-conditional-2026
+          path: /tmp/kt-live-park.json
