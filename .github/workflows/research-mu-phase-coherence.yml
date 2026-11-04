@@ -1,0 +1,39 @@
+name: 2026 F5-to-Full model-score coherence (research)
+on:
+  push:
+    branches: [research/mu-f5-full-coherence-20261104]
+    paths:
+      - '.github/workflows/research-mu-phase-coherence.yml'
+      - 'scripts/research_mu_phase_coherence_2026.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install -r requirements.txt
+          python -m pip install 'scipy>=1.11' 'numpy>=1.26,<3'
+      - name: Immutable source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kbo-coherence
+          gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-coherence --clobber
+          echo '32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1  /tmp/kbo-coherence/kbo_pbp_2026_latest.parquet' | sha256sum -c -
+      - name: Validate F5-Full invariant helper
+        run: python -m unittest discover -s tests -p test_mu_phase_invariants.py -v
+      - run: python scripts/research_mu_phase_coherence_2026.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KBO-phase-coherence-2026
+          path: /tmp/kbo-coherence/coherence_2026.json
+          if-no-files-found: warn
