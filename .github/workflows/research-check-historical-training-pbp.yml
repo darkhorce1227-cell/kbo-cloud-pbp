@@ -1,0 +1,30 @@
+name: Research locate immutable historical RS PBP training archives
+on:
+  push:
+    branches: [research/mu-f5-full-coherence-20261104]
+    paths:
+      - '.github/workflows/research-check-historical-training-pbp.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inventory existing historical training PBP archives and run artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          echo "HISTORICAL_DATA_REPO_RELEASES:"
+          gh release list --limit 30
+          echo "HISTORICAL_PBP_EXPORT_WORKFLOWS:"
+          gh run list --workflow export-mu-training-pbp.yml --limit 12 --json databaseId,createdAt,conclusion,status -q '.[] | [.databaseId,.createdAt,.conclusion,.status] | @tsv'
+          echo "HISTORICAL_TRAINING_ARTIFACTS:"
+          for rid in $(gh run list --workflow export-mu-training-pbp.yml --limit 6 --json databaseId -q '.[].databaseId'); do
+             gh api repos/darkhorce1227-cell/kbo-cloud-pbp/actions/runs/$rid/artifacts -q '.artifacts[] | [.name,.expired,.size_in_bytes] | @tsv' || true
+          done
+          echo "HISTORICAL_CHECK_DONE=PASS"
