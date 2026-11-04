@@ -1,0 +1,37 @@
+name: Research KT July-16 Bridge Split Replay
+on:
+  push:
+    branches: [research/ps-follower-runs-20261102]
+    paths:
+      - '.github/workflows/research-kt-bridge-july16.yml'
+      - 'scripts/research_kt_bridge_20261104_july16_replay.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'pyarrow>=15' 'numpy>=1.26,<3'
+      - name: Download source matching immutable SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kt-bridge-verify
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/kt-bridge-verify --clobber
+          test -s /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet
+          sha256sum /tmp/kt-bridge-verify/kbo_pbp_2026_latest.parquet
+      - name: Replay 7/16 split
+        run: python scripts/research_kt_bridge_20261104_july16_replay.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kt-bridge-20261104-july16-verified
+          path: /tmp/kt-bridge-verify/july16_clean_split.json
+          if-no-files-found: warn
