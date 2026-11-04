@@ -1,0 +1,36 @@
+name: Research KS1 Postgame PBP Path Audit
+on:
+  push:
+    branches: [research/ps-follower-runs-20261102]
+    paths:
+      - '.github/workflows/research-ks1-postgame.yml'
+      - 'scripts/research_ks1_20261103_postgame_pitcher_path.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: python -m pip install 'pandas>=2.2,<3' 'pyarrow>=15' 'numpy>=1.26,<3'
+      - name: Fetch validated daily PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/ks1post
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/ks1post --clobber
+          test -s /tmp/ks1post/kbo_pbp_2026_latest.parquet
+      - name: Audit pitch-specific score and starter path
+        run: python scripts/research_ks1_20261103_postgame_pitcher_path.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ks1-postgame-path-20261103
+          path: /tmp/ks1post/ks1_postgame_20261103.json
+          if-no-files-found: warn
