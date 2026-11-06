@@ -1,0 +1,33 @@
+{
+  "capture_type": "PUBLIC_DISPLAYED_PRICE_OBSERVED_PRE_SCHEDULED_START",
+  "market_id": "2026-11-06|KT>SS|FULL_HC2|-2.5",
+  "event_date_kst": "2026-11-06",
+  "home_team": "SS",
+  "away_team": "KT",
+  "home_name": "삼성 라이온즈",
+  "away_name": "KT 위즈",
+  "scheduled_first_pitch_kst": "2026-11-06T18:30:00+09:00",
+  "market_type": "FULL_HC2",
+  "market_line": "-2.5",
+  "decimal_odds": {
+    "HOME": 3.16,
+    "AWAY": 1.2
+  },
+  "outcomes": [
+    "HOME",
+    "AWAY"
+  ],
+  "source_round_url": "https://sharppick.app/proto/2026/132/",
+  "source_match_url": "https://sharppick.app/match/1639768404/",
+  "source_row_status": "—",
+  "first_observed_at_utc": "2026-11-06T06:47:07.209756+00:00",
+  "displayed_price_is_executable_at_betman": false,
+  "time_verified": "OBSERVATION_TIME_ONLY_NOT_BOOK_OPENING_TIME",
+  "future_game_pk": null,
+  "is_clean_pre_model_prediction": false,
+  "roi_backtest_eligibility": "WAIT_OFFICIAL_BETTING_AVAILABILITY_AND_ACTUAL_START",
+  "source_round_response_sha256": "d29e0572b1198383fa68438b5b843d30e8f32680676aec0c3de6bae39b2da2a8",
+  "source_server_date_header": "Fri, 06 Nov 2026 06:47:07 GMT",
+  "snapshot_fingerprint_sha256": "6d8361ec3f9778e7dfaf92380a67b642845449b026617912f33fc49b0dd82ee1",
+  "original_prospective_label": "PUBLIC_PRICE_CAPTURE_REQUIRES_FIRST_COMMIT_TIME_GATE"
+}
