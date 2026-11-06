@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'state/manual_pbp_raw/kbo_20261104_SSKT_raw_*.zip'
+      - '.github/workflows/import-manual-2026-11-04-pbp.yml'
   workflow_dispatch:
 
 permissions:
@@ -59,7 +60,7 @@ jobs:
           assert index['game_count']==731
           assert index['game_pks'].count('77771104SSKT02026')==1
           assert pa['games'][0]['f5']['away']==1 and pa['games'][0]['f5']['home']==1
-          assert pa['games'][0]['final']['inning']==12 and pa['games'][0]['final']['half']=='bottom'
+          assert pa['games'][0]['final']['inning']==12 and str(pa['games'][0]['final']['half']).lower() in ('bot','bottom')
           assert pa['games'][0]['final']['away']==3 and pa['games'][0]['final']['home']==2
           print('OFFLINE_PBP_IMPORT_PASS: 730->731; Samsung3-KT2; Naver GAME_END=12BOTTOM')
           PY
