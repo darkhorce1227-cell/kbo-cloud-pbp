@@ -1,0 +1,66 @@
+name: Verify Full Auto PBP Append with Historical Validated 730-Game Baseline
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/verify-kbo-auto-merge-2026.yml"
+      - "cloud/auto_import_naver.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verified-append:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Download archived 2026-11-03 730-game validated binary and index (NOT production latest)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo730
+          gh run download 41766928434 --name kbo-pbp-2026-11-03-offline-validated --dir /tmp/kbo730
+          find /tmp/kbo730 -maxdepth 4 -type f | sort
+          mkdir -p out/baseline
+          cp /tmp/kbo730/out/kbo_pbp_2026_latest.parquet out/baseline/kbo_pbp_2026_latest.parquet
+          cp /tmp/kbo730/state/status.json state/status.json
+          cp /tmp/kbo730/state/validated_game_pks_2026.json state/validated_game_pks_2026.json
+      - name: Add the original 2026-11-04 12-inning ZIP ONLY to temporary auto-import inputs
+        run: |
+          mkdir -p state/auto_pbp_raw
+          cp state/manual_pbp_raw/kbo_20261104_SSKT_raw_20261106_145433.zip state/auto_pbp_raw/
+      - name: Run FULL generic offline 730 to 731 merge and score audits
+        run: python cloud/auto_import_naver.py
+      - name: Verify old 730 PKs retained, 12th bottom, score and binary integrity
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          import pandas as pd
+          status=json.loads(Path('state/status.json').read_text())
+          index=json.loads(Path('state/validated_game_pks_2026.json').read_text())
+          audit=json.loads(Path('state/postgame_score_audit_2026-11-04.json').read_text())
+          result=json.loads(Path('out/auto_import_result.json').read_text())
+          assert result['publish'] is True
+          assert result['old_game_count']==730 and result['total_game_count']==731
+          assert result['new_game_count']==1
+          assert status['validation']=='PASS' and status['target_date']=='2026-11-04'
+          assert status['rows']==224975
+          assert index['game_count']==731 and index['game_pks'].count('77771104SSKT02026')==1
+          assert audit['validation']=='PASS'
+          game=audit['games'][0]
+          assert game['f5']['away']==1 and game['f5']['home']==1
+          assert game['final']['inning']==12 and game['final']['half'] in ('bot','bottom')
+          assert game['final']['away']==3 and game['final']['home']==2
+          parq=Path('out/kbo_pbp_2026_latest.parquet')
+          assert hashlib.sha256(parq.read_bytes()).hexdigest()==status['sha256_parquet']
+          df=pd.read_parquet(parq)
+          assert len(df)==224975 and df.game_pk.nunique()==731
+          assert df.duplicated(['game_pk','at_bat_number','pitch_number']).sum()==0
+          print('AUTO_OFFLINE_730_TO_731_FULL_MERGE_PASS:',status['sha256_parquet'])
+          PY
