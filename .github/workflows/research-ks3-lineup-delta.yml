@@ -1,0 +1,35 @@
+name: KS3 confirmed KT lineup historical asof audit
+on:
+  push:
+    branches: [research/platoon-interaction-oos-20261106]
+    paths:
+      - 'scripts/research_ks3_confirmed_kt_lineup_delta.py'
+      - '.github/workflows/research-ks3-lineup-delta.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lineup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'numpy>=1.26,<3' 'pyarrow>=15'
+      - name: Fetch validated 2026 PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-lineup-ks3
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/kbo-lineup-ks3
+          gh release download latest-pbp --pattern 'manifest.json' --dir /tmp/kbo-lineup-ks3
+      - name: Evaluate lineup against preceding historical player season only
+        run: python -u scripts/research_ks3_confirmed_kt_lineup_delta.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS3-KT-lineup-asof-delta-scout
+          path: /tmp/kbo-lineup-ks3/lineup_ks3_vs_ks2.json
+          if-no-files-found: warn
