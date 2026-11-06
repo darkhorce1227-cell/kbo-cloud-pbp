@@ -1,0 +1,691 @@
+{
+  "version": "offense-platoon-v2.0-20261106",
+  "status": "RESEARCH_ONLY_NOT_CHAMPION",
+  "evidence_class": "TIME_ORDERED_DEVELOPMENT_REPLAY_NOT_NEW_INDEPENDENT_HOLDOUT",
+  "study_plan_sha256": "994b2113e124146b7d83ff4147b49ec06a37d1815f5cb1f84d9e873803320d8e",
+  "count_distribution": "NB2 F5 + independent nonnegative NB2 late increments; Full=convolution",
+  "full_wdl_status": "FINAL_SCORE_DIAGNOSTIC_NOT_OFFICIAL_GAME_ENDING_RULE_MODEL",
+  "official_champion_comparison": "UNAVAILABLE_NO_MATCHED_REPRODUCIBLE_CHAMPION",
+  "folds": [
+    {
+      "train_years": [
+        2024
+      ],
+      "test_year": 2025,
+      "train_games": 561,
+      "test_games": 560,
+      "train_max_date": "2024-09-30",
+      "test_min_date": "2025-05-01",
+      "unknown_opponent_hand_teamgames": 0,
+      "models": {
+        "context": {
+          "f5": {
+            "count_nll": 2.1122867146188407,
+            "poisson_nll": 2.3402126124615394,
+            "score_mae": 1.9403055962205242,
+            "actual_mean": 2.6830357142857144,
+            "predicted_mean": 2.6349357727194573,
+            "actual_over_predicted": 1.0182546922259945,
+            "wdl_logloss": 1.0021793911845098,
+            "wdl_brier_sum_over_3": 0.20205593031503563,
+            "actual_draw_rate": 0.16071428571428573,
+            "predicted_draw_rate": 0.14897819916377658
+          },
+          "full": {
+            "count_nll": 2.5188145708595395,
+            "poisson_nll": 2.752126788364289,
+            "score_mae": 2.636730116872563,
+            "actual_mean": 4.733928571428572,
+            "predicted_mean": 4.777634729314868,
+            "actual_over_predicted": 0.9908519256153842,
+            "wdl_logloss": 0.8364049626440195,
+            "wdl_brier_sum_over_3": 0.17552504573546368,
+            "actual_draw_rate": 0.033928571428571426,
+            "predicted_draw_rate": 0.09881606222900007
+          }
+        },
+        "lineup_delta": {
+          "f5": {
+            "count_nll": 2.1161561619896823,
+            "poisson_nll": 2.3501943718979446,
+            "score_mae": 1.946094257602556,
+            "actual_mean": 2.6830357142857144,
+            "predicted_mean": 2.6361614572094303,
+            "actual_over_predicted": 1.0177812542354305,
+            "wdl_logloss": 1.0056001107379489,
+            "wdl_brier_sum_over_3": 0.20306492091972606,
+            "actual_draw_rate": 0.16071428571428573,
+            "predicted_draw_rate": 0.14917546590933048
+          },
+          "full": {
+            "count_nll": 2.52140087486047,
+            "poisson_nll": 2.7587730390043435,
+            "score_mae": 2.6394756279430855,
+            "actual_mean": 4.733928571428572,
+            "predicted_mean": 4.7797021771498605,
+            "actual_over_predicted": 0.9904233351734514,
+            "wdl_logloss": 0.8410832976539869,
+            "wdl_brier_sum_over_3": 0.17684938973886458,
+            "actual_draw_rate": 0.033928571428571426,
+            "predicted_draw_rate": 0.09872795099800327
+          }
+        },
+        "lineup_platoon": {
+          "f5": {
+            "count_nll": 2.1208021227842373,
+            "poisson_nll": 2.3613782371726684,
+            "score_mae": 1.9609117399732172,
+            "actual_mean": 2.6830357142857144,
+            "predicted_mean": 2.671268695033779,
+            "actual_over_predicted": 1.004405030191763,
+            "wdl_logloss": 1.0096811251828537,
+            "wdl_brier_sum_over_3": 0.20407479397294867,
+            "actual_draw_rate": 0.16071428571428573,
+            "predicted_draw_rate": 0.14758554294102966
+          },
+          "full": {
+            "count_nll": 2.5276055192298656,
+            "poisson_nll": 2.7711409045354496,
+            "score_mae": 2.6621182732241153,
+            "actual_mean": 4.733928571428572,
+            "predicted_mean": 4.854673109520806,
+            "actual_over_predicted": 0.9751281836349734,
+            "wdl_logloss": 0.8428736380738402,
+            "wdl_brier_sum_over_3": 0.17758093490723512,
+            "actual_draw_rate": 0.033928571428571426,
+            "predicted_draw_rate": 0.09759599023363535
+          }
+        }
+      },
+      "paired_differences": {
+        "lineup_delta_minus_context": {
+          "f5_count_nll": {
+            "mean_delta": 0.0038694473708414017,
+            "ci95": [
+              9.82686133145925e-05,
+              0.007632498148915156
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 0.00998175943640535,
+            "ci95": [
+              0.0008952777304770356,
+              0.018987901651783205
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.0034207195534389865,
+            "ci95": [
+              -0.0011155305119198405,
+              0.008086832638157047
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 0.0010089906046904283,
+            "ci95": [
+              -0.00020416189160856225,
+              0.0022619208253871754
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": 0.002586304000930805,
+            "ci95": [
+              -0.0014525959859806204,
+              0.006745243708018089
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": 0.006646250640054718,
+            "ci95": [
+              -0.0020116127147104773,
+              0.01547049006654902
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": 0.0046783350099673824,
+            "ci95": [
+              0.00010001481424528657,
+              0.009461309591627774
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": 0.0013243440034009263,
+            "ci95": [
+              -4.010344006178337e-06,
+              0.0027182060538549794
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        },
+        "lineup_platoon_minus_context": {
+          "f5_count_nll": {
+            "mean_delta": 0.008515408165396185,
+            "ci95": [
+              0.0032407945549598168,
+              0.01380680045273712
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 0.02116562471112871,
+            "ci95": [
+              0.008217708477247742,
+              0.034218987963811995
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.0075017339983437705,
+            "ci95": [
+              0.0011408923207173157,
+              0.01405299476828434
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 0.002018863657913059,
+            "ci95": [
+              0.0003006996029885347,
+              0.0037526851882288843
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": 0.008790948370326198,
+            "ci95": [
+              0.003105168797649285,
+              0.014712198862841449
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": 0.019014116171160268,
+            "ci95": [
+              0.007090553270893241,
+              0.031462985407063326
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": 0.006468675429820661,
+            "ci95": [
+              0.0002812957973846698,
+              0.012698510056106324
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": 0.0020558891717714425,
+            "ci95": [
+              0.0002556671218850117,
+              0.0038790517265669456
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        },
+        "lineup_platoon_minus_lineup_delta": {
+          "f5_count_nll": {
+            "mean_delta": 0.004645960794554782,
+            "ci95": [
+              0.0012358460097442014,
+              0.008270265193350397
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 0.01118386527472336,
+            "ci95": [
+              0.002767098548678082,
+              0.02025747008046846
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.004081014444904784,
+            "ci95": [
+              -0.00038882390347607276,
+              0.008774280123589249
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 0.0010098730532226308,
+            "ci95": [
+              -0.00020776026939870322,
+              0.0022967007702969226
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": 0.006204644369395392,
+            "ci95": [
+              0.0024787031308041454,
+              0.010029949882960609
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": 0.012367865531105547,
+            "ci95": [
+              0.004557047992915862,
+              0.020497980747407635
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": 0.0017903404198532766,
+            "ci95": [
+              -0.0024369048671933173,
+              0.006042397512386807
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": 0.0007315451683705161,
+            "ci95": [
+              -0.0004981850892611649,
+              0.001986982797538993
+            ],
+            "n_games": 560,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        }
+      }
+    },
+    {
+      "train_years": [
+        2024,
+        2025
+      ],
+      "test_year": 2026,
+      "train_games": 1121,
+      "test_games": 583,
+      "train_max_date": "2025-09-30",
+      "test_min_date": "2026-05-01",
+      "unknown_opponent_hand_teamgames": 0,
+      "models": {
+        "context": {
+          "f5": {
+            "count_nll": 2.130654873222697,
+            "poisson_nll": 2.343790880876032,
+            "score_mae": 1.9564875566612472,
+            "actual_mean": 2.760720411663808,
+            "predicted_mean": 2.7081108956848152,
+            "actual_over_predicted": 1.0194266475803566,
+            "wdl_logloss": 0.9840097659877214,
+            "wdl_brier_sum_over_3": 0.19882519986907243,
+            "actual_draw_rate": 0.1423670668953688,
+            "predicted_draw_rate": 0.14537050480641098
+          },
+          "full": {
+            "count_nll": 2.54938461736337,
+            "poisson_nll": 2.7657930369197685,
+            "score_mae": 2.7197375043490504,
+            "actual_mean": 5.145797598627787,
+            "predicted_mean": 5.10786705955596,
+            "actual_over_predicted": 1.0074259056920571,
+            "wdl_logloss": 0.8197229281024301,
+            "wdl_brier_sum_over_3": 0.17321086429416488,
+            "actual_draw_rate": 0.025728987993138937,
+            "predicted_draw_rate": 0.09442624934270598
+          }
+        },
+        "lineup_delta": {
+          "f5": {
+            "count_nll": 2.131476296568155,
+            "poisson_nll": 2.3460316979070734,
+            "score_mae": 1.956578583072485,
+            "actual_mean": 2.760720411663808,
+            "predicted_mean": 2.7087647304731823,
+            "actual_over_predicted": 1.019180580951211,
+            "wdl_logloss": 0.9845082495002325,
+            "wdl_brier_sum_over_3": 0.19889988227907057,
+            "actual_draw_rate": 0.1423670668953688,
+            "predicted_draw_rate": 0.14536975152832313
+          },
+          "full": {
+            "count_nll": 2.55058805729283,
+            "poisson_nll": 2.7688692707184566,
+            "score_mae": 2.725126098937613,
+            "actual_mean": 5.145797598627787,
+            "predicted_mean": 5.109050053010853,
+            "actual_over_predicted": 1.0071926376206235,
+            "wdl_logloss": 0.8201043233592922,
+            "wdl_brier_sum_over_3": 0.17331740625712222,
+            "actual_draw_rate": 0.025728987993138937,
+            "predicted_draw_rate": 0.09438152306574268
+          }
+        },
+        "lineup_platoon": {
+          "f5": {
+            "count_nll": 2.1314277619847077,
+            "poisson_nll": 2.3460530832270976,
+            "score_mae": 1.9558272929951401,
+            "actual_mean": 2.760720411663808,
+            "predicted_mean": 2.70004491825132,
+            "actual_over_predicted": 1.0224720311141282,
+            "wdl_logloss": 0.9848332258745137,
+            "wdl_brier_sum_over_3": 0.19898611189747517,
+            "actual_draw_rate": 0.1423670668953688,
+            "predicted_draw_rate": 0.14576285006408987
+          },
+          "full": {
+            "count_nll": 2.550123469477609,
+            "poisson_nll": 2.768170885921207,
+            "score_mae": 2.723470205014597,
+            "actual_mean": 5.145797598627787,
+            "predicted_mean": 5.082156314487518,
+            "actual_over_predicted": 1.0125224963976116,
+            "wdl_logloss": 0.8198644493278154,
+            "wdl_brier_sum_over_3": 0.17316132238715287,
+            "actual_draw_rate": 0.025728987993138937,
+            "predicted_draw_rate": 0.0946614480768108
+          }
+        }
+      },
+      "paired_differences": {
+        "lineup_delta_minus_context": {
+          "f5_count_nll": {
+            "mean_delta": 0.0008214233454577167,
+            "ci95": [
+              -0.00046295311823091556,
+              0.0021013866460282402
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 0.0022408170310412707,
+            "ci95": [
+              -0.0009748754010880253,
+              0.005409820682420172
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.0004984835125108421,
+            "ci95": [
+              -0.0010053737791222044,
+              0.001978100794045213
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 7.468240999810185e-05,
+            "ci95": [
+              -0.00032049704427149185,
+              0.0004745397010621785
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": 0.0012034399294594265,
+            "ci95": [
+              -0.000573737754461665,
+              0.0029882199769197654
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": 0.003076233798687795,
+            "ci95": [
+              -0.0006654350974567672,
+              0.006833054794938581
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": 0.00038139525686205444,
+            "ci95": [
+              -0.0016932556073013408,
+              0.0024515981603225414
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": 0.00010654196295733606,
+            "ci95": [
+              -0.0005107737538984958,
+              0.0007216569945562105
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        },
+        "lineup_platoon_minus_context": {
+          "f5_count_nll": {
+            "mean_delta": 0.0007728887620111279,
+            "ci95": [
+              -0.0013113536528244981,
+              0.002808923035136725
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 0.0022622023510655907,
+            "ci95": [
+              -0.0028514209470524485,
+              0.0072020977757419405
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.0008234598867922319,
+            "ci95": [
+              -0.0016724380927858936,
+              0.0032038316428691315
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 0.0001609120284027017,
+            "ci95": [
+              -0.0005079559580814967,
+              0.0007880363376738223
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": 0.0007388521142381241,
+            "ci95": [
+              -0.0017266173219093776,
+              0.0032981220523883733
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": 0.0023778490014387758,
+            "ci95": [
+              -0.002848092552098177,
+              0.007713160931076626
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": 0.00014152122538538226,
+            "ci95": [
+              -0.002795845340390684,
+              0.003130126005438977
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": -4.9541907012043995e-05,
+            "ci95": [
+              -0.000928278982569737,
+              0.0008435167175637298
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        },
+        "lineup_platoon_minus_lineup_delta": {
+          "f5_count_nll": {
+            "mean_delta": -4.853458344658885e-05,
+            "ci95": [
+              -0.0016029954095636025,
+              0.0014877831273847357
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_poisson_nll": {
+            "mean_delta": 2.138532002431982e-05,
+            "ci95": [
+              -0.0037341171913915275,
+              0.0037249226169640383
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_logloss": {
+            "mean_delta": 0.0003249763742813897,
+            "ci95": [
+              -0.0014459457868366253,
+              0.0021220339183803615
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "f5_wdl_brier": {
+            "mean_delta": 8.622961840459984e-05,
+            "ci95": [
+              -0.00038908838119430057,
+              0.000569973679788163
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_count_nll": {
+            "mean_delta": -0.00046458781522130233,
+            "ci95": [
+              -0.0024057090550050893,
+              0.0015373655972746954
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_poisson_nll": {
+            "mean_delta": -0.0006983847972490192,
+            "ci95": [
+              -0.004782415197560105,
+              0.003424048567047864
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_logloss": {
+            "mean_delta": -0.00023987403147667237,
+            "ci95": [
+              -0.002358726350640607,
+              0.001821765156806378
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          },
+          "full_wdl_brier": {
+            "mean_delta": -0.00015608386996937999,
+            "ci95": [
+              -0.0007811739205266319,
+              0.0004539182441593675
+            ],
+            "n_games": 583,
+            "unit": "game",
+            "negative_is_better": true
+          }
+        }
+      }
+    }
+  ],
+  "decision": "RESEARCH_ONLY_NO_PRODUCTION_PROMOTION_FROM_DEVELOPMENT_REPLAY"
+}
