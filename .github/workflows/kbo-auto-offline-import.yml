@@ -28,8 +28,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p out/baseline
-          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir out/baseline
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --pattern 'status.json' --dir out/baseline
           test -s out/baseline/kbo_pbp_2026_latest.parquet
+          test -s out/baseline/status.json
       - name: Fail-closed original source and cumulative index validation
         run: |
           python -m py_compile cloud/auto_import_naver.py
