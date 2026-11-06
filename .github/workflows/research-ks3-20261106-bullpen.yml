@@ -1,0 +1,55 @@
+name: KS3 2026-11-06 pitcher availability proxy audit
+on:
+  push:
+    branches: [research/ks3-20261106-clean-pre]
+    paths:
+      - '.github/workflows/research-ks3-20261106-bullpen.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bullpen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'pyarrow>=15' 'numpy>=1.26,<3'
+      - name: Fetch audited as-of 11-04 PBP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kbo-ks3
+          gh release download latest-pbp --pattern kbo_pbp_2026_latest.parquet --dir /tmp/kbo-ks3 --clobber
+          echo '0ca95818ac8ea00030f79d8f5aa9c98987acb4edd334a8228ef9fb3503e12d4e  /tmp/kbo-ks3/kbo_pbp_2026_latest.parquet' | sha256sum -c -
+      - name: Both-team pregame candidate scouting (not confirmed KS active roster)
+        run: |
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kbo-ks3/kbo_pbp_2026_latest.parquet --team KT --date 2026-11-06 --current-starter-id 50030 --expect-sha 0ca95818ac8ea00030f79d8f5aa9c98987acb4edd334a8228ef9fb3503e12d4e --output /tmp/kbo-ks3/kt_bullpen_asof.json
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kbo-ks3/kbo_pbp_2026_latest.parquet --team SS --date 2026-11-06 --current-starter-id 53375 --expect-sha 0ca95818ac8ea00030f79d8f5aa9c98987acb4edd334a8228ef9fb3503e12d4e --output /tmp/kbo-ks3/ss_bullpen_asof.json
+      - name: G1-G2 actual prior workload, raw pitch rows not official pitch counts
+        run: |
+          python - <<'PY'
+          import pandas as pd,numpy as np,json
+          from pathlib import Path
+          d=Path('/tmp/kbo-ks3')
+          x=pd.read_parquet(d/'kbo_pbp_2026_latest.parquet')
+          x=x[x.game_pk.astype(str).isin(['77771103SSKT02026','77771104SSKT02026'])].copy()
+          assert x.game_pk.nunique()==2
+          x['def_team']=np.where(x.inning_topbot.astype(str).str.lower().str.startswith('top'),x.home_team,x.away_team)
+          result={}
+          for team,z in x.groupby('def_team'):
+           q=z.groupby(['game_date','pitcher','pitcher_name']).size().reset_index(name='raw_pitch_rows')
+           q=q.sort_values(['game_date','raw_pitch_rows'],ascending=[True,False])
+           result[team]=q.to_dict(orient='records')
+           print('KS3_BP_LAST2_'+team+'='+json.dumps(result[team],ensure_ascii=False,default=str))
+          (d/'ks3_two_day_bullpen_rows.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,default=str)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS3-20261106-bullpen-snapshot
+          path: /tmp/kbo-ks3/*bullpen*.json
+          if-no-files-found: warn
