@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from collect_kbo_pitcher_hands import parse_profile
 from research_offense_platoon_v2 import (
     BASE_FEATURES, DELTA_FEATURES, PLATOON_FEATURES, PLAN_PATH,
-    build_rows, phase_distributions, wdl_from_pmf,
+    build_rows, phase_distributions, wdl_from_pmf, prepare_games,
 )
 
 
@@ -103,6 +103,25 @@ class OffenseIntegrityTests(unittest.TestCase):
         self.assertEqual(r["name"], "선수")
         self.assertEqual(parse_profile(source.replace("좌투우타", "우언좌타"))["throws"], "R")
         self.assertEqual(parse_profile("release_pos_x=-2; stand=R")["throws"], "UNKNOWN")
+
+    def test_archived_bot_half_encoding_recovers_both_starters(self):
+        rows = []
+        for inning in range(1, 7):
+            for half in ("top", "bot"):
+                for slot in range(3):
+                    rows.append({
+                        "game_pk": "archived", "game_date": pd.Timestamp("2024-04-01"),
+                        "home_team": "B", "away_team": "A", "inning": inning,
+                        "inning_topbot": half, "at_bat_number": len(rows)+1, "pitch_number": 1,
+                        "batter": (100 if half == "top" else 200) + ((inning-1)*3+slot) % 9,
+                        "pitcher": 901 if half == "top" else 902, "stand": "R",
+                        "events": "field_out", "post_away_score": 0, "post_home_score": 0,
+                        "outs_when_up": slot, "post_outs": slot+1,
+                    })
+        games, audit = prepare_games(pd.DataFrame(rows))
+        self.assertEqual(audit["valid_score_games"], 1)
+        self.assertEqual(games[0]["starters"], {"B": "901", "A": "902"})
+        self.assertEqual(len(games[0]["lineups"]["A"]), 9)
 
 
 if __name__ == "__main__":

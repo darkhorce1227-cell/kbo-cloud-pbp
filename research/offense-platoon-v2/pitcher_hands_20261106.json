@@ -1,0 +1,4605 @@
+{
+  "source": "OFFICIAL_KBO_PROFILE_STATIC_HANDEDNESS_ONLY",
+  "players": {
+    "50030": {
+      "player_id": "50030",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50030",
+      "retrieved_at_utc": "2026-11-06T08:23:41.312532+00:00",
+      "name": "소형준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "502470c45503ff2397791ecf663b87640af86a59d8ba5fa75afafa1362d8309a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50036": {
+      "player_id": "50036",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50036",
+      "retrieved_at_utc": "2026-11-06T08:23:41.320237+00:00",
+      "name": "이강준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b06c946ecaef1b158433c1911c7667f7accb2e9d9ce9ccc53df5f84b66ec8f41",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50106": {
+      "player_id": "50106",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50106",
+      "retrieved_at_utc": "2026-11-06T08:23:41.321754+00:00",
+      "name": "유영찬",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "69f220f509d558499e6b014d620c5dd79759dca523c2a563dea3dee6601f56f5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50109": {
+      "player_id": "50109",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50109",
+      "retrieved_at_utc": "2026-11-06T08:23:41.322643+00:00",
+      "name": "성재헌",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "81ca5b2ee1f6c2967b07f1d4b16900e414261ac0df90c5411e4518f96910a662",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50126": {
+      "player_id": "50126",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50126",
+      "retrieved_at_utc": "2026-11-06T08:31:52.316239+00:00",
+      "name": "이민호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "737211ef2c7304aa0dd81001d3127c7f4a638f4b2484933ee2fd683a3e4cf801",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50157": {
+      "player_id": "50157",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50157",
+      "retrieved_at_utc": "2026-11-06T08:23:41.323409+00:00",
+      "name": "김윤식",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d1a163b51e91c91c65e3acf32a963f08f589fa7376ebdfabb11f0a410002aa7d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50203": {
+      "player_id": "50203",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50203",
+      "retrieved_at_utc": "2026-11-06T08:23:41.328984+00:00",
+      "name": "권휘",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "bdfaf6228f0b2f62c354ed5666eb1a404ff27e374799d6193615e69a1d231844",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50206": {
+      "player_id": "50206",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50206",
+      "retrieved_at_utc": "2026-11-06T08:23:48.471682+00:00",
+      "name": "최종인",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "cd5abf1a0262b28cf1f4a77e9e251bc8bfef892af353568ee623524367060dbb",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50211": {
+      "player_id": "50211",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50211",
+      "retrieved_at_utc": "2026-11-06T08:23:48.743475+00:00",
+      "name": "제환유",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "83b0185e5954b5c0f157cc864f5245423a9993e44628348fb7a1f6c889c53894",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50234": {
+      "player_id": "50234",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50234",
+      "retrieved_at_utc": "2026-11-06T08:31:52.329371+00:00",
+      "name": "플렉센",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "00aa642b0023efbd9468fdd4c723ed44b98e1fd46baeba421633d480b57de496",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50354": {
+      "player_id": "50354",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50354",
+      "retrieved_at_utc": "2026-11-06T08:23:49.215288+00:00",
+      "name": "이종민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "baf981227685453f73cd863d6194662b73f308c3ce0cc5fa4f5f11ce3fd32e94",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50360": {
+      "player_id": "50360",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50360",
+      "retrieved_at_utc": "2026-11-06T08:23:49.535528+00:00",
+      "name": "김동혁",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "fe5a11bbcf328993f2d6feb97836a24c8bf45e74156c6c60d63f770692e31b98",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50393": {
+      "player_id": "50393",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50393",
+      "retrieved_at_utc": "2026-11-06T08:23:49.630056+00:00",
+      "name": "김동욱",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f4a54cee91f6f2474164dc6ceecf0dbe130db3889e569d762d60e90e514de195",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50430": {
+      "player_id": "50430",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50430",
+      "retrieved_at_utc": "2026-11-06T08:23:49.981895+00:00",
+      "name": "홍원표",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8d9eaa2d6e9d03ed61954854503fbce81ec492ecf87e4884f668b2d1f3c960e0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50441": {
+      "player_id": "50441",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50441",
+      "retrieved_at_utc": "2026-11-06T08:23:54.029287+00:00",
+      "name": "황동재",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c646d95c4f8b4478813f0ec7f09646b070adc69eeb1fd0bea482c978daa3b4de",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50464": {
+      "player_id": "50464",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50464",
+      "retrieved_at_utc": "2026-11-06T08:23:54.063071+00:00",
+      "name": "이승민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "1eb94b36174c2dc13001000ad80d7329f007e9fe3cbd9f834d7757b2ba9e8225",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50556": {
+      "player_id": "50556",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50556",
+      "retrieved_at_utc": "2026-11-06T08:23:54.074725+00:00",
+      "name": "최준용",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "077cb52d73f14845863e323de59a02f711a863f88e9bf2ae7b4b7dee23948362",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50596": {
+      "player_id": "50596",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50596",
+      "retrieved_at_utc": "2026-11-06T08:23:54.104392+00:00",
+      "name": "홍민기",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "78b3a99455368198d6ee870d3b4e7065d6a9434579c8ddf3b0a6243ca7c50e14",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50604": {
+      "player_id": "50604",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50604",
+      "retrieved_at_utc": "2026-11-06T08:23:54.131584+00:00",
+      "name": "유지성",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "3e2bce5a7444bc8eb8587961b1e0d3f91b20f74eb52166cdb0d250369ec10496",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50641": {
+      "player_id": "50641",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50641",
+      "retrieved_at_utc": "2026-11-06T08:23:54.265004+00:00",
+      "name": "장재혁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4e384d4966f8ae02d61a6134dd5dab4b46c3d67cd9c5663d8bf58c451b5118b2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50650": {
+      "player_id": "50650",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50650",
+      "retrieved_at_utc": "2026-11-06T08:24:00.140627+00:00",
+      "name": "최용준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "201903f002102eb08e2da8c5fc400052586b9ef271e80448f90d98e527c3174e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50662": {
+      "player_id": "50662",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50662",
+      "retrieved_at_utc": "2026-11-06T08:24:00.173031+00:00",
+      "name": "정해영",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9be2eb7627c7c9ddc2672ee1b92f5f24b831d4c310e49f2a5f73dd72db17199b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50705": {
+      "player_id": "50705",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50705",
+      "retrieved_at_utc": "2026-11-06T08:24:00.182374+00:00",
+      "name": "강재민",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "042b084be24b1cb664b7ef78b015322a9899adabec1c7c981dc0d3011a36f55f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50710": {
+      "player_id": "50710",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50710",
+      "retrieved_at_utc": "2026-11-06T08:31:52.344495+00:00",
+      "name": "김범준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c7c001557958fd3df8c8ce6834b7416603a6cd65611c4a3668fec8b694037985",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50711": {
+      "player_id": "50711",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50711",
+      "retrieved_at_utc": "2026-11-06T08:24:00.780364+00:00",
+      "name": "김승일",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "ad818c956d9e00028a1934cc37a291f14a0ce7c6d9295e221bb5bb4c42a1caef",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50720": {
+      "player_id": "50720",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50720",
+      "retrieved_at_utc": "2026-11-06T08:24:00.808436+00:00",
+      "name": "남지민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f16d6e08c822e7b4b83b439b68756fe5bca451091e041377c4a0096c0e300975",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50726": {
+      "player_id": "50726",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50726",
+      "retrieved_at_utc": "2026-11-06T08:24:00.814093+00:00",
+      "name": "한승주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "29a08a4e0397d01fff3e9357c3b8892d6551f1526478a6dc61c86b64903d06a0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50812": {
+      "player_id": "50812",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50812",
+      "retrieved_at_utc": "2026-11-06T08:24:05.738012+00:00",
+      "name": "박시후",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "90d355d8feb5fee3b25548238dca4321def881bd368923509b563ef7412deebf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50848": {
+      "player_id": "50848",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50848",
+      "retrieved_at_utc": "2026-11-06T08:24:05.814368+00:00",
+      "name": "김성민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "99e6ad05d78b8b320228a12a67f4a6cacf9203d8f1911907778d3b8b5949be03",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50859": {
+      "player_id": "50859",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50859",
+      "retrieved_at_utc": "2026-11-06T08:24:05.814912+00:00",
+      "name": "오원석",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f16a00f3edd7fb22ebdac895dd019e94946ffa96fd136db2ca104a5c7bb9806f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50904": {
+      "player_id": "50904",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50904",
+      "retrieved_at_utc": "2026-11-06T08:24:05.815857+00:00",
+      "name": "이종준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "292062b874cf6f3e7113e54d4242c3e4e49fd4ae96f28a0be644d487d767d72e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "50992": {
+      "player_id": "50992",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=50992",
+      "retrieved_at_utc": "2026-11-06T08:24:05.834127+00:00",
+      "name": "김태경",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b7c9f31486e5baf43ab68773882aaf4d7d92f326bcc52cd535ab451d227f51bf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51058": {
+      "player_id": "51058",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51058",
+      "retrieved_at_utc": "2026-11-06T08:24:05.836065+00:00",
+      "name": "한차현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a00bb5e0042a9df1bf15301f548af094a38e110a0e0563a8ced279b45afd3390",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51097": {
+      "player_id": "51097",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51097",
+      "retrieved_at_utc": "2026-11-06T08:24:11.107008+00:00",
+      "name": "김영현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "87d48a49269edea11e30472d58dcd85fed41d377acb5deab40052cee5e56977f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51110": {
+      "player_id": "51110",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51110",
+      "retrieved_at_utc": "2026-11-06T08:24:11.138369+00:00",
+      "name": "이믿음",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "fe095be23420038e7420c02a8399013e4480e65ce552110300ab2e7c947bf1de",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51111": {
+      "player_id": "51111",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51111",
+      "retrieved_at_utc": "2026-11-06T08:24:11.178176+00:00",
+      "name": "송승기",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d0dbecd3581cc54b7f2e72d4bdeb8da91f70fa49f5646b38db47b111b95a48f0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51143": {
+      "player_id": "51143",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51143",
+      "retrieved_at_utc": "2026-11-06T08:24:11.199909+00:00",
+      "name": "강효종",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "21e8c93afa53013a5721bff2ef43d6d33517b8740a93e5c952f3f2fce5652642",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51154": {
+      "player_id": "51154",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51154",
+      "retrieved_at_utc": "2026-11-06T08:24:11.203349+00:00",
+      "name": "김진수",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "10658968173e4308c8ea78a64b946f6ce9262ab20bfdf607e60d772771e2f4e8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51163": {
+      "player_id": "51163",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51163",
+      "retrieved_at_utc": "2026-11-06T08:31:52.351079+00:00",
+      "name": "조건희",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "2db3dc2ddc5d3cec0ab26093ff0f31e015fb6f4812e68a597f959527007f993b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51230": {
+      "player_id": "51230",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51230",
+      "retrieved_at_utc": "2026-11-06T08:24:11.247498+00:00",
+      "name": "김동주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "db2ff51f6d2b6c6f6a3d58eea1f2b456ceb0e2e88e9acf876f8ebbfc46e2e2dd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51264": {
+      "player_id": "51264",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51264",
+      "retrieved_at_utc": "2026-11-06T08:24:16.706128+00:00",
+      "name": "최승용",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c2b2b08e2adaa023363edc8da8000854b2653864931035db42eb6085211aa488",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51294": {
+      "player_id": "51294",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51294",
+      "retrieved_at_utc": "2026-11-06T08:24:16.761093+00:00",
+      "name": "김도윤",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "3077e66b21155a97d958712a2ae8159f86b3268c2ace8804c6e14dbd50600ed8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51301": {
+      "player_id": "51301",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51301",
+      "retrieved_at_utc": "2026-11-06T08:31:52.353336+00:00",
+      "name": "김성진",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "5ca93c5d948b5665a40a33dbe79300f4837270c25ca7d21bc7dd5562b2a3df9c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51454": {
+      "player_id": "51454",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51454",
+      "retrieved_at_utc": "2026-11-06T08:24:16.788287+00:00",
+      "name": "이승현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "a1253936ba68e3e91229ea0bc7942dec30da1de4dc55ce8da4fa0cd9ed418fbd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51460": {
+      "player_id": "51460",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51460",
+      "retrieved_at_utc": "2026-11-06T08:24:16.792651+00:00",
+      "name": "이재희",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "d038d92d39e76e4f30eb12af2ad7f39a594c400b328e1a57ebdd2352ff2100c7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51516": {
+      "player_id": "51516",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51516",
+      "retrieved_at_utc": "2026-11-06T08:24:16.801922+00:00",
+      "name": "김진욱",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "21f104df31e78f732dd752c7f5c3c094fb6eeb018427192c7d39c7f7f3501d46",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51526": {
+      "player_id": "51526",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51526",
+      "retrieved_at_utc": "2026-11-06T08:24:16.872337+00:00",
+      "name": "우강훈",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "e61c4bc502b3810dd645f3bb797c00147d2a157d0a014bf30f844d892b25dbaf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51546": {
+      "player_id": "51546",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51546",
+      "retrieved_at_utc": "2026-11-06T08:24:22.262229+00:00",
+      "name": "정우준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6e6b09ff1309eb4e7e87ce54490f69151f4f25e1657815ae6dc294ac0ba8a273",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51586": {
+      "player_id": "51586",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51586",
+      "retrieved_at_utc": "2026-11-06T08:31:52.383827+00:00",
+      "name": "김창훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "916d66ca5516fff922187aad515cefc807a45c5f37a0fad7c13fca4555a80300",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51594": {
+      "player_id": "51594",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51594",
+      "retrieved_at_utc": "2026-11-06T08:24:22.285931+00:00",
+      "name": "송재영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "ae93521b30c7b227d295a6ff524c177ea80bbc87fe95707bf0a50d269632e791",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51648": {
+      "player_id": "51648",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51648",
+      "retrieved_at_utc": "2026-11-06T08:24:22.330134+00:00",
+      "name": "이의리",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "85a9476ee0dcf997a2f24d1d61de2100d8a7472824c052ffe86f903f2d4f0619",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51702": {
+      "player_id": "51702",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51702",
+      "retrieved_at_utc": "2026-11-06T08:32:00.229379+00:00",
+      "name": "이준기",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1e9f384078341348f4222c3431ca26afa7821c196f3ca4e5de22de20b5cd27d8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51713": {
+      "player_id": "51713",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51713",
+      "retrieved_at_utc": "2026-11-06T08:24:22.347384+00:00",
+      "name": "김규연",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "66a3bd41bf29e888af7a47dbab196c619d6f05bf905521cbdb2d7841be687fae",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51715": {
+      "player_id": "51715",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51715",
+      "retrieved_at_utc": "2026-11-06T08:24:22.367971+00:00",
+      "name": "김기중",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "2885481f53359af5ca5189adfcc9c575e5e0d7a909049c7954282aa96fe88e51",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51761": {
+      "player_id": "51761",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51761",
+      "retrieved_at_utc": "2026-11-06T08:32:00.244198+00:00",
+      "name": "배동현",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "d9f779aac5e3797fb4a414798d11e25ba27e3fb307f0e92537a2859f60ac5059",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51867": {
+      "player_id": "51867",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51867",
+      "retrieved_at_utc": "2026-11-06T08:24:22.385525+00:00",
+      "name": "김건우",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c4d3692755238b968c6bfacb3cc1f63004324c4ba3765aece2d390298004e66b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51895": {
+      "player_id": "51895",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51895",
+      "retrieved_at_utc": "2026-11-06T08:24:27.753611+00:00",
+      "name": "장지훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "12e044101b012853ca18fa9b77b0baf3282bb93993701702740627e00ab8e34f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51897": {
+      "player_id": "51897",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51897",
+      "retrieved_at_utc": "2026-11-06T08:24:27.758692+00:00",
+      "name": "조병현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "891df9742e3dfc02982d2f13662e3b6903feaa7ba82f686c1f773f6f18a458dc",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51948": {
+      "player_id": "51948",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51948",
+      "retrieved_at_utc": "2026-11-06T08:24:27.832904+00:00",
+      "name": "이용준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "90506f775141b010074777614c39aa820355adee6c82feb029f1c67c69d46481",
+      "status": "VERIFIED_PROFILE"
+    },
+    "51994": {
+      "player_id": "51994",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=51994",
+      "retrieved_at_utc": "2026-11-06T08:24:27.840315+00:00",
+      "name": "한재승",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "94712f736afbccb6fccf09e25f2f3d6183de7656139662785eac377efabe1a1c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52043": {
+      "player_id": "52043",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52043",
+      "retrieved_at_utc": "2026-11-06T08:24:27.863347+00:00",
+      "name": "벤자민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "ab244b543bb562ab19ec51bd65a0a1c96e03f0739bb9a2b75282c3d1f9b29ed7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52060": {
+      "player_id": "52060",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52060",
+      "retrieved_at_utc": "2026-11-06T08:24:27.865460+00:00",
+      "name": "박영현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2f34d3c72e40f5daa2f2d3184cc751dc8b575a3c3b8ba50d2df60362700f292b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52149": {
+      "player_id": "52149",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52149",
+      "retrieved_at_utc": "2026-11-06T08:32:01.680480+00:00",
+      "name": "조원태",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "15accc5b4af635951d136c07cb42ccbcea1180b8e7213dddcea5dffe040c1629",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52202": {
+      "player_id": "52202",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52202",
+      "retrieved_at_utc": "2026-11-06T08:24:33.383954+00:00",
+      "name": "윤태호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f39cc04a4f1319135c6a66b9b0bd31758864749a4dd178248f44bd8461051e10",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52204": {
+      "player_id": "52204",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52204",
+      "retrieved_at_utc": "2026-11-06T08:24:33.393445+00:00",
+      "name": "이병헌",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f929b40d8f22b5c313929c68bf83a2ae03468fbb7324a1026d73e50c2e3511d1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52206": {
+      "player_id": "52206",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52206",
+      "retrieved_at_utc": "2026-11-06T08:24:33.452603+00:00",
+      "name": "최지강",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "78c5bf3aaef2d98e902843ac77b1687e366da3b312883cbb25aab9a6c2f19db1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52257": {
+      "player_id": "52257",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52257",
+      "retrieved_at_utc": "2026-11-06T08:24:33.455066+00:00",
+      "name": "브랜든",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "e55c14d2d294ba3ec8a56e3552a7a61fc5736bae7ae52ed9b81435d4408deb6c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52330": {
+      "player_id": "52330",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52330",
+      "retrieved_at_utc": "2026-11-06T08:24:33.460060+00:00",
+      "name": "주승우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6bb32e033ea26f533ef7ae1b8c19a9c697ff800d225b9b25a6f19e869e0cebd8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52395": {
+      "player_id": "52395",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52395",
+      "retrieved_at_utc": "2026-11-06T08:24:33.476207+00:00",
+      "name": "윤석원",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "cca3e2a93612e866deaa61b940484eb48f3ede3aa7cc4e703f1d17d28ffd4b5c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52397": {
+      "player_id": "52397",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52397",
+      "retrieved_at_utc": "2026-11-06T08:24:38.955340+00:00",
+      "name": "이명종",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "501cf3231790200425730655676f4ade3e8fc4e1cc4ea2124fd55ee2d12fa23d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52528": {
+      "player_id": "52528",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52528",
+      "retrieved_at_utc": "2026-11-06T08:24:38.973875+00:00",
+      "name": "반즈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "dba6209a648e2cf4eedc0c1e143405f0f86529312d290fef8b9313bfa8979c5e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52530": {
+      "player_id": "52530",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52530",
+      "retrieved_at_utc": "2026-11-06T08:24:38.990441+00:00",
+      "name": "이민석",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c03b7a9bb46dc585cbea244223c24b23f6542c0fdec4ee48f65620105a19387c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52558": {
+      "player_id": "52558",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52558",
+      "retrieved_at_utc": "2026-11-06T08:24:39.008845+00:00",
+      "name": "진승현",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "8dcba603648410e1d1a20c7ae03e668f37a8d60f660be47a2b184071f9cdaf43",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52639": {
+      "player_id": "52639",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52639",
+      "retrieved_at_utc": "2026-11-06T08:24:39.037315+00:00",
+      "name": "최지민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "a833bdfa11d67a1ebe3950865f74123600b0205f3a780fb28199f50aa0b67177",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52641": {
+      "player_id": "52641",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52641",
+      "retrieved_at_utc": "2026-11-06T08:24:39.064016+00:00",
+      "name": "황동하",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7d26351e573fa984befb8bd6f8a446dcc893ce14c1a728871d41c3fc739eb872",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52701": {
+      "player_id": "52701",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52701",
+      "retrieved_at_utc": "2026-11-06T08:24:44.345262+00:00",
+      "name": "문동주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ab93a31da34122766def6403bb47e1c80a625e08084417479c4efd39e5fcb09b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52720": {
+      "player_id": "52720",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52720",
+      "retrieved_at_utc": "2026-11-06T08:24:44.369249+00:00",
+      "name": "페냐",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8a949e91d8265135cdbee67c59afdc742d15321a928a7672d1a0dc6851b0e3ee",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52731": {
+      "player_id": "52731",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52731",
+      "retrieved_at_utc": "2026-11-06T08:24:44.428310+00:00",
+      "name": "박준영",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "76c134d3cd2671f815099fd3d28a452b6c38d2bdc3890e8a750a8d8468f9f730",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52809": {
+      "player_id": "52809",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52809",
+      "retrieved_at_utc": "2026-11-06T08:24:44.430455+00:00",
+      "name": "전영준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "fff1c8c746eaf19a14b8a2fd28affaa3ea5a2245d3a7e9cf164ced337aad9123",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52844": {
+      "player_id": "52844",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52844",
+      "retrieved_at_utc": "2026-11-06T08:32:01.696982+00:00",
+      "name": "김도현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "20174cf550fb4ea6e90e85bab49c9a8c76de0e6def494f7fc7abe2523806b2cf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52867": {
+      "player_id": "52867",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52867",
+      "retrieved_at_utc": "2026-11-06T08:32:01.697777+00:00",
+      "name": "윤태현",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "1ecf03692f285bc82b31ef46894214d4ac27fc92de2733e39b770f4e00ea2201",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52868": {
+      "player_id": "52868",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52868",
+      "retrieved_at_utc": "2026-11-06T08:24:44.433881+00:00",
+      "name": "이기순",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "32279cd17969483e4ed36c5bf27fea58ec7fd31fa49b70237a1e997166993b8e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52873": {
+      "player_id": "52873",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52873",
+      "retrieved_at_utc": "2026-11-06T08:24:44.469995+00:00",
+      "name": "신헌민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1b4086d0eb661268756a9021cf8d19b478a3f3cb0deb0f23f740760ad3c111b5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52902": {
+      "player_id": "52902",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52902",
+      "retrieved_at_utc": "2026-11-06T08:24:50.089075+00:00",
+      "name": "임지민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5146e53db9c0869a469dda358abf4057110826acf68b44ca9cebca21392a77a4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52903": {
+      "player_id": "52903",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52903",
+      "retrieved_at_utc": "2026-11-06T08:24:50.092053+00:00",
+      "name": "조민석",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "9e868914ad8f584d6f0cf0ea00eb9de78d63efc40380feeccc9f8b4b9314cf2a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52992": {
+      "player_id": "52992",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52992",
+      "retrieved_at_utc": "2026-11-06T08:24:50.104709+00:00",
+      "name": "이준혁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "186c1cfcfad81aae9a022e21603db92411c9fa04a3d490c206e9b9c65e23d6c8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "52995": {
+      "player_id": "52995",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=52995",
+      "retrieved_at_utc": "2026-11-06T08:24:50.145241+00:00",
+      "name": "김녹원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b30cfab08bd8663193821813939c39be1651cccf78fd54062126c92b9843f712",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53006": {
+      "player_id": "53006",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53006",
+      "retrieved_at_utc": "2026-11-06T08:24:50.161216+00:00",
+      "name": "강건",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c3e5a2e25fc0c4d85f43e605b6195180dd19f5bc82328d54b68a4e2f686611ff",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53029": {
+      "player_id": "53029",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53029",
+      "retrieved_at_utc": "2026-11-06T08:32:01.701617+00:00",
+      "name": "김정운",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "7b4af9b5fdb064a5b269281d78e24aabf8d356d812ccde55a4c5ff28a3c32516",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53139": {
+      "player_id": "53139",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53139",
+      "retrieved_at_utc": "2026-11-06T08:24:50.199078+00:00",
+      "name": "박명근",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "454c0e27f51a1b4d4323825dc88d908ead77294ba08994801a3bfb3803482d5d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53164": {
+      "player_id": "53164",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53164",
+      "retrieved_at_utc": "2026-11-06T08:24:55.703992+00:00",
+      "name": "김동규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4326b8f2ac4d6a85ea111aa50cb42e9d6c1781d5151083c4c675acd582995cd3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53259": {
+      "player_id": "53259",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53259",
+      "retrieved_at_utc": "2026-11-06T08:24:55.709309+00:00",
+      "name": "최준호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "62bcab795eedeb6a7eb4244e6b269ea9f6fed6489eafc85c959bc874ef259d7b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53262": {
+      "player_id": "53262",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53262",
+      "retrieved_at_utc": "2026-11-06T08:24:55.738785+00:00",
+      "name": "김유성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e83c08e1fc6a22f07f24523556ed28a04eaa5e83ed1f4a5233ca882ed02847f8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53301": {
+      "player_id": "53301",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53301",
+      "retrieved_at_utc": "2026-11-06T08:24:55.755914+00:00",
+      "name": "박윤성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "78433e0953136255552474b143034f864f398bcfc2c7cddc2f15674cd40680f4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53375": {
+      "player_id": "53375",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53375",
+      "retrieved_at_utc": "2026-11-06T08:24:55.757141+00:00",
+      "name": "후라도",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "da1eae2486e780ad4af98ee1dd1b4d7f6264a640cf48c19ad75a16d56d77ba70",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53455": {
+      "player_id": "53455",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53455",
+      "retrieved_at_utc": "2026-11-06T08:24:55.765238+00:00",
+      "name": "이호성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4936afd8c30b60fe5530551bc94efa0a85c6e2b953637c67398d0593d9d781c7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53540": {
+      "player_id": "53540",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53540",
+      "retrieved_at_utc": "2026-11-06T08:32:08.683606+00:00",
+      "name": "김기준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8dd8ee8cac0e398e99ffc01ac4b3df83fbeb82f6676c6cf5a23ca9a85a93cc35",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53546": {
+      "player_id": "53546",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53546",
+      "retrieved_at_utc": "2026-11-06T08:25:01.200833+00:00",
+      "name": "윌커슨",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "df5a26111fd756c0a908673cd0e4fcf00f16f6cae6d0276fb50b65e4620eb44a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53562": {
+      "player_id": "53562",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53562",
+      "retrieved_at_utc": "2026-11-06T08:32:08.709297+00:00",
+      "name": "이진하",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "23265fb4e97cfcb7fe8e5c989dbecd5d05c278869ddf84da4b8d214034582ae1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53609": {
+      "player_id": "53609",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53609",
+      "retrieved_at_utc": "2026-11-06T08:25:01.237968+00:00",
+      "name": "곽도규",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "fae326c8674b48c9dd56b1f164181694f83278926bdff42ac3bed18bd605600a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53613": {
+      "player_id": "53613",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53613",
+      "retrieved_at_utc": "2026-11-06T08:25:01.244129+00:00",
+      "name": "윤영철",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "7244d0c902e4d2a493c8e4a85992660f13291c974b7958b2cf7ff10f19f7da9a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53615": {
+      "player_id": "53615",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53615",
+      "retrieved_at_utc": "2026-11-06T08:25:01.250970+00:00",
+      "name": "이도현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "366c896607743fc615cfad66a778ffe5cddfc1662db6b99b62d5a70bacf7ab2d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53706": {
+      "player_id": "53706",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53706",
+      "retrieved_at_utc": "2026-11-06T08:32:08.736393+00:00",
+      "name": "박재규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7ba7eb118532fa1bdf9207d7f04adbef594b1d784e8888ce6b42376a63753bd4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53714": {
+      "player_id": "53714",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53714",
+      "retrieved_at_utc": "2026-11-06T08:25:01.263334+00:00",
+      "name": "산체스",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "38e4bc2839b6739b2650c369af71dde1e974887f65bfc349aac93c9e357702b5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53754": {
+      "player_id": "53754",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53754",
+      "retrieved_at_utc": "2026-11-06T08:25:01.270761+00:00",
+      "name": "김서현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "83c45a505b4c5ef9cadc1c60f6059f7ea80d875afb3addf52591cf44db4579b6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53825": {
+      "player_id": "53825",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53825",
+      "retrieved_at_utc": "2026-11-06T08:25:06.784388+00:00",
+      "name": "엘리아스",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "bbc70d2b4258304a3bedb6017018fc2e3a9832e6077914167dfd38d7bea941fd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53892": {
+      "player_id": "53892",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53892",
+      "retrieved_at_utc": "2026-11-06T08:25:06.787690+00:00",
+      "name": "이로운",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4bce910cf201f24a947bf567d09ba90c81d0dad0aab70f1c96505a9909afebf2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53898": {
+      "player_id": "53898",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53898",
+      "retrieved_at_utc": "2026-11-06T08:25:06.801172+00:00",
+      "name": "송영진",
+      "profile_position": "투수(우투양타)",
+      "throws": "R",
+      "sha256_html": "e3eaafcb22a08b313b40f4f8c24b55dd6abea81c6a252a1096ebfd2ad2ce19ba",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53919": {
+      "player_id": "53919",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53919",
+      "retrieved_at_utc": "2026-11-06T08:25:06.805980+00:00",
+      "name": "신영우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1d4e3553e1c7bbac9e7172726b100409795a75f38a2b34245583f58190554aa8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53973": {
+      "player_id": "53973",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53973",
+      "retrieved_at_utc": "2026-11-06T08:25:06.842617+00:00",
+      "name": "목지훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2465cea45a610b603c7715d38dd6f10831e3546751098b9a0f57ab13ccf483e8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "53996": {
+      "player_id": "53996",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=53996",
+      "retrieved_at_utc": "2026-11-06T08:25:06.848488+00:00",
+      "name": "이준호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b16085f41222516d23cdc120a735f741cfa7c46f3db86ef65e60e1e10cfd8fdd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54063": {
+      "player_id": "54063",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54063",
+      "retrieved_at_utc": "2026-11-06T08:25:12.281921+00:00",
+      "name": "원상현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "acd4e2ae963773076d8e58db48793c9c6dc972b0086ee3c331e32c105b56d30e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54064": {
+      "player_id": "54064",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54064",
+      "retrieved_at_utc": "2026-11-06T08:25:12.305245+00:00",
+      "name": "육청명",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0157ad973cf42f3f38b68deedcaad692fcfce1d98afc70ffaa1d064f83795685",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54119": {
+      "player_id": "54119",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54119",
+      "retrieved_at_utc": "2026-11-06T08:25:12.353546+00:00",
+      "name": "에르난데스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "20af6dce0ce4db18993053f4aa10bb09c9ee45cebc1c55ccd50d6b756a75155c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54134": {
+      "player_id": "54134",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54134",
+      "retrieved_at_utc": "2026-11-06T08:25:12.358334+00:00",
+      "name": "엔스",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "36b6545c995d016021e0c74a8c1cf8b6b066f906e00e6a9dfad9158ee8ca300e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54148": {
+      "player_id": "54148",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54148",
+      "retrieved_at_utc": "2026-11-06T08:25:12.445145+00:00",
+      "name": "진우영",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "707a1e0d3abe6f42671ed13ced954729c3366121aa6ff359030949b9bee76ef1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54149": {
+      "player_id": "54149",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54149",
+      "retrieved_at_utc": "2026-11-06T08:25:12.470800+00:00",
+      "name": "정지헌",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "46c96110d44d38ebb2fb438510f3d894db485195f1a7061ae119232afe6dd50a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54213": {
+      "player_id": "54213",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54213",
+      "retrieved_at_utc": "2026-11-06T08:25:17.757606+00:00",
+      "name": "박지호",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "7805b467d28567e958fe42160eddac683a6f1d6a5a6d7a4f4140f160ccbc2f4b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54243": {
+      "player_id": "54243",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54243",
+      "retrieved_at_utc": "2026-11-06T08:25:17.822559+00:00",
+      "name": "발라조빅",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "60b6c29e02ea0eb9271b0cd03eede94e0ee9e4ef869fb5023b544dded4990808",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54263": {
+      "player_id": "54263",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54263",
+      "retrieved_at_utc": "2026-11-06T08:25:17.825534+00:00",
+      "name": "김택연",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "96837947768b313803d1c5dc8d4568bfed7ea73061e44ff28acd232234bae811",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54304": {
+      "player_id": "54304",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54304",
+      "retrieved_at_utc": "2026-11-06T08:25:17.827714+00:00",
+      "name": "박범준",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "41cbec3a1b4ba388fc9e756b318722fd63c6196d227025ac3bb47010856845d7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54319": {
+      "player_id": "54319",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54319",
+      "retrieved_at_utc": "2026-11-06T08:25:17.851759+00:00",
+      "name": "김윤하",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2dd6f4d59b7e96c98dd7f2b150d104366030b76929690fded5f9dddd09c1b21b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54354": {
+      "player_id": "54354",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54354",
+      "retrieved_at_utc": "2026-11-06T08:25:17.904553+00:00",
+      "name": "헤이수스",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "3a67cd9a2340588c82f88c9b2a12855d8417635720e3cd7377e7e81cbf0dc062",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54362": {
+      "player_id": "54362",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54362",
+      "retrieved_at_utc": "2026-11-06T08:25:23.507973+00:00",
+      "name": "전준표",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a875e5831d88363b1f91816970469503d466ca151fdb9fd1945e87e8d15f8ab6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54363": {
+      "player_id": "54363",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54363",
+      "retrieved_at_utc": "2026-11-06T08:25:23.515712+00:00",
+      "name": "손현기",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "7087ac6d3a4a093c56e45b5084647e44bc658abc80a2df276c32dd3a0c18d391",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54368": {
+      "player_id": "54368",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54368",
+      "retrieved_at_utc": "2026-11-06T08:25:23.674521+00:00",
+      "name": "김연주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "dfd24f0e69bdbf422bf43562ffed16f8e87bd7d9e4011ef858f0ce900df36b0b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54401": {
+      "player_id": "54401",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54401",
+      "retrieved_at_utc": "2026-11-06T08:25:23.693005+00:00",
+      "name": "김대호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f53d9196d93b6ab309de30bdf544bd18265873a3e1b9e79b0421ded34b72b5e5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54404": {
+      "player_id": "54404",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54404",
+      "retrieved_at_utc": "2026-11-06T08:25:23.745156+00:00",
+      "name": "육선엽",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "66265b9296b188a6fd753b3da566282aa1324eddaef97881a2bee508c68dc3c8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54443": {
+      "player_id": "54443",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54443",
+      "retrieved_at_utc": "2026-11-06T08:25:23.785606+00:00",
+      "name": "레예스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e8dd7d67e56f7da620bc78cdd262bd1389348ef58eaa4e6b2e03a7e9db63dd4c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54452": {
+      "player_id": "54452",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54452",
+      "retrieved_at_utc": "2026-11-06T08:25:29.115783+00:00",
+      "name": "코너",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a4e04d7532cb131475ed59f6e2719604d0748422480b0bec1a7ea20d93311378",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54467": {
+      "player_id": "54467",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54467",
+      "retrieved_at_utc": "2026-11-06T08:25:29.126052+00:00",
+      "name": "정민성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0ef1bf50993a610804c543aacee6da43e732caea698db5c0b29b50f4854de261",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54503": {
+      "player_id": "54503",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54503",
+      "retrieved_at_utc": "2026-11-06T08:25:29.131094+00:00",
+      "name": "박준우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "680db842d74ad0f09a8a3658a31ca2105a3256df41354dd9082553ca9b1ee4f6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54537": {
+      "player_id": "54537",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54537",
+      "retrieved_at_utc": "2026-11-06T08:25:29.168562+00:00",
+      "name": "정현수",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "4b043c3569a81d015092ef18e83ff71cbea584b6c0ae9baf4fa0c0474fc7c7a1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54561": {
+      "player_id": "54561",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54561",
+      "retrieved_at_utc": "2026-11-06T08:25:29.169741+00:00",
+      "name": "전미르",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "86488037a74b473f27fe716c039a2a59c2ae46070a6b027773b2522d3f82e144",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54608": {
+      "player_id": "54608",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54608",
+      "retrieved_at_utc": "2026-11-06T08:25:29.176434+00:00",
+      "name": "김민재",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "27b5e423220c0d564a80407eee740f7b526dffbc98e52abf5fd70606a8b37010",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54610": {
+      "player_id": "54610",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54610",
+      "retrieved_at_utc": "2026-11-06T08:25:34.781737+00:00",
+      "name": "성영탁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "3c490c99fccb10c215de4af78d0135d1891eceb751d73142395830a28bdd69ec",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54612": {
+      "player_id": "54612",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54612",
+      "retrieved_at_utc": "2026-11-06T08:25:34.804404+00:00",
+      "name": "크로우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a9f10b6fccc8299a153fc0f9dcd5edf59c558c392afc4953ba631b0d0d65bc5b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54615": {
+      "player_id": "54615",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54615",
+      "retrieved_at_utc": "2026-11-06T08:25:34.844864+00:00",
+      "name": "스타우트",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "5f606f201c3be3d15f3f3b2c7bc80f6ca1c038b0e3a83853d93a7419c62e08c1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54640": {
+      "player_id": "54640",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54640",
+      "retrieved_at_utc": "2026-11-06T08:25:34.849987+00:00",
+      "name": "네일",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7153b2697b42ff0e4078333fabc2e3893cb6fc6c49d557c326f79de99143fdce",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54645": {
+      "player_id": "54645",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54645",
+      "retrieved_at_utc": "2026-11-06T08:25:34.874133+00:00",
+      "name": "김민주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "21f18a6d1d3e578102f6cbdabf4be1f9b6476e0ff5f01e1d0214cdc778e3d1b0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54664": {
+      "player_id": "54664",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54664",
+      "retrieved_at_utc": "2026-11-06T08:25:34.882955+00:00",
+      "name": "알드레드",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d83bd9a3f15383d5d4bdbfaece34db1b942575e9446bd5a2b976a88f96dee1f4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54666": {
+      "player_id": "54666",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54666",
+      "retrieved_at_utc": "2026-11-06T08:25:40.479309+00:00",
+      "name": "라우어",
+      "profile_position": "투수(좌투우타)",
+      "throws": "L",
+      "sha256_html": "d71f73aa2c599afb5de6027aca35d2378f2509ee7798b7ab91324d998724efd1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54702": {
+      "player_id": "54702",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54702",
+      "retrieved_at_utc": "2026-11-06T08:25:40.487877+00:00",
+      "name": "원종혁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "64fe8625df1b89726ed1b2e7b93840e9f81c69591381e2b16455215227d8df0a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54705": {
+      "player_id": "54705",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54705",
+      "retrieved_at_utc": "2026-11-06T08:25:40.508936+00:00",
+      "name": "김도빈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f0d4b223562bcbe8a40103d7ce4c2fdf394c08dbfb0494f8d0edc1f308a955c2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54720": {
+      "player_id": "54720",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54720",
+      "retrieved_at_utc": "2026-11-06T08:25:40.533962+00:00",
+      "name": "바리아",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "14f053ea0066f0a614c0cf5886636b2d1261af6c4f6814b22f3a391b155fd29e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54729": {
+      "player_id": "54729",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54729",
+      "retrieved_at_utc": "2026-11-06T08:25:40.582488+00:00",
+      "name": "황준서",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "996141882cb5c8860538f3de9d3a48f2bdf237d7bf822e6a156ff5d8027525d8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54755": {
+      "player_id": "54755",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54755",
+      "retrieved_at_utc": "2026-11-06T08:25:40.587439+00:00",
+      "name": "와이스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e86214bcea3cc1ac1a522540b0e55632499efe6646da87d72d72a033b53978ad",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54768": {
+      "player_id": "54768",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54768",
+      "retrieved_at_utc": "2026-11-06T08:25:45.875606+00:00",
+      "name": "조동욱",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "50aea160ac09e14f65c6ffb1d6dbb3cc7290a4acd35f9bc3012f6a83c97d7c81",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54802": {
+      "player_id": "54802",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54802",
+      "retrieved_at_utc": "2026-11-06T08:25:45.910903+00:00",
+      "name": "박기호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d44fb2e4e66daf270479455a20a166bb87df67e7c6e5683f0a2f3d68f757a4e7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54803": {
+      "player_id": "54803",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54803",
+      "retrieved_at_utc": "2026-11-06T08:25:45.912104+00:00",
+      "name": "최현석",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "133959cd48298be1575bce8c419783b863e8cbea0bfe8f5d49b98d1da960d5a6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54804": {
+      "player_id": "54804",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54804",
+      "retrieved_at_utc": "2026-11-06T08:25:45.919933+00:00",
+      "name": "더거",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e7aef9bcb947122f426f6dc505c5189fbc69a67d6ea6998ae9cfd331e7a3aad7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54807": {
+      "player_id": "54807",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54807",
+      "retrieved_at_utc": "2026-11-06T08:25:45.944118+00:00",
+      "name": "박성빈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "bece07b5fc8931d2adc46a224eab14a26fc15bcc884070bc45923f2292b5bd15",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54808": {
+      "player_id": "54808",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54808",
+      "retrieved_at_utc": "2026-11-06T08:32:09.049339+00:00",
+      "name": "변건우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e440a965c307f400251a5fd16fde729f527d0d542f74b90356bfb0f052dd48fd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54833": {
+      "player_id": "54833",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54833",
+      "retrieved_at_utc": "2026-11-06T08:25:45.945482+00:00",
+      "name": "앤더슨",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2f58438602bc3e6df5aae6a554af364f5ad7962dd4e67937bbec4b43435a6ca5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54843": {
+      "player_id": "54843",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54843",
+      "retrieved_at_utc": "2026-11-06T08:25:51.414108+00:00",
+      "name": "시라카와",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6936f2d5563b80384ffc7337f00b10f4c9e0cab2b1e865507fd68105f0379794",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54900": {
+      "player_id": "54900",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54900",
+      "retrieved_at_utc": "2026-11-06T08:25:51.429011+00:00",
+      "name": "임상현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "dcf94a596c79664fe6d4c87b8ea526479878fb44760bc5a0b49b8358a5641fe8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54903": {
+      "player_id": "54903",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54903",
+      "retrieved_at_utc": "2026-11-06T08:25:51.434851+00:00",
+      "name": "최우석",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6a3dd20e73991ac27246c6f55b9540c15ecb40004a9bba25774f5de7ff873ea5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54904": {
+      "player_id": "54904",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54904",
+      "retrieved_at_utc": "2026-11-06T08:25:51.457026+00:00",
+      "name": "손주환",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "44b73eaa509937bbdef6a18c38d6cf93b191a5d6dbebe1820418b48bf5378b56",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54906": {
+      "player_id": "54906",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54906",
+      "retrieved_at_utc": "2026-11-06T08:32:09.056047+00:00",
+      "name": "원종해",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c2a074492a1d45c9707c7aace6e482a14a0c8ca0417582ab69ba6976606eb161",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54910": {
+      "player_id": "54910",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54910",
+      "retrieved_at_utc": "2026-11-06T08:32:09.056916+00:00",
+      "name": "김준원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a11cea966f4e634e50d44cb2081a85478b6a1b027ae771c1c49eb56aa2b7b8fa",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54913": {
+      "player_id": "54913",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54913",
+      "retrieved_at_utc": "2026-11-06T08:25:51.457605+00:00",
+      "name": "김민규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c93617a04885e2e969b3b198c8e5e510b6243c9f72bf93b5e89d5d685602988d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54920": {
+      "player_id": "54920",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54920",
+      "retrieved_at_utc": "2026-11-06T08:25:51.459927+00:00",
+      "name": "카스타노",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "8d9d0ba899d84d7570c94a6fc1d9571ced1a59320257295164b6b3bff753db06",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54930": {
+      "player_id": "54930",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54930",
+      "retrieved_at_utc": "2026-11-06T08:25:56.849588+00:00",
+      "name": "하트",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "313a474d6af701b77e92f8e5c2b218318d9842f0a6e411520a2f8330ca9b82f0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "54944": {
+      "player_id": "54944",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=54944",
+      "retrieved_at_utc": "2026-11-06T08:25:56.903378+00:00",
+      "name": "데이비슨",
+      "profile_position": "내야수(우투우타)",
+      "throws": "R",
+      "sha256_html": "617906b0cec0be83e1780c4e1045e1e9a14fbebd2fa1ffab8becc173df6348b9",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55010": {
+      "player_id": "55010",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55010",
+      "retrieved_at_utc": "2026-11-06T08:32:14.548796+00:00",
+      "name": "장민호",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "317bb95ac37cea5a16030312fffea6863c335b9bc2080f660a71c11e92659891",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55032": {
+      "player_id": "55032",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55032",
+      "retrieved_at_utc": "2026-11-06T08:25:56.908693+00:00",
+      "name": "패트릭",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "04d2af387572d6b3e373ffffa77b5606be2acb431184885ef457fd9aa379388c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55040": {
+      "player_id": "55040",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55040",
+      "retrieved_at_utc": "2026-11-06T08:25:56.941445+00:00",
+      "name": "김동현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5320fbd2261ca40cd391597cb1f8a95c03cd2cedca1f79c42cf0589415f4a25f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55043": {
+      "player_id": "55043",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55043",
+      "retrieved_at_utc": "2026-11-06T08:25:56.970480+00:00",
+      "name": "김재원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "57071ab3bf45983ebc97ede215f5f4cc5240de1f5279e9345ee0d799ad1038ba",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55046": {
+      "player_id": "55046",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55046",
+      "retrieved_at_utc": "2026-11-06T08:25:56.972917+00:00",
+      "name": "박건우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d82cbe54c09ee2d50d0246af3c96d244a3ddb0dc0f34eb1d8ace5b16459e68ba",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55121": {
+      "player_id": "55121",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55121",
+      "retrieved_at_utc": "2026-11-06T08:26:02.307235+00:00",
+      "name": "박시원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d13d9b48445d26da7ca1eb5b2121768e092f549af27e3109634f6b7f46016b28",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55122": {
+      "player_id": "55122",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55122",
+      "retrieved_at_utc": "2026-11-06T08:26:02.310922+00:00",
+      "name": "김종운",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e166eeb232b968555eb048508191b6c8f1606322c1ca232d717435dc51faf709",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55130": {
+      "player_id": "55130",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55130",
+      "retrieved_at_utc": "2026-11-06T08:26:02.338520+00:00",
+      "name": "톨허스트",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ad9b8f0af875d94d903bf3d1f70a30aecf5a31dfdd3b69d96f04b69cb9eb7ebc",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55138": {
+      "player_id": "55138",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55138",
+      "retrieved_at_utc": "2026-11-06T08:26:02.368299+00:00",
+      "name": "코엔 윈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "72a9b83847da7b0c6806890f8682aa749163c3a33d6035de3c942b32a1b5a083",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55146": {
+      "player_id": "55146",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55146",
+      "retrieved_at_utc": "2026-11-06T08:26:02.396383+00:00",
+      "name": "치리노스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "19862e50d59248e30a294ede2b4035dccbd2667be7de26f7b89ebd6b74b06ce9",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55167": {
+      "player_id": "55167",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55167",
+      "retrieved_at_utc": "2026-11-06T08:26:02.436102+00:00",
+      "name": "김영우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7c650d31894d418467fa9d3ff1fa74f55615c57364f6db171fa350aaa2f3562c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55215": {
+      "player_id": "55215",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55215",
+      "retrieved_at_utc": "2026-11-06T08:26:07.706367+00:00",
+      "name": "양재훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ed3420a169fa8df47a4944fde4abd4ebfff0fa9765e90dfbdf9a830fa20716d3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55221": {
+      "player_id": "55221",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55221",
+      "retrieved_at_utc": "2026-11-06T08:26:07.715315+00:00",
+      "name": "김한중",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a5f771c10f8142ec4c2c16e9546d9b8bec66d177736041d9e52a33a7d9ee0480",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55239": {
+      "player_id": "55239",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55239",
+      "retrieved_at_utc": "2026-11-06T08:26:07.714717+00:00",
+      "name": "잭로그",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "a131323d5fcb1a74e2a456769dcab94ef2a5065b4a0221b735c8adbbdf0056a8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55257": {
+      "player_id": "55257",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55257",
+      "retrieved_at_utc": "2026-11-06T08:26:07.744343+00:00",
+      "name": "콜어빈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f98c37604a89c42fbe7f35090ca2c4e226b50c5de42696f18f5dc84dc0c08ed4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55267": {
+      "player_id": "55267",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55267",
+      "retrieved_at_utc": "2026-11-06T08:26:07.772392+00:00",
+      "name": "홍민규",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "7a223786d263ea0ae419d4bac06dc74cdbf4d55782268e36556147f06061ac44",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55268": {
+      "player_id": "55268",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55268",
+      "retrieved_at_utc": "2026-11-06T08:26:07.779974+00:00",
+      "name": "최민석",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0e08ea37420802eb0b88d8ff945647004172808db1a82788a87cba4c0c08c9bc",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55300": {
+      "player_id": "55300",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55300",
+      "retrieved_at_utc": "2026-11-06T08:26:13.926071+00:00",
+      "name": "손힘찬",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2e3cbe6163a82d6b10cad7c487f9d723d6ca5f2c60fe6bf5d861248f2950f1b1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55301": {
+      "player_id": "55301",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55301",
+      "retrieved_at_utc": "2026-11-06T08:26:13.942597+00:00",
+      "name": "이준우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "07f8c8a41b4f0542cf7bc2283133fa653cd082f4694ba8d7d3256534f466db86",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55313": {
+      "player_id": "55313",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55313",
+      "retrieved_at_utc": "2026-11-06T08:26:13.981079+00:00",
+      "name": "정현우",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "379b73ef643b00d9cd3b9116e07ab56b7f12b9275a4a1962609d40930c213f38",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55322": {
+      "player_id": "55322",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55322",
+      "retrieved_at_utc": "2026-11-06T08:26:14.008169+00:00",
+      "name": "로젠버그",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d78f1778925aa9ad357c1933350f5c14a4723dc52b5dd85bcd4caed0533b8b69",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55342": {
+      "player_id": "55342",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55342",
+      "retrieved_at_utc": "2026-11-06T08:26:14.030956+00:00",
+      "name": "메르세데스",
+      "profile_position": "투수(좌투양타)",
+      "throws": "L",
+      "sha256_html": "e3744ffe38cd0a9ce20b3f7f3bb3cbc00e406d787ff7520be192701bcef18239",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55348": {
+      "player_id": "55348",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55348",
+      "retrieved_at_utc": "2026-11-06T08:26:14.058354+00:00",
+      "name": "웰스",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "386b10977e49975e11bd1f77c4797f51d38e9ffb9a75beba5064da3234084119",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55359": {
+      "player_id": "55359",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55359",
+      "retrieved_at_utc": "2026-11-06T08:26:20.197566+00:00",
+      "name": "김서준",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "87aa566ba34a45330604269037b8a5872d5434e539d9387714a820c6712a2cf7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55377": {
+      "player_id": "55377",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55377",
+      "retrieved_at_utc": "2026-11-06T08:26:20.217756+00:00",
+      "name": "정세영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "da883029f11f1f43dd74f21e9a3faec02f1e353adc2dc27794eef5b90b7de21f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55382": {
+      "player_id": "55382",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55382",
+      "retrieved_at_utc": "2026-11-06T08:26:20.233107+00:00",
+      "name": "임진묵",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e75e4287698c905b38bb59dee0d943c43467adb44f5dc032def998442d6f43b5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55394": {
+      "player_id": "55394",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55394",
+      "retrieved_at_utc": "2026-11-06T08:26:20.328072+00:00",
+      "name": "박정훈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c2cc4eb30d8413d7e8cda684cf317e3726402cbaca5349a015b40cec90e6407b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55396": {
+      "player_id": "55396",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55396",
+      "retrieved_at_utc": "2026-11-06T08:26:20.368259+00:00",
+      "name": "윤현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b06b5d6ad6691006ff7e9a6bbaa746361faa34815d6e118bf7a4f25f3195b580",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55420": {
+      "player_id": "55420",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55420",
+      "retrieved_at_utc": "2026-11-06T08:32:14.586815+00:00",
+      "name": "김백산",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b72e2afa820ecd5850c44b19285703cba93b54ac7670fb9ab91933fe188236bf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55455": {
+      "player_id": "55455",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55455",
+      "retrieved_at_utc": "2026-11-06T08:26:20.383895+00:00",
+      "name": "배찬승",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "b5b060b5b1ff9a2f0a7dca53acce84180384d3a31fd55d9952770851ae8255d3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55460": {
+      "player_id": "55460",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55460",
+      "retrieved_at_utc": "2026-11-06T08:26:27.227143+00:00",
+      "name": "가라비토",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "023c050fa20b2a044d526cf8afc2c83dcc099fcedd52f867f00bae350e74d016",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55503": {
+      "player_id": "55503",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55503",
+      "retrieved_at_utc": "2026-11-06T08:26:27.274992+00:00",
+      "name": "이영재",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "fc6b88c29d070f22c1640aa96471cf6c452f4f0075c4865ce4d2c2b018001c14",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55507": {
+      "player_id": "55507",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55507",
+      "retrieved_at_utc": "2026-11-06T08:32:14.587640+00:00",
+      "name": "김태균",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "da2f0c3a9e2d270d1fd22af6459492698a57542be52e6843d4e4d2881c96d0dd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55526": {
+      "player_id": "55526",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55526",
+      "retrieved_at_utc": "2026-11-06T08:26:27.332007+00:00",
+      "name": "벨라스케즈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4b9b76906c831a7068f629f0b32d3fc4632df91504e0e67123b73ca0c35a595a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55532": {
+      "player_id": "55532",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55532",
+      "retrieved_at_utc": "2026-11-06T08:26:27.344817+00:00",
+      "name": "감보아",
+      "profile_position": "투수(좌투양타)",
+      "throws": "L",
+      "sha256_html": "0231a26b3fb66f3f793b72f67f938993c8183252fed334bc797b0a062a804629",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55536": {
+      "player_id": "55536",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55536",
+      "retrieved_at_utc": "2026-11-06T08:26:27.357612+00:00",
+      "name": "데이비슨",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "e8d49d2b18e8a0c0c361eb5b73897432198fa65ea7b5b873052aa6e54935206c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55566": {
+      "player_id": "55566",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55566",
+      "retrieved_at_utc": "2026-11-06T08:26:27.664545+00:00",
+      "name": "김태현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c8fe7b5c0fa9c0d5f8968588d079b8f5984878cd4653325304ddcde077a15c2d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55568": {
+      "player_id": "55568",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55568",
+      "retrieved_at_utc": "2026-11-06T08:26:32.829830+00:00",
+      "name": "박세현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "fd4d14b125248d0fdefbb9cb58bd6f4c8a4675c77ffa750c60f16ca02fa0cd2f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55610": {
+      "player_id": "55610",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55610",
+      "retrieved_at_utc": "2026-11-06T08:26:32.841601+00:00",
+      "name": "김태형",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5c63c61940780d72f503f2e68ddd8967d76e79ee20ff4464e1ca8b33f77b46dd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55632": {
+      "player_id": "55632",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55632",
+      "retrieved_at_utc": "2026-11-06T08:26:32.849706+00:00",
+      "name": "이성원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "433dacc193fa70c313332a2ea2878cbb254af40c8772c32205f057c821550083",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55633": {
+      "player_id": "55633",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55633",
+      "retrieved_at_utc": "2026-11-06T08:26:32.868686+00:00",
+      "name": "올러",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "49d65a4bb95c5bd860f3c0dac91a5e8126781ca3e648f0e634c82681d7e43b69",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55646": {
+      "player_id": "55646",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55646",
+      "retrieved_at_utc": "2026-11-06T08:26:32.874693+00:00",
+      "name": "김정엽",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1e2f0d76afcd2543d48fd637a8a7bc418eb22b086a336faa59fda4e3846a5b0a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55663": {
+      "player_id": "55663",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55663",
+      "retrieved_at_utc": "2026-11-06T08:26:32.911741+00:00",
+      "name": "이호민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "efa0fa5655f2997b5f97264fd0c090c012c5b3f2239cd224603f44068449b195",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55730": {
+      "player_id": "55730",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55730",
+      "retrieved_at_utc": "2026-11-06T08:26:38.316627+00:00",
+      "name": "폰세",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "796078e2c790ae590b450fe5d2521af57b81d466dbd71ab3cd1e11042fb82b38",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55743": {
+      "player_id": "55743",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55743",
+      "retrieved_at_utc": "2026-11-06T08:26:38.360219+00:00",
+      "name": "정우주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ee9c77efc80d35c91aa0f69e062b056b967ec95a36a1a1a8e795c6e8d8f34f11",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55764": {
+      "player_id": "55764",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55764",
+      "retrieved_at_utc": "2026-11-06T08:26:38.512222+00:00",
+      "name": "권민규",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "8b6757b0298cead609e6b20317fa3b77da462a80a1956d5d80811f5106740060",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55855": {
+      "player_id": "55855",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55855",
+      "retrieved_at_utc": "2026-11-06T08:26:38.534614+00:00",
+      "name": "화이트",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "81936aef195bdd3d90ad2f144728538f862ed8b48eb683a0c3e850edc2c46447",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55860": {
+      "player_id": "55860",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55860",
+      "retrieved_at_utc": "2026-11-06T08:26:38.541994+00:00",
+      "name": "신지환",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f0f267132efa9fc49afae21c36f7f8949f349b0619c64ff922683c899038e928",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55903": {
+      "player_id": "55903",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55903",
+      "retrieved_at_utc": "2026-11-06T08:26:38.547918+00:00",
+      "name": "라일리",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7b90645e1d350ba614bd235f943de517aca387145c66a0c29750507e7be1c16a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55912": {
+      "player_id": "55912",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55912",
+      "retrieved_at_utc": "2026-11-06T08:26:43.870811+00:00",
+      "name": "로건",
+      "profile_position": "투수(좌투우타)",
+      "throws": "L",
+      "sha256_html": "030cd79e5b25fc278b0f113e372e19999fd1222d850b96f44e06af93fab04100",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55995": {
+      "player_id": "55995",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55995",
+      "retrieved_at_utc": "2026-11-06T08:26:43.890788+00:00",
+      "name": "김태훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "812d74e94e4031b4698d2ab4712a0c44003c165889cb8ca395d21b384b51104f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "55996": {
+      "player_id": "55996",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=55996",
+      "retrieved_at_utc": "2026-11-06T08:32:14.597046+00:00",
+      "name": "홍재문",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c21a61ea8fbb2788f8b11598d325ac2e838155ee65f984ed3c43ce2db7ccd4d8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56002": {
+      "player_id": "56002",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56002",
+      "retrieved_at_utc": "2026-11-06T08:32:14.640133+00:00",
+      "name": "대니엘",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "349b37531d5f207b0f7c36b0fd672c0322f6b3bceb6702d10ba2d8ee875f3ac0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56011": {
+      "player_id": "56011",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56011",
+      "retrieved_at_utc": "2026-11-06T08:32:14.641265+00:00",
+      "name": "스기모토",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5c56c101f930628becafa2afbb9e119e36a473c1f2e4437f185a8df00d8a39ae",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56032": {
+      "player_id": "56032",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56032",
+      "retrieved_at_utc": "2026-11-06T08:32:20.169233+00:00",
+      "name": "사우어",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9824e42a4a2fcc90bbe5e351779bd7e2357747b3d57e52e5dce78df592681a50",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56036": {
+      "player_id": "56036",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56036",
+      "retrieved_at_utc": "2026-11-06T08:32:20.186930+00:00",
+      "name": "보쉴리",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c440fe5638d27cbfdc820a53be52cbc0038b4e1943159cc99f331eab9a2f8b84",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56066": {
+      "player_id": "56066",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56066",
+      "retrieved_at_utc": "2026-11-06T08:32:20.193235+00:00",
+      "name": "박지훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "db9e17dd6a5a0d3b9b60a3c5538980ec9bc297d29973aee679c2f13bb4dc8b38",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56103": {
+      "player_id": "56103",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56103",
+      "retrieved_at_utc": "2026-11-06T08:32:20.208457+00:00",
+      "name": "카라스코",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0acdccf2fa1672ff96a06ea6f20555154752b1a36e1ef381d44a895a68e245b6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56146": {
+      "player_id": "56146",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56146",
+      "retrieved_at_utc": "2026-11-06T08:32:20.213539+00:00",
+      "name": "리오스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e5339a1a21a9acc09835dd8db41a13ff85600b253212430c09fcf9c1e97faa1a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56165": {
+      "player_id": "56165",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56165",
+      "retrieved_at_utc": "2026-11-06T08:32:20.238543+00:00",
+      "name": "양우진",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ddc477f12b7912d05b462a23beb0e33482d1b860172f87fe5e7eceee3e164312",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56168": {
+      "player_id": "56168",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56168",
+      "retrieved_at_utc": "2026-11-06T08:32:25.876563+00:00",
+      "name": "케네디",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "dd1cf0d8fafa1dfa1443bb695ce0a1fcdac4c377d8b7e5c1639557b7bb2e7555",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56212": {
+      "player_id": "56212",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56212",
+      "retrieved_at_utc": "2026-11-06T08:32:25.888816+00:00",
+      "name": "타카다",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "fa4ca2b2755a74c5aad91d6ea49e8c30df4da2e3a53b47528626e09e76a9190d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56215": {
+      "player_id": "56215",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56215",
+      "retrieved_at_utc": "2026-11-06T08:32:25.894633+00:00",
+      "name": "최주형",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "2eae87855da1c280aa7d2c0feeccdca7877caf93f7360c385f2b18c526e0e003",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56218": {
+      "player_id": "56218",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56218",
+      "retrieved_at_utc": "2026-11-06T08:32:25.899230+00:00",
+      "name": "타무라",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "90451aa806bf6705885ab63d8838c5f1ca7782d56768eae31dfb272b4d93202f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56241": {
+      "player_id": "56241",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56241",
+      "retrieved_at_utc": "2026-11-06T08:32:25.919026+00:00",
+      "name": "서준오",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e89353c88135140e0ac0be9320208a3a998c623f0d4f87e2b3f1f6bda5d6b90a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56312": {
+      "player_id": "56312",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56312",
+      "retrieved_at_utc": "2026-11-06T08:32:25.920576+00:00",
+      "name": "최현우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d93603280ed1b9f5037365916db3971acd80f6fcdfb3e8698283df503088eb49",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56318": {
+      "player_id": "56318",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56318",
+      "retrieved_at_utc": "2026-11-06T08:32:31.968033+00:00",
+      "name": "박준현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ab8e472b673d0581d4abe704c4fa001766852f1a99ebb0dc984e60a6f7bb1d37",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56334": {
+      "player_id": "56334",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56334",
+      "retrieved_at_utc": "2026-11-06T08:32:31.970870+00:00",
+      "name": "와일스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9319269acc1eced44e7e72b4c8f1db7758f726fdd9067dcc3a1a929defce7ab7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56337": {
+      "player_id": "56337",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56337",
+      "retrieved_at_utc": "2026-11-06T08:32:32.005755+00:00",
+      "name": "박지성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8e3b6dce23b357cef819932ddc34007dc533b6f0952ec533fccd6f08c4bbe9fb",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56345": {
+      "player_id": "56345",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56345",
+      "retrieved_at_utc": "2026-11-06T08:32:32.008828+00:00",
+      "name": "정다훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "27c18e77343b8db1e1673320f35fe7759e2e35ea63f3cf2129104788a25eaa16",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56348": {
+      "player_id": "56348",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56348",
+      "retrieved_at_utc": "2026-11-06T08:32:32.018505+00:00",
+      "name": "유토",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "c1bff3ab28c158258cf849aac41d31abaa223b6442e353314fd2bcaa63d14437",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56366": {
+      "player_id": "56366",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56366",
+      "retrieved_at_utc": "2026-11-06T08:32:32.052748+00:00",
+      "name": "이태양",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8bf3b8fd06bcfbeddf4057440b396dffb23fb178a402622f033222ec36a39aef",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56402": {
+      "player_id": "56402",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56402",
+      "retrieved_at_utc": "2026-11-06T08:32:37.969139+00:00",
+      "name": "보스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "659d460e2cbe990c1e13a3c410ccdc979123d21041fb3265cdd07f09e28fb958",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56415": {
+      "player_id": "56415",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56415",
+      "retrieved_at_utc": "2026-11-06T08:32:38.006390+00:00",
+      "name": "미야지",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "05155f7677f1b0e96d6414a3a3b570683596d55c2e66e25198026d57240cfbed",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56459": {
+      "player_id": "56459",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56459",
+      "retrieved_at_utc": "2026-11-06T08:32:38.016492+00:00",
+      "name": "페덱",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c9496ef53961c2ee00b39a53dfe277abf68b9c7d7d51e587b692c837a2e63e10",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56460": {
+      "player_id": "56460",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56460",
+      "retrieved_at_utc": "2026-11-06T08:32:38.018751+00:00",
+      "name": "장찬희",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b30bc252bde188df34aeeb6609f5882033a76a04f22fcc68ba996486e6873009",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56464": {
+      "player_id": "56464",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56464",
+      "retrieved_at_utc": "2026-11-06T08:32:38.027113+00:00",
+      "name": "오러클린",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "fae80c30ba92d5eb927595887cbd3a6f391e0396d64fe73b33c1362148f4873b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56468": {
+      "player_id": "56468",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56468",
+      "retrieved_at_utc": "2026-11-06T08:32:38.050003+00:00",
+      "name": "박용재",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a73468b60c24a81a4dd30316a0903f13f8d1a810bde219f498f3cc3d02335eb2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56469": {
+      "player_id": "56469",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56469",
+      "retrieved_at_utc": "2026-11-06T08:32:43.459028+00:00",
+      "name": "정재훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "81db4fcceb48a954367dc1b4344508b8175ed1240beef6965871782d678c8c08",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56474": {
+      "player_id": "56474",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56474",
+      "retrieved_at_utc": "2026-11-06T08:32:43.468864+00:00",
+      "name": "사토시",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "57a8f8c47521bca8643495638589bf7ee6872abe26018fce72995cf580d95945",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56503": {
+      "player_id": "56503",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56503",
+      "retrieved_at_utc": "2026-11-06T08:32:43.474922+00:00",
+      "name": "이이무라",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "252c6fdc4c3175a057169f18edf83406e6aeacda9fed5055d6f2c0ba9024c81d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56523": {
+      "player_id": "56523",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56523",
+      "retrieved_at_utc": "2026-11-06T08:32:43.499102+00:00",
+      "name": "비슬리",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5976718cd345bdac2b838c78312e572055f76b3e98dd033592df1b31dd1e5403",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56531": {
+      "player_id": "56531",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56531",
+      "retrieved_at_utc": "2026-11-06T08:32:43.507738+00:00",
+      "name": "로드리게스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "663d6177d8e3e89a6ad276a0ad378ad34a8e9c89cc5fa39d18444b539a01a4ee",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56536": {
+      "player_id": "56536",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56536",
+      "retrieved_at_utc": "2026-11-06T08:32:43.568854+00:00",
+      "name": "박정민",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "c930551d933d9828c2b1955868cbdeea7062a47fc664977a53840a65623c0a5d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56540": {
+      "player_id": "56540",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56540",
+      "retrieved_at_utc": "2026-11-06T08:32:53.570303+00:00",
+      "name": "김한결",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b89b119ab738e046585ddf6c9af399b41dbee36ac1595b953fb3dc7666f0e083",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56548": {
+      "player_id": "56548",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56548",
+      "retrieved_at_utc": "2026-11-06T08:32:53.575506+00:00",
+      "name": "쿄야마",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "cba0c7fce17528842bc7e186238b4638cdbf8292ecc9772fbdc5ea234b53ec46",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56554": {
+      "player_id": "56554",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56554",
+      "retrieved_at_utc": "2026-11-06T08:32:53.579965+00:00",
+      "name": "이준서",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0274ea52d6f384b200e830f92fa715ab077dd1ab59751b732000b749d716fc87",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56567": {
+      "player_id": "56567",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56567",
+      "retrieved_at_utc": "2026-11-06T08:32:53.593747+00:00",
+      "name": "신동건",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c21ac0c866745d043d0bf8faccde24162e2b176f9aa7e9495d0a64fb33da2c0b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56633": {
+      "player_id": "56633",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56633",
+      "retrieved_at_utc": "2026-11-06T08:32:53.596414+00:00",
+      "name": "지현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "82eda2f8f8b0a2d629fd6551c000a005ba85936c40224f833823dcdf7eb37341",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56709": {
+      "player_id": "56709",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56709",
+      "retrieved_at_utc": "2026-11-06T08:32:53.605445+00:00",
+      "name": "박준영",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5fe9e5ae19070648c955185bca41792545ec9b2f32b9ff67d6347108a10b3812",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56712": {
+      "player_id": "56712",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56712",
+      "retrieved_at_utc": "2026-11-06T08:32:59.968115+00:00",
+      "name": "에르난데스",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "db28b2cb7fcd8c290b72bc17a3f7cc64ffa81ba29577b0e01de670593fffbe3a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56719": {
+      "player_id": "56719",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56719",
+      "retrieved_at_utc": "2026-11-06T08:32:59.984288+00:00",
+      "name": "왕옌청",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "2b239b1fb123db77c1848e2bb1a9300ff297a0b87e772b37f5c6beeb4c1c93a0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56724": {
+      "player_id": "56724",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56724",
+      "retrieved_at_utc": "2026-11-06T08:33:00.001641+00:00",
+      "name": "화이트",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "46276efbdef981bae88a7c5c91488a79f77928e7a1b522a0c7b2976785b60897",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56760": {
+      "player_id": "56760",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56760",
+      "retrieved_at_utc": "2026-11-06T08:33:00.020864+00:00",
+      "name": "쿠싱",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "09c27e90d4880f61dc31d43bb5fdaa5d10fb8b89a3c5256b5f6583672a94e3f3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56769": {
+      "player_id": "56769",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56769",
+      "retrieved_at_utc": "2026-11-06T08:33:00.028824+00:00",
+      "name": "강건우",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "7eed9bb52a139be936f66d202f836e7c694878d9888a1846f7db58bc2d3ae7f0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56797": {
+      "player_id": "56797",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56797",
+      "retrieved_at_utc": "2026-11-06T08:33:00.050074+00:00",
+      "name": "하동준",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "041b70995a6bd714c8abc9f54d75f6fc4ccf3346dc91b1dc782a6ee7e33b0aeb",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56799": {
+      "player_id": "56799",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56799",
+      "retrieved_at_utc": "2026-11-06T08:33:11.115108+00:00",
+      "name": "짐머맨",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "00324ae3c7f254bafaaeb3c348ac22332502852a6322ada0f285dd6af8aef975",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56800": {
+      "player_id": "56800",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56800",
+      "retrieved_at_utc": "2026-11-06T08:33:11.178156+00:00",
+      "name": "긴지로",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "9d998fadbd96c1d62e34a009ff63c78725584f8f1064fa89d5e93dfba0ec9cf1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56801": {
+      "player_id": "56801",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56801",
+      "retrieved_at_utc": "2026-11-06T08:33:11.181407+00:00",
+      "name": "아빌라",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8ac2fc01bb00fa2aedd14dacc0e08e3e15fd4cc29f10bd4649625326577b62dd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56808": {
+      "player_id": "56808",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56808",
+      "retrieved_at_utc": "2026-11-06T08:33:11.181786+00:00",
+      "name": "신상연",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "69597f32d8585ad03921f28ea60615f16c40dc6ebe0514e96bd78a0e81dc7693",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56823": {
+      "player_id": "56823",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56823",
+      "retrieved_at_utc": "2026-11-06T08:33:11.183082+00:00",
+      "name": "타케다",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "10f7c0323dc1193f24c703c23120741ba23219550ba3700dea17f0c48d3f3ea8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56840": {
+      "player_id": "56840",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56840",
+      "retrieved_at_utc": "2026-11-06T08:33:11.187778+00:00",
+      "name": "김민준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "eea05e338597b57f3dcfc4ffdd40141ec30b319ae7d26288651933e375e87a46",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56841": {
+      "player_id": "56841",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56841",
+      "retrieved_at_utc": "2026-11-06T08:33:17.515177+00:00",
+      "name": "베니지아노",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "ff45a067358b3b9cb52e6bd9876863c158ad07019a57ec02d41990fb0278d60a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56855": {
+      "player_id": "56855",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56855",
+      "retrieved_at_utc": "2026-11-06T08:33:17.518619+00:00",
+      "name": "해치",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "dfba30515358f3430beaa36cf3eeeb129bb9aec4b01fdc81bc8bfadc25647895",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56911": {
+      "player_id": "56911",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56911",
+      "retrieved_at_utc": "2026-11-06T08:33:17.519853+00:00",
+      "name": "토다",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c468549b9bfc2b580d9e2854d2f1765a73f98a15704257460840aa356c306a8b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56928": {
+      "player_id": "56928",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56928",
+      "retrieved_at_utc": "2026-11-06T08:33:17.520415+00:00",
+      "name": "버하겐",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c2831f312c2818ceef88e186c1a2221ba9e79b84e8adf753fc3ee2ee8457726b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56939": {
+      "player_id": "56939",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56939",
+      "retrieved_at_utc": "2026-11-06T08:33:17.520850+00:00",
+      "name": "클레빈저",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6c973584e969418b140c3c5f4658da96030c1013a1b8c8dc56a61471b0f10bf3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56966": {
+      "player_id": "56966",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56966",
+      "retrieved_at_utc": "2026-11-06T08:33:17.852963+00:00",
+      "name": "테일러",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b45715ea982e70211946d49b394e2f505019df44e867e124ec4144cc94ba1936",
+      "status": "VERIFIED_PROFILE"
+    },
+    "56967": {
+      "player_id": "56967",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=56967",
+      "retrieved_at_utc": "2026-11-06T08:33:29.777174+00:00",
+      "name": "최요한",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d751a31341f74d67347afa15ffa6fae363336a47537bd315e7999c82bc505e09",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60146": {
+      "player_id": "60146",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60146",
+      "retrieved_at_utc": "2026-11-06T08:26:43.896217+00:00",
+      "name": "이승현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e948b8d62eeb03365bd983f8e6986afeae8bf599d59986c9b1b728642f7d89ab",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60263": {
+      "player_id": "60263",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60263",
+      "retrieved_at_utc": "2026-11-06T08:26:43.898305+00:00",
+      "name": "이재학",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "ffaea1ce25cde8fea9bc671a577f1c6e3f0ff45bf720f09ba19d2c35aabfba70",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60336": {
+      "player_id": "60336",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60336",
+      "retrieved_at_utc": "2026-11-06T08:26:43.903358+00:00",
+      "name": "문성현",
+      "profile_position": "(우투우타)",
+      "throws": "R",
+      "sha256_html": "8f039ff60c57f29924cb9413010969838f92fd7072a200d40791c0a70f3e9633",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60337": {
+      "player_id": "60337",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60337",
+      "retrieved_at_utc": "2026-11-06T08:26:43.921252+00:00",
+      "name": "김대유",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "e82cc0f105cb6b26e29865b94909b330d1f4e1f515a2e590e2ec063f798701c1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60559": {
+      "player_id": "60559",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60559",
+      "retrieved_at_utc": "2026-11-06T08:26:49.458684+00:00",
+      "name": "박시영",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4fea0b6ff1cc549cae9e1d0cae040bbfb4dbba2cff73d98a93ae220d8e170aa6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60768": {
+      "player_id": "60768",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60768",
+      "retrieved_at_utc": "2026-11-06T08:26:49.468889+00:00",
+      "name": "이태양",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "da50eefac9baf28284048b25b2e8bc66d5090e92f748c688c1b43d177547cf78",
+      "status": "VERIFIED_PROFILE"
+    },
+    "60841": {
+      "player_id": "60841",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=60841",
+      "retrieved_at_utc": "2026-11-06T08:26:49.472348+00:00",
+      "name": "박종훈",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "d0a3524211a5ec65e16b565ddb106ee6ff23005ca8e13122ca6edd266061913f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61101": {
+      "player_id": "61101",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61101",
+      "retrieved_at_utc": "2026-11-06T08:26:49.489909+00:00",
+      "name": "임찬규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "054c21d361aae82780bc46720bff5b944d7c24b97e17c4f3ca6b01c0d7290522",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61145": {
+      "player_id": "61145",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61145",
+      "retrieved_at_utc": "2026-11-06T08:26:49.506464+00:00",
+      "name": "이우찬",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "55a7d7ed4fbf23dba0d160e44d0be97913088d08a235b0bef58e4f02b2cf7a0a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61268": {
+      "player_id": "61268",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61268",
+      "retrieved_at_utc": "2026-11-06T08:26:49.542042+00:00",
+      "name": "양현",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "4d63ef194b673979d1cd53f5c2be9a3d758bbc6cfdf9cf0d3ae477c5db45f197",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61365": {
+      "player_id": "61365",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61365",
+      "retrieved_at_utc": "2026-11-06T08:26:55.188856+00:00",
+      "name": "김대우",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "c881fa69691f876e5e3a5cb6af64946852b7a6b3b651979506c5ce1e611a14e6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61643": {
+      "player_id": "61643",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61643",
+      "retrieved_at_utc": "2026-11-06T08:26:55.193624+00:00",
+      "name": "홍건희",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "451e5faa9cec409486011be571f30f4e11004026abc8db639cdf74b774c49e86",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61666": {
+      "player_id": "61666",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61666",
+      "retrieved_at_utc": "2026-11-06T08:26:55.230475+00:00",
+      "name": "한승혁",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "0382628482fe2c947a89a10644f7efbef589e39f376ceb25a175d00556b57bb9",
+      "status": "VERIFIED_PROFILE"
+    },
+    "61895": {
+      "player_id": "61895",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=61895",
+      "retrieved_at_utc": "2026-11-06T08:26:55.237553+00:00",
+      "name": "서진용",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1bc0acd26fc6aa64365517f7078fec0c6f30578f1ce7a20d5226f0c56cbaca35",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62146": {
+      "player_id": "62146",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62146",
+      "retrieved_at_utc": "2026-11-06T08:26:55.315627+00:00",
+      "name": "최성훈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f7aa6023eaa1ae9d4336c3875185d4a5958138a256db7103be3fff3472371324",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62360": {
+      "player_id": "62360",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62360",
+      "retrieved_at_utc": "2026-11-06T08:26:55.368932+00:00",
+      "name": "김태훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "fdc5ab18656c2588d3c7c37f5581f2764a0d49a9e884d253dd8bf9b38fcff40a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62363": {
+      "player_id": "62363",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62363",
+      "retrieved_at_utc": "2026-11-06T08:27:01.307601+00:00",
+      "name": "한현희",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "6b707da318f36e14a00e7f4df538ad271ea216441c6365e1b5425c6c4af03a47",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62528": {
+      "player_id": "62528",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62528",
+      "retrieved_at_utc": "2026-11-06T08:27:01.314034+00:00",
+      "name": "김원중",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "208d5f0569f77aff2a59900158e64efdbcdf73b1d1fe181e530765aa2cbdc995",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62611": {
+      "player_id": "62611",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62611",
+      "retrieved_at_utc": "2026-11-06T08:27:01.337223+00:00",
+      "name": "임준섭",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "05b0e8525708c47cd4552b5a8d959bdc4e1ca827b03d1630c6fd792cd5cae8ae",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62754": {
+      "player_id": "62754",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62754",
+      "retrieved_at_utc": "2026-11-06T08:27:01.347110+00:00",
+      "name": "임기영",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "200b51029168fec3ec09149ec53ef8020a0c9d153ad1d2d19f7bfb2e270f1c5d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62869": {
+      "player_id": "62869",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62869",
+      "retrieved_at_utc": "2026-11-06T08:27:01.359949+00:00",
+      "name": "문승원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "cf3322f5e75352c3ea359bd88532ccac4fd4b9eabba510290333677e89a3d9b1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "62951": {
+      "player_id": "62951",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=62951",
+      "retrieved_at_utc": "2026-11-06T08:27:01.369449+00:00",
+      "name": "이형범",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "03b90fb431cf2bd246416fa16654998fbc234c6a0f71b52f66c1b66c3b2ead8f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63145": {
+      "player_id": "63145",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63145",
+      "retrieved_at_utc": "2026-11-06T08:27:06.973759+00:00",
+      "name": "배재준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2354ac618de4baabcf86a615033e206c38cd32e183a62d54ed41d7f16ace58ad",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63248": {
+      "player_id": "63248",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63248",
+      "retrieved_at_utc": "2026-11-06T08:27:06.999312+00:00",
+      "name": "함덕주",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c28ccd29389b22e97a1d48261b922c067e32206d9286de76a2a17fd2260b66e2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63292": {
+      "player_id": "63292",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63292",
+      "retrieved_at_utc": "2026-11-06T08:27:07.052456+00:00",
+      "name": "박소준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b4fd74c357e5a4325a72b86089b77b92a77c2b1580dc711707e3dfdd5604f1a6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63342": {
+      "player_id": "63342",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63342",
+      "retrieved_at_utc": "2026-11-06T08:27:07.078287+00:00",
+      "name": "조상우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a45d6f6461b11576140a339f2cdd0b13cad583582652f0d135f643d15564c175",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63464": {
+      "player_id": "63464",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63464",
+      "retrieved_at_utc": "2026-11-06T08:27:07.158504+00:00",
+      "name": "윤대경",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a3d19abba17ce8a469e742906651679bbf81897064b3f500136f57ec388e40e3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63492": {
+      "player_id": "63492",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63492",
+      "retrieved_at_utc": "2026-11-06T08:27:07.180146+00:00",
+      "name": "이재익",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "18d459154bfe3d360bd5170cdac0e6403ec9f05521aa5d9078c97cba10155791",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63512": {
+      "player_id": "63512",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63512",
+      "retrieved_at_utc": "2026-11-06T08:27:12.732841+00:00",
+      "name": "박진형",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6d5a4cf50b5792b6893c242ee6383992b8a2762a02001d118a92d4980abf8d5c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63543": {
+      "player_id": "63543",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63543",
+      "retrieved_at_utc": "2026-11-06T08:27:12.753128+00:00",
+      "name": "구승민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "36fa21f1b14126235e32a0d53bf807721585c65282e293aef0283727bdfa82c8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63638": {
+      "player_id": "63638",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63638",
+      "retrieved_at_utc": "2026-11-06T08:27:12.776644+00:00",
+      "name": "박준표",
+      "profile_position": "(우언우타)",
+      "throws": "R",
+      "sha256_html": "125f0a68d55b64f597b9d78ac06bd20aea7839ea8ed1a446dd1c8f2c86f9c463",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63749": {
+      "player_id": "63749",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63749",
+      "retrieved_at_utc": "2026-11-06T08:27:12.819276+00:00",
+      "name": "이충호",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "6c55e69f6f437e043125c822e03df22a69acdaf902f2ffd5021b076c5fa8fc51",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63765": {
+      "player_id": "63765",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63765",
+      "retrieved_at_utc": "2026-11-06T08:27:12.965036+00:00",
+      "name": "김종수",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9fce088c60024d606ba2bfd81fe6622cb3bb9dd24c1828be6613123872ca6dd1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63894": {
+      "player_id": "63894",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63894",
+      "retrieved_at_utc": "2026-11-06T08:27:13.018171+00:00",
+      "name": "김사윤",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "77c3f38648dde8c56980946a391f637b32c4e040c841ebe27854eda6c89258ee",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63950": {
+      "player_id": "63950",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63950",
+      "retrieved_at_utc": "2026-11-06T08:27:18.268616+00:00",
+      "name": "장현식",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2b530566a2e6aebb10eb76a5d8ae092e76afd2a298d9378b4e9acc00bcf654cf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63959": {
+      "player_id": "63959",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63959",
+      "retrieved_at_utc": "2026-11-06T08:27:18.279571+00:00",
+      "name": "임정호",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "5d7cbd6c101c155714b1c74bb51ef09fba0888bc078d3e5ae56917fa15cf2b17",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63960": {
+      "player_id": "63960",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63960",
+      "retrieved_at_utc": "2026-11-06T08:27:18.333034+00:00",
+      "name": "이상민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "53039c44a513f62162404e087c560a76871bdbf07a1d6fb8cfafda1582c30808",
+      "status": "VERIFIED_PROFILE"
+    },
+    "63961": {
+      "player_id": "63961",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=63961",
+      "retrieved_at_utc": "2026-11-06T08:27:18.341235+00:00",
+      "name": "윤호솔",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "f5e8cf7c29f3c66f4c06ff4343efb8281510d453c12bb43b8e05cc9866050e75",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64001": {
+      "player_id": "64001",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64001",
+      "retrieved_at_utc": "2026-11-06T08:27:18.408445+00:00",
+      "name": "고영표",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "5c0a617c5daeedb1b5bf8addab2c34f26c06520ee4c71338c4f4051bf836534b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64017": {
+      "player_id": "64017",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64017",
+      "retrieved_at_utc": "2026-11-06T08:27:18.410630+00:00",
+      "name": "심재민",
+      "profile_position": "투수(좌투우타)",
+      "throws": "L",
+      "sha256_html": "01dd411a9e35c69ffffbd367cba0ef563500b13fb1d47c8af0cf7f772d12c7a1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64021": {
+      "player_id": "64021",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64021",
+      "retrieved_at_utc": "2026-11-06T08:27:23.888425+00:00",
+      "name": "박세웅",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "defa91410cd610a0907641412cc26e0afb2f01c173fe4684c0100244fc86a435",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64350": {
+      "player_id": "64350",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64350",
+      "retrieved_at_utc": "2026-11-06T08:27:23.890765+00:00",
+      "name": "하영민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1746c16af15f3343363579e046f8c3d24d770b224af218fba8aad41f70fe2925",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64565": {
+      "player_id": "64565",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64565",
+      "retrieved_at_utc": "2026-11-06T08:27:23.940638+00:00",
+      "name": "이인복",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a77a8813ba801a2931425c77bceb6bd8cfc263274c843f21fe6e013141930a94",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64580": {
+      "player_id": "64580",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64580",
+      "retrieved_at_utc": "2026-11-06T08:27:23.961482+00:00",
+      "name": "김재열",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "bbb1984cc788142e55a49754c560cbb30b5949f8e8dc46c4c6b0f758ea095bbb",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64596": {
+      "player_id": "64596",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64596",
+      "retrieved_at_utc": "2026-11-06T08:27:23.985351+00:00",
+      "name": "김유영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "83ac236ffbaa0b98b91aa06b76b7cdd579372e0b4793d6d92f5dcae2f7920cc3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64768": {
+      "player_id": "64768",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64768",
+      "retrieved_at_utc": "2026-11-06T08:27:24.011772+00:00",
+      "name": "조이현",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "57fee6ea4f86c8f36feb765b6b3099d0c76ae70b3cafbe12b09ee1e6d9eef6ab",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64861": {
+      "player_id": "64861",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64861",
+      "retrieved_at_utc": "2026-11-06T08:27:29.333507+00:00",
+      "name": "이건욱",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1acc630bb6c5df409552510a8f19e45364b9cee4a4ab8b30613adb15039a876e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64893": {
+      "player_id": "64893",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64893",
+      "retrieved_at_utc": "2026-11-06T08:27:29.372231+00:00",
+      "name": "박민호",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "f39a05c4094d4d55eb15f6d0375ba70d4c0768b06569b1e4e8477bbcb1f16c8a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "64995": {
+      "player_id": "64995",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=64995",
+      "retrieved_at_utc": "2026-11-06T08:27:29.372935+00:00",
+      "name": "배재환",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "46e78237ba1eb3b32f718e43f74fd85f97b37e23de368e459e35f94b423bdcb1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65048": {
+      "player_id": "65048",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65048",
+      "retrieved_at_utc": "2026-11-06T08:27:29.375732+00:00",
+      "name": "김민수",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "dd5a90c54d65190c4580c7d72c1e63a02b41e86fca15bb44fe3b13295e452e8e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65056": {
+      "player_id": "65056",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65056",
+      "retrieved_at_utc": "2026-11-06T08:27:29.396156+00:00",
+      "name": "엄상백",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "8bb791e04816448db08259cd9bb085358ad3e4b498b0734621599b44c0c7f61a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65060": {
+      "player_id": "65060",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65060",
+      "retrieved_at_utc": "2026-11-06T08:27:29.414846+00:00",
+      "name": "주권",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "82a7d14d2622f2fc15d8d25e43a65cc41e80a948b7e4b539b390a6035283299c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65062": {
+      "player_id": "65062",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65062",
+      "retrieved_at_utc": "2026-11-06T08:27:34.978823+00:00",
+      "name": "김재윤",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "3ca5033be2cfb652b13f8b52d92f279e6d1cf863b0e029459c8c34ea6c0faa70",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65109": {
+      "player_id": "65109",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65109",
+      "retrieved_at_utc": "2026-11-06T08:27:34.991084+00:00",
+      "name": "백승현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8b1e941e7fa2eaa469d6d2fce746df96ffb0efe18ac14d18a3ef2e9e37e918be",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65117": {
+      "player_id": "65117",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65117",
+      "retrieved_at_utc": "2026-11-06T08:27:35.004609+00:00",
+      "name": "이상규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "dea4be3258255c7b99532099902afc1ee68e42ba1ad05b0356cd5218d0b12017",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65241": {
+      "player_id": "65241",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65241",
+      "retrieved_at_utc": "2026-11-06T08:27:35.006975+00:00",
+      "name": "채원후",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2718fb0606f03cde5c065991bfda372974c6466b1465efed4d007de284e479a3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65320": {
+      "player_id": "65320",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65320",
+      "retrieved_at_utc": "2026-11-06T08:27:35.019017+00:00",
+      "name": "최원태",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8ee86fbb352d89998e67e05911d4a1614f7707435dbe801929bbce0938b33ca1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65343": {
+      "player_id": "65343",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65343",
+      "retrieved_at_utc": "2026-11-06T08:27:35.090567+00:00",
+      "name": "김택형",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "0be7d807de7039107bd23b11d74187452edd1a65e9d3209a6a5f1611b23419cd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65411": {
+      "player_id": "65411",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65411",
+      "retrieved_at_utc": "2026-11-06T08:27:40.514268+00:00",
+      "name": "김주온",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "498dda44a7d77a078a3391ecf57c10409ed7f33d292d8afc1b01438e1658c122",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65496": {
+      "player_id": "65496",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65496",
+      "retrieved_at_utc": "2026-11-06T08:27:40.560461+00:00",
+      "name": "홍정우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e82ff25172e7358803184f9e4f9a93965d5c56f7a667818f38962fa7c80d6ba4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65516": {
+      "player_id": "65516",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65516",
+      "retrieved_at_utc": "2026-11-06T08:27:40.581723+00:00",
+      "name": "배제성",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "051df519da2bc693343bc9ae76bd423ac3ad3ee3b9a73d44e0c29cc758f6d2c5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65522": {
+      "player_id": "65522",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65522",
+      "retrieved_at_utc": "2026-11-06T08:27:40.587263+00:00",
+      "name": "김강현",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "9612b1b3e64a2c9b0fd3032e36d18b1819dafc6d97b05430a0947d138dcb4986",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65616": {
+      "player_id": "65616",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65616",
+      "retrieved_at_utc": "2026-11-06T08:27:40.591534+00:00",
+      "name": "이민우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0e328385343aa95b8e9eb1c02f24b209553d8766b82dc37915086beb3f875cba",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65639": {
+      "player_id": "65639",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65639",
+      "retrieved_at_utc": "2026-11-06T08:27:40.691983+00:00",
+      "name": "박정수",
+      "profile_position": "투수(우언좌타)",
+      "throws": "R",
+      "sha256_html": "d7b8e898fbacb4ed5bd98c9d9cf83ffd6414c63cdaaec709efbe2e3a70c3eee8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65665": {
+      "player_id": "65665",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65665",
+      "retrieved_at_utc": "2026-11-06T08:27:46.103499+00:00",
+      "name": "이준영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "f7dc0ce2ca2c0e5453566e274dca700c2f2d0538bfe904c62233a9c8ce15e19a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65707": {
+      "player_id": "65707",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65707",
+      "retrieved_at_utc": "2026-11-06T08:27:46.114445+00:00",
+      "name": "주현상",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "188b50a48287e3826880dc5c9e0f55a5e2130a8e672ae9f821d980fe2d1adbf1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65764": {
+      "player_id": "65764",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65764",
+      "retrieved_at_utc": "2026-11-06T08:27:46.175205+00:00",
+      "name": "김민우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8ed43916087ec1529df9c4e46a1be7646337a8fb4c4570589cf8fc2c4a2833ca",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65769": {
+      "player_id": "65769",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65769",
+      "retrieved_at_utc": "2026-11-06T08:27:46.196767+00:00",
+      "name": "김범수",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "5a56fe2934ff496494e9144e0430c87c94e5fcc522f01574387848ba676774df",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65933": {
+      "player_id": "65933",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65933",
+      "retrieved_at_utc": "2026-11-06T08:27:46.207919+00:00",
+      "name": "구창모",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d99389b3b095cbc0e447832c89a34f5eae55f61a6dff2e80dc988072ff866e3e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "65949": {
+      "player_id": "65949",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=65949",
+      "retrieved_at_utc": "2026-11-06T08:27:46.231798+00:00",
+      "name": "류진욱",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "045538c52d3890f341769eb3583fa2801cdde072624c37b130d2100f7f7e2ce8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66018": {
+      "player_id": "66018",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66018",
+      "retrieved_at_utc": "2026-11-06T08:27:52.201025+00:00",
+      "name": "김선기",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1015dbd7bb69729a3fef1df098a1a91793ffd5e6c94712b61b099f5d1ab0950f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66047": {
+      "player_id": "66047",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66047",
+      "retrieved_at_utc": "2026-11-06T08:27:52.231042+00:00",
+      "name": "박세진",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d5c772ef21da68703d88868685d009ca1406c72e99eaf1d49959de59dc9b4343",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66068": {
+      "player_id": "66068",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66068",
+      "retrieved_at_utc": "2026-11-06T08:27:52.232159+00:00",
+      "name": "서의태",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "222ca8180c1b4427ef20daacd970786a9215dc308b0615188bfb9c382aa06729",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66145": {
+      "player_id": "66145",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66145",
+      "retrieved_at_utc": "2026-11-06T08:27:52.247681+00:00",
+      "name": "김대현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "25c375995d2e90c85ff1d616ddb32040dd64cc34e79570b337dd388c86de010b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66291": {
+      "player_id": "66291",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66291",
+      "retrieved_at_utc": "2026-11-06T08:27:52.251054+00:00",
+      "name": "이영하",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d10a2f18a0d2d34f112017587db84abe493faa86e71028c65c9a1979d7091cbe",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66305": {
+      "player_id": "66305",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66305",
+      "retrieved_at_utc": "2026-11-06T08:27:52.296817+00:00",
+      "name": "박승주",
+      "profile_position": "(우투우타)",
+      "throws": "R",
+      "sha256_html": "d836e70b38d3c7e4c09644c794d5616d8249718400a4991899b5c413f0c1a8e9",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66451": {
+      "player_id": "66451",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66451",
+      "retrieved_at_utc": "2026-11-06T08:27:57.729985+00:00",
+      "name": "최충연",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "46dfe965842b2d1c8a42f7007da32bd264e198a48404d4448075fc1ce492860a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66492": {
+      "player_id": "66492",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66492",
+      "retrieved_at_utc": "2026-11-06T08:27:57.754977+00:00",
+      "name": "김승현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5f82e3a098df6de19e12854a5f893f27931cb58a7c37845e711c0b2ecbc9d952",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66609": {
+      "player_id": "66609",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66609",
+      "retrieved_at_utc": "2026-11-06T08:27:57.788316+00:00",
+      "name": "전상현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1ee2395491e37fde81ecfcf302c5fc785fbb59b0e4ff5d82e89427cbf85b9263",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66858": {
+      "player_id": "66858",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66858",
+      "retrieved_at_utc": "2026-11-06T08:27:57.790940+00:00",
+      "name": "정동윤",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "95ce2596a6e5526ca61a1e66a25d9ff42e7012f02e14f53bbd64e9cc8d5da9a8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66920": {
+      "player_id": "66920",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66920",
+      "retrieved_at_utc": "2026-11-06T08:27:57.806564+00:00",
+      "name": "최성영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "1a7fe8d65658335d4c84ecf8bc4dd14132aa6ba24e6523a9d5b36a3dd91abff1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "66965": {
+      "player_id": "66965",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=66965",
+      "retrieved_at_utc": "2026-11-06T08:27:57.833047+00:00",
+      "name": "도태훈",
+      "profile_position": "내야수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "fbf638c67554dec8c357f60de539a8e5cab1601812361b65b5fa1c7c1c39ca7d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67048": {
+      "player_id": "67048",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67048",
+      "retrieved_at_utc": "2026-11-06T08:28:04.377603+00:00",
+      "name": "이정현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "98f31b10d56679a8288bd74cf7aa189530ca69b8624bc7bd62107708709fb15a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67116": {
+      "player_id": "67116",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67116",
+      "retrieved_at_utc": "2026-11-06T08:28:04.384395+00:00",
+      "name": "오석주",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "db755c145680eebc0231906385e505b211c130157ec691406afb636c23080035",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67119": {
+      "player_id": "67119",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67119",
+      "retrieved_at_utc": "2026-11-06T08:33:29.805727+00:00",
+      "name": "고우석",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "bf7058e90176fce9ce504dcd235079941d65c4e2401c623f9c5262595d001e1d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67143": {
+      "player_id": "67143",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67143",
+      "retrieved_at_utc": "2026-11-06T08:28:04.389050+00:00",
+      "name": "손주영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "0fa474c8cd1a8498314302b24744871ed37a5e855ca4592917c2a267ae49318b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67246": {
+      "player_id": "67246",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67246",
+      "retrieved_at_utc": "2026-11-06T08:28:04.425302+00:00",
+      "name": "김명신",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "3b50d0c281864aa763cb37c5b36db7ab15cfa71b60fb550c9935d62d15a4535a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67263": {
+      "player_id": "67263",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67263",
+      "retrieved_at_utc": "2026-11-06T08:28:04.567097+00:00",
+      "name": "최원준",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "50c95619f3a0fd068f9fba01792c24af4b39a33080d0eccfaf6f73e2d59c9bcd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67266": {
+      "player_id": "67266",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67266",
+      "retrieved_at_utc": "2026-11-06T08:28:04.571538+00:00",
+      "name": "박치국",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "e780c6cb6badcfe54d2b203e13cf65e7399a9fa2121184baa62c890cfbc58325",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67365": {
+      "player_id": "67365",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67365",
+      "retrieved_at_utc": "2026-11-06T08:28:10.050077+00:00",
+      "name": "양지율",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6a4223718363aff4a05de6e4e8f2dab3ffe5efb562e012d0c4147630e21282f1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67391": {
+      "player_id": "67391",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67391",
+      "retrieved_at_utc": "2026-11-06T08:28:10.305152+00:00",
+      "name": "김재웅",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "e87db00d1838e4e2cd42c6d5c8e6834f382a47dd8a4ba9b88d1eed4f8f9be36b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67419": {
+      "player_id": "67419",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67419",
+      "retrieved_at_utc": "2026-11-06T08:28:10.654020+00:00",
+      "name": "문용익",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8126d89815acb43cc9805c3e0c41039c5e6408a95b4bc3df68244d13292c1444",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67421": {
+      "player_id": "67421",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67421",
+      "retrieved_at_utc": "2026-11-06T08:28:10.662027+00:00",
+      "name": "최지광",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d8755d92c3bf7d094daed4fc257fa2132508e18626b58de537306ce3723d363c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67539": {
+      "player_id": "67539",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67539",
+      "retrieved_at_utc": "2026-11-06T08:28:10.721248+00:00",
+      "name": "나균안",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d89b506024664cb7587db88868a06668aba0c0bd36a0270da2867b3b1355358f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67588": {
+      "player_id": "67588",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67588",
+      "retrieved_at_utc": "2026-11-06T08:28:10.727680+00:00",
+      "name": "윤성빈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8512bc6e3476ec47e889ad3deeed29047e972e3c95c5afba496218a4d4001e78",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67609": {
+      "player_id": "67609",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67609",
+      "retrieved_at_utc": "2026-11-06T08:28:16.599197+00:00",
+      "name": "박정우",
+      "profile_position": "외야수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "e0264d30be3c49f8cfdb184af4d339d48f15237ef89b547d953714f2a515936f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67640": {
+      "player_id": "67640",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67640",
+      "retrieved_at_utc": "2026-11-06T08:28:18.489319+00:00",
+      "name": "유승철",
+      "profile_position": "투수(우투양타)",
+      "throws": "R",
+      "sha256_html": "053a78d52afcde97643f26c7a87b1e1a6f1feafae5321c0a487d1a2a8df3103a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67703": {
+      "player_id": "67703",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67703",
+      "retrieved_at_utc": "2026-11-06T08:28:18.498615+00:00",
+      "name": "박상원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d1630a51d67f913ccf391a446ad4730fdba325d1b11c441a2637a66b23c2fa6e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67828": {
+      "player_id": "67828",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67828",
+      "retrieved_at_utc": "2026-11-06T08:28:18.499322+00:00",
+      "name": "김성민",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "b08bfd8d26f5e52f18a6ba3da334c2889549aeb0b934a16a02c87bcad0096054",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67954": {
+      "player_id": "67954",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67954",
+      "retrieved_at_utc": "2026-11-06T08:28:18.867384+00:00",
+      "name": "김진호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c9b9924719b2c7962d5d1c7c4fdb39d922ff1cfbe9632b06dc02d783ac333291",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67956": {
+      "player_id": "67956",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67956",
+      "retrieved_at_utc": "2026-11-06T08:28:18.887256+00:00",
+      "name": "김태현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "5fa369fc283c8a49e443af27c038c55f32e2516a5b179b5a286fc31f3b5ce435",
+      "status": "VERIFIED_PROFILE"
+    },
+    "67962": {
+      "player_id": "67962",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=67962",
+      "retrieved_at_utc": "2026-11-06T08:33:29.808140+00:00",
+      "name": "소이현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c5b57137ddf48604d3e0d4fb9e68e9d0c3ebb4691dafc5f5fb3986635dcfa003",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68036": {
+      "player_id": "68036",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68036",
+      "retrieved_at_utc": "2026-11-06T08:28:59.189352+00:00",
+      "name": "최이준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "96b365718b00a084b0df78e61accccbab6507967564d0d214151da0c77edb8a7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68043": {
+      "player_id": "68043",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68043",
+      "retrieved_at_utc": "2026-11-06T08:33:29.814270+00:00",
+      "name": "김민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6b4f94592946422f392beb8b0fd175f1632c88f27151aec8d43c001ef23dec5b",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68050": {
+      "player_id": "68050",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68050",
+      "retrieved_at_utc": "2026-11-06T08:29:20.712640+00:00",
+      "name": "강백호",
+      "profile_position": "내야수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "5c08d23a57a1424a9dcc7280d3e5ba8f43181bddbc7f6de41d54fa0a77d24b90",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68092": {
+      "player_id": "68092",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68092",
+      "retrieved_at_utc": "2026-11-06T08:29:21.353092+00:00",
+      "name": "한두솔",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "44ef96fefb4fae4e7d7bf261d9e321ad6f327afbfeda98bf83975a2192bd09d7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68097": {
+      "player_id": "68097",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68097",
+      "retrieved_at_utc": "2026-11-06T08:29:21.476771+00:00",
+      "name": "박주현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "d45c5f7335c1eefef327dbfeccd3a40614aa424942c06e35b6660ba162e9c695",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68130": {
+      "player_id": "68130",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68130",
+      "retrieved_at_utc": "2026-11-06T08:29:21.487691+00:00",
+      "name": "김영준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2343c0e06be904382799b80703469697d20739506ac145c88e5282a23e6d9881",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68159": {
+      "player_id": "68159",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68159",
+      "retrieved_at_utc": "2026-11-06T08:29:22.225492+00:00",
+      "name": "성동현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "acf89862075beda72787e335180946be4d32b8f185a7a2e7962755c1c6dfb203",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68200": {
+      "player_id": "68200",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68200",
+      "retrieved_at_utc": "2026-11-06T08:29:28.913497+00:00",
+      "name": "김민규",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "4c4c56c58648e1d937fe8abbdaa8056b52c556cc10221fc497acf7343e77f58c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68220": {
+      "player_id": "68220",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68220",
+      "retrieved_at_utc": "2026-11-06T08:29:29.123198+00:00",
+      "name": "곽빈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "edd32df844f7258c69165c6a0f8c4252a8645d42fec2c1406e31716512777b51",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68242": {
+      "player_id": "68242",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68242",
+      "retrieved_at_utc": "2026-11-06T08:29:29.129021+00:00",
+      "name": "정철원",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c0e4bbe3b43e597e3ffb11e9e61592b1f859632e7837a8d745d21f2617fd95e3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68249": {
+      "player_id": "68249",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68249",
+      "retrieved_at_utc": "2026-11-06T08:29:29.131748+00:00",
+      "name": "박신지",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b056b51c6cb0d30529196e4e5dfa201eaa753c3aa68eeee1d6e5fa12c474d969",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68260": {
+      "player_id": "68260",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68260",
+      "retrieved_at_utc": "2026-11-06T08:29:29.133754+00:00",
+      "name": "현도훈",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "6a71037621652cacaec7df7454c1518b51b35afb44a97223d6765ee22894f389",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68269": {
+      "player_id": "68269",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68269",
+      "retrieved_at_utc": "2026-11-06T08:29:29.147090+00:00",
+      "name": "김호준",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "cde12e9e9899e83fdfae25f85cc7f03d9bcdc6e99e37e413e165dfe78f214da3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68341": {
+      "player_id": "68341",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68341",
+      "retrieved_at_utc": "2026-11-06T08:33:29.823059+00:00",
+      "name": "안우진",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1302d710a373a2a41c3e58b9f2af5d0589e9233ae1663eb22f0f4309cbf68826",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68403": {
+      "player_id": "68403",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68403",
+      "retrieved_at_utc": "2026-11-06T08:29:34.793971+00:00",
+      "name": "김무신",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "06e0de6e9b7b90ca02f3d859dad0a5f6c898b825bcafe5a69d67654469e958c6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68415": {
+      "player_id": "68415",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68415",
+      "retrieved_at_utc": "2026-11-06T08:29:34.810760+00:00",
+      "name": "양창섭",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8cae939d9883abb026ccd5601ddf9c78483b04c7453e24b323822950c204ae2d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68419": {
+      "player_id": "68419",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68419",
+      "retrieved_at_utc": "2026-11-06T08:29:34.841892+00:00",
+      "name": "최지명",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "93fc38cf5d5f7b727e6ea9a92fc4f16fc401bca5767c2929eca8e9bcf7dba162",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68501": {
+      "player_id": "68501",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68501",
+      "retrieved_at_utc": "2026-11-06T08:29:34.865349+00:00",
+      "name": "최하늘",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "d41de60e940932848dbc19c98be932c9a525de847b94723b07eb7b86c4ddfc9c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68529": {
+      "player_id": "68529",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68529",
+      "retrieved_at_utc": "2026-11-06T08:33:29.837573+00:00",
+      "name": "이승헌",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "c39674525e67a47c99aea6fbc5dc64abd2fd8e25aa07479217069f8f1bd04cbd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68556": {
+      "player_id": "68556",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68556",
+      "retrieved_at_utc": "2026-11-06T08:29:34.879685+00:00",
+      "name": "정성종",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "25204c73d5269c49167e2de94b5e14607db6069940e6bf00470adaf9ce021584",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68585": {
+      "player_id": "68585",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68585",
+      "retrieved_at_utc": "2026-11-06T08:29:34.915589+00:00",
+      "name": "김도규",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "53193d731b1dbe6f92c21c3b100af4ed2d59e8e54795048605003a1a1dda789a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68619": {
+      "player_id": "68619",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68619",
+      "retrieved_at_utc": "2026-11-06T08:29:40.343950+00:00",
+      "name": "윤중현",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "f00ae67c558bfe02a8b867d43337c0db9f88e783667078f185b95decbbc68c97",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68639": {
+      "player_id": "68639",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68639",
+      "retrieved_at_utc": "2026-11-06T08:29:40.405214+00:00",
+      "name": "하준영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "6bb87752e59d17d2fd059486c374779898a899d7829268558019f25f339bf512",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68830": {
+      "player_id": "68830",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68830",
+      "retrieved_at_utc": "2026-11-06T08:29:40.410051+00:00",
+      "name": "김정우",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a0092109f74679ca656be9152c29e3da817e8d3ed121841562524dcbeab9c063",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68856": {
+      "player_id": "68856",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68856",
+      "retrieved_at_utc": "2026-11-06T08:29:40.417245+00:00",
+      "name": "최민준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "516d8e20561ed0e6baf1c13df581acc69bb7486f9ca044d3f34865e12f3d0167",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68896": {
+      "player_id": "68896",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68896",
+      "retrieved_at_utc": "2026-11-06T08:29:40.433827+00:00",
+      "name": "이채호",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "a99a75780f1b3c9241425ff9216fb728abef0eeaae972a157cb481fb5f9413a3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68900": {
+      "player_id": "68900",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68900",
+      "retrieved_at_utc": "2026-11-06T08:29:40.516740+00:00",
+      "name": "김영규",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "69ac973347c076ae8ac5d15a444a8f39c9eda8751aa1c847bf21a6c1012d6cf3",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68902": {
+      "player_id": "68902",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68902",
+      "retrieved_at_utc": "2026-11-06T08:29:46.367565+00:00",
+      "name": "신민혁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "11edde3c5d4cd6f59f38d8910a3d1344bc2d8ce30a045bf66af6add2f5cbc5d5",
+      "status": "VERIFIED_PROFILE"
+    },
+    "68928": {
+      "player_id": "68928",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=68928",
+      "retrieved_at_utc": "2026-11-06T08:29:46.372649+00:00",
+      "name": "김시훈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "015c359ddc92512be9f7606b4f2ba376a83799cd4e39abe9c3d4cbcc9a417230",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69032": {
+      "player_id": "69032",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69032",
+      "retrieved_at_utc": "2026-11-06T08:29:46.397825+00:00",
+      "name": "쿠에바스",
+      "profile_position": "투수(우투양타)",
+      "throws": "R",
+      "sha256_html": "9d0204eeaaa59fba9755ce1ccb500fe23ddda5d3d8e2afc25b329509021478f2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69041": {
+      "player_id": "69041",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69041",
+      "retrieved_at_utc": "2026-11-06T08:29:46.407281+00:00",
+      "name": "손동현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "2706c4dc6dc5a138085453c5a29d134992030ff86222e464899cc628ac1597b7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69045": {
+      "player_id": "69045",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69045",
+      "retrieved_at_utc": "2026-11-06T08:29:46.427969+00:00",
+      "name": "알칸타라",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "98f76ec393970d7f852ed8442c28dd427ff963341a5613df205701ec893c7456",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69047": {
+      "player_id": "69047",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69047",
+      "retrieved_at_utc": "2026-11-06T08:29:46.439410+00:00",
+      "name": "전용주",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "a485036adbf2d35b3019f523ada7b0e27fb7bfb161060fcaf49c78ee6547bde8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69054": {
+      "player_id": "69054",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69054",
+      "retrieved_at_utc": "2026-11-06T08:29:51.892835+00:00",
+      "name": "이상동",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5f442dd60ad705dc9453df4eb1ce536d437381fba7855a988cc30da07d381ac2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69068": {
+      "player_id": "69068",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69068",
+      "retrieved_at_utc": "2026-11-06T08:29:51.944968+00:00",
+      "name": "이선우",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "a6a6c4dee5c9dcd79cb70a7a8c42052d02575335708f8d8f632aca6102a2c6c6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69103": {
+      "player_id": "69103",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69103",
+      "retrieved_at_utc": "2026-11-06T08:29:51.962836+00:00",
+      "name": "켈리",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "a6913c110a60534bb0b5141d9bb96428a113302c564953e2d48eb2285c184349",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69108": {
+      "player_id": "69108",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69108",
+      "retrieved_at_utc": "2026-11-06T08:29:51.995174+00:00",
+      "name": "이지강",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6468300bee9af253a2d485260e814fd78d96496f155c539b96f50af81e7f798e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69113": {
+      "player_id": "69113",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69113",
+      "retrieved_at_utc": "2026-11-06T08:29:52.040838+00:00",
+      "name": "임준형",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "590ede5f82a08fe46525b3cbf3868da9ca139e26fea58a32f333aa448e0cbd59",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69134": {
+      "player_id": "69134",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69134",
+      "retrieved_at_utc": "2026-11-06T08:29:52.057423+00:00",
+      "name": "이정용",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "4ced5ff629e4154ecfc41a5cb07597b28ac2fd11e2197f5dcbebd3f23a930319",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69159": {
+      "player_id": "69159",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69159",
+      "retrieved_at_utc": "2026-11-06T08:29:58.124224+00:00",
+      "name": "정우영",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "d0e420994b4b9d0b72b5fa4942e1af04288b345e9181b61141b948799b8f80f7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69168": {
+      "player_id": "69168",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69168",
+      "retrieved_at_utc": "2026-11-06T08:29:58.142402+00:00",
+      "name": "이상영",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "daed0149dd665dedbbe76fe98122310e101496a4b8529c27e93abd4073a7470f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69204": {
+      "player_id": "69204",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69204",
+      "retrieved_at_utc": "2026-11-06T08:29:58.146957+00:00",
+      "name": "전루건",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "79fbfd00379c51d88f1544b69a7bcad9a8bb2e6f424a46fa37bb0c708b4c73cc",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69205": {
+      "player_id": "69205",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69205",
+      "retrieved_at_utc": "2026-11-06T08:29:58.151985+00:00",
+      "name": "이교훈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "34de8fc78290e674c2f1f53898354b8f7545d1cbb9fe77362270bd8196b580d4",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69213": {
+      "player_id": "69213",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69213",
+      "retrieved_at_utc": "2026-11-06T08:29:58.154027+00:00",
+      "name": "윤산흠",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "349ae8f750ceb025d2bc4b375397bee097417431db6f93fb840489456a51c7c8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69328": {
+      "player_id": "69328",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69328",
+      "retrieved_at_utc": "2026-11-06T08:29:58.196634+00:00",
+      "name": "박주성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "0a30c6bcfc60e8ec6f10c8cd16d85bf8793ec649b49f771881d0fb52c8b86473",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69343": {
+      "player_id": "69343",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69343",
+      "retrieved_at_utc": "2026-11-06T08:30:04.463536+00:00",
+      "name": "요키시",
+      "profile_position": "투수(좌투우타)",
+      "throws": "L",
+      "sha256_html": "2e370327a31ded8c200666daa7de9c729070c769d1bc13929f9c17bdfe577607",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69360": {
+      "player_id": "69360",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69360",
+      "retrieved_at_utc": "2026-11-06T08:30:04.466150+00:00",
+      "name": "조영건",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9403a0f9b5d5cf66cb4bde268a376ba56f4142e35704282949d95bd5e922734c",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69367": {
+      "player_id": "69367",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69367",
+      "retrieved_at_utc": "2026-11-06T08:30:04.497311+00:00",
+      "name": "김인범",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "defc0c043ad957a17f2bcb65ae678a6998734638da1921eebcb96f9576258693",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69399": {
+      "player_id": "69399",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69399",
+      "retrieved_at_utc": "2026-11-06T08:30:04.511479+00:00",
+      "name": "윤정현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "dcdc46ed8b6da90190f8bfa8544ceccfed029571b3414f430411d05f0e9609ea",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69446": {
+      "player_id": "69446",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69446",
+      "retrieved_at_utc": "2026-11-06T08:30:04.514989+00:00",
+      "name": "원태인",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "6a7c9979461ce14b2a12600aa9bb14d86beaed3880c4e87c7f8dad9cf2e90506",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69516": {
+      "player_id": "69516",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69516",
+      "retrieved_at_utc": "2026-11-06T08:30:04.557792+00:00",
+      "name": "김현수",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "05119404c6dafcd55df0ffc19b6071e7dc108e5e2c7e6acebe00220dca432c96",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69594": {
+      "player_id": "69594",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69594",
+      "retrieved_at_utc": "2026-11-06T08:30:10.015909+00:00",
+      "name": "박진",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "35d8511625df370bb58b86afa3e9c7bd6206441974981a299c8146452fa989ad",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69620": {
+      "player_id": "69620",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69620",
+      "retrieved_at_utc": "2026-11-06T08:30:10.020229+00:00",
+      "name": "김기훈",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "1ac731b679b20b5ebaddbd387c008e8264673c0b4280adead86163f55a84f2d8",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69643": {
+      "player_id": "69643",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69643",
+      "retrieved_at_utc": "2026-11-06T08:30:10.025496+00:00",
+      "name": "홍원빈",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1495a0110569214365d5a1bbb791beeb02e79013a94b475a849af24c53910f0d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69645": {
+      "player_id": "69645",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69645",
+      "retrieved_at_utc": "2026-11-06T08:30:10.040711+00:00",
+      "name": "장유호",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9e17d9d663b2a964aafff733ba0bc5536f3e2bb4a3a357b060fc702714fbbb37",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69745": {
+      "player_id": "69745",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69745",
+      "retrieved_at_utc": "2026-11-06T08:30:10.076244+00:00",
+      "name": "김도현",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "d5215e90cce7fdf37e64aef1b81b243663f572dbe25309f396b6df014ea36ea6",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69839": {
+      "player_id": "69839",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69839",
+      "retrieved_at_utc": "2026-11-06T08:30:10.115528+00:00",
+      "name": "백승건",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "678c08d95ecca389d4e2b252205c60ba3a8650754544a25692c34d85ae7287bf",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69962": {
+      "player_id": "69962",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69962",
+      "retrieved_at_utc": "2026-11-06T08:30:15.489044+00:00",
+      "name": "송명기",
+      "profile_position": "투수(우투좌타)",
+      "throws": "R",
+      "sha256_html": "544d55f0c62df3489353ea1c0f6b9c6e9e05710f8c66205b04ff12bd90c37713",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69969": {
+      "player_id": "69969",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69969",
+      "retrieved_at_utc": "2026-11-06T08:30:15.506008+00:00",
+      "name": "전사민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "3574bdacfb7b64203c0e43cfddb8e4c748f8db22ee30861e37a3af2eb7d23ab1",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69974": {
+      "player_id": "69974",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69974",
+      "retrieved_at_utc": "2026-11-06T08:30:15.511365+00:00",
+      "name": "배민서",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "056c08d3f4217e09e505a2d96c927172e83b83c9484be4b9cf58e8f31c971a15",
+      "status": "VERIFIED_PROFILE"
+    },
+    "69994": {
+      "player_id": "69994",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=69994",
+      "retrieved_at_utc": "2026-11-06T08:33:37.168359+00:00",
+      "name": "박지한",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "6fef33c90eb73674fcc3d9192f9cb9d2e17fa22895c81a23f4df121e11229edd",
+      "status": "VERIFIED_PROFILE"
+    },
+    "72523": {
+      "player_id": "72523",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=72523",
+      "retrieved_at_utc": "2026-11-06T08:30:15.529047+00:00",
+      "name": "고효준",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "5909419b5da5566070426a60ffcad3185d0276718533d52325d9866c93e745e2",
+      "status": "VERIFIED_PROFILE"
+    },
+    "73117": {
+      "player_id": "73117",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=73117",
+      "retrieved_at_utc": "2026-11-06T08:30:15.534254+00:00",
+      "name": "우규민",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "7b3ccf2594f5f2c1e79c32b72d20e0584575fb61544bdcf3ac4cd204199306a7",
+      "status": "VERIFIED_PROFILE"
+    },
+    "73211": {
+      "player_id": "73211",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=73211",
+      "retrieved_at_utc": "2026-11-06T08:30:15.578064+00:00",
+      "name": "노경은",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e19e12a0b48a1328f2c257186934cf5157ccc79e573ade371af3f3c30397bd1e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "73801": {
+      "player_id": "73801",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=73801",
+      "retrieved_at_utc": "2026-11-06T08:30:20.555231+00:00",
+      "name": "송은범",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7e08b2b01b4183c523109ad0baa8db46d19b0d555f88c3e82ca8aae9b45bcf0f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "74857": {
+      "player_id": "74857",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=74857",
+      "retrieved_at_utc": "2026-11-06T08:30:20.576851+00:00",
+      "name": "정우람",
+      "profile_position": "(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "2ae82fd51bb4f235ea322dbf61ed416538d3b31b02ae5732bbd10b9d0737c184",
+      "status": "VERIFIED_PROFILE"
+    },
+    "75421": {
+      "player_id": "75421",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=75421",
+      "retrieved_at_utc": "2026-11-06T08:30:20.614319+00:00",
+      "name": "오승환",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "e47e50b0912d6f16e53a6708d92ab8965bd544cd7fd9c2a58e7ac685e9a8f339",
+      "status": "VERIFIED_PROFILE"
+    },
+    "75867": {
+      "player_id": "75867",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=75867",
+      "retrieved_at_utc": "2026-11-06T08:30:20.631958+00:00",
+      "name": "김진성",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "49fc7f50b3ea4d3b3ae8b2566d4bed18ea491e08faa36463ff86a14eb04548ca",
+      "status": "VERIFIED_PROFILE"
+    },
+    "76118": {
+      "player_id": "76118",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=76118",
+      "retrieved_at_utc": "2026-11-06T08:30:20.662026+00:00",
+      "name": "원종현",
+      "profile_position": "투수(우언우타)",
+      "throws": "R",
+      "sha256_html": "8913b7942487a1cdd419f2629cbeb4df302d97451479529d648b423dcc45327f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "76225": {
+      "player_id": "76225",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=76225",
+      "retrieved_at_utc": "2026-11-06T08:30:20.761049+00:00",
+      "name": "김건국",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "9ce919f276a858bc943e0d994ad9f7a20a7d2c51d47613b348562449430d5584",
+      "status": "VERIFIED_PROFILE"
+    },
+    "76430": {
+      "player_id": "76430",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=76430",
+      "retrieved_at_utc": "2026-11-06T08:30:26.193119+00:00",
+      "name": "김태혁",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "88e25915d38ff7f290c7f421fdfdd13e5a037cade21d4919c55b153d2b39e39e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "76650": {
+      "player_id": "76650",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=76650",
+      "retrieved_at_utc": "2026-11-06T08:30:26.196450+00:00",
+      "name": "진해수",
+      "profile_position": "(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "740a5c163a0dd7a1f0e47aa347a3d61e411e299290c902f41acbf9a63d38f221",
+      "status": "VERIFIED_PROFILE"
+    },
+    "76715": {
+      "player_id": "76715",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=76715",
+      "retrieved_at_utc": "2026-11-06T08:30:26.230156+00:00",
+      "name": "류현진",
+      "profile_position": "투수(좌투우타)",
+      "throws": "L",
+      "sha256_html": "fe0ca3491d725145a9ab15ecb1ab5d21c99cfbcc0555668d0129359846a6534f",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77211": {
+      "player_id": "77211",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77211",
+      "retrieved_at_utc": "2026-11-06T08:30:26.237061+00:00",
+      "name": "이용찬",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "ce80835fb1d3abf82f7319cc62a32853797536cbd2cbb3f8525cbb6ec723f31a",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77263": {
+      "player_id": "77263",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77263",
+      "retrieved_at_utc": "2026-11-06T08:30:26.304286+00:00",
+      "name": "김강률",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "b9e68534a987cbc91eae07abaee8d3f86937e241f0f12b600b2c91d2dee846ba",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77318": {
+      "player_id": "77318",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77318",
+      "retrieved_at_utc": "2026-11-06T08:30:26.308428+00:00",
+      "name": "장시환",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "74a53fa6b19863a6a91be08276c0c9e8f98782f25c1e4b24617309ae59272c2e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77446": {
+      "player_id": "77446",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77446",
+      "retrieved_at_utc": "2026-11-06T08:30:35.311233+00:00",
+      "name": "백정현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "7d143f9068b1ee9b2ea560cc0a916b96313325a33b6737ab404b981cc5f14d2e",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77637": {
+      "player_id": "77637",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77637",
+      "retrieved_at_utc": "2026-11-06T08:30:35.323860+00:00",
+      "name": "양현종",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "75dc28c67fe25fa5f729dfd9d3b857fb62b37c8bb00d1fb2acb82a7b0531eb0d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77829": {
+      "player_id": "77829",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77829",
+      "retrieved_at_utc": "2026-11-06T08:30:35.361252+00:00",
+      "name": "김광현",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "627dbb9e9459eb6cd63f7e718e6703edb63e35ad98f52991fbccbbb1a6e457d0",
+      "status": "VERIFIED_PROFILE"
+    },
+    "77927": {
+      "player_id": "77927",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=77927",
+      "retrieved_at_utc": "2026-11-06T08:30:35.367873+00:00",
+      "name": "장필준",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "8808bf62add87ab165ef7cde6b9d9880ae69e2fd6344cb0a3d7a7426290e58ce",
+      "status": "VERIFIED_PROFILE"
+    },
+    "78148": {
+      "player_id": "78148",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=78148",
+      "retrieved_at_utc": "2026-11-06T08:30:35.368463+00:00",
+      "name": "정찬헌",
+      "profile_position": "(우투우타)",
+      "throws": "R",
+      "sha256_html": "beac8d0d627a166bf0c1791c7c94d55590f42d2d0322971843272db02c780858",
+      "status": "VERIFIED_PROFILE"
+    },
+    "78352": {
+      "player_id": "78352",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=78352",
+      "retrieved_at_utc": "2026-11-06T08:30:35.369987+00:00",
+      "name": "임창민",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "1b496497b5a32c8defa4a75b25a2c8115f5eeda71931697de796fb506ebdc584",
+      "status": "VERIFIED_PROFILE"
+    },
+    "78517": {
+      "player_id": "78517",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=78517",
+      "retrieved_at_utc": "2026-11-06T08:30:56.553905+00:00",
+      "name": "하준호",
+      "profile_position": "투수(좌투좌타)",
+      "throws": "L",
+      "sha256_html": "c30380eb6af42de4ab5cbbf642b38a72d0025274b351d4a742acadc661440c19",
+      "status": "VERIFIED_PROFILE"
+    },
+    "79140": {
+      "player_id": "79140",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=79140",
+      "retrieved_at_utc": "2026-11-06T08:30:56.637713+00:00",
+      "name": "최동환",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "5f89224815e7bab9a37f644c73a8d0def328d11823fbde358feb8be42f7b410d",
+      "status": "VERIFIED_PROFILE"
+    },
+    "79764": {
+      "player_id": "79764",
+      "url": "https://www.koreabaseball.com/Record/Player/PitcherDetail/Basic.aspx?playerId=79764",
+      "retrieved_at_utc": "2026-11-06T08:30:56.671134+00:00",
+      "name": "장민재",
+      "profile_position": "투수(우투우타)",
+      "throws": "R",
+      "sha256_html": "7593e462e1874ef08886317ca40ae5513bb62185e4961da0f982d1eb4576e9f0",
+      "status": "VERIFIED_PROFILE"
+    }
+  }
+}

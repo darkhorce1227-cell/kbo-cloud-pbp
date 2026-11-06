@@ -76,6 +76,10 @@ def load_sources(paths: list[Path], plan: dict):
 
 
 def prepare_games(raw: pd.DataFrame):
+    raw = raw.copy()
+    raw["inning_topbot"] = raw.inning_topbot.astype(str).str.lower().replace({"bot": "bottom"})
+    if not raw.inning_topbot.isin(["top", "bottom"]).all():
+        raise ValueError("Unknown inning half encoding")
     first_pitchers = {}
     for (pk, half), q in raw.groupby(["game_pk", "inning_topbot"], sort=False):
         first_pitchers[(str(pk), str(half))] = player_id(q.iloc[0].pitcher)

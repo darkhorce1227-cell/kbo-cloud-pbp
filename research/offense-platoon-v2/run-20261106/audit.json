@@ -1,0 +1,49 @@
+{
+  "source_audit": [
+    {
+      "file": "kbo_pbp_2024_training.csv.gz",
+      "sha256": "d9e4b59fc4c255990452c47d384977f689f338ce6b90988933906cb9e7874458",
+      "raw_rows": 227955,
+      "raw_games": 736,
+      "regular_rows": 223015,
+      "regular_games": 719,
+      "duplicate_stable_keys": 0
+    },
+    {
+      "file": "kbo_pbp_2025_training.csv.gz",
+      "sha256": "017ae5f39e79b2aeaa05e269cf32aebe7cc410c75fedd6e928850a61730acb61",
+      "raw_rows": 222650,
+      "raw_games": 736,
+      "regular_rows": 215737,
+      "regular_games": 713,
+      "duplicate_stable_keys": 0
+    },
+    {
+      "file": "kbo_pbp_2026_latest.csv.gz",
+      "sha256": "198df4e62dd64677cd5550e1f1967005bc5bda0093860104131346b13e5320d8",
+      "raw_rows": 224975,
+      "raw_games": 731,
+      "regular_rows": 221603,
+      "regular_games": 720,
+      "duplicate_stable_keys": 0
+    }
+  ],
+  "game_audit": {
+    "valid_score_games": 2151,
+    "score_exclusions": [
+      {
+        "game_pk": "20250419NCHH02025",
+        "reason": "FIFTH_COMPLETION_NOT_PROVED"
+      }
+    ],
+    "missing_first_nine_games": 0
+  },
+  "hand_map_sha256": "4b7cb37221908a8eb2b58d377040de3aee692146e6cd78add75e3b6f35c69e62",
+  "code_sha256": "f9c8a361622768b4f687f5dee41475a632a9d6b4bf9d65c60f58b047da7b07ab",
+  "study_plan_sha256": "994b2113e124146b7d83ff4147b49ec06a37d1815f5cb1f84d9e873803320d8e",
+  "feature_rows": 8604,
+  "feature_sha256": "8a334a118b70441519bd50966d33ab818d43d85595af30b9d8d0071c45e71401",
+  "strict_before_date": true,
+  "lineup_and_starter_source": "RETROSPECTIVE_PBP_PROXY_NOT_PREANNOUNCEMENT",
+  "future_holdout_used": false
+}
