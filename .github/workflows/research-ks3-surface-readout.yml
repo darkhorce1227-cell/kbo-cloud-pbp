@@ -1,0 +1,44 @@
+name: KS3 frozen research surface readout 2026-11-06
+on:
+  push:
+    branches: [research/platoon-interaction-oos-20261106]
+    paths: ['.github/workflows/research-ks3-surface-readout.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  readout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download previously frozen market-unseen KS3 research artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-ks3-report
+          gh run download 42175215127 --repo darkhorce1227-cell/kbo-cloud-pbp --name KS3-20261106-market-unseen-research-pre --dir /tmp/kbo-ks3-report
+      - name: Print all 10 supported research market families and note unavailable HR joint
+        run: |
+          python - <<'PY'
+          import json,glob
+          f=glob.glob('/tmp/kbo-ks3-report/*.json')
+          assert len(f)==1,f
+          d=json.load(open(f[0]))
+          assert d['market_prices_inspected'] is False and d['official_champion']=='UNAVAILABLE'
+          print('KS3_FROZEN_SOURCE='+json.dumps({k:d[k] for k in ['game_pk','date','dataset_sha256','status','asof_data_through']},ensure_ascii=False))
+          for name,s in d['models'].items():
+           print('MODEL='+name)
+           print('F5='+json.dumps(s['F5_WDL']))
+           print('FULL='+json.dumps(s['Full_WL']))
+           print('FULL_HCAP_2p5='+json.dumps(s['handicap']['Full']['2.5']))
+           print('FULL_HCAP_1p5='+json.dumps(s['handicap']['Full']['1.5']))
+           print('F5_HCAP_1p5='+json.dumps(s['handicap']['F5']['1.5']))
+           print('FULL_TOTAL_9p5='+json.dumps(s['totals']['Full']['9.5']))
+           print('F5_TOTAL_5p5='+json.dumps(s['totals']['F5']['5.5']))
+           print('WIN1LOSS='+json.dumps(s['win1loss']))
+           print('TOP_MARGIN='+json.dumps(sorted(s['margin'].items(),key=lambda x:-x[1])[:5]))
+           print('TOP_F5_FINAL='+json.dumps(sorted(s['F5_Full'].items(),key=lambda x:-x[1])[:6]))
+           print('TOP_EXACT='+json.dumps(sorted(s['exact_total'].items(),key=lambda x:-x[1])[:6]))
+           print('HR_SCORE_JOINT='+str(s['HR_score_joint']))
+          PY
