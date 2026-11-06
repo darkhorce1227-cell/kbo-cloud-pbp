@@ -1,0 +1,29 @@
+name: Verify Naver Local-to-GitHub Auto PBP Code (offline fixtures)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cloud/auto_capture_naver.py"
+      - "cloud/auto_import_naver.py"
+      - ".github/workflows/verify-naver-auto-pbp.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Compile local capture and offline importer
+        run: python -m py_compile cloud/auto_capture_naver.py cloud/auto_import_naver.py
+      - name: Verify actual 9-inning playoff Naver source with generic parser
+        run: python cloud/auto_import_naver.py --verify-zip state/manual_pbp_raw/kbo_20261101_HTSS_raw_20261102_001536.zip
+      - name: Verify actual Korean Series Naver original with generic parser
+        run: python cloud/auto_import_naver.py --verify-zip state/manual_pbp_raw/kbo_20261103_SSKT_raw_20261104_105129.zip
+      - name: Confirm fixture verification never published
+        run: test ! -e out/auto_import_result.json
