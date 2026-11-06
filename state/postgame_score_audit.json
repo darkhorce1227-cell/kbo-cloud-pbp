@@ -1,41 +1,41 @@
 {
   "dataset_columns": 50,
-  "dataset_rows": 224611,
+  "dataset_rows": 224975,
   "duplicate_stable_keys": 0,
   "expected_game_ids": [
-    "77771103SSKT02026"
+    "77771104SSKT02026"
   ],
   "expected_games": 1,
   "final_games": 1,
   "found_game_ids": [
-    "77771103SSKT02026"
+    "77771104SSKT02026"
   ],
   "games": [
     {
       "away_team": "SS",
-      "deduplicated_pa_rows": 80,
+      "deduplicated_pa_rows": 103,
       "f5": {
-        "away": 0,
-        "home": 6,
-        "last_at_bat_number": 44
+        "away": 1,
+        "home": 1,
+        "last_at_bat_number": 39
       },
       "final": {
-        "away": 7,
-        "half": "top",
-        "home": 8,
-        "inning": 9,
-        "last_at_bat_number": 80
+        "away": 3,
+        "half": "bot",
+        "home": 2,
+        "inning": 12,
+        "last_at_bat_number": 103
       },
       "game": "SS@KT",
-      "game_pk": "77771103SSKT02026",
+      "game_pk": "77771104SSKT02026",
       "home_team": "KT",
       "official_final": {
-        "away": 7,
-        "home": 8
+        "away": 3,
+        "home": 2
       },
       "official_final_crosscheck": "PASS",
       "problems": [],
-      "raw_rows": 321,
+      "raw_rows": 364,
       "status": "PASS"
     }
   ],
@@ -48,19 +48,19 @@
     "stable_key_duplicates_zero": true,
     "status_validation_pass": true
   },
-  "generated_at_kst": "2026-11-04T12:25:00.291012+09:00",
+  "generated_at_kst": "2026-11-06T15:15:19.219764+09:00",
   "missing_required_columns": [],
   "official_crosscheck_games_found": 1,
   "official_final_crosscheck_provenance": "NAVER_SCHEDULE_JSON_FROM_SAME_USER_ARCHIVE_NOT_AN_INDEPENDENT_SECOND_FETCH",
   "offline_source_provenance": "USER_UPLOADED_NAVER_ORIGINAL_RELAY_ZIP",
-  "original_capture_utc": "2026-11-04T01:51:29Z",
+  "original_capture_utc": "2026-11-06T05:54:33Z",
   "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
   "parquet": "kbo_pbp_2026_latest.parquet",
-  "sha256_parquet": "32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1",
+  "sha256_parquet": "0ca95818ac8ea00030f79d8f5aa9c98987acb4edd334a8228ef9fb3503e12d4e",
   "source": "validated_parquet_binary",
-  "source_raw_zip_sha256": "9c017daf0ee90b59f05de376ecefca20e5621e68b7943976e5335e90252f574c",
-  "status_sha256_parquet": "32c70d31c89c83a9e8606254ff6ec084f599371b6debc6dde36066bf122c74e1",
-  "target_date": "2026-11-03",
+  "source_raw_zip_sha256": "d6f50ee64e02dd291dae54d21c502f8f5dae2cff31c1cd912dbc0a0ee7c14b37",
+  "status_sha256_parquet": "0ca95818ac8ea00030f79d8f5aa9c98987acb4edd334a8228ef9fb3503e12d4e",
+  "target_date": "2026-11-04",
   "validation": "PASS",
   "version": "1.0.0"
 }
