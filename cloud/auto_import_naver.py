@@ -176,7 +176,12 @@ def run() -> dict:
     original = set(before["game_pk"].astype(str))
     if (len(expected) != int(old_index.get("game_count", -1)) or expected != original):
         raise ValueError("Original release and validated game index are inconsistent")
-    status = json.loads((ROOT / "state/status.json").read_text(encoding="utf-8"))
+    # Git-tracked status.json may be WAIT/NO_GAMES from a different daily check.
+    # Validate strictly against the rolling Release status packaged with this exact binary.
+    release_status = ROOT / "out/baseline/status.json"
+    if not release_status.is_file():
+        raise FileNotFoundError("Validated release companion status.json missing; fail closed")
+    status = json.loads(release_status.read_text(encoding="utf-8"))
     if (int(status["rows"]) != len(before) or status["validation"] != "PASS" or
             core.sha256(BASE) != status["sha256_parquet"]):
         raise ValueError("Original release Parquet/status mismatch")
