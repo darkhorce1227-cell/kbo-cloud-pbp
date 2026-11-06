@@ -25,5 +25,7 @@ jobs:
         run: python cloud/auto_import_naver.py --verify-zip state/manual_pbp_raw/kbo_20261101_HTSS_raw_20261102_001536.zip
       - name: Verify actual Korean Series Naver original with generic parser
         run: python cloud/auto_import_naver.py --verify-zip state/manual_pbp_raw/kbo_20261103_SSKT_raw_20261104_105129.zip
+      - name: Verify real 12-inning Korean Series original and GAME_END
+        run: python cloud/auto_import_naver.py --verify-zip state/manual_pbp_raw/kbo_20261104_SSKT_raw_20261106_145433.zip
       - name: Confirm fixture verification never published
         run: test ! -e out/auto_import_result.json
