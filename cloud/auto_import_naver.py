@@ -262,7 +262,7 @@ def run() -> dict:
                     or actual.get("final", {}).get("away") != source_record["final"]["away"]
                     or actual.get("final", {}).get("home") != source_record["final"]["home"]
                     or actual.get("final", {}).get("inning") != source_record["terminal_inning"]
-                    or str(actual.get("final", {}).get("half", "")).lower() != source_record["terminal_half"]):
+                    or str(actual.get("final", {}).get("half", "")).lower() not in (("top",) if source_record["terminal_half"] == "top" else ("bot", "bottom"))):
                 raise RuntimeError(f"Original/PBP-derived score/terminal mismatch: {source_record['game_pk']}")
         audit["source_schedule_provenance"] = "same Naver capture archive, NOT independent second request"
         score_audit._write(audit, day)
