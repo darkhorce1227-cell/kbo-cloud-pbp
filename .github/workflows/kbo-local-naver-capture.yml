@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: kbo-naver-local-capture
   cancel-in-progress: false
@@ -27,6 +28,8 @@ jobs:
         run: python cloud/auto_capture_naver.py
       - name: Push immutable capture ZIPs to GitHub to trigger offline import
         shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           $ErrorActionPreference = 'Stop'
           git config user.name "kbo-pbp-local-capture"
@@ -44,3 +47,15 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "git rebase failed" }
           git push origin HEAD:main
           if ($LASTEXITCODE -ne 0) { throw "git push failed" }
+          # GITHUB_TOKEN push does NOT start another push-triggered Actions workflow.
+          # Explicit workflow_dispatch IS allowed and triggers cloud-side import.
+          $headers = @{
+            Authorization = "Bearer $env:GH_TOKEN"
+            Accept = "application/vnd.github+json"
+            "X-GitHub-Api-Version" = "2022-11-28"
+            "User-Agent" = "kbo-pbp-local-capture"
+          }
+          $dispatchUrl = "https://api.github.com/repos/${{ github.repository }}/actions/workflows/kbo-auto-offline-import.yml/dispatches"
+          Invoke-RestMethod -Method Post -Uri $dispatchUrl -Headers $headers -ContentType "application/json" -Body '{"ref":"main"}'
+          Write-Host "OFFLINE_IMPORT_DISPATCHED"
+
