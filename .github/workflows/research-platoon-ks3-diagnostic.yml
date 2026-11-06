@@ -1,0 +1,99 @@
+name: KS3 pitcher platoon OPS and exposure diagnostic
+on:
+  push:
+    branches: [research/platoon-interaction-oos-20261106]
+    paths: ['.github/workflows/research-platoon-ks3-diagnostic.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'numpy>=1.26,<3' 'pyarrow>=15'
+      - name: Download immutable PBP and validate checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/kbo-platoon-diag
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/kbo-platoon-diag
+          gh release download latest-pbp --pattern 'manifest.json' --dir /tmp/kbo-platoon-diag
+      - name: Compare identical OPS definitions and bootstrap sampling
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          import numpy as np,pandas as pd
+          p=Path('/tmp/kbo-platoon-diag')
+          d=p/'kbo_pbp_2026_latest.parquet'
+          manifest=json.loads((p/'manifest.json').read_text())
+          assert hashlib.sha256(d.read_bytes()).hexdigest()==manifest['sha256_parquet']
+          raw=pd.read_parquet(d)
+          x=raw[pd.to_datetime(raw.game_date)<pd.Timestamp('2026-10-13')].copy()
+          assert x.game_pk.nunique()==720
+          handfields=[c for c in x.columns if any(w in c.lower() for w in ('hand','throw','stand'))]
+          print('PBP_HANDNESS_COLUMNS='+repr(handfields))
+          x=x.sort_values(['game_pk','at_bat_number','pitch_number']).drop_duplicates(['game_pk','at_bat_number'],keep='last')
+          x=x[x.events.notna() & x.stand.isin(['L','R'])].copy()
+          e=x.events.astype(str)
+          x['h']=e.isin(['single','double','triple','home_run']).astype(int)
+          x['bb']=e.isin(['walk','intent_walk']).astype(int)
+          x['hbp']=e.eq('hit_by_pitch').astype(int)
+          x['sf']=e.eq('sac_fly').astype(int)
+          x['ab']=e.isin(['single','double','triple','home_run','field_out','strikeout','strikeout_double_play','fielders_choice','double_play','triple_play','field_error']).astype(int)
+          x['tb']=e.map({'single':1,'double':2,'triple':3,'home_run':4}).fillna(0).astype(int)
+          def summary(y):
+           n=len(y);ab=y.ab.sum();den=ab+y.bb.sum()+y.hbp.sum()+y.sf.sum()
+           obp=(y.h.sum()+y.bb.sum()+y.hbp.sum())/den
+           slg=y.tb.sum()/ab
+           return {'PAs':n,'AB_classified':int(ab),'hit':int(y.h.sum()),'BB':int(y.bb.sum()),'HBP':int(y.hbp.sum()),'SF':int(y.sf.sum()),
+                   'OBP':round(float(obp),6),'SLG':round(float(slg),6),'OPS':round(float(obp+slg),6)}
+          s=x[x.pitcher_name.astype(str)=='소형준']
+          assert len(s)>500,len(s)
+          l=s[s.stand.eq('L')];r=s[s.stand.eq('R')]
+          t={'source':'2026 RS through Oct12 ONLY','checksum':manifest['sha256_parquet'],'sohyungjun_L':summary(l),'sohyungjun_R':summary(r)}
+          t['OPS_gap_L_minus_R']=round(t['sohyungjun_L']['OPS']-t['sohyungjun_R']['OPS'],6)
+          # Bootstrap baseball OPS using identical per-PA source and event classification, no formal game-cluster adjustment.
+          rng=np.random.default_rng(20261106)
+          def boot(z,n=2500):
+           mat=z[['h','bb','hbp','sf','ab','tb']].to_numpy(float)
+           samp=mat[rng.integers(0,len(mat),size=(n,len(mat)))]
+           ss=samp.sum(axis=1)
+           ob=(ss[:,0]+ss[:,1]+ss[:,2])/np.maximum(ss[:,4]+ss[:,1]+ss[:,2]+ss[:,3],1)
+           sl=ss[:,5]/np.maximum(ss[:,4],1)
+           return ob+sl
+          diff=boot(l)-boot(r)
+          t['OPS_gap_bootstrap95_individual_PA']=[round(float(a),5) for a in np.quantile(diff,[.025,.975])]
+          weights=np.array([1.12,1.09,1.06,1.04,1.02,1.00,.96,.92,.89])
+          lineup=np.array([1,1,1,1,1,1,0,1,0])
+          t['KS3_lineup_weighted_L_fraction']=round(float(np.dot(weights,lineup)/weights.sum()),5)
+          t['historic_L_PA_fraction']=round(len(l)/len(s),5)
+          t['L_exposure_increase_weighted_fraction']=round(t['KS3_lineup_weighted_L_fraction']-t['historic_L_PA_fraction'],5)
+          # Same-event-definition full league average across ALL pitchers is descriptive ONLY; not RHP average.
+          t['all_pitchers_league_L']=summary(x[x.stand.eq('L')])
+          t['all_pitchers_league_R']=summary(x[x.stand.eq('R')])
+          pcols=[c for c in x.columns if c.lower() in ('p_throws','pitcher_throws','pitcher_hand','throwing_hand')]
+          if pcols:
+           field=pcols[0]
+           sides=x[field].astype(str).str.upper()
+           t['RHP_field']=field
+           t['RHP_league_L']=summary(x[sides.eq('R') & x.stand.eq('L')])
+           t['RHP_league_R']=summary(x[sides.eq('R') & x.stand.eq('R')])
+           t['RHP_league_gap']=round(t['RHP_league_L']['OPS']-t['RHP_league_R']['OPS'],6)
+           t['excess_SOH_gap_vs_RHP']=round(t['OPS_gap_L_minus_R']-t['RHP_league_gap'],6)
+          else:
+           t['RHP_adjusted_same_method']='UNAVAILABLE_NO_VERIFIED_PITCHER_THROWS_FIELD'
+          (p/'diagnostic.json').write_text(json.dumps(t,ensure_ascii=False,indent=2)+'\n')
+          print('PREGAME_PLATOON_DIAGNOSTIC='+json.dumps(t,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS3-Sohyunghjun-platoon-OPS-diagnostic
+          path: /tmp/kbo-platoon-diag/diagnostic.json
+          if-no-files-found: warn
