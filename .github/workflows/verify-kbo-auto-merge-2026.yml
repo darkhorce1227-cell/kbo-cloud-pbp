@@ -28,8 +28,18 @@ jobs:
           find /tmp/kbo730 -maxdepth 4 -type f | sort
           mkdir -p out/baseline
           cp /tmp/kbo730/out/kbo_pbp_2026_latest.parquet out/baseline/kbo_pbp_2026_latest.parquet
+          cp /tmp/kbo730/state/status.json out/baseline/status.json
           cp /tmp/kbo730/state/status.json state/status.json
           cp /tmp/kbo730/state/validated_game_pks_2026.json state/validated_game_pks_2026.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('state/status.json')
+          j=json.loads(p.read_text())
+          j.update(validation='WAIT', state='TOO_EARLY', rows=None, sha256_parquet=None, target_date='2026-11-06')
+          p.write_text(json.dumps(j))
+          print('TEST_PRECONDITION: transient git status WAIT; baseline release status remains PASS')
+          PY
       - name: Add the original 2026-11-04 12-inning ZIP ONLY to temporary auto-import inputs
         run: |
           mkdir -p state/auto_pbp_raw
