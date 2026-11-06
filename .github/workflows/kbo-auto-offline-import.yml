@@ -1,0 +1,97 @@
+name: KBO PBP Auto Offline Validation and Release (no Naver HTTP)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "state/auto_pbp_raw/*.zip"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kbo-pbp-cloud-validated-publish
+  cancel-in-progress: false
+jobs:
+  offline-auto-import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install existing PBP parser
+        run: pip install -r requirements.txt
+      - name: Restore validated Parquet baseline, no Naver network calls
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p out/baseline
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir out/baseline
+          test -s out/baseline/kbo_pbp_2026_latest.parquet
+      - name: Fail-closed original source and cumulative index validation
+        run: |
+          python -m py_compile cloud/auto_import_naver.py
+          python cloud/auto_import_naver.py
+      - name: Read validated importer outcome
+        id: result
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          r=json.loads(Path("out/auto_import_result.json").read_text(encoding="utf-8"))
+          print("publish=" + ("true" if r["publish"] else "false"))
+          print("count=" + str(r.get("new_game_count",0)))
+          PY
+      - name: Commit verified index and audit without overwriting originals
+        if: steps.result.outputs.publish == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name 'kbo-pbp-bot'
+          git config user.email 'kbo-pbp-bot@users.noreply.github.com'
+          git add state/status.json state/validated_game_pks_2026.json \
+            state/postgame_score_audit.json state/postgame_score_audit_2026-*.json \
+            state/auto_pbp_raw/import_audit_*.json
+          if git diff --cached --quiet; then
+            echo "Missing verified changes"; exit 2
+          fi
+          git commit -m "data: auto-import ${{ steps.result.outputs.count }} original Naver PBP game(s)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Archive validated season files before release
+        if: steps.result.outputs.publish == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-auto-offline-validated-${{ github.run_id }}
+          path: |
+            out/kbo_pbp_2026_latest.csv.gz
+            out/kbo_pbp_2026_latest.parquet
+            out/manifest.json
+            state/status.json
+            state/validated_game_pks_2026.json
+            state/postgame_score_audit.json
+            state/postgame_score_audit_2026-*.json
+            state/auto_pbp_raw/import_audit_*.json
+          if-no-files-found: error
+          retention-days: 60
+          compression-level: 0
+      - name: Release only validated Parquet, CSV, status and audit
+        if: steps.result.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload latest-pbp \
+            out/kbo_pbp_2026_latest.csv.gz out/kbo_pbp_2026_latest.parquet \
+            out/manifest.json state/status.json \
+            state/validated_game_pks_2026.json state/postgame_score_audit.json --clobber
+      - name: Preserve failure evidence without touching rolling release
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-auto-import-failure-${{ github.run_id }}
+          path: |
+            out/auto_import_result.json
+            state/run_result.json
+          if-no-files-found: ignore
+          retention-days: 14
