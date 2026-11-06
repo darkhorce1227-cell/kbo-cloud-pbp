@@ -14,9 +14,9 @@ on:
       - "cloud/update_pbp_resilient.py"
       - "state/manual-trigger.txt"
       - ".github/workflows/update-pbp.yml"
-  schedule:
-    # 17:07–05:07 KST = 08:07–20:07 UTC
-    - cron: "7 8-20 * * *"
+  # GitHub-hosted schedule disabled after repeated verified Naver API ReadTimeout.
+  # Use kbo-local-naver-capture.yml (Windows self-hosted) for actual automatic capture.
+  # Keep workflow_dispatch and intentional pushes for manual network diagnostics.
   workflow_dispatch:
     inputs:
       target_date:
