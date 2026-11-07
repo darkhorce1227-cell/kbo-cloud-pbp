@@ -1,27 +1,29 @@
 {
-  "checked_at_kst": "2026-11-06T15:23:08.001421+09:00",
-  "columns": null,
-  "csv_gz": null,
-  "duplicate_stable_keys": null,
+  "checked_at_kst": "2026-11-07T12:56:25.315207+09:00",
+  "columns": 50,
+  "csv_gz": "kbo_pbp_2026_latest.csv.gz",
+  "duplicate_stable_keys": 0,
   "expected_game_ids": [
     "77771106KTSS02026"
   ],
   "expected_games": 1,
-  "final_games": 0,
-  "first_check_kst": "17:00",
-  "found_game_ids": null,
+  "final_games": 1,
+  "first_check_kst": "LOCAL_NETWORK_CAPTURE_AFTER_FINAL",
+  "found_game_ids": [
+    "77771106KTSS02026"
+  ],
   "has_1400_game": null,
-  "last_success_date": "2026-11-04",
-  "missing_columns": null,
-  "parquet": null,
-  "reason": "[NAVER_DATE_STATUS] First eligible check is 17:00 KST.",
-  "retry_next_hour": true,
-  "rows": null,
-  "sha256_csv_gz": null,
-  "sha256_parquet": null,
-  "should_publish": false,
-  "state": "TOO_EARLY",
+  "last_success_date": "2026-11-06",
+  "missing_columns": [],
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "reason": "[AUTO_OFFLINE] Original local-network Naver relays with terminal type99, SHA256, score and continuity PASS",
+  "retry_next_hour": false,
+  "rows": 225254,
+  "sha256_csv_gz": "e854326bd1709bef884521f4e617d51fdc2e87bc3b59e9f04c28ce6517735615",
+  "sha256_parquet": "c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a",
+  "should_publish": true,
+  "state": "UPDATED",
   "target_date": "2026-11-06",
-  "validation": "WAIT",
-  "version": "0.2.0"
+  "validation": "PASS",
+  "version": "0.7.0-AUTO_OFFLINE_ZIP"
 }

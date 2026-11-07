@@ -1,0 +1,30 @@
+{
+  "status": "AUTO_PBP_MERGE_VALIDATED",
+  "target_date": "2026-11-06",
+  "prior_games": 731,
+  "new_games": 732,
+  "prior_rows": 224975,
+  "new_rows": 279,
+  "total_rows": 225254,
+  "game_pks": [
+    "77771106KTSS02026"
+  ],
+  "source_archives": [
+    {
+      "game_pk": "77771106KTSS02026",
+      "source": "kbo_20261106_KTSS_raw_verified.zip",
+      "source_sha256": "7a8c83eb273500b002c399c4532936d73f41dc8df470de72511c5b128f6673cf",
+      "terminal_inning": 9,
+      "f5": {
+        "away": 1,
+        "home": 4
+      },
+      "final": {
+        "away": 1,
+        "home": 5
+      }
+    }
+  ],
+  "sha256_parquet": "c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a",
+  "source_score_crosscheck": "Naver schedule inside same original archive, not independent external"
+}

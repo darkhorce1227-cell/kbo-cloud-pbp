@@ -1,12 +1,63 @@
 {
+  "dataset_columns": 50,
+  "dataset_rows": 225254,
+  "duplicate_stable_keys": 0,
+  "expected_game_ids": [
+    "77771106KTSS02026"
+  ],
   "expected_games": 1,
-  "final_games": 0,
-  "generated_at_kst": "2026-11-06T15:23:09.303319+09:00",
-  "reason": "no completed validated target slate available for score audit",
-  "source": null,
+  "final_games": 1,
+  "found_game_ids": [
+    "77771106KTSS02026"
+  ],
+  "games": [
+    {
+      "away_team": "KT",
+      "deduplicated_pa_rows": 70,
+      "f5": {
+        "away": 1,
+        "home": 4,
+        "last_at_bat_number": 41
+      },
+      "final": {
+        "away": 1,
+        "half": "top",
+        "home": 5,
+        "inning": 9,
+        "last_at_bat_number": 70
+      },
+      "game": "KT@SS",
+      "game_pk": "77771106KTSS02026",
+      "home_team": "SS",
+      "official_final": {
+        "away": 1,
+        "home": 5
+      },
+      "official_final_crosscheck": "PASS",
+      "problems": [],
+      "raw_rows": 279,
+      "status": "PASS"
+    }
+  ],
+  "gates": {
+    "all_expected_game_ids_present": true,
+    "dataset_sha256_matches_status": true,
+    "expected_equals_final": true,
+    "expected_ids_count_match": true,
+    "required_columns_present": true,
+    "stable_key_duplicates_zero": true,
+    "status_validation_pass": true
+  },
+  "generated_at_kst": "2026-11-07T12:56:25.408304+09:00",
+  "missing_required_columns": [],
+  "official_crosscheck_games_found": 1,
+  "pa_dedup_rule": "one final row per (game_pk, at_bat_number), ordered by pitch_number then source row order",
+  "parquet": "kbo_pbp_2026_latest.parquet",
+  "sha256_parquet": "c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a",
+  "source": "validated_parquet_binary",
+  "source_schedule_provenance": "same Naver capture archive, NOT independent second request",
+  "status_sha256_parquet": "c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a",
   "target_date": "2026-11-06",
-  "updater_state": "TOO_EARLY",
-  "updater_validation": "WAIT",
-  "validation": "SKIP",
+  "validation": "PASS",
   "version": "1.0.0"
 }
