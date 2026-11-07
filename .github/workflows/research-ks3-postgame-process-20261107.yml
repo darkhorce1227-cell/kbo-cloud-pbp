@@ -1,0 +1,35 @@
+name: Research KS3 2026-11-06 postgame process read-only
+on:
+  push:
+    branches: [research/ks3-postgame-process-20261107]
+    paths:
+      - 'scripts/research_ks3_postgame_process_20261107.py'
+      - '.github/workflows/research-ks3-postgame-process-20261107.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'pandas>=2.2,<3' 'numpy>=1.26,<3' 'pyarrow>=15'
+      - name: Fetch latest validated original Naver PBP release and manifest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/ks3-postgame
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/ks3-postgame --clobber
+          gh release download latest-pbp --pattern 'manifest.json' --dir /tmp/ks3-postgame --clobber
+      - name: Derive in-game outcomes from binary
+        run: python -u scripts/research_ks3_postgame_process_20261107.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS3-postgame-PBP-process-research-20261107
+          path: /tmp/ks3-postgame/ks3_postgame_process.json
+          if-no-files-found: warn
