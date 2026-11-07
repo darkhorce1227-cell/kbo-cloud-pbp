@@ -1,0 +1,73 @@
+name: KS4 2026-11-07 read-only lineup, bullpen, postprice research probability
+on:
+  push:
+    branches: [research/ks4-20261107-postprice-replay]
+    paths:
+      - '.github/workflows/research-ks4-20261107-postprice.yml'
+      - 'scripts/research_ks4_20261107_postprice.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e . 'scipy>=1.11'
+      - name: Fetch SHA-verifiable release source through November 6
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/kbo-ks4
+          gh release download latest-pbp --pattern 'kbo_pbp_2026_latest.parquet' --dir /tmp/kbo-ks4 --clobber
+          gh release download latest-pbp --pattern 'manifest.json' --dir /tmp/kbo-ks4 --clobber
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('/tmp/kbo-ks4')
+          m=json.loads((p/'manifest.json').read_text())
+          h=hashlib.sha256((p/'kbo_pbp_2026_latest.parquet').read_bytes()).hexdigest()
+          assert h==m['sha256_parquet']=='c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a'
+          assert m['through_date']=='2026-11-06'
+          assert m['game_count']==732
+          print('KS4_DATA_HASH_OK='+h)
+          PY
+      - name: Pre-date lineup audit for exact user-supplied confirmed starting nine
+        run: |
+          python - <<'PY'
+          import json
+          lineup={'date':'2026-11-07','status':'USER_SUPPLIED_CONFIRMED_LINEUP','source_description':'User supplied Nov 7 2026 confirmed lineup image','teams':[
+          {'team':'KT','starter':'로건','lineup':['최원준','장진혁','안현민','힐리어드','김현수','김상수','허경민','한승택','장준원']},
+          {'team':'SS','starter':'장찬희','lineup':['김지찬','박승규','구자욱','최형우','디아즈','김영웅','이재현','류지혁','김도환']}]}
+          open('/tmp/kbo-ks4/confirmed_lineup.json','w').write(json.dumps(lineup,ensure_ascii=False))
+          PY
+          python scripts/kbo_lineup_pregame_audit.py --source /tmp/kbo-ks4/kbo_pbp_2026_latest.parquet --lineup /tmp/kbo-ks4/confirmed_lineup.json --sha c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a --output /tmp/kbo-ks4/lineup_audit.json
+      - name: Audit bullpen history and last 1d workload (pitch-row proxy, not roster)
+        run: |
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kbo-ks4/kbo_pbp_2026_latest.parquet --team KT --date 2026-11-07 --current-starter-id 55912 --expect-sha c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a --output /tmp/kbo-ks4/kt_bullpen_asof.json
+          python scripts/kbo_bullpen_pregame_audit.py --source /tmp/kbo-ks4/kbo_pbp_2026_latest.parquet --team SS --date 2026-11-07 --current-starter-id 56460 --expect-sha c713fedcedaa41dc6496352c7e5f08564c474cad71e0d32d166b0d7dbb45075a --output /tmp/kbo-ks4/ss_bullpen_asof.json
+      - name: Compute 2 fixed-spec research models with pregame-data-only features
+        run: python -u scripts/research_ks4_20261107_postprice.py
+      - name: Show short readout
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/kbo-ks4/ks4_premarket_20261107.json'))
+          for k,v in d['models'].items():
+           print('KS4_RESULT='+json.dumps({'model':k,'mu':v['mu'],'F5':v['F5_WDL'],'Full':v['Full_WL'],'F5_O4p5':v['totals']['F5']['4.5']['O'],'Full_O9p5':v['totals']['Full']['9.5']['O']},ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: KS4-20261107-PREGAME_INPUT-POSTPRICE_RESEARCH
+          path: |
+            /tmp/kbo-ks4/ks4_premarket_20261107.json
+            /tmp/kbo-ks4/lineup_audit.json
+            /tmp/kbo-ks4/kt_bullpen_asof.json
+            /tmp/kbo-ks4/ss_bullpen_asof.json
+          if-no-files-found: warn
