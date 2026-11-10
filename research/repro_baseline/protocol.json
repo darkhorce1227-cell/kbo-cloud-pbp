@@ -1,0 +1,54 @@
+{
+  "version": "RS-BASE-v0.1-20261110",
+  "status": "FROZEN_RETROSPECTIVE_RESEARCH_NOT_CHAMPION",
+  "created_kst": "2026-11-10",
+  "source_commit": "3b517194364e57560eac5aa986ca578092072feb",
+  "source_sha256": {
+    "2024": "d9e4b59fc4c255990452c47d384977f689f338ce6b90988933906cb9e7874458",
+    "2025": "017ae5f39e79b2aeaa05e269cf32aebe7cc410c75fedd6e928850a61730acb61",
+    "2026": "e854326bd1709bef884521f4e617d51fdc2e87bc3b59e9f04c28ce6517735615"
+  },
+  "season_end": {"2024": "2024-09-30", "2025": "2025-09-30", "2026": "2026-10-12"},
+  "feature_history": "same season for teams and relief; prior 365 days for starter and batter; strictly earlier calendar dates; all same-day updates deferred",
+  "training_start_month_day": "05-01",
+  "monthly_expanding_refit": true,
+  "minimum_training_games": 160,
+  "team_prior_games": 12,
+  "league_recent_days": 30,
+  "league_prior_team_games": 40,
+  "starter_prior_bf": 150,
+  "starter_prior_starts": 5,
+  "batter_prior_pa": 120,
+  "relief_prior_bf": 150,
+  "ridge_alpha": 0.1,
+  "nb_alpha_f5": 0.54,
+  "nb_alpha_late": 0.54,
+  "pmf_tail_tolerance": 1e-12,
+  "bootstrap_repetitions": 4000,
+  "seed": 20261110,
+  "primary_metrics": ["f5_wdl_logloss", "full_decided_logloss"],
+  "brier_definition": "sum over classes of squared probability error, no 1/2 or class-count scaling",
+  "baselines": {
+    "league_reference": ["is_home"],
+    "baseline_team": ["is_home", "off_long_log", "opp_def_long_log"]
+  },
+  "additions_to_baseline_team_individually": {
+    "add_starter_skill": ["opp_sp_kbb_delta", "opp_sp_hr_delta"],
+    "add_expected_sp_outs": ["opp_sp_outs_delta"],
+    "add_offense7": ["off7_delta"],
+    "add_offense14": ["off14_delta"],
+    "add_bullpen_skill": ["opp_bp_kbb_delta", "opp_bp_hr_delta"],
+    "add_relief_workload": ["opp_bp_recent3_log_bf"],
+    "add_lineup_onbase_delta": ["lineup_onbase_delta"],
+    "add_lineup_power_delta": ["lineup_power_delta"]
+  },
+  "selection_policy": "No winning-feature combination or threshold retuning in this run. All additions reported on the same eligible games. Historical seasons already inspected are diagnostic, not fresh prospective OOS. No production promotion.",
+  "limitations": [
+    "Actual target starter identity is a retrospective proxy for the pre-announced starter; announcement timestamps unavailable.",
+    "Lineup is first nine distinct PBP batters; not timestamped pregame announcement and cannot qualify as prospective evidence.",
+    "Late target is final score minus F5, including played extra innings. Independent nonnegative phase counts are a research approximation, not an exact inning/extra-inning/walkoff simulator.",
+    "Fixed research totals F5 4.5 and Full 8.5; not observed historical betting lines. No ROI, EV or CLV claims.",
+    "Bootstrap conditions on fitted forecasts and does not include the whole model-development uncertainty. Multiple-comparison correction supplied for primary losses only.",
+    "Existing v0.9 recovered candidate and BP30 prospective gate remain unchanged."
+  ]
+}

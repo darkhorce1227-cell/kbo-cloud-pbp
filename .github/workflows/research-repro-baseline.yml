@@ -1,0 +1,60 @@
+name: Frozen reproducible KBO baseline and one-block ablations
+on:
+  push:
+    branches: [research/reproducible-baseline-20261110]
+    paths:
+      - scripts/kbo_repro_baseline.py
+      - tests/test_repro_baseline.py
+      - research/repro_baseline/protocol.json
+      - .github/workflows/research-repro-baseline.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: reproducible-baseline-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      LOKY_MAX_CPU_COUNT: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen numerical dependencies
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0
+      - name: Test leakage, starter mapping, phase coherence and scoring definitions
+        run: python -m unittest discover -s tests -p test_repro_baseline.py -v
+      - name: Fetch preserved 2024-25 original source and current hash-pinned 2026
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/repro-baseline-inputs
+          gh run download 37073907739 --repo darkhorce1227-cell/kbo-cloud-pbp --name kbo-mu-training-pbp-2024-2025 --dir /tmp/repro-baseline-inputs
+          curl --fail --location --retry 2 --output /tmp/repro-baseline-inputs/kbo_pbp_2026_latest.csv.gz https://github.com/darkhorce1227-cell/kbo-cloud-pbp/releases/download/latest-pbp/kbo_pbp_2026_latest.csv.gz
+      - name: Run unchanged frozen protocol on 2024-26
+        run: |
+          python scripts/kbo_repro_baseline.py --inputs /tmp/repro-baseline-inputs/kbo_pbp_2024_training.csv.gz /tmp/repro-baseline-inputs/kbo_pbp_2025_training.csv.gz /tmp/repro-baseline-inputs/kbo_pbp_2026_latest.csv.gz --out research/repro_baseline/results
+      - name: Archive all features, predictions, model coefficients and metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: kbo-repro-baseline-v01-20261110
+          path: research/repro_baseline/results/
+          retention-days: 90
+      - name: Preserve reviewable research outputs on this branch
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add research/repro_baseline/results/REPORT.md research/repro_baseline/results/metrics.json research/repro_baseline/results/manifest.json research/repro_baseline/results/fitted_models.json research/repro_baseline/results/predictions.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "research: record frozen 2024-26 baseline ablations; no production activation"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
