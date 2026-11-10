@@ -1,0 +1,30 @@
+{
+  "validation": "PASS",
+  "games": 1457,
+  "forecast_rows": 14570,
+  "model_count": 10,
+  "calibration_rows": 102,
+  "code_sha256": "933801133281963951cecb678335775adcd164b4e922f4a77bb87a093144b2f8",
+  "review_code_sha256": "12c93457f7d3197b9616f61c792ca2218ffc96b2a288e8142689ca97ebda5a3c",
+  "protocol_sha256": "8073998bb60401f6949713df13c6299c4267433b61fe845bb547bfcc836220ac",
+  "checks": [
+    "one row per model/game",
+    "same game counts",
+    "training cutoff before game",
+    "Full mu >= F5 mu",
+    "calibration bin denominators equal source counts",
+    "archived market score matches PBP target"
+  ],
+  "calibration_note": "10 fixed-width probability bins, descriptive only; no calibration function fitted",
+  "coefficient_replay": {
+    "phase_team_forecasts": 58280,
+    "max_abs_mu_error": 4.999498592894724e-10,
+    "tolerance": 1e-07,
+    "note": "Saved prediction CSV uses 10 significant digits"
+  },
+  "feature_snapshot_sha256": "c48719ffd03633be13c79e7aeec11a1955a44da58277852bc5a55383b0906704",
+  "independent_replay": {
+    "forecast_rows": 14570,
+    "max_abs_numeric_difference": 0.0
+  }
+}

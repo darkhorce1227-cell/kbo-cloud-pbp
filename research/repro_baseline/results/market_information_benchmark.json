@@ -1,0 +1,193 @@
+{
+  "status": "POST_RUN_DESCRIPTIVE_INFORMATION_BENCHMARK_ONLY",
+  "games": 125,
+  "price_temporality": "Historical displayed prices, captured retrospectively; pregame/close timing unverified",
+  "source_sha256": "bcd1a30c7ec595535212e88296899bd4121202e3f2017e6d91f2a0c54c31d022",
+  "market": {
+    "logloss": 0.6490872049108528,
+    "brier": 0.45680476628252475,
+    "hit_rate": 0.64
+  },
+  "models": {
+    "add_bullpen_skill": {
+      "logloss": 0.6868188111783999,
+      "brier": 0.493707861852,
+      "hit_rate": 0.552,
+      "delta_vs_market": {
+        "delta": 0.037731606267547096,
+        "ci95": [
+          0.007687944080540797,
+          0.06382448656165977
+        ],
+        "familywise_ci": [
+          0.007687944080540797,
+          0.06382448656165977
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_expected_sp_outs": {
+      "logloss": 0.6613400175704001,
+      "brier": 0.46853341483120003,
+      "hit_rate": 0.6,
+      "delta_vs_market": {
+        "delta": 0.012252812659547092,
+        "ci95": [
+          -0.01397453436910388,
+          0.03439166705836042
+        ],
+        "familywise_ci": [
+          -0.01397453436910388,
+          0.03439166705836042
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_lineup_onbase_delta": {
+      "logloss": 0.68585663854,
+      "brier": 0.49274379797119994,
+      "hit_rate": 0.568,
+      "delta_vs_market": {
+        "delta": 0.03676943362914709,
+        "ci95": [
+          0.006734318671770934,
+          0.06243934711355429
+        ],
+        "familywise_ci": [
+          0.006734318671770934,
+          0.06243934711355429
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_lineup_power_delta": {
+      "logloss": 0.6864394440231999,
+      "brier": 0.49332016221920005,
+      "hit_rate": 0.56,
+      "delta_vs_market": {
+        "delta": 0.037352239112347085,
+        "ci95": [
+          0.00722010992624539,
+          0.06310021948225737
+        ],
+        "familywise_ci": [
+          0.00722010992624539,
+          0.06310021948225737
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_offense14": {
+      "logloss": 0.688732411748,
+      "brier": 0.49560330480400006,
+      "hit_rate": 0.552,
+      "delta_vs_market": {
+        "delta": 0.0396452068371471,
+        "ci95": [
+          0.01038532327664534,
+          0.06455383227601064
+        ],
+        "familywise_ci": [
+          0.01038532327664534,
+          0.06455383227601064
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_offense7": {
+      "logloss": 0.6849018687672,
+      "brier": 0.49178899169599993,
+      "hit_rate": 0.544,
+      "delta_vs_market": {
+        "delta": 0.0358146638563471,
+        "ci95": [
+          0.006013044085809292,
+          0.06146073002076245
+        ],
+        "familywise_ci": [
+          0.006013044085809292,
+          0.06146073002076245
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_relief_workload": {
+      "logloss": 0.6841508916688002,
+      "brier": 0.4910489492848001,
+      "hit_rate": 0.536,
+      "delta_vs_market": {
+        "delta": 0.0350636867579471,
+        "ci95": [
+          0.0056827204112718434,
+          0.06020403723100246
+        ],
+        "familywise_ci": [
+          0.0056827204112718434,
+          0.06020403723100246
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "add_starter_skill": {
+      "logloss": 0.6540839493239999,
+      "brier": 0.4617314783688001,
+      "hit_rate": 0.656,
+      "delta_vs_market": {
+        "delta": 0.004996744413147093,
+        "ci95": [
+          -0.022992219604557166,
+          0.02982064681932485
+        ],
+        "familywise_ci": [
+          -0.022992219604557166,
+          0.02982064681932485
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "baseline_team": {
+      "logloss": 0.6859504387175999,
+      "brier": 0.4928363373848,
+      "hit_rate": 0.56,
+      "delta_vs_market": {
+        "delta": 0.03686323380674711,
+        "ci95": [
+          0.006831051335585006,
+          0.06252770745240531
+        ],
+        "familywise_ci": [
+          0.006831051335585006,
+          0.06252770745240531
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    },
+    "league_reference": {
+      "logloss": 0.6937345450343999,
+      "brier": 0.5005867143488001,
+      "hit_rate": 0.504,
+      "delta_vs_market": {
+        "delta": 0.04464734012354709,
+        "ci95": [
+          0.009400232104991281,
+          0.07478859523804202
+        ],
+        "familywise_ci": [
+          0.009400232104991281,
+          0.07478859523804202
+        ],
+        "date_clusters": 33,
+        "n_games": 125
+      }
+    }
+  }
+}

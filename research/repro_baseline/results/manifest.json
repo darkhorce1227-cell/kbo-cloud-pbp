@@ -1,0 +1,145 @@
+{
+  "protocol_sha256": "8073998bb60401f6949713df13c6299c4267433b61fe845bb547bfcc836220ac",
+  "sources": [
+    {
+      "file": "kbo_pbp_2024_training.csv.gz",
+      "sha256": "d9e4b59fc4c255990452c47d384977f689f338ce6b90988933906cb9e7874458",
+      "year": 2024,
+      "source_rows": 227955,
+      "included_rows": 223015,
+      "included_games": 719,
+      "calendar_cutoff": "2024-09-30"
+    },
+    {
+      "file": "kbo_pbp_2025_training.csv.gz",
+      "sha256": "017ae5f39e79b2aeaa05e269cf32aebe7cc410c75fedd6e928850a61730acb61",
+      "year": 2025,
+      "source_rows": 222650,
+      "included_rows": 215737,
+      "included_games": 713,
+      "calendar_cutoff": "2025-09-30"
+    },
+    {
+      "file": "kbo_pbp_2026_latest.csv.gz",
+      "sha256": "e854326bd1709bef884521f4e617d51fdc2e87bc3b59e9f04c28ce6517735615",
+      "year": 2026,
+      "source_rows": 225254,
+      "included_rows": 221603,
+      "included_games": 720,
+      "calendar_cutoff": "2026-10-12"
+    }
+  ],
+  "exclusions": [
+    {
+      "game_pk": "20250419NCHH02025",
+      "reason": "F5_completion_unverified"
+    }
+  ],
+  "coverage": [
+    {
+      "month": "2024-05",
+      "status": "warmup",
+      "prior_training_games": 0
+    },
+    {
+      "month": "2024-06",
+      "status": "warmup",
+      "prior_training_games": 122
+    },
+    {
+      "month": "2024-07",
+      "status": "evaluated",
+      "train_games": 247,
+      "test_games": 97
+    },
+    {
+      "month": "2024-08",
+      "status": "evaluated",
+      "train_games": 344,
+      "test_games": 119
+    },
+    {
+      "month": "2024-09",
+      "status": "evaluated",
+      "train_games": 463,
+      "test_games": 98
+    },
+    {
+      "month": "2025-05",
+      "status": "evaluated",
+      "train_games": 561,
+      "test_games": 131
+    },
+    {
+      "month": "2025-06",
+      "status": "evaluated",
+      "train_games": 692,
+      "test_games": 111
+    },
+    {
+      "month": "2025-07",
+      "status": "evaluated",
+      "train_games": 803,
+      "test_games": 100
+    },
+    {
+      "month": "2025-08",
+      "status": "evaluated",
+      "train_games": 903,
+      "test_games": 127
+    },
+    {
+      "month": "2025-09",
+      "status": "evaluated",
+      "train_games": 1030,
+      "test_games": 91
+    },
+    {
+      "month": "2026-05",
+      "status": "evaluated",
+      "train_games": 1121,
+      "test_games": 128
+    },
+    {
+      "month": "2026-06",
+      "status": "evaluated",
+      "train_games": 1249,
+      "test_games": 123
+    },
+    {
+      "month": "2026-07",
+      "status": "evaluated",
+      "train_games": 1372,
+      "test_games": 102
+    },
+    {
+      "month": "2026-08",
+      "status": "evaluated",
+      "train_games": 1474,
+      "test_games": 86
+    },
+    {
+      "month": "2026-09",
+      "status": "evaluated",
+      "train_games": 1560,
+      "test_games": 104
+    },
+    {
+      "month": "2026-10",
+      "status": "evaluated",
+      "train_games": 1664,
+      "test_games": 40
+    }
+  ],
+  "versions": {
+    "python": "3.12.16",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "sklearn": "1.8.0"
+  },
+  "status": "FROZEN_RETROSPECTIVE_RESEARCH_NOT_CHAMPION",
+  "eligible_games": 1457,
+  "model_count": 10,
+  "official_activation": false
+}
