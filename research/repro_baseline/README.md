@@ -41,6 +41,7 @@ scikit-learn 1.8.0. No `kbo_pbp` network parser is required for this runner.
 ```bash
 python -m unittest discover -s tests -p test_repro_baseline.py -v
 python scripts/kbo_repro_baseline.py --inputs /path/kbo_pbp_2024_training.csv.gz /path/kbo_pbp_2025_training.csv.gz /path/kbo_pbp_2026_latest.csv.gz --out /tmp/baseline-results
+python scripts/kbo_repro_baseline_review.py --results /tmp/baseline-results
 ```
 
 One year can be supplied for a within-year diagnostic. Check `manifest.json`
@@ -48,6 +49,11 @@ before comparing runs: a one-year and a multiyear run have different prior
 history, training data and eligible forecasts. Their metrics are not the same
 experiment. Checksums reject changed Release data rather than silently reusing
 an old source identity.
+
+The review command is specifically for the frozen three-year run. Optional
+`--replay-features /path/features.csv.gz` checks every team/phase mean directly
+from saved coefficients. `--independent-predictions /path/predictions.csv`
+compares a second execution with the stored forecasts.
 
 The workflow retrieves original 2024/25 files from existing Actions run
 37073907739, artifact `kbo-mu-training-pbp-2024-2025`, and verifies their registered
@@ -57,12 +63,21 @@ hashes. It leaves those original archives untouched. 2026 is pinned to the
 ## Saved audit trail
 
 - `features.csv.gz`: one row per game, team and phase, with data cutoff and
-  fallback/sample information. Features are stored in the workflow artifact.
+  fallback/sample information. A coefficient-replay-verified snapshot is kept
+  in this branch as well as the workflow artifact, so forecasts can be replayed
+  even after the original Actions artifacts expire. Raw PBP reconstruction
+  still requires the source archives whose SHA256s are registered.
 - `predictions.csv`: every model/game prediction, target, loss and train cutoff.
 - `fitted_models.json`: monthly features, coefficients, intercept and scaling.
 - `manifest.json`: source hashes, excluded games, temporal coverage and versions.
 - `metrics.json`: aggregate, year, month and paired differences with denominators.
 - `REPORT.md`: readable comparison and interpretation constraints.
+- `calibration.csv`: fixed 10-bin reliability counts; no fitted calibration.
+- `INTERPRETATION.md` and `market_information_benchmark.json`: post-run
+  descriptive comparison to archived displayed Full ML prices on matched games.
+  Their quote timestamps are unverified. These do not establish live market
+  superiority and were not used to fit or select a feature combination.
+- `review_audit.json`: source/code/protocol hashes and output-integrity checks.
 
 ## Limits that matter
 
